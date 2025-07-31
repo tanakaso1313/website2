@@ -1,0 +1,32 @@
+.bio-content {
+    padding-top: 4em;
+    padding-right: 5vw;
+}
+
+.bio-content p {
+    margin-bottom: 2em;
+}
+
+.contact-info p {
+    margin-bottom: 0;
+}
+
+.cv-section {
+    margin-bottom: 2em;
+}
+
+.bio-content h2 {
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+    font-size: 1em;
+    margin-bottom: 1em;
+}
+
+.cv-item {
+    display: flex;
+    margin-bottom: 0.5em;
+}
+
+.cv-item span:first-child {
+    width: 100px;
+}

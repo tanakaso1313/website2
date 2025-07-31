@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "name": "Let's Shop 1",
+        "description": "Description for Product 1",
+        "price": 19.99,
+        "image": "images/Shop - top/1.let_shop.JPG"
+    },
+    {
+        "id": 2,
+        "name": "Let's Shop 2",
+        "description": "Description for Product 2",
+        "price": 29.99,
+        "image": "images/Shop - top/2.let_shop.JPG"
+    },
+    {
+        "id": 3,
+        "name": "Let's Shop 3",
+        "description": "Description for Product 3",
+        "price": 39.99,
+        "image": "images/Shop - top/3.let_shop.JPG"
+    }
+]

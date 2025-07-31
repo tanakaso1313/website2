@@ -1,0 +1,30 @@
+.shop-content {
+    padding-left: 30vw;
+    padding-top: 7vh;
+}
+
+.shop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2em;
+}
+
+.product-item {
+    text-align: left;
+}
+
+.product-item img {
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+.product-item p {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 1em;
+}
+
+.product-item .price {
+    font-weight: bold;
+    margin-top: 0.5em;
+}

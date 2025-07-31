@@ -1,0 +1,46 @@
+.work-content {
+    display: flex;
+    padding-top: 5vh;
+}
+
+.work-description {
+    width: 30vw;
+    padding-left: 5vw;
+    padding-right: 5vw;
+}
+
+.work-description h2 {
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+    font-size: 1em;
+}
+
+.work-images {
+    width: 55vw;
+}
+
+.work-images img {
+    width: 100%;
+    margin-bottom: 2em;
+}
+
+.half-width-container {
+    display: flex;
+    gap: 2em;
+}
+
+.half-width-container img {
+    width: calc(50% - 1em);
+}
+
+.image-credit-container {
+    position: relative;
+}
+
+.photo-credit {
+    font-size: 9pt;
+    text-align: left;
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+}
