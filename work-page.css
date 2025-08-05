@@ -44,3 +44,27 @@
     bottom: 5px;
     left: 0;
 }
+
+@media (max-width: 768px) {
+    .work-content {
+        flex-direction: column;
+    }
+
+    .work-description,
+    .work-images {
+        width: 100%;
+        padding-left: 5vw;
+        padding-right: 5vw;
+        box-sizing: border-box;
+    }
+
+    .work-description {
+        order: 2;
+        width: auto;
+    }
+
+    .work-images {
+        order: 1;
+        width: auto;
+    }
+}

@@ -1,23 +1,26 @@
 [
     {
-        "id": 1,
-        "name": "Let's Shop 1",
-        "description": "Description for Product 1",
-        "price": 19.99,
-        "image": "images/Shop - top/1.let_shop.JPG"
+        "id": "vnsh",
+        "name": "VNSH",
+        "price": "105,600YEN",
+        "image": "images/Shop - top/1.vnsh_shop.jpg"
     },
     {
-        "id": 2,
-        "name": "Let's Shop 2",
-        "description": "Description for Product 2",
-        "price": 29.99,
+        "id": "lcsc-03",
+        "name": "LCSC - 03",
+        "price": "13,200YEN",
+        "image": "images/Shop - top/3.let_shop.JPG"
+    },
+    {
+        "id": "lcsc-01",
+        "name": "LCSC - 01",
+        "price": "16,500YEN",
         "image": "images/Shop - top/2.let_shop.JPG"
     },
     {
-        "id": 3,
-        "name": "Let's Shop 3",
-        "description": "Description for Product 3",
-        "price": 39.99,
-        "image": "images/Shop - top/3.let_shop.JPG"
+        "id": "lcsc-02",
+        "name": "LCSC - 02",
+        "price": "11,800YEN",
+        "image": "images/Shop - top/4.let_shop.JPG"
     }
 ]

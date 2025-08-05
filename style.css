@@ -20,6 +20,12 @@ a:hover {
     text-decoration: underline;
 }
 
+@media (max-width: 768px) {
+    .sidebar {
+        font-size: 0.9em;
+    }
+}
+
 .sidebar h1 {
     font-weight: normal;
     font-size: 1em;
@@ -35,7 +41,7 @@ a:hover {
 }
 
 .main-nav {
-    margin-bottom: 2em;
+    margin-top: 2em;
 }
 
 .category-nav {

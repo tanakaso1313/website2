@@ -1,10 +1,12 @@
 .bio-content {
     padding-top: 4em;
     padding-right: 5vw;
+    padding-left: 2vw;
 }
 
 .bio-content p {
     margin-bottom: 2em;
+    font-size: 0.9em;
 }
 
 .contact-info p {
@@ -29,4 +31,10 @@
 
 .cv-item span:first-child {
     width: 100px;
+}
+
+@media (max-width: 768px) {
+    .bio-content {
+        padding-left: 5vw;
+    }
 }

@@ -13,15 +13,15 @@
             <h1><a href="index.html">SO TANAKA</a></h1>
         </header>
         <nav>
-            <div class="main-nav">
-                <a href="bio.html">BIO</a>
-                <a href="shop.html">SHOP</a>
-            </div>
             <div class="category-nav">
                 <a href="index.html?filter=all" data-filter="all">ALL</a>
                 <a href="index.html?filter=furniture" data-filter="furniture">FURNITURE</a>
                 <a href="index.html?filter=lighting" data-filter="lighting">LIGHTING</a>
                 <a href="index.html?filter=other" data-filter="other">OTHER</a>
+            </div>
+            <div class="main-nav">
+                <a href="bio.html">BIO</a>
+                <a href="shop.html">SHOP</a>
             </div>
         </nav>
     </div>
@@ -29,6 +29,27 @@
         <div class="shop-grid">
         </div>
     </main>
-    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const shopGrid = document.querySelector('.shop-grid');
+
+            fetch('products.json')
+                .then(response => response.json())
+                .then(products => {
+                    products.forEach(product => {
+                        const productElement = document.createElement('div');
+                        productElement.classList.add('product');
+
+                        productElement.innerHTML = `
+                            <img src="${product.image}" alt="${product.name}">
+                            <h3>${product.name}</h3>
+                            <p>${product.price}</p>
+                        `;
+
+                        shopGrid.appendChild(productElement);
+                    });
+                });
+        });
+    </script>
 </body>
 </html>

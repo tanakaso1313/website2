@@ -11,7 +11,7 @@ This repository contains the source code for the SOTANAKA portfolio website.
 ## Setup
 1. Clone the repository:
    ```bash
-   git clone git@github.com:tanakaso1313/STwebsite.git
+   git clone git@github.com:tanakaso1313/website2.git
    ```
 2. Navigate to the `portofolio` directory:
    ```bash
