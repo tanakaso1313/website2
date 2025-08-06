@@ -22,7 +22,33 @@ a:hover {
 
 @media (max-width: 768px) {
     .sidebar {
-        font-size: 0.9em;
+        position: relative;
+        width: 100%;
+        top: 0;
+        left: 0;
+        padding: 1em 5vw;
+        box-sizing: border-box;
+    }
+
+    .sidebar h1 {
+        margin-bottom: 1em;
+    }
+
+    .main-nav {
+        margin-top: 1em;
+    }
+
+    .category-nav {
+        margin-top: 1em;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1em;
+    }
+
+    main {
+        margin-left: 0;
+        padding: 2em 0;
+        box-sizing: border-box;
     }
 }
 
