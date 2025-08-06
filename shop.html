@@ -25,29 +25,38 @@
             </div>
         </nav>
     </div>
-    <main class="shop-content">
-        <div class="shop-grid">
-        </div>
-    </main>
+    <div class="top-images"></div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const shopGrid = document.querySelector('.shop-grid');
+            const topImagesContainer = document.querySelector('.top-images');
 
-            fetch('products.json')
-                .then(response => response.json())
+             fetch('/products.json')
+                 .then(response => {
+                     if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
                 .then(products => {
                     products.forEach(product => {
-                        const productElement = document.createElement('div');
-                        productElement.classList.add('product');
+                        const productItem = document.createElement('div');
+                        productItem.classList.add('product-item');
 
-                        productElement.innerHTML = `
-                            <img src="${product.image}" alt="${product.name}">
-                            <h3>${product.name}</h3>
-                            <p>${product.price}</p>
+                        let linkStart = product.page ? `<a href="${product.page}">` : '';
+                        let linkEnd = product.page ? '</a>' : '';
+
+                        productItem.innerHTML = `
+                            ${linkStart}
+                                <img src="${product.image}" alt="${product.name}">
+                                <h3>${product.name}</h3>
+                                <p>${product.price}</p>
+                            ${linkEnd}
                         `;
-
-                        shopGrid.appendChild(productElement);
+                        topImagesContainer.appendChild(productItem);
                     });
+                })
+                .catch(error => {
+                    console.error('Error fetching or processing products:', error);
                 });
         });
     </script>

@@ -1,31 +1,36 @@
-.shop-content {
-    padding-left: 30vw;
-    padding-top: 7vh;
+.top-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1vw;
+    align-items: flex-start;
+    padding: 7vh 5vw 2em 30vw;
 }
 
-.shop-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2em;
-    padding-right: 5vw;
-}
-
-.product {
+.product-item {
+    width: 15.5vw;
     text-align: left;
 }
 
-.product img {
+.product-item a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.product-item img {
     width: 100%;
+    height: auto;
+    object-fit: cover;
     margin-bottom: 1em;
 }
 
-.product h3 {
+.product-item h3 {
     font-size: 1em;
     font-weight: normal;
     margin: 0;
 }
 
-.product p {
+.product-item p {
     margin: 0;
     font-family: Arial, sans-serif;
     font-size: 1em;
