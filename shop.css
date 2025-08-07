@@ -3,7 +3,7 @@
     flex-wrap: wrap;
     gap: 1vw;
     align-items: flex-start;
-    padding: 7vh 5vw 2em 35vw;
+    padding: 1vh 5vw 2em 35vw;
 }
 
 .product-item {
@@ -36,11 +36,48 @@
     font-size: 1em;
 }
 
+.mobile-menu-trigger {
+    display: none;
+    cursor: pointer;
+    position: fixed;
+    top: 25vh;
+    left: 5vw;
+    z-index: 200;
+    font-family: Arial, sans-serif;
+    font-size: 1em;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+}
+
 @media (max-width: 768px) {
+    .mobile-menu-trigger {
+        display: block;
+    }
+
+    .main-menu {
+        display: none;
+    }
+
+    .sidebar.menu-open .main-menu {
+        display: block;
+    }
+
+    .sidebar.menu-open .mobile-menu-trigger {
+        display: none;
+    }
+
+    .sidebar {
+        position: fixed;
+        left: 5vw;
+        top: 7vh;
+        height: 86vh;
+        overflow-y: auto;
+    }
+
     .top-images {
         width: 100%;
         flex-direction: column;
-        padding: 2em 5vw;
+        padding: 25vh 5vw 2em 15vw;
         box-sizing: border-box;
     }
 

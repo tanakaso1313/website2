@@ -12,23 +12,44 @@
         <header>
             <h1><a href="index.html">SO TANAKA</a></h1>
         </header>
-        <nav>
-            <div class="category-nav">
-                <a href="index.html?filter=all" data-filter="all">ALL</a>
-                <a href="index.html?filter=furniture" data-filter="furniture">FURNITURE</a>
-                <a href="index.html?filter=lighting" data-filter="lighting">LIGHTING</a>
-                <a href="index.html?filter=other" data-filter="other">OTHER</a>
-            </div>
-            <div class="main-nav">
-                <a href="bio.html">BIO</a>
-                <a href="shop.html">SHOP</a>
-            </div>
+        <div class="mobile-menu-trigger">
+            MENU
+        </div>
+        <nav class="main-menu">
+            <a href="index.html?filter=all" data-filter="all">ALL WORKS</a>
+            <a href="index.html?filter=furniture" data-filter="furniture">FURNITURE</a>
+            <a href="index.html?filter=lighting" data-filter="lighting">LIGHTING</a>
+            <a href="index.html?filter=other" data-filter="other">OTHER</a>
+            <a href="bio.html">BIO</a>
+            <a href="shop.html">SHOP</a>
         </nav>
     </div>
     <div class="top-images"></div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const topImagesContainer = document.querySelector('.top-images');
+            const sidebar = document.querySelector('.sidebar');
+            const mobileMenuTrigger = document.querySelector('.mobile-menu-trigger');
+
+            mobileMenuTrigger.addEventListener('click', (event) => {
+                event.stopPropagation();
+                sidebar.classList.add('menu-open');
+            });
+
+            document.addEventListener('click', (event) => {
+                if (!sidebar.contains(event.target) && sidebar.classList.contains('menu-open')) {
+                    sidebar.classList.remove('menu-open');
+                }
+            });
+
+            const menuLinks = document.querySelectorAll('.main-menu a');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    if (sidebar.classList.contains('menu-open')) {
+                        event.stopPropagation();
+                    }
+                });
+            });
 
              fetch('/products.json')
                  .then(response => {
