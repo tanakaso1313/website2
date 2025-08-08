@@ -66,6 +66,15 @@
         display: none;
     }
 
+    .sub-menu {
+        display: none;
+        padding-left: 1em;
+    }
+
+    .sub-menu.open {
+        display: block;
+    }
+
     .sidebar {
         position: fixed;
         left: 5vw;

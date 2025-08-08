@@ -16,10 +16,15 @@
             MENU
         </div>
         <nav class="main-menu">
-            <a href="index.html?filter=all" data-filter="all">ALL WORKS</a>
-            <a href="index.html?filter=furniture" data-filter="furniture">FURNITURE</a>
-            <a href="index.html?filter=lighting" data-filter="lighting">LIGHTING</a>
-            <a href="index.html?filter=other" data-filter="other">OTHER</a>
+            <div class="works-menu">
+                <a href="#" id="works-trigger">WORKS</a>
+                <div class="sub-menu">
+                    <a href="index.html?filter=all" data-filter="all">ALL</a>
+                    <a href="index.html?filter=furniture" data-filter="furniture">FURNITURE</a>
+                    <a href="index.html?filter=lighting" data-filter="lighting">LIGHTING</a>
+                    <a href="index.html?filter=other" data-filter="other">OTHER</a>
+                </div>
+            </div>
             <a href="bio.html">BIO</a>
             <a href="shop.html">SHOP</a>
         </nav>
@@ -30,6 +35,8 @@
             const topImagesContainer = document.querySelector('.top-images');
             const sidebar = document.querySelector('.sidebar');
             const mobileMenuTrigger = document.querySelector('.mobile-menu-trigger');
+            const worksTrigger = document.getElementById('works-trigger');
+            const subMenu = document.querySelector('.sub-menu');
 
             mobileMenuTrigger.addEventListener('click', (event) => {
                 event.stopPropagation();
@@ -40,6 +47,12 @@
                 if (!sidebar.contains(event.target) && sidebar.classList.contains('menu-open')) {
                     sidebar.classList.remove('menu-open');
                 }
+            });
+
+            worksTrigger.addEventListener('click', (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                subMenu.classList.toggle('open');
             });
 
             const menuLinks = document.querySelectorAll('.main-menu a');

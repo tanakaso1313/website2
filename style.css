@@ -21,6 +21,9 @@ a:hover {
 }
 
 @media (max-width: 768px) {
+    body {
+        font-size: 12.8pt;
+    }
     .sidebar {
         position: relative;
         width: 100%;
@@ -28,6 +31,16 @@ a:hover {
         left: 0;
         padding: 1em 5vw;
         box-sizing: border-box;
+        background-color: #fff;
+        z-index: 200;
+    }
+
+    .sidebar h1 a {
+        font-size: 0.7em;
+    }
+
+    .main-menu a {
+        font-size: 0.7em;
     }
 
     .sidebar h1 {
