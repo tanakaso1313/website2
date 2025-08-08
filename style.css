@@ -22,7 +22,7 @@ a:hover {
 
 @media (max-width: 768px) {
     body {
-        font-size: 12.8pt;
+        font-size: 10.24pt;
     }
     .sidebar {
         position: relative;
@@ -62,6 +62,14 @@ a:hover {
         margin-left: 0;
         padding: 2em 0;
         box-sizing: border-box;
+    }
+
+    .gallery-container {
+        overflow-x: hidden;
+    }
+
+    .gallery-container img {
+        width: 94px;
     }
 }
 
