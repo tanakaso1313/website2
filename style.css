@@ -66,6 +66,8 @@ a:hover {
 
     .gallery-container {
         overflow-x: hidden;
+        position: relative;
+        top: -10em;
     }
 
     .gallery-container img {
