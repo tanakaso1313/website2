@@ -50,11 +50,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         filterLinks.forEach(link => {
             link.addEventListener('click', (e) => {
-                e.preventDefault();
                 const filter = e.target.dataset.filter;
-                applyFilter(filter);
-                // Update URL without reloading
-                history.pushState(null, '', `index.html?filter=${filter}`);
+                if (filter) {
+                    e.preventDefault();
+                    applyFilter(filter);
+                    // Update URL without reloading
+                    history.pushState(null, '', `index.html?filter=${filter}`);
+                }
             });
         });
     }
