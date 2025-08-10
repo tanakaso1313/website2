@@ -36,6 +36,8 @@ a:hover {
 
     .sidebar.menu-open {
         background-color: #fff;
+        width: fit-content;
+        padding: 1em;
     }
 
     .sidebar h1 a {
@@ -52,6 +54,8 @@ a:hover {
 
     .main-nav {
         margin-top: 1em;
+        display: flex;
+        gap: 1em;
     }
 
     .category-nav {
@@ -82,7 +86,7 @@ a:hover {
     font-weight: normal;
     font-size: 16pt;
     margin: 0;
-    margin-bottom: 2em;
+    margin-bottom: 0em;
 }
 
 .sidebar nav a {

@@ -60,6 +60,7 @@
 
     .sidebar.menu-open .main-menu {
         display: block;
+        margin-top: calc(18vh - 2em);
     }
 
     .sidebar.menu-open .main-menu a {
@@ -83,8 +84,6 @@
         position: fixed;
         left: 5vw;
         top: 7vh;
-        height: 86vh;
-        overflow-y: auto;
     }
 
     .top-images {
