@@ -67,9 +67,6 @@ a:hover {
         top: -10em;
     }
 
-    .gallery-container img {
-        width: 56.4px;
-    }
 }
 
 .sidebar h1 {
@@ -112,6 +109,12 @@ main {
     height: auto;
     transition: all 0.3s ease;
     cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .gallery-container img {
+        width: 73.32px;
+    }
 }
 
 .gallery-container a {
