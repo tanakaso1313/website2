@@ -49,6 +49,12 @@
                 }
             });
 
+            sidebar.addEventListener('click', (event) => {
+                if (event.target === sidebar) {
+                    sidebar.classList.remove('menu-open');
+                }
+            });
+
             worksTrigger.addEventListener('click', (event) => {
                 event.preventDefault();
                 event.stopPropagation();

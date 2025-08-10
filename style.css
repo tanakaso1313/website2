@@ -31,15 +31,18 @@ a:hover {
         left: 0;
         padding: 1em 5vw;
         box-sizing: border-box;
-        background-color: #fff;
         z-index: 200;
+    }
+
+    .sidebar.menu-open {
+        background-color: #fff;
     }
 
     .sidebar h1 a {
         font-size: 0.7em;
     }
 
-    .main-menu a {
+    .main-nav a {
         font-size: 0.7em;
     }
 
@@ -77,7 +80,7 @@ a:hover {
 
 .sidebar h1 {
     font-weight: normal;
-    font-size: 1em;
+    font-size: 16pt;
     margin: 0;
     margin-bottom: 2em;
 }

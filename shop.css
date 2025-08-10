@@ -62,6 +62,10 @@
         display: block;
     }
 
+    .sidebar.menu-open .main-menu a {
+        font-size: 2em;
+    }
+
     .sidebar.menu-open .mobile-menu-trigger {
         display: none;
     }
