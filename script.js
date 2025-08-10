@@ -24,19 +24,52 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         };
 
+        const isMobile = window.innerWidth <= 768;
+
+        // Store original monochrome source for all images
         galleryLinks.forEach(link => {
             const img = link.querySelector('img');
-            const monoSrc = img.src;
+            img.dataset.monoSrc = img.src;
+        });
+
+        galleryLinks.forEach(link => {
+            const img = link.querySelector('img');
+            const monoSrc = img.dataset.monoSrc;
             const colorSrc = img.dataset.colorSrc;
 
-            link.addEventListener('mouseenter', () => {
-                img.src = colorSrc;
-                link.style.zIndex = zIndexCounter++;
-            });
+            if (isMobile) {
+                link.addEventListener('click', (e) => {
+                    if (link.classList.contains('is-colored')) {
+                        // Second tap: Allow navigation
+                        return;
+                    }
+                    
+                    // First tap: Prevent navigation and handle image swap
+                    e.preventDefault();
 
-            link.addEventListener('mouseleave', () => {
-                img.src = monoSrc;
-            });
+                    // Reset all other images to monochrome
+                    galleryLinks.forEach(otherLink => {
+                        otherLink.classList.remove('is-colored');
+                        const otherImg = otherLink.querySelector('img');
+                        otherImg.src = otherImg.dataset.monoSrc;
+                    });
+
+                    // Activate the tapped image
+                    link.classList.add('is-colored');
+                    img.src = colorSrc;
+                    link.style.zIndex = zIndexCounter++;
+                });
+            } else {
+                // Desktop hover logic
+                link.addEventListener('mouseenter', () => {
+                    img.src = colorSrc;
+                    link.style.zIndex = zIndexCounter++;
+                });
+
+                link.addEventListener('mouseleave', () => {
+                    img.src = monoSrc;
+                });
+            }
         });
 
         // Check for filter in URL query params
