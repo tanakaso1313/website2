@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -46,10 +46,10 @@
         </div>
         <div class="product-image">
             <div class="slideshow-container">
-                <img class="slide" src="images/shop - vnsh/1.vnsh_shop.jpg" alt="VNSH">
-                <img class="slide" src="images/shop - vnsh/2.bb.jpg のコピー.jpg" alt="VNSH">
-                <img class="slide" src="images/shop - vnsh/3.b.jpg のコピー.jpg" alt="VNSH">
-                <img class="slide" src="images/shop - vnsh/4.DSC02181.JPG" alt="VNSH">
+                <img class="slide" src="images/shop - vnsh/1.vnsh_shop.webp" alt="VNSH">
+                <img class="slide" src="images/shop - vnsh/2.bb.webp のコピ�E.webp" alt="VNSH">
+                <img class="slide" src="images/shop - vnsh/3.b.webp のコピ�E.webp" alt="VNSH">
+                <img class="slide" src="images/shop - vnsh/4.DSC02181.webp" alt="VNSH">
                 <div class="slide-overlay-left" onclick="plusSlides(-1)"></div>
                 <div class="slide-overlay-right" onclick="plusSlides(1)"></div>
             </div>
@@ -59,9 +59,7 @@
         let slideIndex = 1;
         let slideTimeout;
         let isPaused = false;
-
         const slideshowContainer = document.querySelector('.slideshow-container');
-
         slideshowContainer.addEventListener('mousedown', (e) => {
             if (e.target.classList.contains('slide-overlay-left') || e.target.classList.contains('slide-overlay-right')) {
                 return;
@@ -69,29 +67,26 @@
             isPaused = true;
             clearTimeout(slideTimeout);
         });
-
         slideshowContainer.addEventListener('mouseup', () => {
             if (isPaused) {
                 isPaused = false;
                 autoShowSlides();
             }
         });
-        
+ECHO �� <OFF> �ł��B
         slideshowContainer.addEventListener('mouseleave', () => {
             if (isPaused) {
                 isPaused = false;
                 autoShowSlides();
             }
         });
-
         function plusSlides(n) {
             clearTimeout(slideTimeout);
             showSlides(slideIndex += n);
-            if (!isPaused) {
+            if (isPaused) {
                 autoShowSlides();
             }
         }
-
         function showSlides(n) {
             let i;
             let slides = document.getElementsByClassName("slide");
@@ -102,14 +97,12 @@
             }
             slides[slideIndex-1].style.display = "block";
         }
-
         function autoShowSlides() {
             if(isPaused) return;
             slideTimeout = setTimeout(() => {
                 plusSlides(1);
             }, 4000);
         }
-
         showSlides(slideIndex);
         autoShowSlides();
     </script>

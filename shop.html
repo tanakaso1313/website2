@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -37,30 +37,25 @@
             const mobileMenuTrigger = document.querySelector('.mobile-menu-trigger');
             const worksTrigger = document.getElementById('works-trigger');
             const subMenu = document.querySelector('.sub-menu');
-
             mobileMenuTrigger.addEventListener('click', (event) => {
                 event.stopPropagation();
                 sidebar.classList.add('menu-open');
             });
-
             document.addEventListener('click', (event) => {
-                if (!sidebar.contains(event.target) && sidebar.classList.contains('menu-open')) {
+                if (sidebar.contains(event.target) && sidebar.classList.contains('menu-open')) {
                     sidebar.classList.remove('menu-open');
                 }
             });
-
             sidebar.addEventListener('click', (event) => {
                 if (event.target === sidebar) {
                     sidebar.classList.remove('menu-open');
                 }
             });
-
             worksTrigger.addEventListener('click', (event) => {
                 event.preventDefault();
                 event.stopPropagation();
                 subMenu.classList.toggle('open');
             });
-
             const menuLinks = document.querySelectorAll('.main-menu a');
             menuLinks.forEach(link => {
                 link.addEventListener('click', (event) => {
@@ -69,10 +64,9 @@
                     }
                 });
             });
-
              fetch('/products.json')
                  .then(response => {
-                     if (!response.ok) {
+                     if (response.ok) {
                         throw new Error('Network response was not ok');
                     }
                     return response.json();
@@ -81,10 +75,8 @@
                     products.forEach(product => {
                         const productItem = document.createElement('div');
                         productItem.classList.add('product-item');
-
                         let linkStart = product.page ? `<a href="${product.page}">` : '';
                         let linkEnd = product.page ? '</a>' : '';
-
                         productItem.innerHTML = `
                             ${linkStart}
                                 <img src="${product.image}" alt="${product.name}">
