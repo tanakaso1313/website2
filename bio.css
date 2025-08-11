@@ -33,6 +33,11 @@
     width: 100px;
 }
 
+.cv-item-description {
+    width: calc(100% - 100px);
+    vertical-align: top;
+}
+
 @media (max-width: 768px) {
     .bio-content {
         padding-left: 5vw;

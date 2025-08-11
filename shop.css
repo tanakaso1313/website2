@@ -80,16 +80,10 @@
         display: block;
     }
 
-    .sidebar {
-        position: fixed;
-        left: 5vw;
-        top: 7vh;
-    }
-
     .top-images {
         width: 100%;
         flex-direction: column;
-        padding: 25vh 5vw 2em 15vw;
+        padding: 12.5vh 5vw 2em 15vw;
         box-sizing: border-box;
     }
 

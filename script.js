@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const works = {
             'furniture': ['ORI'],
-            'lighting': ['Liminal Lamp', 'Vnsh', 'LTI'],
+            'light': ['Liminal Lamp', 'Vnsh', 'LTI'],
             'other': ['transfer', 'Memento', 'Liminal Objects', 'Let a']
         };
 

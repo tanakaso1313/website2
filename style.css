@@ -90,7 +90,7 @@ main {
         font-size: 10.24pt;
     }
     .sidebar {
-        position: relative;
+        position: sticky;
         width: 100%;
         top: 0;
         left: 0;
@@ -100,7 +100,6 @@ main {
     }
 
     .sidebar.menu-open {
-        background-color: #fff;
         width: fit-content;
         padding: 1em;
     }

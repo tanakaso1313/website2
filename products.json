@@ -3,31 +3,31 @@
         "id": "vnsh",
         "name": "VNSH",
         "price": "105,600JPY",
-        "image": "images/Shop - top/1.vnsh_shop.jpg",
+        "image": "images/Shop - top/1.vnsh_shop_result.webp",
         "page": "vnsh_shop.html"
     },
     {
-        "id": "liminal-lamp-s",
-        "name": "LIMINAL LAMP S",
+        "id": "liminal-light-s",
+        "name": "LIMINAL LIGHT S",
         "price": "55,000JPY",
-        "image": "images/Shop - top/2.liminal lamp.JPG"
+        "image": "images/Shop - top/2.liminal lamp_result.webp"
     },
     {
         "id": "lcsc-03",
         "name": "LCSC - 03",
         "price": "13,200JPY",
-        "image": "images/Shop - top/3.let_shop (2).JPG"
+        "image": "images/Shop - top/3.let_shop (2)_result.webp"
     },
     {
         "id": "lcsc-02",
         "name": "LCSC - 02",
         "price": "11,800JPY",
-        "image": "images/Shop - top/4.let_shop (2).JPG"
+        "image": "images/Shop - top/4.let_shop (2)_result.webp"
     },
     {
         "id": "lcsc-04",
         "name": "LCSC - 04",
         "price": "14,300JPY",
-        "image": "images/Shop - top/5.let_shop.JPG"
+        "image": "images/Shop - top/5.let_shop_result.webp"
     }
 ]
