@@ -50,6 +50,14 @@ a:hover {
     margin-top: 3em;
 }
 
+.legal-policy {
+    position: fixed;
+    bottom: 3em;
+    left: 5vw;
+    font-size: 0.5em;
+    text-transform: uppercase;
+}
+
 main {
     margin-left: 30vw;
     position: relative;
