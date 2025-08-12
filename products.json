@@ -12,23 +12,5 @@
         "price": "55,000JPY",
         "image": "images/Shop - top/2.liminal lamp_result.webp",
         "page": "liminal-light-s.html"
-    },
-    {
-        "id": "lcsc-03",
-        "name": "LCSC - 03",
-        "price": "13,200JPY",
-        "image": "images/Shop - top/3.let_shop (2)_result.webp"
-    },
-    {
-        "id": "lcsc-02",
-        "name": "LCSC - 02",
-        "price": "11,800JPY",
-        "image": "images/Shop - top/4.let_shop (2)_result.webp"
-    },
-    {
-        "id": "lcsc-04",
-        "name": "LCSC - 04",
-        "price": "14,300JPY",
-        "image": "images/Shop - top/5.let_shop_result.webp"
     }
 ]
