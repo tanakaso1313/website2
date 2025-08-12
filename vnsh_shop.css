@@ -119,4 +119,8 @@
         margin-left: 0;
         margin-top: 1em;
     }
+
+    .add-to-cart {
+        color: black;
+    }
 }
