@@ -52,8 +52,8 @@ a:hover {
 
 .legal-policy {
     position: fixed;
-    bottom: 3em;
-    left: 5vw;
+    bottom: 1em;
+    left: 2vw;
     font-size: 0.5em;
     text-transform: uppercase;
     /* Force update */
@@ -97,6 +97,15 @@ main {
 @media (max-width: 768px) {
     body {
         font-size: 10.24pt;
+    }
+
+    .legal-policy {
+        position: relative;
+        text-align: left;
+        margin-top: 2em;
+        padding-bottom: 2em;
+        padding-left: 2vw;
+        width: auto;
     }
     .sidebar {
         position: sticky;
