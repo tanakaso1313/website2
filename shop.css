@@ -91,3 +91,8 @@
         width: 100%;
     }
 }
+
+.legal-policy {
+    text-align: left;
+    margin-top: 3em;
+}

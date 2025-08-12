@@ -1,0 +1,46 @@
+.bio-content {
+    padding-top: calc(7vh + 58pt);
+    padding-right: 5vw;
+    padding-left: 2vw;
+    font-size: 9.6pt;
+}
+
+.bio-content p {
+    margin-bottom: 2em;
+    font-size: 0.9em;
+}
+
+.contact-info p {
+    margin-bottom: 0;
+}
+
+.cv-section {
+    margin-bottom: 2em;
+}
+
+.bio-content h2 {
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+    font-size: 1.2em;
+    margin-bottom: 1em;
+}
+
+.cv-item {
+    display: flex;
+    margin-bottom: 0.5em;
+}
+
+.cv-item span:first-child {
+    width: 270px;
+}
+
+.cv-item-description {
+    width: calc(100% - 270px);
+    vertical-align: top;
+}
+
+@media (max-width: 768px) {
+    .bio-content {
+        padding-left: 5vw;
+    }
+}
