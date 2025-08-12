@@ -10,7 +10,8 @@
         "id": "liminal-light-s",
         "name": "LIMINAL LIGHT S",
         "price": "55,000JPY",
-        "image": "images/Shop - top/2.liminal lamp_result.webp"
+        "image": "images/Shop - top/2.liminal lamp_result.webp",
+        "page": "liminal-light-s.html"
     },
     {
         "id": "lcsc-03",

@@ -1,0 +1,107 @@
+<DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOTANAKA - Liminal Light S</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="liminal-light-s.css">
+</head>
+<body>
+    <div class="sidebar">
+        <header>
+             <h1><a href="index.html">S O  T A N A K A</a></h1>
+        </header>
+        <nav>
+            <div class="category-nav">
+                <a href="index.html?filter=all" data-filter="all">ALL</a>
+                <a href="index.html?filter=furniture" data-filter="furniture">FURNITURE</a>
+                <a href="index.html?filter=light" data-filter="light">LIGHT</a>
+                <a href="index.html?filter=other" data-filter="other">OTHER</a>
+                <a href="bio.html">BIO</a>
+                <a href="shop.html">SHOP</a>
+            </div>
+        </nav>
+    </div>
+    <main class="product-content">
+        <div class="product-details">
+            <h2>Liminal Light S</h2>
+            <div class="description">
+                <p>Design : So Tanaka</p>
+                <p>Year : 2025</p>
+                <p>Material : Coming soon</p>
+                <p>Dimension : Coming soon</p>
+                <p>Production : So Tanaka</p>
+                <p>Lead time : Coming soon</p>
+            </div>
+            <br>
+            <br>
+            <div class="purchase-info">
+                <p>55,000JPY</p>
+                <button class="add-to-cart">ADD TO CART</button>
+                <a href="mailto:info@sotanaka.com" class="contact-link">CONTACT</a>
+            </div>
+        </div>
+        <div class="product-image">
+            <div class="slideshow-container">
+                <img class="slide" src="images/work - liminal lamp/1.DSC06139_result.webp" alt="Liminal Lamp Image 1">
+                <img class="slide" src="images/work - liminal lamp/3.DSC06005_result.webp" alt="Liminal Lamp Image 2">
+                <img class="slide" src="images/work - liminal lamp/3.DSC06382_result.webp" alt="Liminal Lamp Image 3">
+                <img class="slide" src="images/work - liminal lamp/4.DSC06078_result.webp" alt="Liminal Lamp Image 4">
+                <div class="slide-overlay-left" onclick="plusSlides(-1)"></div>
+                <div class="slide-overlay-right" onclick="plusSlides(1)"></div>
+            </div>
+        </div>
+    </main>
+    <script>
+        let slideIndex = 1;
+        let slideTimeout;
+        let isPaused = false;
+        const slideshowContainer = document.querySelector('.slideshow-container');
+        slideshowContainer.addEventListener('mousedown', (e) => {
+            if (e.target.classList.contains('slide-overlay-left') || e.target.classList.contains('slide-overlay-right')) {
+                return;
+            }
+            isPaused = true;
+            clearTimeout(slideTimeout);
+        });
+        slideshowContainer.addEventListener('mouseup', () => {
+            if (isPaused) {
+                isPaused = false;
+                autoShowSlides();
+            }
+        });
+        slideshowContainer.addEventListener('mouseleave', () => {
+            if (isPaused) {
+                isPaused = false;
+                autoShowSlides();
+            }
+        });
+        function plusSlides(n) {
+            clearTimeout(slideTimeout);
+            showSlides(slideIndex += n);
+            if (isPaused) {
+                autoShowSlides();
+            }
+        }
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("slide");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex-1].style.display = "block";
+        }
+        function autoShowSlides() {
+            if(isPaused) return;
+            slideTimeout = setTimeout(() => {
+                plusSlides(1);
+            }, 4000);
+        }
+        showSlides(slideIndex);
+        autoShowSlides();
+    </script>
+</body>
+</html>
