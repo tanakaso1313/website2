@@ -13,6 +13,12 @@ document.addEventListener('DOMContentLoaded', () => {
             'other': ['transfer', 'Memento', 'Liminal Objects', 'Let a']
         };
 
+        const worksMobile = {
+            'furniture': ['ORI'],
+            'light': ['LL', 'VNSH', 'LTI'],
+            'other': ['LCSC', 'LO', 'MMNT', 'TRSF']
+        };
+
         const applyFilter = (filter) => {
             galleryLinks.forEach(galleryLink => {
                 const altText = galleryLink.querySelector('img').alt;
@@ -22,6 +28,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     galleryLink.style.display = 'none';
                 }
             });
+
+            if (isMobile) {
+                mobileWorkLinks.forEach(workLink => {
+                    const workKey = workLink.dataset.work;
+                    if (filter === 'all' || (worksMobile[filter] && worksMobile[filter].includes(workKey))) {
+                        workLink.style.display = 'block';
+                    } else {
+                        workLink.style.display = 'none';
+                    }
+                });
+            }
         };
 
         const isMobile = window.innerWidth <= 768;
