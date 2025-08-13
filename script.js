@@ -37,29 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const monoSrc = img.dataset.monoSrc;
             const colorSrc = img.dataset.colorSrc;
 
-            if (isMobile) {
-                link.addEventListener('click', (e) => {
-                    if (link.classList.contains('is-colored')) {
-                        // Second tap: Allow navigation
-                        return;
-                    }
-                    
-                    // First tap: Prevent navigation and handle image swap
-                    e.preventDefault();
-
-                    // Reset all other images to monochrome
-                    galleryLinks.forEach(otherLink => {
-                        otherLink.classList.remove('is-colored');
-                        const otherImg = otherLink.querySelector('img');
-                        otherImg.src = otherImg.dataset.monoSrc;
-                    });
-
-                    // Activate the tapped image
-                    link.classList.add('is-colored');
-                    img.src = colorSrc;
-                    link.style.zIndex = zIndexCounter++;
-                });
-            } else {
+            if (!isMobile) {
                 // Desktop hover logic
                 link.addEventListener('mouseenter', () => {
                     img.src = colorSrc;
@@ -71,6 +49,47 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         });
+
+        const mobileWorkLinks = document.querySelectorAll('.mobile-work-links a');
+        if (isMobile && mobileWorkLinks.length > 0) {
+            const workMap = {
+                'LCSC': 'Let a',
+                'LL': 'Liminal Lamp',
+                'LO': 'Liminal Objects',
+                'MMNT': 'Memento',
+                'VNSH': 'Vnsh',
+                'LTI': 'LTI',
+                'ORI': 'ORI',
+                'TRSF': 'transfer'
+            };
+
+            mobileWorkLinks.forEach(workLink => {
+                workLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const workKey = workLink.dataset.work;
+                    const workName = workMap[workKey];
+                    
+                    const targetGalleryLink = Array.from(galleryLinks).find(gl => gl.querySelector('img').alt === workName);
+
+                    if (targetGalleryLink) {
+                        if (targetGalleryLink.classList.contains('is-colored')) {
+                            window.location.href = workLink.href;
+                        } else {
+                            galleryLinks.forEach(otherLink => {
+                                otherLink.classList.remove('is-colored');
+                                const otherImg = otherLink.querySelector('img');
+                                otherImg.src = otherImg.dataset.monoSrc;
+                            });
+
+                            targetGalleryLink.classList.add('is-colored');
+                            const targetImg = targetGalleryLink.querySelector('img');
+                            targetImg.src = targetImg.dataset.colorSrc;
+                            targetGalleryLink.style.zIndex = zIndexCounter++;
+                        }
+                    }
+                });
+            });
+        }
 
         // Check for filter in URL query params
         const urlParams = new URLSearchParams(window.location.search);
