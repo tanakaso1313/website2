@@ -67,6 +67,7 @@ main {
     margin-left: 30vw;
     position: relative;
     z-index: 1;
+    padding-top: calc(7vh + 4em);
 }
 
 .gallery-container {
