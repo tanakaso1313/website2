@@ -83,27 +83,13 @@ document.addEventListener('DOMContentLoaded', () => {
             mobileWorkLinks.forEach(workLink => {
                 workLink.addEventListener('click', (e) => {
                     e.preventDefault();
-                    const workKey = workLink.dataset.work;
-                    const workName = workMap[workKey];
-                    
-                    const targetGalleryLink = Array.from(galleryLinks).find(gl => gl.querySelector('img').alt === workName);
+                    window.location.href = workLink.href;
+                });
+            });
 
-                    if (targetGalleryLink) {
-                        if (targetGalleryLink.classList.contains('is-colored')) {
-                            window.location.href = workLink.href;
-                        } else {
-                            galleryLinks.forEach(otherLink => {
-                                otherLink.classList.remove('is-colored');
-                                const otherImg = otherLink.querySelector('img');
-                                otherImg.src = otherImg.dataset.monoSrc;
-                            });
-
-                            targetGalleryLink.classList.add('is-colored');
-                            const targetImg = targetGalleryLink.querySelector('img');
-                            targetImg.src = targetImg.dataset.colorSrc;
-                            targetGalleryLink.style.zIndex = zIndexCounter++;
-                        }
-                    }
+            galleryLinks.forEach(galleryLink => {
+                galleryLink.addEventListener('click', (e) => {
+                    window.location.href = galleryLink.href;
                 });
             });
         }
