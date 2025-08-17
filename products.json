@@ -3,14 +3,14 @@
         "id": "vnsh",
         "name": "VNSH",
         "price": "105,600JPY",
-        "image": "images/Shop - top/1.vnsh_shop_result.webp",
+        "image": "images/Shop - top/1.vnsh_shop_result_result.webp",
         "page": "vnsh_shop.html"
     },
     {
         "id": "liminal-light-s",
         "name": "LIMINAL LIGHT S",
         "price": "55,000JPY",
-        "image": "images/Shop - top/2.liminal lamp_result.webp",
+        "image": "images/Shop - top/2.liminal lamp_result_result.webp",
         "page": "liminal-light-s_shop.html"
     }
 ]
