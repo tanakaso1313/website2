@@ -87,9 +87,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
+            let activeGalleryLink = null;
+            let zIndexCounter = 10;
+
             galleryLinks.forEach(galleryLink => {
                 galleryLink.addEventListener('click', (e) => {
-                    window.location.href = galleryLink.href;
+                    e.preventDefault();
+
+                    if (activeGalleryLink === galleryLink) {
+                        // Second tap on the same image navigates
+                        window.location.href = galleryLink.href;
+                    } else {
+                        // Tapped on a new image
+                        if (activeGalleryLink) {
+                            // Revert the previously active link to monochrome
+                            const previousImg = activeGalleryLink.querySelector('img');
+                            previousImg.src = previousImg.dataset.monoSrc;
+                        }
+
+                        // Activate the newly tapped link
+                        const currentImg = galleryLink.querySelector('img');
+                        currentImg.src = currentImg.dataset.colorSrc;
+                        galleryLink.style.zIndex = zIndexCounter++;
+                        activeGalleryLink = galleryLink;
+                    }
                 });
             });
         }
