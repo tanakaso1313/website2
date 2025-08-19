@@ -1,53 +1,42 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
-const stripe = require('stripe')('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');
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const fs = require('fs');
 
 app.use(express.static('.'));
+app.use(express.json());
+
+const products = JSON.parse(fs.readFileSync('products.json', 'utf-8'));
 
 app.post('/create-checkout-session', async (req, res) => {
-  const session = await stripe.checkout.sessions.create({
-    payment_method_types: ['card'],
-    line_items: [
-      {
-        price_data: {
-          currency: 'jpy',
-          product_data: {
-            name: 'Liminal Light S',
-          },
-          unit_amount: 55000,
-        },
-        quantity: 1,
-      },
-    ],
-    mode: 'payment',
-    success_url: 'http://localhost:8080/success.html',
-    cancel_url: 'http://localhost:8080/cancel.html',
-  });
+    const { productId } = req.body;
+    const product = products.find(p => p.id === productId);
 
-  res.json({ id: session.id });
-});
+    if (!product) {
+        return res.status(404).json({ error: 'Product not found' });
+    }
 
-app.post('/create-checkout-session-vnsh', async (req, res) => {
-  const session = await stripe.checkout.sessions.create({
-    payment_method_types: ['card'],
-    line_items: [
-      {
-        price_data: {
-          currency: 'jpy',
-          product_data: {
-            name: 'VNSH',
-          },
-          unit_amount: 105600,
-        },
-        quantity: 1,
-      },
-    ],
-    mode: 'payment',
-    success_url: 'http://localhost:8080/success.html',
-    cancel_url: 'http://localhost:8080/cancel.html',
-  });
+    const unitAmount = parseInt(product.price.replace(/,/g, '').replace('JPY', ''));
 
-  res.json({ id: session.id });
+    const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items: [{
+            price_data: {
+                currency: 'jpy',
+                product_data: {
+                    name: product.name,
+                },
+                unit_amount: unitAmount,
+            },
+            quantity: 1,
+        }],
+        mode: 'payment',
+        success_url: `${req.protocol}://${req.get('host')}/success.html`,
+        cancel_url: `${req.protocol}://${req.get('host')}/cancel.html`,
+    });
+
+    res.json({ id: session.id });
 });
 
 app.listen(8080, () => console.log('Running on port 8080'));

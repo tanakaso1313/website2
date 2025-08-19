@@ -36,11 +36,11 @@
             </div>
             <br>
             <br>
-            <div class="purchase-info">
-                <p>105,600JPY</p>
-                <button class="add-to-cart">ADD TO CART</button>
-                <a href="mailto:info@sotanaka.com" class="contact-link">CONTACT</a>
-            </div>
+             <div class="purchase-info">
+                 <p>105,600JPY</p>
+                 <button class="add-to-cart" data-product-id="vnsh">ADD TO CART</button>
+                 <a href="mailto:info@sotanaka.com" class="contact-link">CONTACT</a>
+             </div>
         </div>
         <div class="product-image">
             <div class="slideshow-container">
@@ -54,18 +54,8 @@
         </div>
     </main>
     <script src="https://js.stripe.com/v3/"></script>
+    <script src="script.js" defer></script>
     <script>
-        const stripe = Stripe('pk_live_51RqS8cEcQzNRltK0cc6T6Koxx5KhVTqJxsPEO56dmsr4W6zGhlMgcou55TjKUJGBlAzM0vQJyjuI41gzjEIebn9M00PIt8Mrd2');
-        const purchaseButton = document.querySelector('.add-to-cart');
-
-        purchaseButton.addEventListener('click', async () => {
-            const { id } = await fetch('/create-checkout-session-vnsh', {
-                method: 'POST',
-            }).then((res) => res.json());
-
-            stripe.redirectToCheckout({ sessionId: id });
-        });
-
         let slideIndex = 1;
         let slideTimeout;
         let isPaused = false;

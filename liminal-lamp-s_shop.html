@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOTANAKA - Liminal Light S</title>
+    <title>SOTANAKA - LIMINAL LAMP S</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="liminal-light-s.css">
 </head>
@@ -25,47 +25,36 @@
     </div>
     <main class="product-content">
         <div class="product-details">
-            <h2>Liminal Light S</h2>
+            <h2>LIMINAL LAMP S</h2>
             <div class="description">
                 <p>Design : So Tanaka</p>
                 <p>Year : 2025</p>
-                <p>Material : Coming soon</p>
-                <p>Dimension : Coming soon</p>
+                <p>Material : MDF, Paper, Lacquer paint</p>
+                <p>Dimension : W163 D117 H370</p>
                 <p>Production : So Tanaka</p>
-                <p>Lead time : Coming soon</p>
+                <p>Lead time : 3 months</p>
             </div>
             <br>
             <br>
-            <div class="purchase-info">
-                <p>55,000JPY</p>
-                <button class="add-to-cart">ADD TO CART</button>
-                <a href="mailto:info@sotanaka.com" class="contact-link">CONTACT</a>
-            </div>
+             <div class="purchase-info">
+                 <p>55,000JPY</p>
+                 <button class="add-to-cart" data-product-id="liminal-light-s">ADD TO CART</button>
+                 <a href="mailto:info@sotanaka.com" class="contact-link">CONTACT</a>
+             </div>
         </div>
         <div class="product-image">
             <div class="slideshow-container">
-                <img class="slide" src="images/work - liminal lamp/1.DSC06139_result_result.webp" alt="Liminal Lamp Image 1">
-                <img class="slide" src="images/work - liminal lamp/3.DSC06005_result_result.webp" alt="Liminal Lamp Image 2">
-                <img class="slide" src="images/work - liminal lamp/3.DSC06382_result_result.webp" alt="Liminal Lamp Image 3">
-                <img class="slide" src="images/work - liminal lamp/4.DSC06078_result_result.webp" alt="Liminal Lamp Image 4">
+                <img class="slide" src="images/shop - liminal lamp/2.liminal lamp_result_result.webp" alt="Liminal Lamp Image 1">
+                <img class="slide" src="images/shop - liminal lamp/4.DSC06078_result_result.webp" alt="Liminal Lamp Image 2">
+                <img class="slide" src="images/shop - liminal lamp/5.DSC06312_result.webp" alt="Liminal Lamp Image 3">
                 <div class="slide-overlay-left" onclick="plusSlides(-1)"></div>
                 <div class="slide-overlay-right" onclick="plusSlides(1)"></div>
             </div>
         </div>
     </main>
     <script src="https://js.stripe.com/v3/"></script>
+    <script src="script.js" defer></script>
     <script>
-        const stripe = Stripe('pk_live_51RqS8cEcQzNRltK0cc6T6Koxx5KhVTqJxsPEO56dmsr4W6zGhlMgcou55TjKUJGBlAzM0vQJyjuI41gzjEIebn9M00PIt8Mrd2');
-        const purchaseButton = document.querySelector('.add-to-cart');
-
-        purchaseButton.addEventListener('click', async () => {
-            const { id } = await fetch('/create-checkout-session', {
-                method: 'POST',
-            }).then((res) => res.json());
-
-            stripe.redirectToCheckout({ sessionId: id });
-        });
-
         let slideIndex = 1;
         let slideTimeout;
         let isPaused = false;

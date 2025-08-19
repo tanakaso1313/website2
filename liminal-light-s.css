@@ -1,6 +1,6 @@
 .product-content {
     display: flex;
-    padding-top: 5vh;
+    padding-top: calc(7vh + 2em);
     align-items: flex-end;
 }
 

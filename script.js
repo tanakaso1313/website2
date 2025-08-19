@@ -165,3 +165,29 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 });
+
+document.addEventListener('click', async (event) => {
+    if (event.target.matches('.add-to-cart')) {
+        const productId = event.target.dataset.productId;
+        if (productId) {
+            const stripe = Stripe('pk_test_51RqS8cEcQzNRltK0R7OYBgtBL8PNhvkgZC0kLhqB6EZZWFO3ocE8GqXmH6qdPGmE6tdNbaiMlMy2iWbF75jcb6RH00irIJlmDT');
+            try {
+                const response = await fetch('/create-checkout-session', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ productId }),
+                });
+                const session = await response.json();
+                if (session.id) {
+                    stripe.redirectToCheckout({ sessionId: session.id });
+                } else {
+                    console.error('Failed to create checkout session:', session);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+    }
+});

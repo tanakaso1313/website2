@@ -3,11 +3,11 @@
     flex-wrap: wrap;
     gap: 1vw;
     align-items: flex-start;
-    padding: 1vh 5vw 2em 35vw;
+    padding: calc(7vh + 2em) 5vw 2em 35vw;
 }
 
 .product-item {
-    width: 29vw;
+    width: 23.2vw;
     text-align: left;
 }
 
@@ -21,16 +21,17 @@
     width: 100%;
     height: auto;
     object-fit: cover;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
 }
 
 .product-item h3 {
-    font-size: 1.2em;
+    font-size: 1em;
     font-weight: normal;
     margin: 0;
 }
 
 .product-item p {
+    display: none;
     margin: 0;
     font-family: Arial, sans-serif;
     font-size: 1em;
@@ -89,5 +90,9 @@
 
     .product-item {
         width: 100%;
+    }
+
+    .product-item h3 {
+        font-size: 1em;
     }
 }
