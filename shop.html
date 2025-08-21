@@ -6,6 +6,7 @@
     <title>SOTANAKA - SHOP</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="shop.css">
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
     <div class="sidebar">
@@ -44,11 +45,11 @@
                             ${linkStart}
                                 <img src="${product.image}" alt="${product.name}">
                                 <h3>${product.name}</h3>
-                                <p>${product.price}</p>
-                            ${linkEnd}
-                        `;
-                        topImagesContainer.appendChild(productItem);
-                    });
+                                 <p>${product.price}</p>
+                             ${linkEnd}
+                         `;
+                         topImagesContainer.appendChild(productItem);
+                     });
                 })
                 .catch(error => {
                     console.error('Error fetching or processing products:', error);
