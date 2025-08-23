@@ -172,16 +172,40 @@ document.addEventListener('click', async (event) => {
         if (productId) {
             const stripe = Stripe('pk_live_51RqS8cEcQzNRltK0cc6T6Koxx5KhVTqJxsPEO56dmsr4W6zGhlMgcou55TjKUJGBlAzM0vQJyjuI41gzjEIebn9M00PIt8Mrd2');
             
-            // Use Stripe Payment Links for GitHub Pages compatibility
-            const paymentLinks = {
-                'vnsh': 'https://buy.stripe.com/YOUR_VNSH_PAYMENT_LINK',
-                'liminal-light-s': 'https://buy.stripe.com/YOUR_LIMINAL_PAYMENT_LINK'
+            // Product configuration for client-side checkout
+            const products = {
+                'vnsh': {
+                    price: 'price_1QQaU2EcQzNRltK0EhgF6hV5', // Replace with your actual Price ID from Stripe Dashboard
+                    quantity: 1
+                },
+                'liminal-light-s': {
+                    price: 'price_1QQaULEcQzNRltK0M8G8Hq0s', // Replace with your actual Price ID from Stripe Dashboard
+                    quantity: 1
+                }
             };
             
-            if (paymentLinks[productId]) {
-                window.location.href = paymentLinks[productId];
+            if (products[productId]) {
+                try {
+                    const { error } = await stripe.redirectToCheckout({
+                        lineItems: [{
+                            price: products[productId].price,
+                            quantity: products[productId].quantity
+                        }],
+                        mode: 'payment',
+                        successUrl: `${window.location.origin}/success.html`,
+                        cancelUrl: `${window.location.origin}/cancel.html`,
+                    });
+                    
+                    if (error) {
+                        console.error('Stripe error:', error);
+                        alert('Payment system error. Please try again or contact us.');
+                    }
+                } catch (error) {
+                    console.error('Checkout error:', error);
+                    alert('Unable to process payment. Please contact us directly.');
+                }
             } else {
-                // Fallback to email
+                // Fallback to email for unknown products
                 const productName = document.querySelector('h2').textContent;
                 const productPrice = document.querySelector('.purchase-info p').textContent;
                 const subject = `Purchase Inquiry: ${productName}`;
