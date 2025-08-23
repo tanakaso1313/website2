@@ -170,22 +170,24 @@ document.addEventListener('click', async (event) => {
     if (event.target.matches('.add-to-cart')) {
         const productId = event.target.dataset.productId;
         if (productId) {
-            // Get product info from page
-            const productName = document.querySelector('h2').textContent;
-            const productPrice = document.querySelector('.purchase-info p').textContent;
+            const stripe = Stripe('pk_live_51RqS8cEcQzNRltK0cc6T6Koxx5KhVTqJxsPEO56dmsr4W6zGhlMgcou55TjKUJGBlAzM0vQJyjuI41gzjEIebn9M00PIt8Mrd2');
             
-            // Create email with product details
-            const subject = `Purchase Inquiry: ${productName}`;
-            const body = `Hello,
-
-I would like to purchase the ${productName} (${productPrice}).
-
-Please provide payment and shipping details.
-
-Thank you!`;
+            // Use Stripe Payment Links for GitHub Pages compatibility
+            const paymentLinks = {
+                'vnsh': 'https://buy.stripe.com/YOUR_VNSH_PAYMENT_LINK',
+                'liminal-light-s': 'https://buy.stripe.com/YOUR_LIMINAL_PAYMENT_LINK'
+            };
             
-            // Open email client
-            window.location.href = `mailto:info@sotanaka.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            if (paymentLinks[productId]) {
+                window.location.href = paymentLinks[productId];
+            } else {
+                // Fallback to email
+                const productName = document.querySelector('h2').textContent;
+                const productPrice = document.querySelector('.purchase-info p').textContent;
+                const subject = `Purchase Inquiry: ${productName}`;
+                const body = `Hello,\n\nI would like to purchase the ${productName} (${productPrice}).\n\nPlease provide payment details.\n\nThank you!`;
+                window.location.href = `mailto:info@sotanaka.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            }
         }
     }
 });
