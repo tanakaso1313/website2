@@ -9,7 +9,7 @@ app.use(helmet({
     contentSecurityPolicy: {
         directives: {
             defaultSrc: ["'self'"],
-            scriptSrc: ["'self'", "https://js.stripe.com/v3/"],
+            scriptSrc: ["'self'", "https://js.stripe.com/v3/", "'unsafe-inline'"],
             frameSrc: ["'self'", "https://js.stripe.com/"]
         }
     },
