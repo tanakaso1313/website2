@@ -170,24 +170,22 @@ document.addEventListener('click', async (event) => {
     if (event.target.matches('.add-to-cart')) {
         const productId = event.target.dataset.productId;
         if (productId) {
-            const stripe = Stripe('pk_live_51RqS8cEcQzNRltK0cc6T6Koxx5KhVTqJxsPEO56dmsr4W6zGhlMgcou55TjKUJGBlAzM0vQJyjuI41gzjEIebn9M00PIt8Mrd2');
-            try {
-                const response = await fetch('/create-checkout-session', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ productId }),
-                });
-                const session = await response.json();
-                if (session.id) {
-                    stripe.redirectToCheckout({ sessionId: session.id });
-                } else {
-                    console.error('Failed to create checkout session:', session);
-                }
-            } catch (error) {
-                console.error('Error:', error);
-            }
+            // Get product info from page
+            const productName = document.querySelector('h2').textContent;
+            const productPrice = document.querySelector('.purchase-info p').textContent;
+            
+            // Create email with product details
+            const subject = `Purchase Inquiry: ${productName}`;
+            const body = `Hello,
+
+I would like to purchase the ${productName} (${productPrice}).
+
+Please provide payment and shipping details.
+
+Thank you!`;
+            
+            // Open email client
+            window.location.href = `mailto:info@sotanaka.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         }
     }
 });
