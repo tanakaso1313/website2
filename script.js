@@ -170,7 +170,7 @@ document.addEventListener('click', async (event) => {
     if (event.target.matches('.add-to-cart')) {
         const productId = event.target.dataset.productId;
         if (productId) {
-            const stripe = Stripe('pk_test_51RqS8cEcQzNRltK0R7OYBgtBL8PNhvkgZC0kLhqB6EZZWFO3ocE8GqXmH6qdPGmE6tdNbaiMlMy2iWbF75jcb6RH00irIJlmDT');
+            const stripe = Stripe('pk_live_51RqS8cEcQzNRltK0cc6T6Koxx5KhVTqJxsPEO56dmsr4W6zGhlMgcou55TjKUJGBlAzM0vQJyjuI41gzjEIebn9M00PIt8Mrd2');
             try {
                 const response = await fetch('/create-checkout-session', {
                     method: 'POST',

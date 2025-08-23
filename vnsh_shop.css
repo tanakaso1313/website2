@@ -46,14 +46,18 @@
 
 .product-details h2 {
     font-weight: normal;
-    margin-bottom: 8em;
+    margin-bottom: 2em;
 }
 
 .purchase-info {
     margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1em;
 }
 
-.purchase-info p {
+.purchase-info p:first-child {
     text-decoration: underline;
     font-size: 1em;
 }
@@ -108,12 +112,11 @@
         margin-bottom: 1em;
     }
 
-    .add-to-cart,
-    .contact-link {
-        display: block;
-        width: 100%;
-        box-sizing: border-box;
-    }
+.add-to-cart,
+.contact-link {
+    width: 200px;
+    box-sizing: border-box;
+}
 
     .contact-link {
         margin-left: 0;

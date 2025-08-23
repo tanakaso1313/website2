@@ -1,9 +1,43 @@
 require('dotenv').config();
 const express = require('express');
+const helmet = require('helmet');
 const app = express();
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const fs = require('fs');
 
+app.use(helmet({
+    contentSecurityPolicy: {
+        directives: {
+            defaultSrc: ["'self'"],
+            scriptSrc: ["'self'", "https://js.stripe.com/v3/"],
+            frameSrc: ["'self'", "https://js.stripe.com/"]
+        }
+    },
+    strictTransportSecurity: {
+        maxAge: 31536000,
+        includeSubDomains: true,
+        preload: true
+    },
+    frameguard: {
+        action: 'deny'
+    },
+    referrerPolicy: {
+        policy: 'no-referrer'
+    },
+    permissionsPolicy: {
+        policy: {
+            geolocation: ["'none'"],
+            midi: ["'none'"],
+            microphone: ["'none'"],
+            camera: ["'none'"],
+            magnetometer: ["'none'"],
+            gyroscope: ["'none'"],
+            speaker: ["'none'"],
+            fullscreen: ["'self'"],
+            payment: ["'self'"]
+        }
+    }
+}));
 app.use(express.static('.'));
 app.use(express.json());
 

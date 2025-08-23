@@ -110,6 +110,10 @@ main {
 }
  
 @media (max-width: 768px) {
+    .side-image-panel {
+        display: none;
+    }
+    
     .mobile-work-links {
         display: none;
         margin-top: 9em;
