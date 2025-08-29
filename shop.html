@@ -57,8 +57,36 @@
                                 <h3>${product.name}</h3>
                                  <p>${product.price}</p>
                              ${linkEnd}
+                             <button class="buy-button" data-product-id="${product.id}">Buy</button>
                          `;
                          topImagesContainer.appendChild(productItem);
+                     });
+ 
+                     document.querySelectorAll('.buy-button').forEach(button => {
+                         button.addEventListener('click', (event) => {
+                             const productId = event.target.dataset.productId;
+                             const stripe = Stripe('pk_test_51PLa3DJIeY9a2L7s20L3b234n0Y3b234n0Y3b234n0Y3b234n0Y3b234n0Y3b234n0Y3b234n0Y3b234n0Y3b234n0Y3b234n0Y3b234n'); // Replace with your actual publishable key
+ 
+                             fetch('/create-checkout-session', {
+                                 method: 'POST',
+                                 headers: {
+                                     'Content-Type': 'application/json',
+                                 },
+                                 body: JSON.stringify({ productId: productId }),
+                             })
+                             .then(response => response.json())
+                             .then(session => {
+                                 return stripe.redirectToCheckout({ sessionId: session.id });
+                             })
+                             .then(result => {
+                                 if (result.error) {
+                                     alert(result.error.message);
+                                 }
+                             })
+                             .catch(error => {
+                                 console.error('Error:', error);
+                             });
+                         });
                      });
                 })
                 .catch(error => {

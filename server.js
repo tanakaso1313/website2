@@ -1,7 +1,9 @@
-require('dotenv').config();
+delete require.cache[require.resolve('dotenv')];
+require('dotenv').config({ override: true });
 const express = require('express');
 const helmet = require('helmet');
 const app = express();
+console.log('Stripe Key:', process.env.STRIPE_SECRET_KEY);
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const fs = require('fs');
 

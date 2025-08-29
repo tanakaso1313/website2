@@ -66,25 +66,93 @@
                Vnsh III : W300 D240 H1000 mm</p>
         </div>
         <div class="work-images">
-            <img src="images/work - vnsh/1.DSC02181_result_result.webp" alt="Vnsh Image 1">
-            <img src="images/work - vnsh/2.DSC02201 (2)_result_result.webp" alt="Vnsh Image 2">
+            <img src="images/work - vnsh/1.DSC02181_result_result.webp" alt="Vnsh Image 1" class="lightbox-trigger">
+            <img src="images/work - vnsh/2.DSC02201 (2)_result_result.webp" alt="Vnsh Image 2" class="lightbox-trigger">
             <div class="half-width-container">
-                <img src="images/work - vnsh/3.a.jpg のコピー_result_result.webp" alt="Vnsh Image 3">
-                <img src="images/work - vnsh/4.aa.jpg のコピー_result_result.webp" alt="Vnsh Image 4">
+                <img src="images/work - vnsh/3.a.jpg のコピー_result_result.webp" alt="Vnsh Image 3" class="lightbox-trigger">
+                <img src="images/work - vnsh/4.aa.jpg のコピー_result_result.webp" alt="Vnsh Image 4" class="lightbox-trigger">
             </div>
             <div class="half-width-container">
-                <img src="images/work - vnsh/5.b.jpg のコピー_result_result.webp" alt="Vnsh Image 5">
-                <img src="images/work - vnsh/6.bb.jpg のコピー_result_result.webp" alt="Vnsh Image 6">
+                <img src="images/work - vnsh/5.b.jpg のコピー_result_result.webp" alt="Vnsh Image 5" class="lightbox-trigger">
+                <img src="images/work - vnsh/6.bb.jpg のコピー_result_result.webp" alt="Vnsh Image 6" class="lightbox-trigger">
             </div>
              <div class="half-width-container">
-                <img src="images/work - vnsh/7.c.jpg のコピー_result_result.webp" alt="Vnsh Image 7">
-                <img src="images/work - vnsh/8.cc.jpg のコピー_result_result.webp" alt="Vnsh Image 8">
+                <img src="images/work - vnsh/7.c.jpg のコピー_result_result.webp" alt="Vnsh Image 7" class="lightbox-trigger">
+                <img src="images/work - vnsh/8.cc.jpg のコピー_result_result.webp" alt="Vnsh Image 8" class="lightbox-trigger">
             </div>
             <div class="image-credit-container">
-                <img src="images/work - vnsh/9.d.jpg のコピー_result_result.webp" alt="Vnsh Image 9">
+                <img src="images/work - vnsh/9.d.jpg のコピー_result_result.webp" alt="Vnsh Image 9" class="lightbox-trigger">
                 <p class="photo-credit">Photo by Mitsuo Suma</p>
             </div>
         </div>
     </main>
+
+    <div id="lightbox" class="lightbox">
+        <span class="close-button">&times;</span>
+        <img src="images/icons/prev-arrow.svg" class="prev-button">
+        <img class="lightbox-content" id="lightbox-img">
+        <img src="images/icons/next-arrow.svg" class="next-button">
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const closeButton = document.querySelector('.close-button');
+            const prevButton = document.querySelector('.prev-button');
+            const nextButton = document.querySelector('.next-button');
+            const imageTriggers = document.querySelectorAll('.lightbox-trigger');
+            const images = Array.from(imageTriggers).map(img => img.src);
+            let currentIndex;
+
+            function showImage(index) {
+                lightboxImg.src = images[index];
+                currentIndex = index;
+            }
+
+            imageTriggers.forEach((trigger, index) => {
+                trigger.addEventListener('click', () => {
+                    lightbox.classList.add('active');
+                    showImage(index);
+                });
+            });
+
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+            }
+
+            function showPrevImage() {
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                showImage(currentIndex);
+            }
+
+            function showNextImage() {
+                currentIndex = (currentIndex + 1) % images.length;
+                showImage(currentIndex);
+            }
+
+            closeButton.addEventListener('click', closeLightbox);
+            prevButton.addEventListener('click', showPrevImage);
+            nextButton.addEventListener('click', showNextImage);
+
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (lightbox.classList.contains('active')) {
+                    if (e.key === 'ArrowLeft') {
+                        showPrevImage();
+                    } else if (e.key === 'ArrowRight') {
+                        showNextImage();
+                    } else if (e.key === 'Escape') {
+                        closeLightbox();
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
