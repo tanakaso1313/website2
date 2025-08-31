@@ -124,7 +124,7 @@
 @media (max-width: 768px) {
     .prev-button,
     .next-button {
-        font-size: 24px;
+        display: none;
     }
 
     .prev-button {
