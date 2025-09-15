@@ -2,120 +2,67 @@ document.addEventListener('DOMContentLoaded', () => {
     const galleryContainer = document.querySelector('.gallery-container');
     const filterLinks = document.querySelectorAll('.category-nav a');
 
-    // Handle filtering on the main gallery page
     if (galleryContainer) {
-        const galleryLinks = document.querySelectorAll('.gallery-container a');
-        let zIndexCounter = 10;
+        const works = [
+            { src: 'images/top/8.Let a_top_result_result.webp', monoSrc: 'images/mono/8.Let a_top_mono_result_result.webp', href: 'let-a-colored-paper-swim-in-clouds.html', category: 'other', alt: 'Let a' },
+            { src: 'images/top/7.Liminal Lamp_top_result_result.webp', monoSrc: 'images/mono/7.Liminal Lamp_top_mono_result_result.webp', href: 'liminal-lamp.html', category: 'light', alt: 'Liminal Lamp' },
+            { src: 'images/top/6.Liminal Objects_top_result_result.webp', monoSrc: 'images/mono/6.Liminal Objects_top_mono_result.webp', href: 'liminal-objects.html', category: 'other', alt: 'Liminal Objects' },
+            { src: 'images/top/5.Memento_top_result_result.webp', monoSrc: 'images/mono/5.Memento_top_mono_result_result.webp', href: 'memento.html', category: 'other', alt: 'Memento' },
+            { src: 'images/top/4.Vnsh_top_result_result.webp', monoSrc: 'images/mono/4.Vnsh_top_mono_result_result.webp', href: 'vnsh.html', category: 'light', alt: 'Vnsh' },
+            { src: 'images/top/3.LTI_top_result_result.webp', monoSrc: 'images/mono/3.LTI_top_mono_result_result.webp', href: 'lti.html', category: 'light', alt: 'LTI' },
+            { src: 'images/top/2.ORI_top_result_result.webp', monoSrc: 'images/mono/2.ORI_top_mono_result_result.webp', href: 'ori.html', category: 'furniture', alt: 'ORI' },
+            { src: 'images/top/1.transfer_top_result_result.webp', monoSrc: 'images/mono/1.transfer_top_mono_result_result.webp', href: 'transfer.html', category: 'other', alt: 'transfer' }
+        ];
 
-        const works = {
-            'furniture': ['ORI'],
-            'light': ['Liminal Lamp', 'Vnsh', 'LTI'],
-            'other': ['transfer', 'Memento', 'Liminal Objects', 'Let a']
-        };
+        const renderGallery = (filter = 'all') => {
+            galleryContainer.innerHTML = '';
+            const filteredWorks = filter === 'all' ? works : works.filter(w => w.category === filter);
+            let maxZIndex = filteredWorks.length;
 
-        const worksMobile = {
-            'furniture': ['ORI'],
-            'light': ['LL', 'VNSH', 'LTI'],
-            'other': ['LCSC', 'LO', 'MMNT', 'TRSF']
+            filteredWorks.forEach((work, index) => {
+                const imageWrapper = document.createElement('div');
+                imageWrapper.classList.add('image-wrapper');
+                if (work.alt === 'Let a') {
+                    imageWrapper.classList.add('let-a-size');
+                }
+
+                const randomLeft = Math.random() * 20; // 0vw to 20vw
+                const randomTop = Math.random() * 10 - 5; // -5vh to 5vh
+                imageWrapper.style.left = `${randomLeft}vw`;
+                imageWrapper.style.top = `${randomTop}vh`;
+                imageWrapper.style.zIndex = filteredWorks.length - index;
+
+                const link = document.createElement('a');
+                link.href = work.href;
+
+                const img = document.createElement('img');
+                img.src = work.monoSrc;
+                img.alt = work.alt;
+
+                link.appendChild(img);
+                imageWrapper.appendChild(link);
+                galleryContainer.appendChild(imageWrapper);
+
+                imageWrapper.addEventListener('mouseenter', () => {
+                    document.querySelectorAll('.image-wrapper').forEach(iw => {
+                        iw.classList.remove('active');
+                    });
+                    imageWrapper.classList.add('active');
+                    maxZIndex++;
+                    imageWrapper.style.zIndex = maxZIndex;
+                    img.src = work.src;
+                });
+
+                imageWrapper.addEventListener('mouseleave', () => {
+                    img.src = work.monoSrc;
+                });
+            });
         };
 
         const applyFilter = (filter) => {
-            galleryLinks.forEach(galleryLink => {
-                const altText = galleryLink.querySelector('img').alt;
-                if (filter === 'all' || !filter || (works[filter] && works[filter].includes(altText))) {
-                    galleryLink.style.display = 'block';
-                } else {
-                    galleryLink.style.display = 'none';
-                }
-            });
-
-            if (isMobile) {
-                mobileWorkLinks.forEach(workLink => {
-                    const workKey = workLink.dataset.work;
-                    if (filter === 'all' || (worksMobile[filter] && worksMobile[filter].includes(workKey))) {
-                        workLink.style.display = 'block';
-                    } else {
-                        workLink.style.display = 'none';
-                    }
-                });
-            }
+            renderGallery(filter);
         };
 
-        const isMobile = window.innerWidth <= 768;
-
-        // Store original monochrome source for all images
-        galleryLinks.forEach(link => {
-            const img = link.querySelector('img');
-            img.dataset.monoSrc = img.src;
-        });
-
-        galleryLinks.forEach(link => {
-            const img = link.querySelector('img');
-            const monoSrc = img.dataset.monoSrc;
-            const colorSrc = img.dataset.colorSrc;
-
-            if (!isMobile) {
-                // Desktop hover logic
-                link.addEventListener('mouseenter', () => {
-                    img.src = colorSrc;
-                    link.style.zIndex = zIndexCounter++;
-                });
-
-                link.addEventListener('mouseleave', () => {
-                    img.src = monoSrc;
-                });
-            }
-        });
-
-        const mobileWorkLinks = document.querySelectorAll('.mobile-work-links a');
-        if (isMobile && mobileWorkLinks.length > 0) {
-            const workMap = {
-                'LCSC': 'Let a',
-                'LL': 'Liminal Lamp',
-                'LO': 'Liminal Objects',
-                'MMNT': 'Memento',
-                'VNSH': 'Vnsh',
-                'LTI': 'LTI',
-                'ORI': 'ORI',
-                'TRSF': 'transfer'
-            };
-
-            mobileWorkLinks.forEach(workLink => {
-                workLink.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    window.location.href = workLink.href;
-                });
-            });
-
-            let activeGalleryLink = null;
-            let zIndexCounter = 10;
-
-            galleryLinks.forEach(galleryLink => {
-                galleryLink.addEventListener('click', (e) => {
-                    e.preventDefault();
-
-                    if (activeGalleryLink === galleryLink) {
-                        // Second tap on the same image navigates
-                        window.location.href = galleryLink.href;
-                    } else {
-                        // Tapped on a new image
-                        if (activeGalleryLink) {
-                            // Revert the previously active link to monochrome
-                            const previousImg = activeGalleryLink.querySelector('img');
-                            previousImg.src = previousImg.dataset.monoSrc;
-                        }
-
-                        // Activate the newly tapped link
-                        const currentImg = galleryLink.querySelector('img');
-                        currentImg.src = currentImg.dataset.colorSrc;
-                        galleryLink.style.zIndex = zIndexCounter++;
-                        activeGalleryLink = galleryLink;
-                    }
-                });
-            });
-        }
-
-        // Check for filter in URL query params
         const urlParams = new URLSearchParams(window.location.search);
         const filterFromUrl = urlParams.get('filter');
         if (filterFromUrl) {
@@ -130,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (filter) {
                     e.preventDefault();
                     applyFilter(filter);
-                    // Update URL without reloading
                     history.pushState(null, '', `index.html?filter=${filter}`);
                 }
             });
@@ -144,74 +90,4 @@ document.addEventListener('DOMContentLoaded', () => {
             link.href = `index.html?filter=${filter}`;
         }
     });
-
-    // Handle shop page logic
-    const shopGrid = document.querySelector('.shop-grid');
-    if (shopGrid) {
-        fetch('products.json')
-            .then(response => response.json())
-            .then(products => {
-                products.forEach(product => {
-                    const productItem = document.createElement('div');
-                    productItem.classList.add('product-item');
-                    productItem.innerHTML = `
-                        <img src="${product.image}" alt="${product.name}">
-                        <p>${product.name}</p>
-                        <p>${product.description}</p>
-                        <p class="price">$${product.price.toFixed(2)}</p>
-                    `;
-                    shopGrid.appendChild(productItem);
-                });
-            });
-    }
-});
-
-document.addEventListener('click', async (event) => {
-    if (event.target.matches('.add-to-cart')) {
-        const productId = event.target.dataset.productId;
-        if (productId) {
-            const stripe = Stripe('pk_live_51RqS8cEcQzNRltK0cc6T6Koxx5KhVTqJxsPEO56dmsr4W6zGhlMgcou55TjKUJGBlAzM0vQJyjuI41gzjEIebn9M00PIt8Mrd2');
-            
-            // Product configuration for client-side checkout
-            const products = {
-                'vnsh': {
-                    price: 'price_1QQaU2EcQzNRltK0EhgF6hV5', // Replace with your actual Price ID from Stripe Dashboard
-                    quantity: 1
-                },
-                'liminal-light-s': {
-                    price: 'price_1QQaULEcQzNRltK0M8G8Hq0s', // Replace with your actual Price ID from Stripe Dashboard
-                    quantity: 1
-                }
-            };
-            
-            if (products[productId]) {
-                try {
-                    const { error } = await stripe.redirectToCheckout({
-                        lineItems: [{
-                            price: products[productId].price,
-                            quantity: products[productId].quantity
-                        }],
-                        mode: 'payment',
-                        successUrl: `${window.location.origin}/success.html`,
-                        cancelUrl: `${window.location.origin}/cancel.html`,
-                    });
-                    
-                    if (error) {
-                        console.error('Stripe error:', error);
-                        alert('Payment system error. Please try again or contact us.');
-                    }
-                } catch (error) {
-                    console.error('Checkout error:', error);
-                    alert('Unable to process payment. Please contact us directly.');
-                }
-            } else {
-                // Fallback to email for unknown products
-                const productName = document.querySelector('h2').textContent;
-                const productPrice = document.querySelector('.purchase-info p').textContent;
-                const subject = `Purchase Inquiry: ${productName}`;
-                const body = `Hello,\n\nI would like to purchase the ${productName} (${productPrice}).\n\nPlease provide payment details.\n\nThank you!`;
-                window.location.href = `mailto:info@sotanaka.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            }
-        }
-    }
 });

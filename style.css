@@ -90,33 +90,36 @@ main {
 }
 
 .gallery-container {
-    position: relative;
-    width: 100%;
-    height: 100vh;
+    display: block;
 }
 
-.gallery-container img {
-    width: 100%;
-    height: auto;
-    transition: all 0.3s ease;
+.image-wrapper {
+    width: 55vw;
+    height: 55vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10vh;
+    position: relative;
+    z-index: 1;
+}
+
+.image-wrapper.active {
+}
+
+.image-wrapper.let-a-size {
+    width: 45vw;
+    height: 55vh;
+    align-items: flex-start;
+}
+
+.image-wrapper img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
     cursor: pointer;
 }
 
-.gallery-container a {
-    position: absolute;
-    display: block;
-    width: 761px;
-}
-
-
-.gallery-container a:nth-child(1) { top: 60%; left: 5%; z-index: 1; }
-.gallery-container a:nth-child(2) { top: 55%; left: 20%; z-index: 2; }
-.gallery-container a:nth-child(3) { top: 58%; left: 6%; z-index: 3; }
-.gallery-container a:nth-child(4) { top: 45%; left: 5%; z-index: 4; }
-.gallery-container a:nth-child(5) { top: 65%; left: 25%; z-index: 5; }
-.gallery-container a:nth-child(6) { top: 35%; left: 8%; z-index: 6; }
-.gallery-container a:nth-child(7) { top: 30%; left: 12.5%; z-index: 7; }
-.gallery-container a:nth-child(8) { top: 25%; left: 17.5%; z-index: 8; }
 
 .mobile-work-links {
     display: none;
@@ -192,25 +195,4 @@ main {
         height: 100vh;
     }
 
-.gallery-container img {
-        width: 398px;
-    }
-
-.gallery-container a:nth-child(4) img,
-    .gallery-container a:nth-child(6) img {
-        width: 517px;
-    }
-
-.gallery-container a.no-resize img {
-        width: 332px;
-    }
-
-  .gallery-container a:nth-child(1) { top: 70%; left: 22%; }
-  .gallery-container a:nth-child(2) { top: 65%; left: 30%; }
-  .gallery-container a:nth-child(3) { top: calc(60% + 2em); left: calc(23% - 2vw); }
-  .gallery-container a:nth-child(4) { top: 55%; left: 20%; }
-  .gallery-container a:nth-child(5) { top: 50%; left: 35%; }
-  .gallery-container a:nth-child(6) { top: 45%; left: 23%; }
-  .gallery-container a:nth-child(7) { top: 40%; left: 26%; }
-  .gallery-container a:nth-child(8) { top: 40%; left: 30%; }
 }
