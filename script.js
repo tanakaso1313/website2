@@ -26,10 +26,40 @@ document.addEventListener('DOMContentLoaded', () => {
                     imageWrapper.classList.add('let-a-size');
                 }
 
-                const randomLeft = Math.random() * 20; // 0vw to 20vw
-                const randomTop = Math.random() * 10 - 5; // -5vh to 5vh
-                imageWrapper.style.left = `${randomLeft}vw`;
-                imageWrapper.style.top = `${randomTop}vh`;
+                // Fixed positions based on original work index to maintain consistent layout
+                const originalIndex = works.findIndex(w => w.alt === work.alt);
+                const isMobile = window.innerWidth <= 768;
+                
+                if (isMobile) {
+                    // More organic mobile positioning with special handling
+                    let mobileLeft, mobileTop;
+                    
+                    if (originalIndex >= 6) {
+                        // Special positioning for last two images
+                        mobileLeft = originalIndex === 6 ? 25 : 35;
+                        mobileTop = originalIndex === 6 ? -2 : 1;
+                    } else if (originalIndex === 5) {
+                        // Special positioning for LTI to keep closer to other light items
+                        mobileLeft = 20;
+                        mobileTop = -15;
+                    } else {
+                        // Organic positioning for first 5 images
+                        const baseLeft = (originalIndex * 7) % 25;
+                        const sinVariation = Math.sin(originalIndex * 2.3) * 15;
+                        const cosVariation = Math.cos(originalIndex * 1.7) * 10;
+                        mobileLeft = (baseLeft + sinVariation + cosVariation) % 30 + 15;
+                        mobileTop = Math.sin(originalIndex * 1.1) * 6 + Math.cos(originalIndex * 0.8) * 3;
+                    }
+                    
+                    imageWrapper.style.left = `${mobileLeft}vw`;
+                    imageWrapper.style.top = `${mobileTop}vh`;
+                } else {
+                    // Desktop positioning
+                    const fixedLeft = (originalIndex * 2.5) % 20;
+                    const fixedTop = Math.sin(originalIndex) * 3;
+                    imageWrapper.style.left = `${fixedLeft}vw`;
+                    imageWrapper.style.top = `${fixedTop}vh`;
+                }
                 imageWrapper.style.zIndex = filteredWorks.length - index;
 
                 const link = document.createElement('a');

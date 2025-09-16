@@ -1,22 +1,26 @@
 .work-content {
     display: flex;
-    padding-top: calc(7vh + 2em);
+    padding-top: calc(7vh + 1em);
+    margin-left: 22vw;
 }
 
 .work-description {
-    width: 30vw;
-    padding-left: 5vw;
+    width: 25vw;
+    padding-left: 0;
     padding-right: 5vw;
 }
 
 .work-description h2 {
     font-family: Arial, sans-serif;
     font-weight: normal;
-    font-size: 1em;
+    font-size: 16pt;
+    margin: 1em 0 2em 0;
 }
 
 .work-images {
-    width: 55vw;
+    width: 45vw;
+    padding-right: 3vw;
+    padding-top: 1em;
 }
 
 .work-images img {
