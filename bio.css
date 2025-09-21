@@ -56,6 +56,24 @@ footer p {
 }
 
 @media (max-width: 768px) {
+    .sidebar {
+        position: relative !important;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: white;
+        padding: 2em 5vw;
+        z-index: 100;
+    }
+
+    .bio-content {
+        padding-top: 2em;
+        padding-right: 5vw;
+        padding-left: 5vw;
+    }
+}
+
+@media (max-width: 768px) {
     .bio-content {
         padding-left: 5vw;
     }
