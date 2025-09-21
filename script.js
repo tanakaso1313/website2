@@ -54,11 +54,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     imageWrapper.style.left = `${mobileLeft}vw`;
                     imageWrapper.style.top = `${mobileTop}vh`;
                 } else {
-                    // Desktop positioning
-                    const fixedLeft = (originalIndex * 2.5) % 20;
-                    const fixedTop = Math.sin(originalIndex) * 3;
-                    imageWrapper.style.left = `${fixedLeft}vw`;
-                    imageWrapper.style.top = `${fixedTop}vh`;
+                    // All images align with SOTANAKA baseline
+                    const baseLeft = (originalIndex * 3.2) % 25;
+                    const sinVariation = Math.sin(originalIndex * 1.7) * 12;
+                    const cosVariation = Math.cos(originalIndex * 2.1) * 8;
+                    const desktopLeft = (baseLeft + sinVariation + cosVariation) % 30;
+                    const desktopTop = -12; // All images align with SOTANAKA height, moved up
+                    
+                    imageWrapper.style.left = `${desktopLeft}vw`;
+                    imageWrapper.style.top = `${desktopTop}vh`;
                 }
                 imageWrapper.style.zIndex = filteredWorks.length - index;
 

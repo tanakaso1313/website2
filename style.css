@@ -89,7 +89,7 @@ main {
     margin-left: 5vw;
     position: relative;
     z-index: 1;
-    padding-top: calc(7vh + 2em);
+    padding-top: calc(7vh + 6em);
     padding-right: 5vw;
     box-sizing: border-box;
     max-width: 95vw;
@@ -109,8 +109,8 @@ main {
     height: 55vh;
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin-bottom: -10vh;
+    align-items: flex-start;
+    margin-bottom: -44vh;
     position: relative;
     z-index: 1;
     box-sizing: border-box;
@@ -211,4 +211,18 @@ main {
         box-sizing: border-box;
     }
 
+}
+
+footer {
+    position: relative;
+    text-align: right;
+    padding: 2em 5vw 1em 0;
+    font-size: 0.5em;
+    text-transform: uppercase;
+    color: #000;
+    z-index: 50;
+}
+
+footer p {
+    margin: 0;
 }

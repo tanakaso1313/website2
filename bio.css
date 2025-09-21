@@ -30,11 +30,14 @@
 }
 
 .cv-item span:first-child {
-    width: 100px;
+    width: 190px;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .cv-item-description {
-    width: calc(100% - 100px);
+    flex: 1;
+    margin-left: 10px;
     vertical-align: top;
 }
 
