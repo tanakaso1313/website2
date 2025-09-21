@@ -42,11 +42,17 @@
 }
 
 footer {
+    position: relative;
     text-align: right;
-    margin-top: 3em;
-    margin-right: 5vw;
-    font-size: 0.8em;
-    color: #666;
+    padding: 2em 5vw 1em 0;
+    font-size: 0.5em;
+    text-transform: uppercase;
+    color: #000;
+    z-index: 50;
+}
+
+footer p {
+    margin: 0;
 }
 
 @media (max-width: 768px) {
