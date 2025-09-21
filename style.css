@@ -214,9 +214,10 @@ main {
 }
 
 footer {
-    position: relative;
+    position: fixed;
+    bottom: 1em;
+    right: 5vw;
     text-align: right;
-    padding: 2em 5vw 1em 0;
     font-size: 0.5em;
     text-transform: uppercase;
     color: #000;

@@ -145,3 +145,18 @@
         right: 20px;
     }
 }
+
+footer {
+    position: fixed;
+    bottom: 1em;
+    right: 5vw;
+    text-align: right;
+    font-size: 0.5em;
+    text-transform: uppercase;
+    color: #000;
+    z-index: 50;
+}
+
+footer p {
+    margin: 0;
+}

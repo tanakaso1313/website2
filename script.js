@@ -91,6 +91,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     img.src = work.monoSrc;
                 });
             });
+
+            // Add footer after all images are rendered
+            const footer = document.createElement('footer');
+            footer.innerHTML = '<p>&copy; 2025 SOTANAKA. All rights reserved.</p>';
+            galleryContainer.appendChild(footer);
         };
 
         const applyFilter = (filter) => {
