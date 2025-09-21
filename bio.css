@@ -42,12 +42,11 @@
 }
 
 footer {
-    position: fixed;
-    bottom: 0;
-    right: 5vw;
+    text-align: right;
+    margin-top: 3em;
+    margin-right: 5vw;
     font-size: 0.8em;
     color: #666;
-    z-index: 1000;
 }
 
 @media (max-width: 768px) {
