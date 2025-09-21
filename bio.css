@@ -41,8 +41,22 @@
     vertical-align: top;
 }
 
+footer {
+    position: fixed;
+    bottom: 0;
+    right: 5vw;
+    font-size: 0.8em;
+    color: #666;
+    z-index: 1000;
+}
+
 @media (max-width: 768px) {
     .bio-content {
         padding-left: 5vw;
+    }
+    
+    footer {
+        right: 5vw;
+        bottom: 10px;
     }
 }
