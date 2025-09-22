@@ -43,18 +43,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     const verticalOffset = isVertical ? -8 : 0; // Vertical images positioned higher
                     
-                    // Mobile vertical positioning with proper spacing
+                    // Mobile vertical positioning with tight 5vh spacing
                     let mobileTop;
-                    const baseVertical = -30; // Start position higher
+                    const baseVertical = -25; // Start position
                     
-                    // Larger increments with some variation for mobile
-                    if (originalIndex <= 3) {
-                        mobileTop = baseVertical + (originalIndex * 8); // 8vh increments for first 4
-                    } else if (originalIndex <= 5) {
-                        mobileTop = baseVertical + 24 + ((originalIndex - 4) * 12); // Larger spacing for middle
-                    } else {
-                        mobileTop = baseVertical + 48 + ((originalIndex - 6) * 10); // Continue pattern
-                    }
+                    // Equal 5vh increments for all images
+                    mobileTop = baseVertical + (originalIndex * 5);
                     mobileTop += verticalOffset; // Apply vertical image offset
                     
                     imageWrapper.style.left = `${mobileLeft}vw`;
