@@ -31,20 +31,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 const isMobile = window.innerWidth <= 768;
                 
                 if (isMobile) {
-                    // Natural cascading mobile layout - eliminate gap with menu
+                    // Natural scattered mobile layout - more distributed positioning
                     const img = imageWrapper.querySelector('img');
                     const isVertical = img && img.naturalHeight > img.naturalWidth;
                     
-                    const mobileLeft = (originalIndex * 4) % 15 + 15 + (originalIndex === 0 ? 10 : 0); // 15-30vw tighter spacing, first image +10vw
+                    // Create more scattered horizontal distribution
+                    const baseLeft = (originalIndex * 5.5) % 20 + 10; // 10-30vw range
+                    const scatterX = Math.sin(originalIndex * 2.3) * 8; // Add horizontal scatter
+                    const mobileLeft = Math.max(5, Math.min(35, baseLeft + scatterX + (originalIndex === 0 ? 10 : 0))); // Keep within bounds, first image +10vw
+                    
                     const verticalOffset = isVertical ? -10 : 0; // Vertical images positioned 10vh higher
                     
+                    // More varied vertical positioning
                     let mobileTop;
+                    const baseVertical = -25; // Start position
+                    const scatterY = Math.cos(originalIndex * 1.8) * 6; // Add vertical scatter
+                    
                     if (originalIndex <= 5) {
-                        mobileTop = originalIndex * 1 + (-25); // Index 0-5: Normal 1vh increments (-25vh to -20vh)
+                        mobileTop = baseVertical + (originalIndex * 2) + scatterY; // 2vh increments with scatter
                     } else if (originalIndex === 6) {
-                        mobileTop = -40; // Index 6: -40vh
+                        mobileTop = -40 + scatterY; // Index 6: -40vh with scatter
                     } else if (originalIndex === 7) {
-                        mobileTop = -20; // Index 7: -20vh
+                        mobileTop = -18 + scatterY; // Index 7: -18vh with scatter
                     }
                     mobileTop += verticalOffset; // Apply vertical image offset
                     
