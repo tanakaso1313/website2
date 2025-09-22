@@ -43,17 +43,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     const verticalOffset = isVertical ? -8 : 0; // Vertical images positioned higher
                     
-                    // Varied vertical positioning to prevent linear stacking
+                    // Tighter vertical positioning for mobile
                     let mobileTop;
-                    const baseVertical = -30; // Higher start position
-                    const verticalScatter = Math.sin(originalIndex * 2.7) * 12 + Math.cos(originalIndex * 1.5) * 8; // Strong vertical scatter
+                    const baseVertical = -25; // Start position
+                    const verticalScatter = Math.sin(originalIndex * 2.7) * 6 + Math.cos(originalIndex * 1.5) * 4; // Reduced vertical scatter
                     
                     if (originalIndex <= 5) {
-                        mobileTop = baseVertical + (originalIndex * 3) + verticalScatter; // 3vh increments with strong scatter
+                        mobileTop = baseVertical + (originalIndex * 1.5) + verticalScatter; // 1.5vh increments with reduced scatter
                     } else if (originalIndex === 6) {
-                        mobileTop = -45 + verticalScatter; // Index 6: higher position with scatter
+                        mobileTop = -32 + verticalScatter; // Index 6: closer position with scatter
                     } else if (originalIndex === 7) {
-                        mobileTop = -15 + verticalScatter; // Index 7: lower position with scatter
+                        mobileTop = -18 + verticalScatter; // Index 7: closer position with scatter
                     }
                     mobileTop += verticalOffset; // Apply vertical image offset
                     
