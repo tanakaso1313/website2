@@ -31,28 +31,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 const isMobile = window.innerWidth <= 768;
                 
                 if (isMobile) {
-                    // Natural scattered mobile layout - more distributed positioning
+                    // Wide horizontal distribution for mobile - similar to desktop but mobile-optimized
                     const img = imageWrapper.querySelector('img');
                     const isVertical = img && img.naturalHeight > img.naturalWidth;
                     
-                    // Create more scattered horizontal distribution
-                    const baseLeft = (originalIndex * 5.5) % 20 + 10; // 10-30vw range
-                    const scatterX = Math.sin(originalIndex * 2.3) * 8; // Add horizontal scatter
-                    const mobileLeft = Math.max(5, Math.min(35, baseLeft + scatterX + (originalIndex === 0 ? 10 : 0))); // Keep within bounds, first image +10vw
+                    // Much wider horizontal distribution like desktop
+                    const baseLeft = (originalIndex * 8) % 40 + 5; // 5-45vw wide range
+                    const sinVariation = Math.sin(originalIndex * 1.9) * 15; // Stronger horizontal variation
+                    const cosVariation = Math.cos(originalIndex * 2.4) * 10;
+                    const mobileLeft = Math.max(0, Math.min(50, baseLeft + sinVariation + cosVariation + (originalIndex === 0 ? 15 : 0))); // Wide distribution, first image +15vw
                     
-                    const verticalOffset = isVertical ? -10 : 0; // Vertical images positioned 10vh higher
+                    const verticalOffset = isVertical ? -8 : 0; // Vertical images positioned higher
                     
-                    // More varied vertical positioning
+                    // Varied vertical positioning to prevent linear stacking
                     let mobileTop;
-                    const baseVertical = -25; // Start position
-                    const scatterY = Math.cos(originalIndex * 1.8) * 6; // Add vertical scatter
+                    const baseVertical = -30; // Higher start position
+                    const verticalScatter = Math.sin(originalIndex * 2.7) * 12 + Math.cos(originalIndex * 1.5) * 8; // Strong vertical scatter
                     
                     if (originalIndex <= 5) {
-                        mobileTop = baseVertical + (originalIndex * 2) + scatterY; // 2vh increments with scatter
+                        mobileTop = baseVertical + (originalIndex * 3) + verticalScatter; // 3vh increments with strong scatter
                     } else if (originalIndex === 6) {
-                        mobileTop = -40 + scatterY; // Index 6: -40vh with scatter
+                        mobileTop = -45 + verticalScatter; // Index 6: higher position with scatter
                     } else if (originalIndex === 7) {
-                        mobileTop = -18 + scatterY; // Index 7: -18vh with scatter
+                        mobileTop = -15 + verticalScatter; // Index 7: lower position with scatter
                     }
                     mobileTop += verticalOffset; // Apply vertical image offset
                     
