@@ -43,18 +43,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     const verticalOffset = isVertical ? -8 : 0; // Vertical images positioned higher
                     
-                    // Tighter vertical positioning for mobile
+                    // Equal increments with tight vertical spacing for mobile
                     let mobileTop;
                     const baseVertical = -25; // Start position
-                    const verticalScatter = Math.sin(originalIndex * 2.7) * 6 + Math.cos(originalIndex * 1.5) * 4; // Reduced vertical scatter
                     
-                    if (originalIndex <= 5) {
-                        mobileTop = baseVertical + (originalIndex * 1.5) + verticalScatter; // 1.5vh increments with reduced scatter
-                    } else if (originalIndex === 6) {
-                        mobileTop = -32 + verticalScatter; // Index 6: closer position with scatter
-                    } else if (originalIndex === 7) {
-                        mobileTop = -18 + verticalScatter; // Index 7: closer position with scatter
-                    }
+                    // Equal 1vh increments for all images, no scatter
+                    mobileTop = baseVertical + (originalIndex * 1);
                     mobileTop += verticalOffset; // Apply vertical image offset
                     
                     imageWrapper.style.left = `${mobileLeft}vw`;
