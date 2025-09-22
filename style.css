@@ -116,6 +116,12 @@ main {
     box-sizing: border-box;
 }
 
+@media (max-width: 768px) {
+    .image-wrapper {
+        margin-bottom: 0;
+    }
+}
+
 .image-wrapper.active {
 }
 
