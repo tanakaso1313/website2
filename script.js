@@ -31,25 +31,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 const isMobile = window.innerWidth <= 768;
                 
                 if (isMobile) {
-                    // More organic mobile positioning with special handling
-                    let mobileLeft, mobileTop;
+                    // Natural cascading mobile layout - eliminate gap with menu
+                    const img = imageWrapper.querySelector('img');
+                    const isVertical = img && img.naturalHeight > img.naturalWidth;
                     
-                    if (originalIndex >= 6) {
-                        // Special positioning for last two images
-                        mobileLeft = originalIndex === 6 ? 25 : 35;
-                        mobileTop = originalIndex === 6 ? -2 : 1;
-                    } else if (originalIndex === 5) {
-                        // Special positioning for LTI to keep closer to other light items
-                        mobileLeft = 20;
-                        mobileTop = -15;
-                    } else {
-                        // Organic positioning for first 5 images
-                        const baseLeft = (originalIndex * 7) % 25;
-                        const sinVariation = Math.sin(originalIndex * 2.3) * 15;
-                        const cosVariation = Math.cos(originalIndex * 1.7) * 10;
-                        mobileLeft = (baseLeft + sinVariation + cosVariation) % 30 + 15;
-                        mobileTop = Math.sin(originalIndex * 1.1) * 6 + Math.cos(originalIndex * 0.8) * 3;
+                    const mobileLeft = (originalIndex * 4) % 15 + 15 + (originalIndex === 0 ? 10 : 0); // 15-30vw tighter spacing, first image +10vw
+                    const verticalOffset = isVertical ? -10 : 0; // Vertical images positioned 10vh higher
+                    
+                    let mobileTop;
+                    if (originalIndex <= 5) {
+                        mobileTop = originalIndex * 1 + (-25); // Index 0-5: Normal 1vh increments (-25vh to -20vh)
+                    } else if (originalIndex === 6) {
+                        mobileTop = -40; // Index 6: -40vh
+                    } else if (originalIndex === 7) {
+                        mobileTop = -20; // Index 7: -20vh
                     }
+                    mobileTop += verticalOffset; // Apply vertical image offset
                     
                     imageWrapper.style.left = `${mobileLeft}vw`;
                     imageWrapper.style.top = `${mobileTop}vh`;

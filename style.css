@@ -169,13 +169,14 @@ main {
         width: auto;
     }
     .sidebar {
-        position: sticky;
+        position: relative;
         width: 100%;
         top: 0;
         left: 0;
         padding: 1em 5vw;
         box-sizing: border-box;
-        z-index: 200;
+        z-index: 0;
+        background: white;
     }
 
     .sidebar.menu-open {
