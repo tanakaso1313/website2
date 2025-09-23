@@ -43,12 +43,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     const verticalOffset = isVertical ? -8 : 0; // Vertical images positioned higher
                     
-                    // Mobile vertical positioning with ultimate overlap
+                    // Mobile vertical positioning with custom spacing
                     let mobileTop;
-                    const baseVertical = -25; // Start position
                     
-                    // Ultimate -15vh increments for maximum overlap effect
-                    mobileTop = baseVertical - (originalIndex * 15);
+                    // Custom positioning for each image index
+                    const customPositions = [-25, -40, -55, -70, -85, -100, -105, -110];
+                    mobileTop = customPositions[originalIndex] || -110; // Default to -110vh if index exceeds array
                     mobileTop += verticalOffset; // Apply vertical image offset
                     
                     imageWrapper.style.left = `${mobileLeft}vw`;
