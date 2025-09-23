@@ -14,6 +14,12 @@ document.addEventListener('DOMContentLoaded', () => {
             { src: 'images/top/1.transfer_top_result_result.webp', monoSrc: 'images/mono/1.transfer_top_mono_result_result.webp', href: 'transfer.html', category: 'other', alt: 'transfer' }
         ];
 
+        // Deterministic random helper
+        const seed = (n) => {
+            const x = Math.sin(n * 12.9898) * 43758.5453;
+            return x - Math.floor(x);
+        };
+
         const renderGallery = (filter = 'all') => {
             galleryContainer.innerHTML = '';
             const filteredWorks = filter === 'all' ? works : works.filter(w => w.category === filter);
@@ -32,36 +38,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 const isMobile = window.innerWidth <= 768;
                 
                 if (isMobile) {
-                    // Wide horizontal distribution for mobile - similar to desktop but mobile-optimized
-                    const img = imageWrapper.querySelector('img');
-                    const isVertical = img && img.naturalHeight > img.naturalWidth;
-                    
-                    // Use original index for horizontal distribution to maintain consistency
-                    const baseLeft = (originalIndex * 8) % 40 + 5; // 5-45vw wide range
-                    const sinVariation = Math.sin(originalIndex * 1.9) * 15; // Stronger horizontal variation
-                    const cosVariation = Math.cos(originalIndex * 2.4) * 10;
-                    const mobileLeft = Math.max(0, Math.min(50, baseLeft + sinVariation + cosVariation + (originalIndex === 0 ? 15 : 0))); // Wide distribution, first image +15vw
-                    
-                    const verticalOffset = isVertical ? -8 : 0; // Vertical images positioned higher
-                    
-                    // Mobile vertical positioning with extreme upward overlap
-                    let mobileTop;
-                    const baseVertical = 0; // Start directly below menu with no gap
-                    
-                    // Negative 20vh increments for maximum dramatic overlapping effect
-                    if (filteredIndex <= 5) {
-                        mobileTop = baseVertical - (filteredIndex * 20); // -20vh increments for maximum overlap
-                    } else if (filteredIndex === 6) {
-                        mobileTop = baseVertical - 120; // Index 6: continue maximum overlap
-                    } else if (filteredIndex === 7) {
-                        mobileTop = baseVertical - 140; // Index 7: continue maximum overlap
-                    } else {
-                        mobileTop = baseVertical - (filteredIndex * 20); // Fallback for additional images
-                    }
-                    mobileTop += verticalOffset; // Apply vertical image offset
-                    
+                    // WIDER horizontal spread (6–94vw) with a small wobble
+                    const base = seed(originalIndex);
+                    const leftSpread = 6 + base * 88; // 6..94vw
+                    const wobble = Math.sin(originalIndex * 1.7) * 6 + Math.cos(originalIndex * 2.3) * 4; // ± ~10
+                    const mobileLeft = Math.max(2, Math.min(98, leftSpread + wobble));
+
+                    // Start closer to the menu (reduce the big gap) and stagger upward gently
+                    const startTop = -6; // vh, slightly above the gallery baseline
+                    const step = 7 + seed(originalIndex + 7) * 4; // 7..11vh
+                    let mobileTop = startTop - filteredIndex * step;
+
+                    // tiny lane offsets so neighbors don't align
+                    mobileTop -= (filteredIndex % 3) * 2; // 0, -2, -4vh
+
                     imageWrapper.style.left = `${mobileLeft}vw`;
-                    imageWrapper.style.top = `${mobileTop}vh`;
+                    imageWrapper.style.top  = `${mobileTop}vh`;
                 } else {
                     // All images align with SOTANAKA baseline
                     const baseLeft = (originalIndex * 3.2) % 25;
@@ -81,6 +73,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 const img = document.createElement('img');
                 img.src = work.monoSrc;
                 img.alt = work.alt;
+
+                // Optional: after image loads, nudge tall images a bit higher (no desktop impact)
+                if (isMobile) {
+                    img.addEventListener('load', () => {
+                        if (img.naturalHeight > img.naturalWidth) {
+                            const currentTop = parseFloat(imageWrapper.style.top); // in vh
+                            imageWrapper.style.top = `${currentTop - 3}vh`;
+                        }
+                    });
+                }
 
                 link.appendChild(img);
                 imageWrapper.appendChild(link);
