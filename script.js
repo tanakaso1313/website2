@@ -44,19 +44,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     const verticalOffset = isVertical ? -8 : 0; // Vertical images positioned higher
                     
-                    // Mobile vertical positioning using filtered index for proper overlap
+                    // Mobile vertical positioning below menu
                     let mobileTop;
-                    const baseVertical = -25; // Start position
+                    const baseVertical = 15; // Start position below menu (positive value)
                     
-                    // Use filteredIndex for vertical positioning to ensure proper stacking
+                    // Use filteredIndex for vertical positioning with downward progression
                     if (filteredIndex <= 5) {
-                        mobileTop = baseVertical - (filteredIndex * 15); // -15vh increments for first 6
+                        mobileTop = baseVertical + (filteredIndex * 15); // 15vh increments downward
                     } else if (filteredIndex === 6) {
-                        mobileTop = -105; // Index 6: tighter, higher position
+                        mobileTop = baseVertical + 90 + 5; // Index 6: continue progression with slight gap
                     } else if (filteredIndex === 7) {
-                        mobileTop = -110; // Index 7: slightly lower but still tight
+                        mobileTop = baseVertical + 90 + 10; // Index 7: slightly more gap
                     } else {
-                        mobileTop = baseVertical - (filteredIndex * 15); // Fallback for additional images
+                        mobileTop = baseVertical + (filteredIndex * 15); // Fallback for additional images
                     }
                     mobileTop += verticalOffset; // Apply vertical image offset
                     
