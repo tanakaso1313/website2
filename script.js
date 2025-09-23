@@ -26,8 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     imageWrapper.classList.add('let-a-size');
                 }
 
-                // Fixed positions based on original work index to maintain consistent layout
+                // Use both original index (for desktop consistency) and filtered index (for mobile positioning)
                 const originalIndex = works.findIndex(w => w.alt === work.alt);
+                const filteredIndex = index; // Current position in filtered results
                 const isMobile = window.innerWidth <= 768;
                 
                 if (isMobile) {
@@ -35,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const img = imageWrapper.querySelector('img');
                     const isVertical = img && img.naturalHeight > img.naturalWidth;
                     
-                    // Much wider horizontal distribution like desktop
+                    // Use original index for horizontal distribution to maintain consistency
                     const baseLeft = (originalIndex * 8) % 40 + 5; // 5-45vw wide range
                     const sinVariation = Math.sin(originalIndex * 1.9) * 15; // Stronger horizontal variation
                     const cosVariation = Math.cos(originalIndex * 2.4) * 10;
@@ -43,19 +44,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     const verticalOffset = isVertical ? -8 : 0; // Vertical images positioned higher
                     
-                    // Mobile vertical positioning with ultimate overlap
+                    // Mobile vertical positioning using filtered index for proper overlap
                     let mobileTop;
                     const baseVertical = -25; // Start position
                     
-                    // Custom positioning for better overlap, especially last two images
-                    if (originalIndex <= 5) {
-                        mobileTop = baseVertical - (originalIndex * 15); // -15vh increments for first 6
-                    } else if (originalIndex === 6) {
+                    // Use filteredIndex for vertical positioning to ensure proper stacking
+                    if (filteredIndex <= 5) {
+                        mobileTop = baseVertical - (filteredIndex * 15); // -15vh increments for first 6
+                    } else if (filteredIndex === 6) {
                         mobileTop = -105; // Index 6: tighter, higher position
-                    } else if (originalIndex === 7) {
+                    } else if (filteredIndex === 7) {
                         mobileTop = -110; // Index 7: slightly lower but still tight
                     } else {
-                        mobileTop = baseVertical - (originalIndex * 15); // Fallback for additional images
+                        mobileTop = baseVertical - (filteredIndex * 15); // Fallback for additional images
                     }
                     mobileTop += verticalOffset; // Apply vertical image offset
                     
