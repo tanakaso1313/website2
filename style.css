@@ -197,7 +197,7 @@ main {
     }
 
     .category-nav {
-        margin-bottom: 3em;
+        margin-bottom: 0.5rem;
     }
 
     main {
@@ -207,8 +207,9 @@ main {
     }
 
     .gallery-container {
-        padding-top: 15vh;
         position: relative;
+        margin-top: 0;
+        padding-top: 0;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
