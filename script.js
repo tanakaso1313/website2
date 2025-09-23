@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     // Mobile vertical positioning with extreme upward overlap
                     let mobileTop;
-                    const baseVertical = 15; // Start position below menu (positive value)
+                    const baseVertical = 0; // Start directly below menu with no gap
                     
                     // Negative 20vh increments for maximum dramatic overlapping effect
                     if (filteredIndex <= 5) {
