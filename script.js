@@ -48,15 +48,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     let mobileTop;
                     const baseVertical = 15; // Start position below menu (positive value)
                     
-                    // Negative 20vh increments for maximum dramatic overlapping effect
+                    // Negative 30vh increments for extreme dramatic overlapping effect
                     if (filteredIndex <= 5) {
-                        mobileTop = baseVertical - (filteredIndex * 20); // -20vh increments for maximum overlap
+                        mobileTop = baseVertical - (filteredIndex * 30); // -30vh increments for extreme overlap
                     } else if (filteredIndex === 6) {
-                        mobileTop = baseVertical - 120; // Index 6: continue maximum overlap
+                        mobileTop = baseVertical - 180; // Index 6: continue extreme overlap
                     } else if (filteredIndex === 7) {
-                        mobileTop = baseVertical - 140; // Index 7: continue maximum overlap
+                        mobileTop = baseVertical - 210; // Index 7: continue extreme overlap
                     } else {
-                        mobileTop = baseVertical - (filteredIndex * 20); // Fallback for additional images
+                        mobileTop = baseVertical - (filteredIndex * 30); // Fallback for additional images
                     }
                     mobileTop += verticalOffset; // Apply vertical image offset
                     
