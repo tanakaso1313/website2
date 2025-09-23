@@ -38,22 +38,40 @@ document.addEventListener('DOMContentLoaded', () => {
                 const isMobile = window.innerWidth <= 768;
                 
                 if (isMobile) {
-                    // WIDER horizontal spread (6–94vw) with a small wobble
-                    const base = seed(originalIndex);
-                    const leftSpread = 6 + base * 88; // 6..94vw
-                    const wobble = Math.sin(originalIndex * 1.7) * 6 + Math.cos(originalIndex * 2.3) * 4; // ± ~10
-                    const mobileLeft = Math.max(2, Math.min(98, leftSpread + wobble));
+                    // measure how far the menu extends so we never overlap it
+                    const nav = document.querySelector('.category-nav');
+                    const logo = document.querySelector('.site-title, .logo, h1'); // adapt selector if needed
+                    const menuBottomPx = Math.max(
+                        nav ? nav.getBoundingClientRect().bottom : 0,
+                        logo ? logo.getBoundingClientRect().bottom : 0
+                    );
+                    const vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+                    const startTop = (menuBottomPx / vh) * 100 + 2; // first image starts just below menu
 
-                    // Start closer to the menu (reduce the big gap) and stagger upward gently
-                    const startTop = -6; // vh, slightly above the gallery baseline
-                    const step = 7 + seed(originalIndex + 7) * 4; // 7..11vh
-                    let mobileTop = startTop - filteredIndex * step;
+                    // safe sizing for mobile
+                    const IMAGE_W_VW = 70;     // all images same width on mobile
+                    const GUTTER_VW   = 6;     // left/right safe margin
+                    const MAX_LEFT    = 100 - IMAGE_W_VW - GUTTER_VW; // ensures no horizontal scroll
 
-                    // tiny lane offsets so neighbors don't align
-                    mobileTop -= (filteredIndex % 3) * 2; // 0, -2, -4vh
+                    // tight vertical spacing between items
+                    const STEP_TOP_VH = 7;     // smaller = tighter stack
 
-                    imageWrapper.style.left = `${mobileLeft}vw`;
-                    imageWrapper.style.top  = `${mobileTop}vh`;
+                    // alternating small left shifts to reveal each image edge; always clamped in safe range
+                    const zigzag = (filteredIndex % 3) * 5;    // 0, 5, 10vw
+                    const baseLeft = 12 + zigzag;              // start near the left, reveal to the right
+                    const left = Math.min(Math.max(baseLeft, GUTTER_VW), MAX_LEFT);
+
+                    const top = startTop + filteredIndex * STEP_TOP_VH;
+
+                    imageWrapper.style.left = `${left}vw`;
+                    imageWrapper.style.top  = `${top}vh`;
+                    imageWrapper.style.zIndex = 100 + filteredIndex;
+
+                    // keep the container tall enough so the last item isn't cut off
+                    if (filteredIndex === filteredWorks.length - 1) {
+                        const approxHeightVh = top + 60; // ~image height + footer room
+                        galleryContainer.style.minHeight = `${approxHeightVh}vh`;
+                    }
                 } else {
                     // All images align with SOTANAKA baseline
                     const baseLeft = (originalIndex * 3.2) % 25;
@@ -73,16 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const img = document.createElement('img');
                 img.src = work.monoSrc;
                 img.alt = work.alt;
-
-                // Optional: after image loads, nudge tall images a bit higher (no desktop impact)
-                if (isMobile) {
-                    img.addEventListener('load', () => {
-                        if (img.naturalHeight > img.naturalWidth) {
-                            const currentTop = parseFloat(imageWrapper.style.top); // in vh
-                            imageWrapper.style.top = `${currentTop - 3}vh`;
-                        }
-                    });
-                }
 
                 link.appendChild(img);
                 imageWrapper.appendChild(link);

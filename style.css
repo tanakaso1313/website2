@@ -219,6 +219,10 @@ main {
         box-sizing: border-box;
     }
 
+    html, body { overflow-x: hidden; } /* belt-and-suspenders; prevents any stray scroll */
+    .image-wrapper { position: absolute; }
+    .image-wrapper img { width: 70vw; height: auto; display: block; }
+
 }
 
 footer {
