@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         logo ? logo.getBoundingClientRect().bottom : 0
                     );
                     const vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-                    const startTop = (menuBottomPx / vh) * 100 + 2; // first image starts just below menu
+                    const startTop = (menuBottomPx / vh) * 100; // first image starts directly below menu
 
                     // safe sizing for mobile
                     const IMAGE_W_VW = 70;     // all images same width on mobile
