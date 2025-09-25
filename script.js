@@ -96,6 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 imageWrapper.appendChild(link);
                 galleryContainer.appendChild(imageWrapper);
 
+                // Desktop hover behavior
                 imageWrapper.addEventListener('mouseenter', () => {
                     document.querySelectorAll('.image-wrapper').forEach(iw => {
                         iw.classList.remove('active');
@@ -109,6 +110,45 @@ document.addEventListener('DOMContentLoaded', () => {
                 imageWrapper.addEventListener('mouseleave', () => {
                     img.src = work.monoSrc;
                 });
+
+                // Mobile touch behavior - two taps like desktop
+                if (isMobile) {
+                    let isActive = false;
+                    
+                    link.addEventListener('click', (e) => {
+                        if (!isActive) {
+                            // First tap: prevent navigation, activate image
+                            e.preventDefault();
+                            document.querySelectorAll('.image-wrapper').forEach(iw => {
+                                iw.classList.remove('active');
+                                const iwImg = iw.querySelector('img');
+                                const iwWork = works.find(w => w.alt === iwImg.alt);
+                                if (iwWork) iwImg.src = iwWork.monoSrc;
+                            });
+                            imageWrapper.classList.add('active');
+                            maxZIndex++;
+                            imageWrapper.style.zIndex = maxZIndex;
+                            img.src = work.src;
+                            isActive = true;
+                            
+                            // Reset other images' active state
+                            document.querySelectorAll('.image-wrapper').forEach(iw => {
+                                if (iw !== imageWrapper) {
+                                    const iwLink = iw.querySelector('a');
+                                    iwLink._isActive = false;
+                                }
+                            });
+                        }
+                        // Second tap: allow navigation (default behavior)
+                    });
+                    
+                    // Store active state on link for access from other images
+                    link._isActive = false;
+                    Object.defineProperty(link, '_isActive', {
+                        get: () => isActive,
+                        set: (value) => { isActive = value; }
+                    });
+                }
             });
 
             // Add footer after all images are rendered
