@@ -111,44 +111,47 @@ document.addEventListener('DOMContentLoaded', () => {
                     img.src = work.monoSrc;
                 });
 
-                // Mobile touch behavior - two taps like desktop
-                if (isMobile) {
-                    let isActive = false;
+                // Mobile touch behavior - two taps like desktop (always add for all images)
+                let isActive = false;
+                
+                link.addEventListener('click', (e) => {
+                    // Check if we're on mobile at click time
+                    const currentlyMobile = window.innerWidth <= 768;
                     
-                    link.addEventListener('click', (e) => {
-                        if (!isActive) {
-                            // First tap: prevent navigation, activate image
-                            e.preventDefault();
-                            document.querySelectorAll('.image-wrapper').forEach(iw => {
-                                iw.classList.remove('active');
-                                const iwImg = iw.querySelector('img');
-                                const iwWork = works.find(w => w.alt === iwImg.alt);
-                                if (iwWork) iwImg.src = iwWork.monoSrc;
-                            });
-                            imageWrapper.classList.add('active');
-                            maxZIndex++;
-                            imageWrapper.style.zIndex = maxZIndex;
-                            img.src = work.src;
-                            isActive = true;
-                            
-                            // Reset other images' active state
-                            document.querySelectorAll('.image-wrapper').forEach(iw => {
-                                if (iw !== imageWrapper) {
-                                    const iwLink = iw.querySelector('a');
+                    if (currentlyMobile && !isActive) {
+                        // First tap: prevent navigation, activate image
+                        e.preventDefault();
+                        document.querySelectorAll('.image-wrapper').forEach(iw => {
+                            iw.classList.remove('active');
+                            const iwImg = iw.querySelector('img');
+                            const iwWork = works.find(w => w.alt === iwImg.alt);
+                            if (iwWork) iwImg.src = iwWork.monoSrc;
+                        });
+                        imageWrapper.classList.add('active');
+                        maxZIndex++;
+                        imageWrapper.style.zIndex = maxZIndex;
+                        img.src = work.src;
+                        isActive = true;
+                        
+                        // Reset other images' active state
+                        document.querySelectorAll('.image-wrapper').forEach(iw => {
+                            if (iw !== imageWrapper) {
+                                const iwLink = iw.querySelector('a');
+                                if (iwLink._isActive !== undefined) {
                                     iwLink._isActive = false;
                                 }
-                            });
-                        }
-                        // Second tap: allow navigation (default behavior)
-                    });
-                    
-                    // Store active state on link for access from other images
-                    link._isActive = false;
-                    Object.defineProperty(link, '_isActive', {
-                        get: () => isActive,
-                        set: (value) => { isActive = value; }
-                    });
-                }
+                            }
+                        });
+                    }
+                    // Second tap on mobile or any click on desktop: allow navigation (default behavior)
+                });
+                
+                // Store active state on link for access from other images
+                link._isActive = false;
+                Object.defineProperty(link, '_isActive', {
+                    get: () => isActive,
+                    set: (value) => { isActive = value; }
+                });
             });
 
             // Add footer after all images are rendered
