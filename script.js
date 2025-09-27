@@ -118,40 +118,44 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Check if we're on mobile at click time
                     const currentlyMobile = window.innerWidth <= 768;
                     
+                    console.log('Click detected:', { currentlyMobile, isActive, width: window.innerWidth });
+                    
                     if (currentlyMobile && !isActive) {
                         // First tap: prevent navigation, activate image
+                        console.log('Preventing navigation - first tap');
                         e.preventDefault();
+                        
+                        // Reset all other images to inactive
                         document.querySelectorAll('.image-wrapper').forEach(iw => {
                             iw.classList.remove('active');
                             const iwImg = iw.querySelector('img');
                             const iwWork = works.find(w => w.alt === iwImg.alt);
                             if (iwWork) iwImg.src = iwWork.monoSrc;
+                            // Reset other images' active state via data attribute
+                            const iwLink = iw.querySelector('a');
+                            iwLink.dataset.isActive = 'false';
                         });
+                        
+                        // Activate this image
                         imageWrapper.classList.add('active');
                         maxZIndex++;
                         imageWrapper.style.zIndex = maxZIndex;
                         img.src = work.src;
                         isActive = true;
+                        link.dataset.isActive = 'true';
                         
-                        // Reset other images' active state
-                        document.querySelectorAll('.image-wrapper').forEach(iw => {
-                            if (iw !== imageWrapper) {
-                                const iwLink = iw.querySelector('a');
-                                if (iwLink._isActive !== undefined) {
-                                    iwLink._isActive = false;
-                                }
-                            }
-                        });
+                        console.log('Image activated for mobile');
+                    } else if (currentlyMobile && isActive) {
+                        console.log('Second tap - allowing navigation');
+                        // Second tap: allow navigation (don't prevent default)
+                    } else {
+                        console.log('Desktop click - direct navigation');
+                        // Desktop: direct navigation
                     }
-                    // Second tap on mobile or any click on desktop: allow navigation (default behavior)
                 });
                 
-                // Store active state on link for access from other images
-                link._isActive = false;
-                Object.defineProperty(link, '_isActive', {
-                    get: () => isActive,
-                    set: (value) => { isActive = value; }
-                });
+                // Initialize data attribute
+                link.dataset.isActive = 'false';
             });
 
             // Add footer after all images are rendered
