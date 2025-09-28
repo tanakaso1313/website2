@@ -56,9 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     // tight vertical spacing between items
                     const STEP_TOP_VH = 7;     // smaller = tighter stack
 
-                    // alternating small left shifts to reveal each image edge; always clamped in safe range
-                    const zigzag = (filteredIndex % 3) * 5;    // 0, 5, 10vw
-                    const baseLeft = 20 + zigzag;              // moved further right from 12 to 20
+                    // Better horizontal distribution - more random spread
+                    const horizontalVariations = [5, 12, 18, 8, 15, 3, 20, 10]; // Different positions
+                    const baseLeft = horizontalVariations[filteredIndex % horizontalVariations.length];
                     const left = Math.min(Math.max(baseLeft, GUTTER_VW), MAX_LEFT);
 
                     const top = startTop + filteredIndex * STEP_TOP_VH;
