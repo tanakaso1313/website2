@@ -38,45 +38,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 const isMobile = window.innerWidth <= 768;
                 
                 if (isMobile) {
-                    // measure how far the menu extends so we never overlap it
-                    const nav  = document.querySelector('.category-nav');
-                    const logo = document.querySelector('.site-title, .logo, h1'); // first match is fine
-                    const menuBottomPx = Math.max(
-                        nav  ? nav.getBoundingClientRect().bottom  : 0,
-                        logo ? logo.getBoundingClientRect().bottom : 0
-                    );
+                    // MOBILE: single column, equal widths, 2vw vertical gap, no overlap, no zigzag
+                    const SIDE_MARGIN_VW = 4;   // side breathing room (can tweak)
+                    const GAP_VW         = 2;   // requested vertical space between photos
+                    const IMAGE_W_VW     = 100 - SIDE_MARGIN_VW * 2; // same width for all
 
-                    const vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+                    // container flows naturally; no manual minHeight needed
+                    galleryContainer.style.minHeight = '';
+                    galleryContainer.style.position = 'relative';
 
-                    // Start a bit lower so the first image doesn't crowd the header
-                    const startTop = (menuBottomPx / vh) * 100 - 22; // was -30
+                    // flow items in normal document order
+                    imageWrapper.style.position = 'relative';
+                    imageWrapper.style.left = '';
+                    imageWrapper.style.top  = '';
 
-                    // Mobile sizing/spacing (more right, more stagger)
-                    const IMAGE_W_VW = 72;  // was 70
-                    const GUTTER_VW  = 8;   // was 6
-                    const MAX_LEFT   = 100 - IMAGE_W_VW - GUTTER_VW;
+                    // ensure stacking doesn't interfere with taps (flow order wins)
+                    imageWrapper.style.zIndex = 'auto';
 
-                    // Slightly looser vertical stack to avoid overlap swallowing taps
-                    const STEP_TOP_VH = 8.5; // was 7
-
-                    // Wider zig-zag so items 4+ don't sit directly under the first three
-                    const zigzag = (filteredIndex % 5) * 6;  // 0, 6, 12, 18, 24 vw
-                    const baseLeft = 24 + zigzag;            // was 20 + (idx%3)*5
-                    const left = Math.min(Math.max(baseLeft, GUTTER_VW), MAX_LEFT);
-
-                    const top = startTop + filteredIndex * STEP_TOP_VH;
-
-                    imageWrapper.style.left = `${left}vw`;
-                    imageWrapper.style.top  = `${top}vh`;
-
-                    // Give each item an increasing base z so it's tappable before activation
-                    imageWrapper.style.zIndex = 100 + filteredIndex;
-
-                    // keep the container tall enough so the last item isn't cut off
-                    if (filteredIndex === filteredWorks.length - 1) {
-                        const approxHeightVh = top + 65; // a touch more tail room
-                        galleryContainer.style.minHeight = `${approxHeightVh}vh`;
-                    }
+                    // set width and margin for consistent single-column layout
+                    imageWrapper.style.width = `${IMAGE_W_VW}vw`;
+                    imageWrapper.style.marginLeft = `${SIDE_MARGIN_VW}vw`;
+                    imageWrapper.style.marginRight = `${SIDE_MARGIN_VW}vw`;
+                    imageWrapper.style.marginBottom = `${GAP_VW}vw`;
                 } else {
                     // Desktop: keep your existing behavior
                     const baseLeft = (originalIndex * 3.2) % 25;
