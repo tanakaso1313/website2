@@ -73,8 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     imageWrapper.style.left = `${desktopLeft}vw`;
                     imageWrapper.style.top  = `${desktopTop}vh`;
 
-                    // sensible starting z for desktop (will be raised on hover)
-                    imageWrapper.style.zIndex = 10 + originalIndex;
+                    // sensible starting z for desktop (will be raised on hover) - reverse order so first items appear on top
+                    imageWrapper.style.zIndex = 10 + (works.length - originalIndex);
                 }
 
                 const link = document.createElement('a');
