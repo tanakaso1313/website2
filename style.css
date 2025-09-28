@@ -132,12 +132,19 @@ main {
     align-items: flex-start;
 }
 
-/* Mobile: override let-a-size to make all photos same width */
+/* Mobile: make all photos match first photo width */
 @media (max-width: 768px) {
-    .image-wrapper.let-a-size {
+    .image-wrapper {
         width: auto !important;
         max-width: none !important;
         height: auto !important;
+    }
+    
+    .image-wrapper img {
+        width: 100% !important;
+        height: auto !important;
+        max-width: none !important;
+        max-height: none !important;
     }
 }
 

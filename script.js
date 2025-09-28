@@ -38,10 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const isMobile = window.innerWidth <= 768;
                 
                 if (isMobile) {
-                    // MOBILE: single column, equal widths, centered, 2vw vertical gap, no overlap, no zigzag
+                    // MOBILE: single column, all photos match first photo width, centered, 2vw vertical gap
                     const SIDE_MARGIN_VW = 8;   // increased for better centering (was 4)
                     const GAP_VW         = 2;   // requested vertical space between photos
-                    const IMAGE_W_VW     = 100 - SIDE_MARGIN_VW * 2; // same width for all
 
                     // container flows naturally; no manual minHeight needed
                     galleryContainer.style.minHeight = '';
@@ -55,8 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     // ensure stacking doesn't interfere with taps (flow order wins)
                     imageWrapper.style.zIndex = 'auto';
 
-                    // set width and margin for consistent single-column layout - centered
-                    imageWrapper.style.width = `${IMAGE_W_VW}vw`;
+                    // set margin for consistent single-column layout - let CSS handle width
+                    imageWrapper.style.width = '';  // clear any width, let CSS handle it
                     imageWrapper.style.marginLeft = `${SIDE_MARGIN_VW}vw`;
                     imageWrapper.style.marginRight = `${SIDE_MARGIN_VW}vw`;
                     imageWrapper.style.marginBottom = `${GAP_VW}vw`;
