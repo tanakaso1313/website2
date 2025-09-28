@@ -39,51 +39,57 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 if (isMobile) {
                     // measure how far the menu extends so we never overlap it
-                    const nav = document.querySelector('.category-nav');
-                    const logo = document.querySelector('.site-title, .logo, h1'); // adapt selector if needed
+                    const nav  = document.querySelector('.category-nav');
+                    const logo = document.querySelector('.site-title, .logo, h1'); // first match is fine
                     const menuBottomPx = Math.max(
-                        nav ? nav.getBoundingClientRect().bottom : 0,
+                        nav  ? nav.getBoundingClientRect().bottom  : 0,
                         logo ? logo.getBoundingClientRect().bottom : 0
                     );
+
                     const vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-                    const startTop = (menuBottomPx / vh) * 100 - 30; // first image starts 30vh above menu bottom
 
-                    // safe sizing for mobile
-                    const IMAGE_W_VW = 70;     // all images same width on mobile
-                    const GUTTER_VW   = 6;     // left/right safe margin
-                    const MAX_LEFT    = 100 - IMAGE_W_VW - GUTTER_VW; // ensures no horizontal scroll
+                    // Start a bit lower so the first image doesn't crowd the header
+                    const startTop = (menuBottomPx / vh) * 100 - 22; // was -30
 
-                    // tight vertical spacing between items
-                    const STEP_TOP_VH = 7;     // smaller = tighter stack
+                    // Mobile sizing/spacing (more right, more stagger)
+                    const IMAGE_W_VW = 72;  // was 70
+                    const GUTTER_VW  = 8;   // was 6
+                    const MAX_LEFT   = 100 - IMAGE_W_VW - GUTTER_VW;
 
-                    // Better horizontal distribution - more random spread
-                    const horizontalVariations = [5, 12, 18, 8, 15, 3, 20, 10]; // Different positions
-                    const baseLeft = horizontalVariations[filteredIndex % horizontalVariations.length];
+                    // Slightly looser vertical stack to avoid overlap swallowing taps
+                    const STEP_TOP_VH = 8.5; // was 7
+
+                    // Wider zig-zag so items 4+ don't sit directly under the first three
+                    const zigzag = (filteredIndex % 5) * 6;  // 0, 6, 12, 18, 24 vw
+                    const baseLeft = 24 + zigzag;            // was 20 + (idx%3)*5
                     const left = Math.min(Math.max(baseLeft, GUTTER_VW), MAX_LEFT);
 
                     const top = startTop + filteredIndex * STEP_TOP_VH;
 
                     imageWrapper.style.left = `${left}vw`;
                     imageWrapper.style.top  = `${top}vh`;
+
+                    // Give each item an increasing base z so it's tappable before activation
                     imageWrapper.style.zIndex = 100 + filteredIndex;
 
                     // keep the container tall enough so the last item isn't cut off
                     if (filteredIndex === filteredWorks.length - 1) {
-                        const approxHeightVh = top + 60; // ~image height + footer room
+                        const approxHeightVh = top + 65; // a touch more tail room
                         galleryContainer.style.minHeight = `${approxHeightVh}vh`;
                     }
                 } else {
-                    // All images align with SOTANAKA baseline
+                    // Desktop: keep your existing behavior
                     const baseLeft = (originalIndex * 3.2) % 25;
                     const sinVariation = Math.sin(originalIndex * 1.7) * 12;
                     const cosVariation = Math.cos(originalIndex * 2.1) * 8;
                     const desktopLeft = (baseLeft + sinVariation + cosVariation) % 30;
-                    const desktopTop = -12; // All images align with SOTANAKA height, moved up
-                    
+                    const desktopTop = -12;
                     imageWrapper.style.left = `${desktopLeft}vw`;
-                    imageWrapper.style.top = `${desktopTop}vh`;
+                    imageWrapper.style.top  = `${desktopTop}vh`;
+
+                    // sensible starting z for desktop (will be raised on hover)
+                    imageWrapper.style.zIndex = 10 + originalIndex;
                 }
-                imageWrapper.style.zIndex = filteredWorks.length - index;
 
                 const link = document.createElement('a');
                 link.href = work.href;
@@ -96,11 +102,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 imageWrapper.appendChild(link);
                 galleryContainer.appendChild(imageWrapper);
 
-                // Desktop hover behavior
+                // Desktop hover behavior - when activating (hover/tap), bring to front
                 imageWrapper.addEventListener('mouseenter', () => {
-                    document.querySelectorAll('.image-wrapper').forEach(iw => {
-                        iw.classList.remove('active');
-                    });
+                    document.querySelectorAll('.image-wrapper').forEach(iw => iw.classList.remove('active'));
                     imageWrapper.classList.add('active');
                     maxZIndex++;
                     imageWrapper.style.zIndex = maxZIndex;
