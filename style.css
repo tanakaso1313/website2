@@ -132,6 +132,15 @@ main {
     align-items: flex-start;
 }
 
+/* Mobile: override let-a-size to make all photos same width */
+@media (max-width: 768px) {
+    .image-wrapper.let-a-size {
+        width: auto !important;
+        max-width: none !important;
+        height: auto !important;
+    }
+}
+
 .image-wrapper img {
     max-width: 100%;
     max-height: 100%;

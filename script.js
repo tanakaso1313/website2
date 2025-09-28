@@ -38,8 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const isMobile = window.innerWidth <= 768;
                 
                 if (isMobile) {
-                    // MOBILE: single column, equal widths, 2vw vertical gap, no overlap, no zigzag
-                    const SIDE_MARGIN_VW = 4;   // side breathing room (can tweak)
+                    // MOBILE: single column, equal widths, centered, 2vw vertical gap, no overlap, no zigzag
+                    const SIDE_MARGIN_VW = 8;   // increased for better centering (was 4)
                     const GAP_VW         = 2;   // requested vertical space between photos
                     const IMAGE_W_VW     = 100 - SIDE_MARGIN_VW * 2; // same width for all
 
@@ -55,11 +55,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     // ensure stacking doesn't interfere with taps (flow order wins)
                     imageWrapper.style.zIndex = 'auto';
 
-                    // set width and margin for consistent single-column layout
+                    // set width and margin for consistent single-column layout - centered
                     imageWrapper.style.width = `${IMAGE_W_VW}vw`;
                     imageWrapper.style.marginLeft = `${SIDE_MARGIN_VW}vw`;
                     imageWrapper.style.marginRight = `${SIDE_MARGIN_VW}vw`;
                     imageWrapper.style.marginBottom = `${GAP_VW}vw`;
+                    
+                    // ensure display block for proper stacking
+                    imageWrapper.style.display = 'block';
                 } else {
                     // Desktop: keep your existing behavior
                     const baseLeft = (originalIndex * 3.2) % 25;
