@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // alternating small left shifts to reveal each image edge; always clamped in safe range
                     const zigzag = (filteredIndex % 3) * 5;    // 0, 5, 10vw
-                    const baseLeft = 12 + zigzag;              // start near the left, reveal to the right
+                    const baseLeft = 20 + zigzag;              // moved further right from 12 to 20
                     const left = Math.min(Math.max(baseLeft, GUTTER_VW), MAX_LEFT);
 
                     const top = startTop + filteredIndex * STEP_TOP_VH;
@@ -118,44 +118,51 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Check if we're on mobile at click time
                     const currentlyMobile = window.innerWidth <= 768;
                     
-                    console.log('Click detected:', { currentlyMobile, isActive, width: window.innerWidth });
+                    console.log('Click detected:', { currentlyMobile, isActive, width: window.innerWidth, target: e.target });
                     
-                    if (currentlyMobile && !isActive) {
-                        // First tap: prevent navigation, activate image
-                        console.log('Preventing navigation - first tap');
-                        e.preventDefault();
-                        
-                        // Reset all other images to inactive
-                        document.querySelectorAll('.image-wrapper').forEach(iw => {
-                            iw.classList.remove('active');
-                            const iwImg = iw.querySelector('img');
-                            const iwWork = works.find(w => w.alt === iwImg.alt);
-                            if (iwWork) iwImg.src = iwWork.monoSrc;
-                            // Reset other images' active state via data attribute
-                            const iwLink = iw.querySelector('a');
-                            iwLink.dataset.isActive = 'false';
-                        });
-                        
-                        // Activate this image
-                        imageWrapper.classList.add('active');
-                        maxZIndex++;
-                        imageWrapper.style.zIndex = maxZIndex;
-                        img.src = work.src;
-                        isActive = true;
-                        link.dataset.isActive = 'true';
-                        
-                        console.log('Image activated for mobile');
-                    } else if (currentlyMobile && isActive) {
-                        console.log('Second tap - allowing navigation');
-                        // Second tap: allow navigation (don't prevent default)
+                    if (currentlyMobile) {
+                        if (!isActive) {
+                            // First tap: prevent navigation, activate image
+                            console.log('MOBILE: Preventing navigation - first tap');
+                            e.preventDefault();
+                            e.stopPropagation();
+                            
+                            // Reset all other images to inactive
+                            document.querySelectorAll('.image-wrapper').forEach(iw => {
+                                iw.classList.remove('active');
+                                const iwImg = iw.querySelector('img');
+                                const iwWork = works.find(w => w.alt === iwImg.alt);
+                                if (iwWork) iwImg.src = iwWork.monoSrc;
+                            });
+                            
+                            // Reset all other images' isActive state by finding their closure variables
+                            document.querySelectorAll('.image-wrapper a').forEach(otherLink => {
+                                if (otherLink !== link && otherLink._resetActive) {
+                                    otherLink._resetActive();
+                                }
+                            });
+                            
+                            // Activate this image
+                            imageWrapper.classList.add('active');
+                            maxZIndex++;
+                            imageWrapper.style.zIndex = maxZIndex;
+                            img.src = work.src;
+                            isActive = true;
+                            
+                            console.log('MOBILE: Image activated for mobile - first tap done');
+                            return false; // Extra prevention
+                        } else {
+                            console.log('MOBILE: Second tap - allowing navigation');
+                            // Second tap: allow navigation (don't prevent default)
+                        }
                     } else {
-                        console.log('Desktop click - direct navigation');
+                        console.log('DESKTOP: Direct navigation');
                         // Desktop: direct navigation
                     }
                 });
                 
-                // Initialize data attribute
-                link.dataset.isActive = 'false';
+                // Add a method to reset this image's active state from other images
+                link._resetActive = () => { isActive = false; };
             });
 
             // Add footer after all images are rendered
