@@ -75,8 +75,17 @@ footer p {
 
     .bio-content {
         padding-top: 2em;
-        padding-right: 5vw;
-        padding-left: 5vw;
+        padding-right: 8vw;
+        padding-left: 8vw;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    .bio-content p,
+    .contact-info,
+    .cv-section {
+        margin-left: 0;
+        margin-right: 0;
     }
 }
 
