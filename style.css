@@ -247,6 +247,14 @@ main {
         width: 100%;
     }
 
+    main {
+        margin-left: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
     .gallery-container {
         position: static !important;
         margin: 0;
