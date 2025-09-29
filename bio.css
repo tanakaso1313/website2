@@ -92,6 +92,7 @@ footer p {
 @media (max-width: 768px) {
     .bio-content {
         padding-left: 5vw;
+        padding-right: 5vw;
     }
     
     footer {
