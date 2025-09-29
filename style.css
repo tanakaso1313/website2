@@ -134,9 +134,18 @@ main {
 
 /* Mobile: make all photos match first photo width */
 @media (max-width: 768px) {
+    body {
+        -webkit-overflow-scrolling: touch;
+        overflow-y: auto;
+    }
+    
+    .gallery-container {
+        padding-bottom: 5vh;
+    }
+    
     .image-wrapper {
         width: auto !important;
-        max-width: none !important;
+        max-width: 84vw !important;
         height: auto !important;
     }
     
