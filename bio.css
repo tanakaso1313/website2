@@ -83,10 +83,15 @@ footer p {
 @media (max-width: 768px) {
     .bio-content {
         padding-left: 5vw;
+        min-height: calc(100vh - 200px);
     }
     
     footer {
+        position: absolute !important;
+        bottom: 20px !important;
         right: 5vw;
-        bottom: 10px;
+        left: auto;
+        text-align: center;
+        width: calc(100% - 10vw);
     }
 }

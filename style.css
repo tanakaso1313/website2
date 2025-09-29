@@ -262,14 +262,16 @@ main {
 
     .image-wrapper {
         position: static !important;
-        width: 80vw !important;
-        max-width: 80vw !important;
+        width: 84vw !important;
+        max-width: 84vw !important;
         height: auto !important;
-        margin: 0 auto 2vw auto !important;
+        margin: 0 8vw 2vw 8vw !important;
         display: block !important;
         left: auto !important;
         top: auto !important;
         transform: none !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
     }
     
     .image-wrapper img { 
