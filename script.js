@@ -4,15 +4,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (galleryContainer) {
         const works = [
-            { src: 'images/top/8.Let a_top_result_result.webp', monoSrc: 'images/mono/8.Let a_top_mono_result_result.webp', href: 'let-a-colored-paper-swim-in-clouds.html', category: 'other', alt: 'Let a' },
-            { src: 'images/top/7.Liminal Lamp_top_result_result.webp', monoSrc: 'images/mono/7.Liminal Lamp_top_mono_result_result.webp', href: 'liminal-lamp.html', category: 'light', alt: 'Liminal Lamp' },
-            { src: 'images/top/6.Liminal Objects_top_result_result.webp', monoSrc: 'images/mono/6.Liminal Objects_top_mono_result.webp', href: 'liminal-objects.html', category: 'other', alt: 'Liminal Objects' },
-            { src: 'images/top/5.Memento_top_result_result.webp', monoSrc: 'images/mono/5.Memento_top_mono_result_result.webp', href: 'memento.html', category: 'other', alt: 'Memento' },
-            { src: 'images/top/4.Vnsh_top_result_result.webp', monoSrc: 'images/mono/4.Vnsh_top_mono_result_result.webp', href: 'vnsh.html', category: 'light', alt: 'Vnsh' },
-            { src: 'images/top/3.LTI_top_result_result.webp', monoSrc: 'images/mono/3.LTI_top_mono_result_result.webp', href: 'lti.html', category: 'light', alt: 'LTI' },
-            { src: 'images/top/2.ORI_top_result_result.webp', monoSrc: 'images/mono/2.ORI_top_mono_result_result.webp', href: 'ori.html', category: 'furniture', alt: 'ORI' },
-            { src: 'images/top/1.transfer_top_result_result.webp', monoSrc: 'images/mono/1.transfer_top_mono_result_result.webp', href: 'transfer.html', category: 'other', alt: 'transfer' }
-        ];
+            { src: 'images/top_2/8.Let a_top_result_result.webp', monoSrc: 'images/mono_2/8.Let a_top_mono_result_result.webp', href: 'let-a-colored-paper-swim-in-clouds.html', category: 'other', alt: 'Let a' },
+            { src: 'images/top_2/7.Liminal Lamp_top_result_result.webp', monoSrc: 'images/mono_2/7.Liminal Lamp_top_mono_result_result.webp', href: 'liminal-lamp.html', category: 'light', alt: 'Liminal Lamp' },
+            { src: 'images/top_2/6.Liminal Objects_top_result_result.webp', monoSrc: 'images/mono_2/6.Liminal Objects_top_mono_result.webp', href: 'liminal-objects.html', category: 'other', alt: 'Liminal Objects' },
+            { src: 'images/top_2/5.Memento_top_result_result.webp', monoSrc: 'images/mono_2/5.Memento_top_mono_result_result.webp', href: 'memento.html', category: 'other', alt: 'Memento' },
+            { src: 'images/top_2/4.Vnsh_top_result_result.webp', monoSrc: 'images/mono_2/4.Vnsh_top_mono_result_result.webp', href: 'vnsh.html', category: 'light', alt: 'Vnsh' },
+            { src: 'images/top_2/3.LTI_top_result_result.webp', monoSrc: 'images/mono_2/3.LTI_top_mono_result_result.webp', href: 'lti.html', category: 'light', alt: 'LTI' },
+            { src: 'images/top_2/2.ORI_top_result_result.webp', monoSrc: 'images/mono_2/2.ORI_top_mono_result_result.webp', href: 'ori.html', category: 'furniture', alt: 'ORI' },
+            { src: 'images/top_2/1.transfer_top_result_result.webp', monoSrc: 'images/mono_2/1.transfer_top_mono_result_result.webp', href: 'transfer.html', category: 'other', alt: 'transfer' }
+        ].map(work => ({ ...work, src: `${work.src}?v=${new Date().getTime()}`, monoSrc: `${work.monoSrc}?v=${new Date().getTime()}` }));
 
         // Deterministic random helper
         const seed = (n) => {
