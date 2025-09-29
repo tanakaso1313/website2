@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const isMobile = window.innerWidth <= 768;
                 
                 if (isMobile) {
-                    // MOBILE: single column, centered with auto margins
+                    // MOBILE: single column, let CSS handle all positioning
                     const GAP_VW = 2;   // vertical space between photos
 
                     // container flows naturally; no manual minHeight needed
@@ -53,10 +53,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     // ensure stacking doesn't interfere with taps (flow order wins)
                     imageWrapper.style.zIndex = 'auto';
 
-                    // center photos with auto margins - equal left/right margins
+                    // let CSS handle all margins and width - don't override
                     imageWrapper.style.width = '';  // clear any width, let CSS handle it
-                    imageWrapper.style.marginLeft = 'auto';
-                    imageWrapper.style.marginRight = 'auto';
+                    imageWrapper.style.marginLeft = '';
+                    imageWrapper.style.marginRight = '';
                     imageWrapper.style.marginBottom = `${GAP_VW}vw`;
                     
                     // ensure display block for proper stacking

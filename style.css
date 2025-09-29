@@ -137,16 +137,25 @@ main {
     body {
         -webkit-overflow-scrolling: touch;
         overflow-y: auto;
+        min-height: 100vh;
     }
     
     .gallery-container {
-        padding-bottom: 5vh;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        min-height: calc(100vh - 20vh);
+        padding-bottom: 10vh;
+        padding-top: 2vh;
     }
     
     .image-wrapper {
-        width: auto !important;
+        width: 84vw !important;
         max-width: 84vw !important;
         height: auto !important;
+        margin-left: 8vw !important;
+        margin-right: 8vw !important;
+        display: block !important;
     }
     
     .image-wrapper img {
@@ -154,6 +163,7 @@ main {
         height: auto !important;
         max-width: none !important;
         max-height: none !important;
+        display: block;
     }
 }
 
