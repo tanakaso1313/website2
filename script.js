@@ -38,29 +38,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 const isMobile = window.innerWidth <= 768;
                 
                 if (isMobile) {
-                    // MOBILE: single column, let CSS handle all positioning
-                    const GAP_VW = 2;   // vertical space between photos
-
-                    // container flows naturally; no manual minHeight needed
+                    // MOBILE: completely clear all styles, let CSS flexbox handle everything
                     galleryContainer.style.minHeight = '';
-                    galleryContainer.style.position = 'relative';
+                    galleryContainer.style.position = '';
 
-                    // flow items in normal document order
-                    imageWrapper.style.position = 'relative';
+                    // clear all positioning - let CSS handle it
+                    imageWrapper.style.position = '';
                     imageWrapper.style.left = '';
-                    imageWrapper.style.top  = '';
-
-                    // ensure stacking doesn't interfere with taps (flow order wins)
-                    imageWrapper.style.zIndex = 'auto';
-
-                    // let CSS handle all margins and width - don't override
-                    imageWrapper.style.width = '';  // clear any width, let CSS handle it
+                    imageWrapper.style.top = '';
+                    imageWrapper.style.zIndex = '';
+                    imageWrapper.style.width = '';
                     imageWrapper.style.marginLeft = '';
                     imageWrapper.style.marginRight = '';
-                    imageWrapper.style.marginBottom = `${GAP_VW}vw`;
-                    
-                    // ensure display block for proper stacking
-                    imageWrapper.style.display = 'block';
+                    imageWrapper.style.marginBottom = '';
+                    imageWrapper.style.display = '';
                 } else {
                     // Desktop: keep your existing behavior
                     const baseLeft = (originalIndex * 3.2) % 25;
