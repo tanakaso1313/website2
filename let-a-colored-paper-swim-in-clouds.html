@@ -146,6 +146,53 @@
                     }
                 }
             });
+
+            const imagesToColor = document.querySelectorAll('.work-images .lightbox-trigger');
+
+            const initImageStyles = () => {
+                if (window.innerWidth <= 768) {
+                    imagesToColor.forEach(img => {
+                        img.style.filter = 'grayscale(100%)';
+                        img.style.transition = 'filter 0.4s ease';
+                    });
+                } else {
+                    imagesToColor.forEach(img => {
+                        img.style.filter = 'grayscale(0%)';
+                        img.style.transition = 'filter 0.4s ease';
+                    });
+                }
+            };
+
+            const handleColorScroll = () => {
+                if (window.innerWidth > 768) {
+                    imagesToColor.forEach(img => {
+                        img.style.filter = 'grayscale(0%)';
+                    });
+                    return;
+                }
+
+                const viewportCenter = window.innerHeight / 2;
+
+                imagesToColor.forEach(img => {
+                    const rect = img.getBoundingClientRect();
+                    const imageCenter = rect.top + rect.height / 2;
+                    
+                    if (Math.abs(imageCenter - viewportCenter) < rect.height / 2) {
+                        img.style.filter = 'grayscale(0%)';
+                    } else {
+                        img.style.filter = 'grayscale(100%)';
+                    }
+                });
+            };
+
+            initImageStyles();
+            handleColorScroll();
+
+            window.addEventListener('scroll', handleColorScroll, { passive: true });
+            window.addEventListener('resize', () => {
+                initImageStyles();
+                handleColorScroll();
+            });
         });
     </script>
     <footer>
