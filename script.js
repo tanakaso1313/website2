@@ -90,49 +90,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     img.src = work.monoSrc;
                 });
 
-                // Mobile touch behavior - two taps like desktop (always add for all images)
-                let isActive = false;
-                
-                link.addEventListener('click', (e) => {
-                    // Check if we're on mobile at click time
-                    const currentlyMobile = window.innerWidth <= 768;
-                    
-                    if (!currentlyMobile) {
-                        // Desktop: direct navigation
-                        return;
-                    }
-                    
-                    if (!isActive) {
-                        // First tap: prevent navigation, activate image
-                        e.preventDefault();
-                        
-                        // Reset all other images to inactive
-                        document.querySelectorAll('.image-wrapper').forEach(iw => {
-                            iw.classList.remove('active');
-                            const iwImg = iw.querySelector('img');
-                            const iwWork = works.find(w => w.alt === iwImg.alt);
-                            if (iwWork) iwImg.src = iwWork.monoSrc;
-                        });
-                        
-                        // Reset all other images' isActive state by finding their closure variables
-                        document.querySelectorAll('.image-wrapper a').forEach(otherLink => {
-                            if (otherLink !== link && otherLink._resetActive) {
-                                otherLink._resetActive();
-                            }
-                        });
-                        
-                        // Activate this image
-                        imageWrapper.classList.add('active');
-                        maxZIndex++;
-                        imageWrapper.style.zIndex = maxZIndex;
-                        img.src = work.src;
-                        isActive = true;
-                    }
-                    // On second tap, isActive is true, so default navigation occurs
-                });
-                
-                // Add a method to reset this image's active state from other images
-                link._resetActive = () => { isActive = false; };
+                // On mobile, a single click will navigate. On desktop, hover activates and click navigates.
+                // The `<a>` tag handles the navigation, so no special click listener is needed for this behavior.
             });
 
             // Add footer after all images are rendered
