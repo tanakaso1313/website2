@@ -6,6 +6,7 @@
     <meta name="description" content="Let a Colored Paper Swim in Clouds is a series of sculptural works in white cement and colored paper by So Tanaka. Material lightness with structural stability.">
     <meta name="keywords" content="Let a Colored Paper Swim in Clouds, sculptural works, white cement, colored paper, So Tanaka, Tokyo designer, contemporary sculpture, Japanese design, cement sculpture, Moro Craft exhibition">
     <meta name="author" content="So Tanaka">
+    <meta name="robots" content="index, follow">
     <meta property="og:title" content="Let a Colored Paper Swim in Clouds by So Tanaka">
     <meta property="og:description" content="Let a Colored Paper Swim in Clouds is a series of sculptural works in white cement and colored paper by So Tanaka. Material lightness with structural stability.">
     <meta property="og:type" content="website">
@@ -32,6 +33,9 @@
     </script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="work-page.css">
+    <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script>
+    <script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz"></script>
+    <script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));window.amplitude.init('746eec9391b45c0239325340cd3baadd', {"autocapture":{"elementInteractions":true}});</script>
 </head>
 <body>
     <div class="sidebar">
@@ -151,38 +155,15 @@
             const imagesToColor = document.querySelectorAll('.work-images .lightbox-trigger');
 
             const initImageStyles = () => {
-                if (window.innerWidth <= 768) {
-                    imagesToColor.forEach(img => {
-                        img.style.filter = 'grayscale(100%)';
-                        img.style.transition = 'filter 0.4s ease';
-                    });
-                } else {
-                    imagesToColor.forEach(img => {
-                        img.style.filter = 'grayscale(0%)';
-                        img.style.transition = 'filter 0.4s ease';
-                    });
-                }
+                imagesToColor.forEach(img => {
+                    img.style.filter = 'grayscale(0%)';
+                    img.style.transition = 'filter 0.4s ease';
+                });
             };
 
             const handleColorScroll = () => {
-                if (window.innerWidth > 768) {
-                    imagesToColor.forEach(img => {
-                        img.style.filter = 'grayscale(0%)';
-                    });
-                    return;
-                }
-
-                const viewportCenter = window.innerHeight / 2;
-
                 imagesToColor.forEach(img => {
-                    const rect = img.getBoundingClientRect();
-                    const imageCenter = rect.top + rect.height / 2;
-                    
-                    if (Math.abs(imageCenter - viewportCenter) < rect.height / 2) {
-                        img.style.filter = 'grayscale(0%)';
-                    } else {
-                        img.style.filter = 'grayscale(100%)';
-                    }
+                    img.style.filter = 'grayscale(0%)';
                 });
             };
 
