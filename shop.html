@@ -20,7 +20,18 @@
     <script src="https://js.stripe.com/v3/"></script>
     <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script>
     <script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz"></script>
-    <script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));window.amplitude.init('746eec9391b45c0239325340cd3baadd', {"autocapture":{"elementInteractions":true}});</script>
+    <script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));window.amplitude.init('746eec9391b45c0239325340cd3baadd', {"autocapture":{"elementInteractions":true}});
+    
+    // Custom shop page tracking
+    document.addEventListener('DOMContentLoaded', function() {
+        window.amplitude.track('Shop Page Viewed', {
+            page_type: 'shop',
+            page_name: 'So Tanaka Studio Shop',
+            shop_type: 'handcrafted_furniture',
+            payment_system: 'stripe'
+        });
+    });
+    </script>
 </head>
 <body>
     <div class="sidebar">
