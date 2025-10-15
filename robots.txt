@@ -1,0 +1,37 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://sotanaka.com/sitemap.xml
+
+# Disallow utility pages
+Disallow: /success.html
+Disallow: /cancel.html
+Disallow: /legal.html
+
+# Allow all main content
+Allow: /index.html
+Allow: /bio.html
+Allow: /contact.html
+Allow: /shop.html
+Allow: /sitemap.html
+
+# Allow all work pages
+Allow: /ori.html
+Allow: /transfer.html
+Allow: /vnsh.html
+Allow: /lti.html
+Allow: /memento.html
+Allow: /liminal-lamp.html
+Allow: /liminal-objects.html
+Allow: /let-a-colored-paper-swim-in-clouds.html
+
+# Allow shop pages
+Allow: /vnsh_shop.html
+Allow: /liminal-lamp-s_shop.html
+
+# Allow images
+Allow: /images/
+
+# Crawl delay (optional - be nice to servers)
+Crawl-delay: 1
