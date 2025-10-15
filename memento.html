@@ -40,7 +40,19 @@
     <link rel="stylesheet" href="work-page.css">
     <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script>
     <script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz"></script>
-    <script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));window.amplitude.init('746eec9391b45c0239325340cd3baadd', {"autocapture":{"elementInteractions":true}});</script>
+    <script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));window.amplitude.init('746eec9391b45c0239325340cd3baadd', {"autocapture":{"elementInteractions":true}});
+    
+    // Custom project tracking
+    document.addEventListener('DOMContentLoaded', function() {
+        amplitude.track('Project Viewed', {
+            project_name: 'Memento',
+            project_type: 'Design Object',
+            project_year: '2024',
+            awards: 'KOKUYO Design Award Merit & Audience Prize',
+            materials: 'Glazed Porcelain'
+        });
+    });
+    </script>
 </head>
 <body>
     <div class="sidebar">

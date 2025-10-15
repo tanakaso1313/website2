@@ -35,7 +35,19 @@
     <link rel="stylesheet" href="work-page.css">
     <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script>
     <script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz"></script>
-    <script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));window.amplitude.init('746eec9391b45c0239325340cd3baadd', {"autocapture":{"elementInteractions":true}});</script>
+    <script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));window.amplitude.init('746eec9391b45c0239325340cd3baadd', {"autocapture":{"elementInteractions":true}});
+    
+    // Custom project tracking
+    document.addEventListener('DOMContentLoaded', function() {
+        amplitude.track('Project Viewed', {
+            project_name: 'Transfer',
+            project_type: 'Sculpture',
+            project_year: '2019',
+            awards: 'None',
+            materials: 'White Cement, Colored Paper'
+        });
+    });
+    </script>
 </head>
 <body>
     <div class="sidebar">
