@@ -109,12 +109,16 @@
     }
 
     .top-images {
-        width: 100%;
-        flex-direction: column;
-        padding: 2vh 0 10vh 0;
-        box-sizing: border-box;
-        align-items: center;
+        position: static !important;
         margin: 0;
+        padding: 2vh 0 10vh 0;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
+        height: auto !important;
+        box-sizing: border-box;
+        overflow: visible;
     }
 
     .product-item {
