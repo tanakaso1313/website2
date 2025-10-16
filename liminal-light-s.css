@@ -165,8 +165,9 @@
     .work-description {
         flex: none;
         width: 100%;
-        padding-right: 0;
+        padding: 0 5vw !important;
         margin-bottom: 2em;
+        box-sizing: border-box;
     }
 
     .work-images {

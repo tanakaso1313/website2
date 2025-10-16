@@ -224,9 +224,10 @@
     .product-details {
         flex: none;
         width: 100%;
-        padding-right: 0;
+        padding: 0 5vw !important;
         margin-bottom: 2em;
         position: static;
+        box-sizing: border-box;
     }
 
     .work-images {
