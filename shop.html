@@ -44,8 +44,9 @@
                 <a href="index.html?filter=furniture" data-filter="furniture">FURNITURE</a>
                 <a href="index.html?filter=light" data-filter="light">LIGHT</a>
                 <a href="index.html?filter=other" data-filter="other">OTHER</a>
-                <a href="bio.html">BIO</a>
                 <a href="shop.html">SHOP</a>
+                <a href="bio.html">BIO</a>
+                <a href="contact.html">CONTACT</a>
             </div>
         </nav>
     </div>
@@ -68,11 +69,25 @@
                         let linkEnd = product.page ? '</a>' : '';
                         productItem.innerHTML = `
                             ${linkStart}
-                                <img src="${product.image}" alt="${product.name}">
+                                <img src="${product.image}" alt="${product.name}" data-hover-src="${product.hoverImage || product.image}">
                                 <h3>${product.name}</h3>
                                  <p>${product.price}</p>
                              ${linkEnd}
                          `;
+                         
+                         // Add hover functionality for image switching
+                         const img = productItem.querySelector('img');
+                         const originalSrc = product.image;
+                         const hoverSrc = product.hoverImage || product.image;
+                         
+                         productItem.addEventListener('mouseenter', () => {
+                             img.src = hoverSrc;
+                         });
+                         
+                         productItem.addEventListener('mouseleave', () => {
+                             img.src = originalSrc;
+                         });
+                         
                          topImagesContainer.appendChild(productItem);
                      });
                 })
@@ -84,5 +99,8 @@
     <div class="legal-policy">
         <a href="legal.html">LEGAL POLICY</a>
     </div>
+    <footer>
+        <p>&copy; 2025 SOTANAKA. All rights reserved.</p>
+    </footer>
 </body>
 </html>

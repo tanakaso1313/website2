@@ -155,4 +155,56 @@ document.addEventListener('DOMContentLoaded', () => {
             link.href = `index.html?filter=${filter}`;
         }
     });
+
+    // Stripe Checkout Integration
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+    if (addToCartButtons.length > 0) {
+        // Initialize Stripe
+        const stripe = Stripe('pk_live_51RqS8cEcQzNRltK0GJYqWrHsLYlZgJ7YlUE8tRONOBfvgUzuJUDxA2NhQaBwS7oMz3dOCjjHhLRoKhC3N2Cx8XYz00xNvmKcCT'); // Replace with your publishable key
+
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', async (event) => {
+                const productId = button.getAttribute('data-product-id');
+                
+                // Disable button to prevent double-clicks
+                button.disabled = true;
+                button.textContent = '...';
+                
+                try {
+                    // Create checkout session
+                    const response = await fetch('/create-checkout-session', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ productId })
+                    });
+
+                    const session = await response.json();
+
+                    if (response.ok) {
+                        // Redirect to Stripe Checkout
+                        const result = await stripe.redirectToCheckout({
+                            sessionId: session.id
+                        });
+
+                        if (result.error) {
+                            console.error('Stripe error:', result.error);
+                            alert('Payment failed. Please try again.');
+                        }
+                    } else {
+                        console.error('Server error:', session.error);
+                        alert('Unable to process payment. Please try again.');
+                    }
+                } catch (error) {
+                    console.error('Network error:', error);
+                    alert('Network error. Please check your connection and try again.');
+                } finally {
+                    // Re-enable button
+                    button.disabled = false;
+                    button.textContent = 'Checkout';
+                }
+            });
+        });
+    }
 });
