@@ -111,7 +111,7 @@
     .top-images {
         position: static !important;
         margin: 0;
-        padding: 2vh 0 10vh 0;
+        padding: 2vh 10vw 10vh 10vw;
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
