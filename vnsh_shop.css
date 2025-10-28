@@ -224,7 +224,8 @@
     .product-details {
         flex: none;
         width: 100%;
-        padding: 0 5vw !important;
+        padding-left: 5vw;
+        padding-right: 5vw;
         margin-bottom: 2em;
         position: static;
         box-sizing: border-box;
@@ -232,9 +233,10 @@
 
     .work-images {
         flex: none;
-        width: 80vw !important;
-        padding-right: 0;
-        margin: 0 auto !important;
+        width: 100%;
+        padding-left: 5vw;
+        padding-right: 5vw;
+        box-sizing: border-box;
         display: block !important;
     }
 

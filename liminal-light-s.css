@@ -165,17 +165,19 @@
     .work-description {
         flex: none;
         width: 100%;
-        padding: 0 5vw !important;
+        padding-left: 5vw;
+        padding-right: 5vw;
         margin-bottom: 2em;
         box-sizing: border-box;
     }
 
     .work-images {
         flex: none;
-        width: 80vw !important;
-        margin: 0 auto !important;
+        width: 100%;
+        padding-left: 5vw;
+        padding-right: 5vw;
+        box-sizing: border-box;
         display: block !important;
-        padding-right: 0;
     }
 
     .work-images img {
