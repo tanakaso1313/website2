@@ -53,7 +53,8 @@ app.post('/create-checkout-session', async (req, res) => {
         return res.status(404).json({ error: 'Product not found' });
     }
 
-    const unitAmount = parseInt(product.price.replace(/,/g, '').replace('JPY', ''));
+    // Robust parse to support strings like "68,182JPY + tax" or "68,182 yen + tax"
+    const unitAmount = parseInt(product.price.replace(/[^0-9]/g, ''), 10);
 
     const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
