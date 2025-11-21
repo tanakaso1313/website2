@@ -1,0 +1,32 @@
+.page-content {
+    padding-top: calc(7vh + 2em);
+    padding-right: 5vw;
+    padding-left: 35vw;
+}
+
+.page-content h2 {
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+    font-size: 1.2em;
+    margin-bottom: 1em;
+}
+
+.page-content p {
+    font-size: 0.9em;
+    margin-bottom: 2em;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid #000;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button:hover {
+    background-color: #fff;
+    color: #000;
+}

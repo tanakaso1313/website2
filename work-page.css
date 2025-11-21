@@ -1,0 +1,181 @@
+.work-content {
+    display: flex;
+    padding-top: calc(7vh + 1em);
+    margin-left: 22vw;
+}
+
+.work-description {
+    width: 25vw;
+    padding-left: 0;
+    padding-right: 5vw;
+}
+
+.work-description h2 {
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+    font-size: 16pt;
+    margin: 1em 0 2em 0;
+}
+
+.work-images {
+    width: 45vw;
+    padding-right: 3vw;
+    padding-top: 1em;
+}
+
+.work-images img {
+    width: 100%;
+    margin-bottom: 2em;
+    cursor: pointer;
+}
+
+.half-width-container {
+    display: flex;
+    gap: 2em;
+}
+
+.half-width-container img {
+    width: calc(50% - 1em);
+}
+
+.image-credit-container {
+    position: relative;
+}
+
+.photo-credit {
+    font-size: 9pt;
+    text-align: left;
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        position: relative !important;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: white;
+        padding: 1em 5vw;
+        z-index: 100;
+        box-sizing: border-box;
+    }
+
+    .sidebar h1 {
+        margin-top: 4em;
+        margin-bottom: 2em !important;
+        font-size: 1em;
+    }
+
+    .work-content {
+        flex-direction: column;
+        margin-left: 0;
+        padding-top: 2em;
+    }
+
+    .work-description,
+    .work-images {
+        width: 100%;
+        padding-left: 5vw;
+        padding-right: 5vw;
+        box-sizing: border-box;
+    }
+
+    .work-description {
+        order: 2;
+        width: auto;
+    }
+
+    .work-images {
+        order: 1;
+        width: auto;
+    }
+}
+
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    display: none; /* Hidden by default */
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox-content {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.close-button {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: 100;
+    cursor: pointer;
+}
+
+.prev-button,
+.next-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+}
+
+.prev-button {
+    left: 20px;
+}
+
+.next-button {
+    right: 20px;
+}
+
+@media (max-width: 768px) {
+    .prev-button,
+    .next-button {
+        display: none;
+    }
+
+    .prev-button {
+        left: 10px;
+    }
+
+    .next-button {
+        right: 10px;
+    }
+
+    .close-button {
+        font-size: 30px;
+        top: 15px;
+        right: 20px;
+    }
+}
+
+footer {
+    position: fixed;
+    bottom: 1em;
+    right: 5vw;
+    text-align: right;
+    font-size: 0.5em;
+    text-transform: uppercase;
+    color: #000;
+    z-index: 50;
+}
+
+footer p {
+    margin: 0;
+}

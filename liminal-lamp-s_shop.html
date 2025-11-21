@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Liminal Lamp contemporary lighting piece designed and handcrafted in Tokyo by So Tanaka Studio.">
+    <meta name="keywords" content="Liminal Lamp, Japanese designer lighting, contemporary Japanese design, artisanal lighting Tokyo, sculptural lighting Japan, contemporary Japanese craft, Japanese design studio, emerging Japanese designer, liminal design, minimalist Japanese furniture, MDF lighting, Tokyo designer">
+    <meta name="author" content="So Tanaka">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Liminal Lamp Contemporary Lighting by So Tanaka">
+    <meta property="og:description" content="Liminal Lamp contemporary lighting piece designed and handcrafted in Tokyo by So Tanaka Studio.">
+    <meta property="og:type" content="product">
+    <meta property="og:url" content="https://sotanaka.com/liminal-lamp-s_shop.html">
+    <meta property="og:image" content="https://sotanaka.com/images/social/liminal-lamp-social.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://sotanaka.com/liminal-lamp-s_shop.html">
+    <title>Liminal Lamp Contemporary Lighting - So Tanaka Studio Tokyo</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="liminal-light-s.css">
+    <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script>
+    <script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz"></script>
+    <script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));window.amplitude.init('746eec9391b45c0239325340cd3baadd', {"autocapture":{"elementInteractions":true}});</script>
+</head>
+<body>
+    <div class="sidebar">
+        <header>
+             <h1><a href="index.html">S O  T A N A K A</a></h1>
+        </header>
+        <nav>
+            <div class="category-nav">
+                <a href="index.html?filter=all" data-filter="all">ALL</a>
+                <a href="index.html?filter=furniture" data-filter="furniture">FURNITURE</a>
+                <a href="index.html?filter=light" data-filter="light">LIGHT</a>
+                <a href="index.html?filter=other" data-filter="other">OTHER</a>
+                <a href="shop.html">SHOP</a>
+                <a href="bio.html">BIO</a>
+                <a href="contact.html">CONTACT</a>
+            </div>
+        </nav>
+    </div>
+    <main class="work-content">
+        <div class="work-description">
+            <h2>Liminal Lamp</h2>
+            <div class="description">
+                <p>Material: MDF, Paper, Lacquer paint</p>
+                <p>Dimensions: W163 D117 H370</p>
+                <p>Lead time: 12 weeks</p>
+                <p><a href="liminal-lamp.html">→ View product page</a></p>
+            </div>
+            <div class="purchase-info">
+                <p>¥75,000 (inc. tax)</p>
+                <a href="https://buy.stripe.com/aFaaEX4txdIEaLD5U0eUU00" class="add-to-cart">Checkout</a>
+                <p class="contact-info-text">Shipping calculated at checkout.<br>For inquiries, <a href="contact.html">reach out</a>.</p>
+            </div>
+        </div>
+        <div class="work-images">
+            <img src="images/work - liminal lamp/3.DSC06005_result_result.webp" alt="Liminal Lamp Image 1" class="lightbox-trigger">
+            <img src="images/work - liminal lamp/3.DSC06382_result_result.webp" alt="Liminal Lamp Image 2" class="lightbox-trigger">
+            <img src="images/work - liminal lamp/4.DSC06078_result_result.webp" alt="Liminal Lamp Image 3" class="lightbox-trigger">
+        </div>
+    </main>
+
+    <div id="lightbox" class="lightbox">
+        <span class="close-button">&times;</span>
+        <img src="images/icons/prev-arrow.svg" class="prev-button">
+        <img class="lightbox-content" id="lightbox-img">
+        <img src="images/icons/next-arrow.svg" class="next-button">
+    </div>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="script.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const closeButton = document.querySelector('.close-button');
+            const prevButton = document.querySelector('.prev-button');
+            const nextButton = document.querySelector('.next-button');
+            const imageTriggers = document.querySelectorAll('.lightbox-trigger');
+            const images = Array.from(imageTriggers).map(img => img.src);
+            let currentIndex;
+
+            function showImage(index) {
+                lightboxImg.src = images[index];
+                currentIndex = index;
+            }
+
+            imageTriggers.forEach((trigger, index) => {
+                trigger.addEventListener('click', () => {
+                    lightbox.classList.add('active');
+                    showImage(index);
+                });
+            });
+
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+            }
+
+            function showPrevImage() {
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                showImage(currentIndex);
+            }
+
+            function showNextImage() {
+                currentIndex = (currentIndex + 1) % images.length;
+            }
+
+            closeButton.addEventListener('click', closeLightbox);
+            prevButton.addEventListener('click', showPrevImage);
+            nextButton.addEventListener('click', showNextImage);
+
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (lightbox.classList.contains('active')) {
+                    if (e.key === 'ArrowLeft') {
+                        showPrevImage();
+                    } else if (e.key === 'ArrowRight') {
+                        showNextImage();
+                    } else if (e.key === 'Escape') {
+                        closeLightbox();
+                    }
+                }
+            });
+        });
+    </script>
+    <footer>
+        <p>&copy; 2025 SOTANAKA. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Liminal Lamp is a collection of lighting works designed by So Tanaka Studio. Boundary between light source and sculpture.">
+    <meta name="keywords" content="Liminal Lamp, lighting collection, paper, lacquer, So Tanaka, Tokyo designer, contemporary lighting, Japanese design, sculptural lighting, minimal lighting">
+    <meta name="author" content="So Tanaka">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Liminal Lamp by So Tanaka Studio">
+    <meta property="og:description" content="Liminal Lamp is a collection of lighting works designed by So Tanaka. Boundary between light source and sculpture.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sotanaka.com/liminal-lamp.html">
+    <meta property="og:image" content="https://sotanaka.com/images/social/liminal-lamp-social.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://sotanaka.com/liminal-lamp.html">
+    <title>Liminal Lamp by So Tanaka Studio</title>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Liminal Lamp",
+      "brand": {
+        "@type": "Brand",
+        "name": "So Tanaka Studio"
+      },
+      "manufacturer": {
+        "@type": "Organization",
+        "name": "So Tanaka Studio"
+      },
+      "dateCreated": "2025",
+      "url": "https://sotanaka.com/liminal-lamp.html",
+      "description": "Liminal Lamp is a collection of lighting works designed by So Tanaka Studio. Boundary between light source and sculpture.",
+      "material": "MDF, Paper, Lacquer paint",
+      "category": "Lighting"
+    }
+    </script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="work-page.css">
+    <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script>
+    <script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz"></script>
+    <script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));window.amplitude.init('746eec9391b45c0239325340cd3baadd', {"autocapture":{"elementInteractions":true}});
+    
+    // Custom project tracking
+    document.addEventListener('DOMContentLoaded', function() {
+        amplitude.track('Project Viewed', {
+            project_name: 'Liminal Lamp',
+            project_type: 'Lighting',
+            project_year: '2025',
+            awards: 'None',
+            materials: 'MDF, Paper, Lacquer'
+        });
+    });
+    </script>
+</head>
+<body>
+    <div class="sidebar">
+        <header>
+             <h1><a href="index.html">S O  T A N A K A</a></h1>
+        </header>
+        <nav>
+            <div class="category-nav">
+                <a href="index.html?filter=all" data-filter="all">ALL</a>
+                <a href="index.html?filter=furniture" data-filter="furniture">FURNITURE</a>
+                <a href="index.html?filter=light" data-filter="light">LIGHT</a>
+                <a href="index.html?filter=other" data-filter="other">OTHER</a>
+                <a href="shop.html">SHOP</a>
+                <a href="bio.html">BIO</a>
+                <a href="contact.html">CONTACT</a>
+            </div>
+        </nav>
+    </div>
+    <main class="work-content">
+        <div class="work-description">
+            <h2>Liminal Lamp</h2>
+            <br>
+            <p>2025</p>
+            <p>Self-initiated project</p>
+            <p>The lamp is made of a three-dimensional grid structure based on parts cut from MDF. The structure not only floats the paper shade, but also serves as a path for the power cord and as a second diffuser by reflecting the light source. This lighting is designed to look at the wonder of the grid, which changes its meaning depending on its relationship with the surrounding things.</p>
+            <br>
+            <p>Material: MDF, Paper, Lacquer paint</p>
+            <p>Liminal Lamp S: W163 D117 H370<br>
+               Liminal Lamp L: W255 D210 H490</p>
+            <p><a href="liminal-lamp-s_shop.html">→ View shop page</a></p>
+        </div>
+        <div class="work-images">
+            <img src="images/work - liminal lamp/1.DSC06139_result_result.webp" alt="Liminal Lamp Image 1" class="lightbox-trigger">
+            <img src="images/work - liminal lamp/3.DSC06005_result_result.webp" alt="Liminal Lamp Image 2" class="lightbox-trigger">
+            <img src="images/work - liminal lamp/3.DSC06382_result_result.webp" alt="Liminal Lamp Image 3" class="lightbox-trigger">
+            <img src="images/work - liminal lamp/4.DSC06078_result_result.webp" alt="Liminal Lamp Image 4" class="lightbox-trigger">
+        </div>
+    </main>
+
+    <div id="lightbox" class="lightbox">
+        <span class="close-button">&times;</span>
+        <img src="images/icons/prev-arrow.svg" class="prev-button">
+        <img class="lightbox-content" id="lightbox-img">
+        <img src="images/icons/next-arrow.svg" class="next-button">
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const closeButton = document.querySelector('.close-button');
+            const prevButton = document.querySelector('.prev-button');
+            const nextButton = document.querySelector('.next-button');
+            const imageTriggers = document.querySelectorAll('.lightbox-trigger');
+            const images = Array.from(imageTriggers).map(img => img.src);
+            let currentIndex;
+
+            function showImage(index) {
+                lightboxImg.src = images[index];
+                currentIndex = index;
+            }
+
+            imageTriggers.forEach((trigger, index) => {
+                trigger.addEventListener('click', () => {
+                    lightbox.classList.add('active');
+                    showImage(index);
+                });
+            });
+
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+            }
+
+            function showPrevImage() {
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                showImage(currentIndex);
+            }
+
+            function showNextImage() {
+                currentIndex = (currentIndex + 1) % images.length;
+                showImage(currentIndex);
+            }
+
+            closeButton.addEventListener('click', closeLightbox);
+            prevButton.addEventListener('click', showPrevImage);
+            nextButton.addEventListener('click', showNextImage);
+
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (lightbox.classList.contains('active')) {
+                    if (e.key === 'ArrowLeft') {
+                        showPrevImage();
+                    } else if (e.key === 'ArrowRight') {
+                        showNextImage();
+                    } else if (e.key === 'Escape') {
+                        closeLightbox();
+                    }
+                }
+            });
+        });
+    </script>
+    <footer>
+        <p>&copy; 2025 SOTANAKA. All rights reserved.</p>
+    </footer>
+</body>
+</html>

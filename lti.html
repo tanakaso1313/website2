@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Less Than Instrument is a collection of lighting works in steel and copper by So Tanaka Studio. Minimal form with maximum versatility.">
+    <meta name="keywords" content="Less Than Instrument, LTI, lighting collection, steel, copper, So Tanaka, Tokyo designer, contemporary lighting, Japanese design, minimal lighting, industrial design">
+    <meta name="author" content="So Tanaka">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Less Than Instrument by So Tanaka Studio">
+    <meta property="og:description" content="Less Than Instrument is a collection of lighting works in steel and copper by So Tanaka Studio. Minimal form with maximum versatility.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sotanaka.com/lti.html">
+    <meta property="og:image" content="https://sotanaka.com/images/social/lti-social.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://sotanaka.com/lti.html">
+    <title>Less Than Instrument by So Tanaka Studio</title>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Less Than Instrument",
+      "alternateName": "LTI",
+      "brand": {
+        "@type": "Brand",
+        "name": "So Tanaka Studio"
+      },
+      "manufacturer": {
+        "@type": "Organization",
+        "name": "So Tanaka Studio"
+      },
+      "dateCreated": "2020",
+      "url": "https://sotanaka.com/lti.html",
+      "description": "Less Than Instrument is a collection of lighting works in steel and copper by So Tanaka Studio. Minimal form with maximum versatility.",
+      "material": "Steel, Copper, LED chips",
+      "category": "Lighting"
+    }
+    </script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="work-page.css">
+    <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script>
+    <script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz"></script>
+    <script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));window.amplitude.init('746eec9391b45c0239325340cd3baadd', {"autocapture":{"elementInteractions":true}});
+    
+    // Custom project tracking
+    document.addEventListener('DOMContentLoaded', function() {
+        amplitude.track('Project Viewed', {
+            project_name: 'Less Than Instrument',
+            project_type: 'Lighting',
+            project_year: '2020',
+            awards: 'Designart Tokyo Under 30 Winner, Lexus Design Award Shortlisted',
+            materials: 'Steel, Copper'
+        });
+    });
+    </script>
+</head>
+<body>
+    <div class="sidebar">
+        <header>
+             <h1><a href="index.html">S O  T A N A K A</a></h1>
+        </header>
+        <nav>
+            <div class="category-nav">
+                <a href="index.html?filter=all" data-filter="all">ALL</a>
+                <a href="index.html?filter=furniture" data-filter="furniture">FURNITURE</a>
+                <a href="index.html?filter=light" data-filter="light">LIGHT</a>
+                <a href="index.html?filter=other" data-filter="other">OTHER</a>
+                <a href="shop.html">SHOP</a>
+                <a href="bio.html">BIO</a>
+                <a href="contact.html">CONTACT</a>
+            </div>
+        </nav>
+    </div>
+    <main class="work-content">
+        <div class="work-description">
+            <h2>Less Than Instrument</h2>
+            <br>
+            <p>2020</p>
+            <p>Graduation project</p>
+            <p>1.6 mm x 0.8 mm LED chips are embedded in the back of expanded metal, which is usually used as a building material, and a circuit made of copper foil is laid on the back side. LEDs illuminate the walls and supply light to the space through the metal.</p>
+            <p>In commercial spaces and hotels, atmospheric lighting plans are often made with hidden light sources. On the other hand, many of the lighting fixtures are installed in an iconic form, which is close to being an objet d'art. Although it is installed as a lighting fixture, it has almost no properties as an object and feels like light itself, but I want to create a product that has a more attractive presence than the installed lighting.</p>
+            <br>
+            <p>Material: Steel, Copper, LED chips</p>
+            <p>Size: 450ÁE50 ~ 900ÁE00 mm</p>
+        </div>
+        <div class="work-images">
+            <img src="images/work - LTI/1.スクリーンショット 2025-07-29 140431_result_result.webp" alt="LTI Image 1" class="lightbox-trigger">
+            <img src="images/work - LTI/2_2.2_LTI_result_result.webp" alt="LTI Image 2" class="lightbox-trigger">
+            <img src="images/work - LTI/3.3_LTI_result_result.webp" alt="LTI Image 3" class="lightbox-trigger">
+            <img src="images/work - LTI/5_LTI_result_result.webp" alt="LTI Image 4" class="lightbox-trigger">
+            <img src="images/work - LTI/6_LTI_result_result.webp" alt="LTI Image 5" class="lightbox-trigger">
+        </div>
+    </main>
+
+    <div id="lightbox" class="lightbox">
+        <span class="close-button">&times;</span>
+        <img src="images/icons/prev-arrow.svg" class="prev-button">
+        <img class="lightbox-content" id="lightbox-img">
+        <img src="images/icons/next-arrow.svg" class="next-button">
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const closeButton = document.querySelector('.close-button');
+            const prevButton = document.querySelector('.prev-button');
+            const nextButton = document.querySelector('.next-button');
+            const imageTriggers = document.querySelectorAll('.lightbox-trigger');
+            const images = Array.from(imageTriggers).map(img => img.src);
+            let currentIndex;
+
+            function showImage(index) {
+                lightboxImg.src = images[index];
+                currentIndex = index;
+            }
+
+            imageTriggers.forEach((trigger, index) => {
+                trigger.addEventListener('click', () => {
+                    lightbox.classList.add('active');
+                    showImage(index);
+                });
+            });
+
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+            }
+
+            function showPrevImage() {
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                showImage(currentIndex);
+            }
+
+            function showNextImage() {
+                currentIndex = (currentIndex + 1) % images.length;
+                showImage(currentIndex);
+            }
+
+            closeButton.addEventListener('click', closeLightbox);
+            prevButton.addEventListener('click', showPrevImage);
+            nextButton.addEventListener('click', showNextImage);
+
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (lightbox.classList.contains('active')) {
+                    if (e.key === 'ArrowLeft') {
+                        showPrevImage();
+                    } else if (e.key === 'ArrowRight') {
+                        showNextImage();
+                    } else if (e.key === 'Escape') {
+                        closeLightbox();
+                    }
+                }
+            });
+        });
+    </script>
+    <footer>
+        <p>&copy; 2025 SOTANAKA. All rights reserved.</p>
+    </footer>
+</body>
+</html>
