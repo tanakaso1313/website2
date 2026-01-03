@@ -1,11 +1,11 @@
 [
   {
-    "id": "vnsh",
-    "name": "VNSH",
-    "price": "¥126,500 (inc. tax)",
-    "image": "images/Shop - top/1.vnsh_shop_result_result.webp",
-    "hoverImage": "images/shop - vnsh/4.DSC02181_result_result.webp",
-    "page": "vnsh_shop.html"
+    "id": "LO_HORSE",
+    "name": "LO_HORSE",
+    "price": "From ¥20,900 (tax included)",
+    "image": "LO_Horse.jpg",
+    "hoverImage": "LO_Horse.jpg",
+    "page": "lo-horse.html"
   },
   {
     "id": "liminal-light-s",
@@ -16,39 +16,12 @@
     "page": "liminal-lamp-s_shop.html"
   },
   {
-    "id": "LO_01",
-    "name": "LIMINAL OBJECTS LO_01",
-    "price": "¥11,000 (inc. tax)",
-    "image": "images/top_2/6.Liminal Objects_top_result_result.webp",
-    "hoverImage": "images/top_2/6.Liminal Objects_top_result_result.webp",
-    "hidden": true,
-    "page": "lo-01.html"
-  },
-  {
     "id": "LO_02",
     "name": "LIMINAL OBJECTS LO_02",
     "price": "¥11,000 (inc. tax)",
     "image": "LO_02.jpg",
     "hoverImage": "LO_02_G.JPG",
     "page": "lo-02.html"
-  },
-  {
-    "id": "LO_03",
-    "name": "LIMINAL OBJECTS LO_03",
-    "price": "¥16,500 (inc. tax)",
-    "image": "images/top_2/6.Liminal Objects_top_result_result.webp",
-    "hoverImage": "images/top_2/6.Liminal Objects_top_result_result.webp",
-    "hidden": true,
-    "page": "lo-03.html"
-  },
-  {
-    "id": "LO_04",
-    "name": "LIMINAL OBJECTS LO_04",
-    "price": "¥16,500 (inc. tax)",
-    "image": "images/top_2/6.Liminal Objects_top_result_result.webp",
-    "hoverImage": "images/top_2/6.Liminal Objects_top_result_result.webp",
-    "hidden": true,
-    "page": "lo-04.html"
   },
   {
     "id": "LO_05",
@@ -97,60 +70,6 @@
     "image": "LO_11.JPG",
     "hoverImage": "LO_11.JPG",
     "page": "lo-11.html"
-  },
-  {
-    "id": "LO_12",
-    "name": "LIMINAL OBJECTS LO_12",
-    "price": "¥30,800 (inc. tax)",
-    "image": "images/top_2/6.Liminal Objects_top_result_result.webp",
-    "hoverImage": "images/top_2/6.Liminal Objects_top_result_result.webp",
-    "hidden": true,
-    "page": "lo-12.html"
-  },
-  {
-    "id": "LO_13",
-    "name": "LIMINAL OBJECTS LO_13",
-    "price": "¥46,200 (inc. tax)",
-    "image": "images/top_2/6.Liminal Objects_top_result_result.webp",
-    "hoverImage": "images/top_2/6.Liminal Objects_top_result_result.webp",
-    "hidden": true,
-    "page": "lo-13.html"
-  },
-  {
-    "id": "LO_15",
-    "name": "LIMINAL OBJECTS LO_15",
-    "price": "¥52,800 (inc. tax)",
-    "image": "images/top_2/6.Liminal Objects_top_result_result.webp",
-    "hoverImage": "images/top_2/6.Liminal Objects_top_result_result.webp",
-    "hidden": true,
-    "page": "lo-15.html"
-  },
-  {
-    "id": "LO_17",
-    "name": "LIMINAL OBJECTS LO_17",
-    "price": "¥82,500 (inc. tax)",
-    "image": "images/top_2/6.Liminal Objects_top_result_result.webp",
-    "hoverImage": "images/top_2/6.Liminal Objects_top_result_result.webp",
-    "hidden": true,
-    "page": "lo-17.html"
-  },
-  {
-    "id": "LO_18",
-    "name": "LIMINAL OBJECTS LO_18",
-    "price": "¥104,500 (inc. tax)",
-    "image": "images/top_2/6.Liminal Objects_top_result_result.webp",
-    "hoverImage": "images/top_2/6.Liminal Objects_top_result_result.webp",
-    "hidden": true,
-    "page": "lo-18.html"
-  },
-  {
-    "id": "LO_19",
-    "name": "LIMINAL OBJECTS LO_19",
-    "price": "¥20,900 (inc. tax)",
-    "image": "images/top_2/6.Liminal Objects_top_result_result.webp",
-    "hoverImage": "images/top_2/6.Liminal Objects_top_result_result.webp",
-    "hidden": true,
-    "page": "lo-19.html"
   },
   {
     "id": "LO_20",
@@ -207,5 +126,122 @@
     "image": "LO_27_W.JPG",
     "hoverImage": "LO_27_blackbg.jpg",
     "page": "lo-27.html"
+  },
+  {
+    "id": "vnsh",
+    "name": "VNSH",
+    "price": "¥126,500 (inc. tax)",
+    "image": "images/Shop - top/1.vnsh_shop_result_result.webp",
+    "hoverImage": "images/shop - vnsh/4.DSC02181_result_result.webp",
+    "page": "vnsh_shop.html"
+  },
+
+  {
+    "id": "LO_HORSE_S",
+    "name": "LO_HORSE Small",
+    "price": "¥20,900 (tax included)",
+    "image": "LO_Horse.jpg",
+    "hoverImage": "LO_Horse.jpg",
+    "hidden": true,
+    "page": "lo-horse.html"
+  },
+  {
+    "id": "LO_HORSE_L",
+    "name": "LO_HORSE Large",
+    "price": "¥27,500 (tax included)",
+    "image": "LO_Horse.jpg",
+    "hoverImage": "LO_Horse.jpg",
+    "hidden": true,
+    "page": "lo-horse.html"
+  },
+  {
+    "id": "LO_01",
+    "name": "LIMINAL OBJECTS LO_01",
+    "price": "¥11,000 (inc. tax)",
+    "image": "images/top_2/6.Liminal Objects_top_result_result.webp",
+    "hoverImage": "images/top_2/6.Liminal Objects_top_result_result.webp",
+    "hidden": true,
+    "page": "lo-01.html"
+  },
+  {
+    "id": "LO_03",
+    "name": "LIMINAL OBJECTS LO_03",
+    "price": "¥16,500 (inc. tax)",
+    "image": "images/top_2/6.Liminal Objects_top_result_result.webp",
+    "hoverImage": "images/top_2/6.Liminal Objects_top_result_result.webp",
+    "hidden": true,
+    "page": "lo-03.html"
+  },
+  {
+    "id": "LO_04",
+    "name": "LIMINAL OBJECTS LO_04",
+    "price": "¥16,500 (inc. tax)",
+    "image": "images/top_2/6.Liminal Objects_top_result_result.webp",
+    "hoverImage": "images/top_2/6.Liminal Objects_top_result_result.webp",
+    "hidden": true,
+    "page": "lo-04.html"
+  },
+  {
+    "id": "LO_08",
+    "name": "LIMINAL OBJECTS LO_08",
+    "price": "¥23,100 (inc. tax)",
+    "image": "images/top_2/6.Liminal Objects_top_result_result.webp",
+    "hoverImage": "images/top_2/6.Liminal Objects_top_result_result.webp",
+    "hidden": true,
+    "page": "lo-08.html"
+  },
+  {
+    "id": "LO_12",
+    "name": "LIMINAL OBJECTS LO_12",
+    "price": "¥30,800 (inc. tax)",
+    "image": "images/top_2/6.Liminal Objects_top_result_result.webp",
+    "hoverImage": "images/top_2/6.Liminal Objects_top_result_result.webp",
+    "hidden": true,
+    "page": "lo-12.html"
+  },
+  {
+    "id": "LO_13",
+    "name": "LIMINAL OBJECTS LO_13",
+    "price": "¥46,200 (inc. tax)",
+    "image": "images/top_2/6.Liminal Objects_top_result_result.webp",
+    "hoverImage": "images/top_2/6.Liminal Objects_top_result_result.webp",
+    "hidden": true,
+    "page": "lo-13.html"
+  },
+  {
+    "id": "LO_15",
+    "name": "LIMINAL OBJECTS LO_15",
+    "price": "¥52,800 (inc. tax)",
+    "image": "images/top_2/6.Liminal Objects_top_result_result.webp",
+    "hoverImage": "images/top_2/6.Liminal Objects_top_result_result.webp",
+    "hidden": true,
+    "page": "lo-15.html"
+  },
+  {
+    "id": "LO_17",
+    "name": "LIMINAL OBJECTS LO_17",
+    "price": "¥82,500 (inc. tax)",
+    "image": "images/top_2/6.Liminal Objects_top_result_result.webp",
+    "hoverImage": "images/top_2/6.Liminal Objects_top_result_result.webp",
+    "hidden": true,
+    "page": "lo-17.html"
+  },
+  {
+    "id": "LO_18",
+    "name": "LIMINAL OBJECTS LO_18",
+    "price": "¥104,500 (inc. tax)",
+    "image": "images/top_2/6.Liminal Objects_top_result_result.webp",
+    "hoverImage": "images/top_2/6.Liminal Objects_top_result_result.webp",
+    "hidden": true,
+    "page": "lo-18.html"
+  },
+  {
+    "id": "LO_19",
+    "name": "LIMINAL OBJECTS LO_19",
+    "price": "¥20,900 (inc. tax)",
+    "image": "images/top_2/6.Liminal Objects_top_result_result.webp",
+    "hoverImage": "images/top_2/6.Liminal Objects_top_result_result.webp",
+    "hidden": true,
+    "page": "lo-19.html"
   }
 ]

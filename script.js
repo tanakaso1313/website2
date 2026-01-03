@@ -159,8 +159,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Stripe Checkout Integration
     const addToCartButtons = document.querySelectorAll('.add-to-cart');
     if (addToCartButtons.length > 0) {
-        // Initialize Stripe
-        const stripe = Stripe('pk_live_51RqS8cEcQzNRltK0GJYqWrHsLYlZgJ7YlUE8tRONOBfvgUzuJUDxA2NhQaBwS7oMz3dOCjjHhLRoKhC3N2Cx8XYz00xNvmKcCT'); // Replace with your publishable key
+        // Stripe is only needed for the dynamic checkout-session flow.
+        // For direct Stripe Payment Links (https://buy.stripe.com/...), we can redirect without Stripe.js.
+        let stripe = null;
+        const getStripe = () => {
+            if (stripe) return stripe;
+            if (typeof Stripe !== 'function') {
+                throw new Error('Stripe.js not loaded');
+            }
+            stripe = Stripe('pk_live_51RqS8cEcQzNRltK0GJYqWrHsLYlZgJ7YlUE8tRONOBfvgUzuJUDxA2NhQaBwS7oMz3dOCjjHhLRoKhC3N2Cx8XYz00xNvmKcCT'); // Replace with your publishable key
+            return stripe;
+        };
 
         const colorOptions = [
             // neutrals
@@ -181,12 +190,105 @@ document.addEventListener('DOMContentLoaded', () => {
             { label: 'Neon Red', swatch: 'rgb(234, 51, 35)' }
         ];
 
+        const updateSelectionSummary = (container) => {
+            if (!container) return;
+            const el = container.querySelector('[data-selection-summary]');
+            if (!el) return;
+
+            const size = (container.dataset && container.dataset.selectedSizeLabel) ? container.dataset.selectedSizeLabel : '';
+            const selectedChip = container.querySelector('.color-chip.selected');
+            const color = selectedChip ? (selectedChip.getAttribute('data-color') || '') : '';
+
+            const parts = [];
+            if (size) parts.push(`Size: ${size}`);
+            if (color) parts.push(`Color: ${color}`);
+
+            el.textContent = parts.length ? `Selected — ${parts.join(' · ')}` : '';
+        };
+
+        // Size selector support
+        // 1) Dropdown variant (<select data-size-select>)
+        document.querySelectorAll('[data-size-select]').forEach((select) => {
+            const update = () => {
+                const container = select.closest('.purchase-info') || select.parentElement;
+                if (!container) return;
+
+                const btn = container.querySelector('.add-to-cart');
+                if (btn) {
+                    btn.setAttribute('data-product-id', select.value);
+                }
+
+                const opt = select.selectedOptions && select.selectedOptions[0];
+                if (opt) {
+                    const sizeLabel = opt.getAttribute('data-size-label') || '';
+                    if (sizeLabel) container.dataset.selectedSizeLabel = sizeLabel;
+                }
+
+                if (btn && opt) {
+                    const href = opt.getAttribute('data-href') || '';
+                    if (href) btn.setAttribute('href', href);
+                }
+
+                const priceEl = container.querySelector('[data-size-price]');
+                if (priceEl && opt) {
+                    const price = opt.getAttribute('data-price') || '';
+                    if (price) priceEl.textContent = price;
+                }
+            };
+
+            select.addEventListener('change', update);
+            update();
+        });
+
+        // 2) Pill-button variant (<div data-size-selector> ... <button data-size-value=...>)
+        document.querySelectorAll('[data-size-selector]').forEach((selector) => {
+            const container = selector.closest('.purchase-info') || selector.parentElement;
+            if (!container) return;
+
+            const pills = selector.querySelectorAll('[data-size-value]');
+            const btn = container.querySelector('.add-to-cart');
+            const priceEl = container.querySelector('[data-size-price]');
+
+                const apply = (pill) => {
+                pills.forEach(p => p.classList.remove('selected'));
+                pill.classList.add('selected');
+
+                const productId = pill.getAttribute('data-size-value') || '';
+                const sizeLabel = pill.getAttribute('data-size-label') || '';
+                const price = pill.getAttribute('data-price') || '';
+                const href = pill.getAttribute('data-href') || '';
+
+                if (btn && productId) btn.setAttribute('data-product-id', productId);
+                if (btn && href) btn.setAttribute('href', href);
+                if (priceEl && price) priceEl.textContent = price;
+                if (sizeLabel) container.dataset.selectedSizeLabel = sizeLabel;
+
+                updateSelectionSummary(container);
+            };
+
+            pills.forEach((pill) => {
+                pill.addEventListener('click', () => apply(pill));
+            });
+
+            const initiallySelected = selector.querySelector('.size-pill.selected') || pills[0];
+            if (initiallySelected) apply(initiallySelected);
+        });
+
         addToCartButtons.forEach(button => {
             const productId = button.getAttribute('data-product-id');
 
             // Inject custom color chips for LO_* products
             if (productId && productId.startsWith('LO_')) {
                 const container = button.closest('.purchase-info') || button.parentElement;
+
+                // Ensure we show a confirmation line on all LO_* pages (not just LO_HORSE)
+                if (container && !container.querySelector('[data-selection-summary]')) {
+                    const summary = document.createElement('p');
+                    summary.className = 'selection-summary';
+                    summary.setAttribute('data-selection-summary', '');
+                    container.insertBefore(summary, button);
+                }
+
                 if (container && !container.querySelector('.color-chip')) {
                     const wrapper = document.createElement('div');
                     wrapper.className = 'color-selector';
@@ -210,6 +312,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         chip.addEventListener('click', () => {
                             chips.querySelectorAll('.color-chip').forEach(c => c.classList.remove('selected'));
                             chip.classList.add('selected');
+                            updateSelectionSummary(container);
                         });
 
                         chips.appendChild(chip);
@@ -220,6 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     const firstPrice = container.querySelector('p');
                     container.insertBefore(wrapper, firstPrice || container.firstChild);
+                    updateSelectionSummary(container);
                 }
             }
 
@@ -229,6 +333,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const container = button.closest('.purchase-info');
                 const colorChips = container ? container.querySelectorAll('.color-chip') : null;
                 let color = '';
+
+                const sizeSelect = container ? container.querySelector('[data-size-select]') : null;
+                let size = '';
 
                 if (colorChips && colorChips.length > 0) {
                     const selectedChip = Array.from(colorChips).find(c => c.classList.contains('selected'));
@@ -240,14 +347,31 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
 
+                if (sizeSelect) {
+                    const opt = sizeSelect.selectedOptions && sizeSelect.selectedOptions[0];
+                    size = (opt && opt.getAttribute('data-size-label')) ? opt.getAttribute('data-size-label') : '';
+                    if (!size) {
+                        alert('Please select a size.');
+                        event.preventDefault();
+                        return;
+                    }
+                } else if (container && container.dataset && container.dataset.selectedSizeLabel) {
+                    size = container.dataset.selectedSizeLabel;
+                }
+
                 // If this is a direct Stripe link, allow navigation and skip the dynamic fetch
                 const href = button.getAttribute('href');
                 if (href && href.startsWith('http')) {
-                    if (color) {
+                    if (color || size) {
                         event.preventDefault();
-                        // Append color as client_reference_id so it appears in Stripe dashboard
+                        // Append selection as client_reference_id so it appears in Stripe dashboard
+                        const refParts = [];
+                        if (productId) refParts.push(productId);
+                        if (size) refParts.push(size);
+                        if (color) refParts.push(color);
+                        const ref = refParts.join(' / ');
                         const separator = href.includes('?') ? '&' : '?';
-                        window.location.href = `${href}${separator}client_reference_id=${encodeURIComponent(color)}`;
+                        window.location.href = `${href}${separator}client_reference_id=${encodeURIComponent(ref)}`;
                         return;
                     }
                     return;
@@ -266,14 +390,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         headers: {
                             'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify({ productId, color })
+                        body: JSON.stringify({ productId, color, size })
                     });
 
                     const session = await response.json();
 
                     if (response.ok) {
                         // Redirect to Stripe Checkout
-                        const result = await stripe.redirectToCheckout({
+                        const stripeClient = getStripe();
+                        const result = await stripeClient.redirectToCheckout({
                             sessionId: session.id
                         });
 
@@ -287,7 +412,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 } catch (error) {
                     console.error('Network error:', error);
-                    alert('Network error. Please check your connection and try again.');
+                    // If Stripe.js is blocked, the size/color UI should still work, but dynamic checkout won't.
+                    alert('Payment error. Please try again.');
                 } finally {
                     // Re-enable button
                     button.disabled = false;

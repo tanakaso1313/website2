@@ -3,8 +3,16 @@ require('dotenv').config({ override: true });
 const express = require('express');
 const helmet = require('helmet');
 const app = express();
-console.log('Stripe Key:', process.env.STRIPE_SECRET_KEY);
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+
+// Allow local browsing even if Stripe isn't configured yet.
+// (Checkout will return a clear error until STRIPE_SECRET_KEY is set.)
+let stripe = null;
+if (stripeSecretKey) {
+    stripe = require('stripe')(stripeSecretKey);
+} else {
+    console.warn('[stripe] STRIPE_SECRET_KEY is not set. Checkout is disabled.');
+}
 const fs = require('fs');
 
 app.use(helmet({
@@ -46,7 +54,14 @@ app.use(express.json());
 const products = JSON.parse(fs.readFileSync('products.json', 'utf-8'));
 
 app.post('/create-checkout-session', async (req, res) => {
-    const { productId, color } = req.body;
+    const { productId, color, size } = req.body;
+
+    if (!stripe) {
+        return res.status(500).json({
+            error: 'Stripe is not configured. Please set STRIPE_SECRET_KEY on the server.'
+        });
+    }
+
     const product = products.find(p => p.id === productId);
 
     if (!product) {
@@ -60,9 +75,15 @@ app.post('/create-checkout-session', async (req, res) => {
     if (color) {
         metadata.color = color;
     }
+    if (size) {
+        metadata.size = size;
+    }
 
     const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
+        payment_intent_data: {
+            metadata,
+        },
         line_items: [{
             price_data: {
                 currency: 'jpy',
