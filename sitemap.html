@@ -62,10 +62,12 @@
         </header>
         <nav>
             <div class="category-nav">
-                <a href="index.html?filter=all" data-filter="all">ALL</a>
-                <a href="index.html?filter=furniture" data-filter="furniture">FURNITURE</a>
-                <a href="index.html?filter=light" data-filter="light">LIGHT</a>
-                <a href="index.html?filter=other" data-filter="other">OTHER</a>
+                <a href="index.html?filter=all" data-filter="all" id="all-link">WORK <span class="toggle-btn" id="toggle-btn">+</span></a>
+                <div class="sub-items" id="sub-items">
+                    <a href="index.html?filter=furniture" data-filter="furniture">FURNITURE</a>
+                    <a href="index.html?filter=light" data-filter="light">LIGHT</a>
+                    <a href="index.html?filter=other" data-filter="other">OTHER</a>
+                </div>
                 <a href="shop.html">SHOP</a>
                 <a href="bio.html">BIO</a>
                 <a href="contact.html">CONTACT</a>
@@ -146,5 +148,42 @@
     <footer>
         <p>&copy; 2025 SOTANAKA. All rights reserved.</p>
     </footer>
+    <script>
+    // Toggle functionality for collapsible navigation
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggleBtn = document.getElementById('toggle-btn');
+        const subItems = document.getElementById('sub-items');
+        const allLink = document.getElementById('all-link');
+        
+        if (toggleBtn && subItems) {
+            // Restore state from localStorage on page load
+            const navExpanded = localStorage.getItem('navExpanded') === 'true';
+            if (navExpanded) {
+                subItems.classList.add('expanded');
+                toggleBtn.textContent = '−';
+            }
+            
+            toggleBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                subItems.classList.toggle('expanded');
+                const isExpanded = subItems.classList.contains('expanded');
+                toggleBtn.textContent = isExpanded ? '−' : '+';
+                // Save state to localStorage
+                localStorage.setItem('navExpanded', isExpanded);
+            });
+            
+            // Prevent the ALL link from navigating when clicking the toggle
+            if (allLink) {
+                allLink.addEventListener('click', function(e) {
+                    // Only allow navigation if NOT clicking the toggle button
+                    if (e.target === toggleBtn) {
+                        e.preventDefault();
+                    }
+                });
+            }
+        }
+    });
+    </script>
 </body>
 </html>

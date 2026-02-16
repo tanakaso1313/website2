@@ -77,6 +77,36 @@ a {
     margin-top: 1em;
 }
 
+.toggle-btn {
+    cursor: pointer;
+    user-select: none;
+    display: inline-block;
+    width: 1.2em;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.toggle-btn:hover {
+    opacity: 0.7;
+}
+
+/* Disable transitions on page load to prevent visual twitching */
+.sub-items.preload {
+    transition: none !important;
+}
+
+.sub-items {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+}
+
+.sub-items.expanded {
+    max-height: 200px;
+    opacity: 1;
+}
+
 .legal-policy {
     position: fixed;
     bottom: 1em;

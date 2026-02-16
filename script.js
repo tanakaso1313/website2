@@ -148,6 +148,48 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Toggle functionality for collapsible navigation
+    const toggleBtn = document.getElementById('toggle-btn');
+    const subItems = document.getElementById('sub-items');
+    const allLink = document.getElementById('all-link');
+    
+    if (toggleBtn && subItems) {
+        // Disable transitions on page load
+        subItems.classList.add('preload');
+        
+        // Restore state from localStorage on page load
+        const navExpanded = localStorage.getItem('navExpanded') === 'true';
+        if (navExpanded) {
+            subItems.classList.add('expanded');
+            toggleBtn.textContent = '−';
+        }
+        
+        // Re-enable transitions after initial state is set
+        setTimeout(() => {
+            subItems.classList.remove('preload');
+        }, 50);
+        
+        toggleBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            subItems.classList.toggle('expanded');
+            const isExpanded = subItems.classList.contains('expanded');
+            toggleBtn.textContent = isExpanded ? '−' : '+';
+            // Save state to localStorage
+            localStorage.setItem('navExpanded', isExpanded);
+        });
+        
+        // Prevent the ALL link from navigating when clicking the toggle
+        if (allLink) {
+            allLink.addEventListener('click', (e) => {
+                // Only allow navigation if NOT clicking the toggle button
+                if (e.target === toggleBtn) {
+                    e.preventDefault();
+                }
+            });
+        }
+    }
+
     // Update category links on all pages to point to index.html with filter
     filterLinks.forEach(link => {
         const filter = link.dataset.filter;
