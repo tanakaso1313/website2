@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Search So Tanaka Studio - Find work, products, and pages">
+    <meta name="keywords" content="search, find, so tanaka, furniture, lighting, design">
+    <meta name="author" content="So Tanaka">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Search - So Tanaka Studio">
+    <meta property="og:description" content="Search So Tanaka Studio - Find work, products, and pages">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sotanaka.com/search.html">
+    <meta property="og:image" content="https://sotanaka.com/images/social/homepage-social.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://sotanaka.com/search.html">
+    <title>Search - So Tanaka Studio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bio.css">
+    <style>
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .search-input {
+            width: 100%;
+            font-size: 16pt;
+            font-family: Arial, sans-serif;
+            padding: 0.5em 0;
+            border: none;
+            border-bottom: 1px solid #000;
+            outline: none;
+            background: transparent;
+            box-sizing: border-box;
+        }
+        
+        .search-input::placeholder {
+            color: #999;
+        }
+        
+        .search-results {
+            margin-top: 3em;
+        }
+        
+        .search-result-item {
+            margin-bottom: 2em;
+            padding-bottom: 2em;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+        
+        .search-result-title {
+            font-size: 16pt;
+            font-weight: normal;
+            margin-bottom: 0.3em;
+        }
+        
+        .search-result-title a {
+            color: #000;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+        }
+        
+        .search-result-title a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background-color: #000;
+            visibility: hidden;
+        }
+        
+        .search-result-title a:hover::after {
+            visibility: visible;
+        }
+        
+        .search-result-type {
+            display: inline-block;
+            font-size: 0.7em;
+            text-transform: uppercase;
+            color: #666;
+            margin-left: 0.5em;
+            letter-spacing: 0.05em;
+        }
+        
+        .search-result-description {
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.5em;
+            margin-top: 0.5em;
+        }
+        
+        .search-result-price {
+            font-size: 0.85em;
+            color: #000;
+            margin-top: 0.3em;
+        }
+        
+        .search-empty-state {
+            margin-top: 3em;
+            color: #999;
+            font-size: 0.95em;
+        }
+        
+        .search-no-results {
+            margin-top: 3em;
+            color: #666;
+            font-size: 0.95em;
+        }
+        
+        @media (max-width: 768px) {
+            .search-container {
+                padding: 0 5vw;
+            }
+            
+            .search-input {
+                font-size: 14pt;
+            }
+        }
+    </style>
+    <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script>
+    <script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz"></script>
+    <script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));window.amplitude.init('746eec9391b45c0239325340cd3baadd', {"autocapture":{"elementInteractions":true}});
+    
+    // Custom search page tracking
+    document.addEventListener('DOMContentLoaded', function() {
+        window.amplitude.track('Search Page Viewed', {
+            page_type: 'search',
+            page_name: 'Search So Tanaka Studio'
+        });
+    });
+    </script>
+</head>
+<body>
+    <div class="sidebar">
+        <header>
+             <h1><a href="index.html">S O  T A N A K A</a></h1>
+        </header>
+        <nav>
+            <div class="category-nav">
+                <a href="index.html?filter=all" data-filter="all" id="all-link">WORK <span class="toggle-btn" id="toggle-btn">+</span></a>
+                <div class="sub-items" id="sub-items">
+                    <a href="index.html?filter=furniture" data-filter="furniture">FURNITURE</a>
+                    <a href="index.html?filter=light" data-filter="light">LIGHT</a>
+                    <a href="index.html?filter=other" data-filter="other">OTHER</a>
+                </div>
+                <a href="shop.html">SHOP</a>
+                <a href="bio.html">BIO</a>
+                <a href="archive.html">ARCHIVE</a>
+                <a href="contact.html">CONTACT</a>
+                <a href="search.html">SEARCH</a>
+            </div>
+        </nav>
+    </div>
+    <main class="bio-content">
+        <div class="search-container">
+            <input 
+                type="text" 
+                class="search-input" 
+                id="search-input" 
+                placeholder="Search..." 
+                autocomplete="off"
+                autofocus
+            >
+            <div class="search-results" id="search-results">
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 SOTANAKA. All rights reserved.</p>
+    </footer>
+    <script>
+    // Search functionality
+    (function() {
+        let searchData = [];
+        let searchTimeout = null;
+        
+        const searchInput = document.getElementById('search-input');
+        const searchResults = document.getElementById('search-results');
+        const emptyState = document.getElementById('empty-state');
+        
+        // Load search data
+        fetch('/search-data.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to load search data');
+                }
+                return response.json();
+            })
+            .then(data => {
+                searchData = data;
+            })
+            .catch(error => {
+                console.error('Error loading search data:', error);
+                searchResults.innerHTML = '<div class="search-no-results">Search is currently unavailable.</div>';
+            });
+        
+        // Perform search
+        function performSearch(query) {
+            // Clear previous timeout
+            if (searchTimeout) {
+                clearTimeout(searchTimeout);
+            }
+            
+            // If query is empty, clear results
+            if (!query.trim()) {
+                searchResults.innerHTML = '';
+                return;
+            }
+            
+            // Debounce search by 150ms
+            searchTimeout = setTimeout(() => {
+                const normalizedQuery = query.toLowerCase().trim();
+                
+                // Search through all items and capture match context
+                const results = searchData.map(item => {
+                    let matchedIn = null;
+                    let matchContext = item.description; // default
+                    
+                    // Search in title
+                    if (item.title.toLowerCase().includes(normalizedQuery)) {
+                        matchedIn = 'title';
+                    }
+                    // Search in description
+                    else if (item.description && item.description.toLowerCase().includes(normalizedQuery)) {
+                        matchedIn = 'description';
+                    }
+                    // Search in keywords
+                    else if (item.keywords && item.keywords.some(keyword => 
+                        keyword.toLowerCase().includes(normalizedQuery)
+                    )) {
+                        matchedIn = 'keywords';
+                        // Show the matching keywords as context
+                        const matchingKeywords = item.keywords.filter(keyword => 
+                            keyword.toLowerCase().includes(normalizedQuery)
+                        );
+                        matchContext = matchingKeywords.slice(0, 3).join(', ');
+                    }
+                    // Search in price
+                    else if (item.price && item.price.toLowerCase().includes(normalizedQuery)) {
+                        matchedIn = 'price';
+                    }
+                    
+                    if (matchedIn) {
+                        return { ...item, matchContext, matchedIn };
+                    }
+                    return null;
+                }).filter(item => item !== null);
+                
+                // Sort results by priority: shop > work > bio > archive > other
+                results.sort((a, b) => {
+                    const priorityMap = {
+                        'shop': 1,
+                        'work': 2,
+                        'page': (item) => {
+                            const url = item.url.toLowerCase();
+                            if (url.includes('bio')) return 3;
+                            if (url.includes('archive')) return 4;
+                            return 5; // other pages
+                        }
+                    };
+                    
+                    const getPriority = (item) => {
+                        if (item.type === 'shop') return priorityMap.shop;
+                        if (item.type === 'work') return priorityMap.work;
+                        if (item.type === 'page') return priorityMap.page(item);
+                        return 6; // fallback
+                    };
+                    
+                    return getPriority(a) - getPriority(b);
+                });
+                
+                // Display results
+                displayResults(results, query);
+                
+                // Track search
+                if (window.amplitude) {
+                    window.amplitude.track('Search Performed', {
+                        query: query,
+                        results_count: results.length
+                    });
+                }
+            }, 150);
+        }
+        
+        // Display search results
+        function displayResults(results, query) {
+            if (results.length === 0) {
+                searchResults.innerHTML = '<div class="search-no-results">No results found.</div>';
+                return;
+            }
+            
+            let html = '';
+            
+            results.forEach(item => {
+                const typeLabel = item.type === 'page' ? 'Page' : 
+                                 item.type === 'work' ? 'Work' : 
+                                 'Shop';
+                
+                html += `
+                    <div class="search-result-item">
+                        <div class="search-result-title">
+                            <a href="${item.url}">${escapeHtml(item.title)}</a>
+                            <span class="search-result-type">${typeLabel}</span>
+                        </div>
+                        ${item.price ? `<div class="search-result-price">${escapeHtml(item.price)}</div>` : ''}
+                    </div>
+                `;
+            });
+            
+            searchResults.innerHTML = html;
+        }
+        
+        // Escape HTML to prevent XSS
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        // Listen to input changes
+        searchInput.addEventListener('input', function(e) {
+            performSearch(e.target.value);
+        });
+        
+        // Optional: handle Enter key
+        searchInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                // Already searching in real-time, so just blur to show results clearly
+                searchInput.blur();
+            }
+        });
+    })();
+    </script>
+    <script>
+    // Toggle functionality for collapsible navigation
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggleBtn = document.getElementById('toggle-btn');
+        const subItems = document.getElementById('sub-items');
+        const allLink = document.getElementById('all-link');
+        
+        if (toggleBtn && subItems) {
+            // Restore state from localStorage on page load
+            const navExpanded = localStorage.getItem('navExpanded') === 'true';
+            if (navExpanded) {
+                subItems.classList.add('expanded');
+                toggleBtn.textContent = '−';
+            }
+            
+            toggleBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                subItems.classList.toggle('expanded');
+                const isExpanded = subItems.classList.contains('expanded');
+                toggleBtn.textContent = isExpanded ? '−' : '+';
+                // Save state to localStorage
+                localStorage.setItem('navExpanded', isExpanded);
+            });
+            
+            // Prevent the ALL link from navigating when clicking the toggle
+            if (allLink) {
+                allLink.addEventListener('click', function(e) {
+                    // Only allow navigation if NOT clicking the toggle button
+                    if (e.target === toggleBtn) {
+                        e.preventDefault();
+                    }
+                });
+            }
+        }
+    });
+    </script>
+</body>
+</html>
