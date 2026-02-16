@@ -219,6 +219,7 @@
         padding: 0 5vw;
         padding-top: calc(7vh + 2em);
         margin-left: 0;
+        display: flex;
     }
 
     .product-details {
@@ -229,6 +230,7 @@
         margin-bottom: 2em;
         position: static;
         box-sizing: border-box;
+        order: 2;
     }
 
     .work-images {
@@ -238,6 +240,7 @@
         padding-right: 5vw;
         box-sizing: border-box;
         display: block !important;
+        order: 1;
     }
 
     .work-images img {
