@@ -73,22 +73,22 @@
             font-family: Arial, sans-serif;
             font-weight: 200;
             line-height: 1;
-            opacity: 0.1;
+            opacity: 0.3;
             transition: opacity 0.3s;
             z-index: 10;
             color: #000;
         }
         
         .slideshow-nav:hover {
-            opacity: 0.4;
+            opacity: 0.6;
         }
         
         .slideshow-prev {
-            left: 1em;
+            left: -3em;
         }
         
         .slideshow-next {
-            right: 1em;
+            right: -3em;
         }
         
         @media (max-width: 768px) {
@@ -241,8 +241,8 @@
         
     </main>
 
-    <div id="lightbox" class="lightbox">
-        <span class="close-button">&times;</span>
+    <div id="lightbox" class="lightbox" style="display: none;">
+        <span class="close-button" style="display: none;">&times;</span>
         <img src="images/icons/prev-arrow.svg" class="prev-button">
         <img class="lightbox-content" id="lightbox-img">
         <img src="images/icons/next-arrow.svg" class="next-button">
