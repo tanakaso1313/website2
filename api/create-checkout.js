@@ -73,8 +73,8 @@ module.exports = async (req, res) => {
       automatic_tax: {
         enabled: true,
       },
-      // Enable promotion codes
-      allow_promotion_codes: true,
+      // Disable promotion codes
+      allow_promotion_codes: false,
     });
 
     return res.status(200).json({
