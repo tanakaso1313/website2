@@ -335,8 +335,8 @@ document.addEventListener('DOMContentLoaded', () => {
         addToCartButtons.forEach(button => {
             const productId = button.getAttribute('data-product-id');
 
-            // Inject custom color chips for LO_* products
-            if (productId && productId.startsWith('LO_')) {
+            // Inject custom color chips for LO_* and LO / * products, plus Liminal Lamp
+            if (productId && (productId.startsWith('LO_') || productId.startsWith('LO /') || productId.toUpperCase().includes('LIMINAL LAMP'))) {
                 const container = button.closest('.purchase-info') || button.parentElement;
 
                 // Ensure we show a confirmation line on all LO_* pages (not just LO_HORSE)

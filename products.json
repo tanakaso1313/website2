@@ -3,8 +3,8 @@
     "id": "LO / HORSE",
     "name": "LO / HORSE",
     "price": "From ¥20,900 (tax included)",
-    "image": "LO_Horse.jpg",
-    "hoverImage": "LO_Horse.jpg",
+    "image": "LO_Horse.webp",
+    "hoverImage": "LO_Horse.webp",
     "page": "lo-horse.html"
   },
   {
@@ -19,112 +19,112 @@
     "id": "LO / 02",
     "name": "LO / 02",
     "price": "¥11,000 (inc. tax)",
-    "image": "LO_02.jpg",
-    "hoverImage": "LO_02_G.JPG",
+    "image": "LO_02.webp",
+    "hoverImage": "LO_02_G.webp",
     "page": "lo-02.html"
   },
   {
     "id": "LO / 05",
     "name": "LO / 05",
     "price": "¥20,900 (inc. tax)",
-    "image": "LO_05.JPG",
-    "hoverImage": "LO_05_G.JPG",
+    "image": "LO_05.webp",
+    "hoverImage": "LO_05_G.webp",
     "page": "lo-05.html"
   },
   {
     "id": "LO / 06",
     "name": "LO / 06",
     "price": "¥20,900 (inc. tax)",
-    "image": "LO_06_G.JPG",
-    "hoverImage": "LO_06_R.jpg",
+    "image": "LO_06_G.webp",
+    "hoverImage": "LO_06_R.webp",
     "page": "lo-06.html"
   },
   {
     "id": "LO / 07",
     "name": "LO / 07",
     "price": "¥23,100 (inc. tax)",
-    "image": "LO_07.JPG",
-    "hoverImage": "LO_07.JPG",
+    "image": "LO_07.webp",
+    "hoverImage": "LO_07.webp",
     "page": "lo-07.html"
   },
   {
     "id": "LO / 09",
     "name": "LO / 09",
     "price": "¥25,300 (inc. tax)",
-    "image": "LO_09.JPG",
-    "hoverImage": "LO_09.JPG",
+    "image": "LO_09.webp",
+    "hoverImage": "LO_09.webp",
     "page": "lo-09.html"
   },
   {
     "id": "LO / 10",
     "name": "LO / 10",
     "price": "¥23,100 (inc. tax)",
-    "image": "LO_10_W.JPG",
-    "hoverImage": "LO_10_Y.JPG",
+    "image": "LO_10_W.webp",
+    "hoverImage": "LO_10_Y.webp",
     "page": "lo-10.html"
   },
   {
     "id": "LO / 11",
     "name": "LO / 11",
     "price": "¥30,800 (inc. tax)",
-    "image": "LO_11.JPG",
-    "hoverImage": "LO_11.JPG",
+    "image": "LO_11.webp",
+    "hoverImage": "LO_11.webp",
     "page": "lo-11.html"
   },
   {
     "id": "LO / 20",
     "name": "LO / 20",
     "price": "¥33,000 (inc. tax)",
-    "image": "LO_20.JPG",
-    "hoverImage": "LO_20.JPG",
+    "image": "LO_20.webp",
+    "hoverImage": "LO_20.webp",
     "page": "lo-20.html"
   },
   {
     "id": "LO / 22",
     "name": "LO / 22",
     "price": "¥38,500 (inc. tax)",
-    "image": "LO_22.JPG",
-    "hoverImage": "LO_22.JPG",
+    "image": "LO_22.webp",
+    "hoverImage": "LO_22.webp",
     "page": "lo-22.html"
   },
   {
     "id": "LO / 23",
     "name": "LO / 23",
     "price": "¥27,500 (inc. tax)",
-    "image": "LO_23.JPG",
-    "hoverImage": "LO_23.JPG",
+    "image": "LO_23.webp",
+    "hoverImage": "LO_23.webp",
     "page": "lo-23.html"
   },
   {
     "id": "LO / 24",
     "name": "LO / 24",
     "price": "¥40,700 (inc. tax)",
-    "image": "LO_24.JPG",
-    "hoverImage": "LO_24.JPG",
+    "image": "LO_24.webp",
+    "hoverImage": "LO_24.webp",
     "page": "lo-24.html"
   },
   {
     "id": "LO / 25",
     "name": "LO / 25",
     "price": "¥35,200 (inc. tax)",
-    "image": "L0_25.JPG",
-    "hoverImage": "L0_25.JPG",
+    "image": "L0_25.webp",
+    "hoverImage": "L0_25.webp",
     "page": "lo-25.html"
   },
   {
     "id": "LO / 26",
     "name": "LO / 26",
     "price": "¥35,200 (inc. tax)",
-    "image": "LO_26.JPG",
-    "hoverImage": "LO_26.JPG",
+    "image": "LO_26.webp",
+    "hoverImage": "LO_26.webp",
     "page": "lo-26.html"
   },
   {
     "id": "LO / 27",
     "name": "LO / 27",
     "price": "¥40,700 (inc. tax)",
-    "image": "LO_27_blackbg.jpg",
-    "hoverImage": "LO_27_W.JPG",
+    "image": "LO_27_blackbg.webp",
+    "hoverImage": "LO_27_W.webp",
     "page": "lo-27.html"
   },
   {
@@ -139,8 +139,8 @@
     "id": "LO_HORSE_S",
     "name": "LO_HORSE Small",
     "price": "¥20,900 (tax included)",
-    "image": "LO_Horse.jpg",
-    "hoverImage": "LO_Horse.jpg",
+    "image": "LO_Horse.webp",
+    "hoverImage": "LO_Horse.webp",
     "hidden": true,
     "page": "lo-horse.html"
   },

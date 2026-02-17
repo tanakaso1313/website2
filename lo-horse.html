@@ -37,6 +37,12 @@
             position: fixed;
             z-index: 9999;
             transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.1s ease;
+        }
+        
+        #cursor.visible {
+            opacity: 1;
         }
         
         #cursor svg {
@@ -124,7 +130,7 @@
             <div class="description">
                 <p>Material: MDF, lacquer paint</p>
                 <p>Dimensions: W186 D48 H232 (S size), W209 D48 H300 (L size)</p>
-                <p>Lead Time: 2 weeks</p>
+                <p>Lead time: 2 weeks</p>
                 <p><a href="liminal-objects.html">→ View collection page</a></p>
             </div>
 
@@ -181,8 +187,13 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const cursor = document.getElementById('cursor');
+            let hasMovedMouse = false;
             
             document.addEventListener('mousemove', function(e) {
+                if (!hasMovedMouse) {
+                    cursor.classList.add('visible');
+                    hasMovedMouse = true;
+                }
                 cursor.style.left = e.clientX + 'px';
                 cursor.style.top = e.clientY + 'px';
             });

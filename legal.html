@@ -6,7 +6,73 @@
     <meta name="robots" content="noindex, nofollow">
     <title>Legal - So Tanaka Studio</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="legal.css">
+    <link rel="stylesheet" href="work-page.css">
+    <style>
+        .work-content {
+            display: block;
+            padding-top: calc(7vh + 1em);
+            margin-left: 22vw;
+            padding-right: 5vw;
+        }
+        
+        .legal-section {
+            margin-bottom: 4em;
+        }
+        
+        .legal-section h2 {
+            font-family: Arial, sans-serif;
+            font-weight: normal;
+            font-size: 1em;
+            margin-bottom: 1em;
+        }
+        
+        .legal-section h3 {
+            font-family: Arial, sans-serif;
+            font-weight: normal;
+            font-size: 1em;
+            margin-top: 2em;
+            margin-bottom: 1em;
+        }
+        
+        .legal-item {
+            display: flex;
+            margin-bottom: 0.5em;
+        }
+        
+        .legal-item span:first-child {
+            width: 270px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        
+        .legal-item-description {
+            flex: 1;
+            margin-left: 10px;
+            vertical-align: top;
+        }
+        
+        @media (max-width: 768px) {
+            .work-content {
+                margin-left: 0;
+                padding-left: 5vw;
+                padding-right: 5vw;
+                padding-top: 2em;
+            }
+            
+            .legal-item {
+                flex-direction: column;
+            }
+            
+            .legal-item span:first-child {
+                width: 100%;
+                margin-bottom: 0.3em;
+            }
+            
+            .legal-item-description {
+                margin-left: 0;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="sidebar">
@@ -21,33 +87,40 @@
                     <a href="index.html?filter=light" data-filter="light">LIGHT</a>
                     <a href="index.html?filter=other" data-filter="other">OTHER</a>
                 </div>
+                <a href="shop.html">SHOP</a>
                 <a href="bio.html">BIO</a>
                 <a href="archive.html">ARCHIVE</a>
-                <a href="shop.html">SHOP</a>
+                <a href="contact.html">CONTACT</a>
+                <a href="search.html">SEARCH</a>
             </div>
         </nav>
     </div>
-    <main class="bio-content">
-        <h2>特定商取引法に基づく表記</h2>
-        <div class="cv-section">
-            <div class="cv-item"><span>販売業者名</span><span class="cv-item-description">Soichiro Tanaka</span></div>
-            <div class="cv-item"><span>代表責任者</span><span class="cv-item-description">田中聡一朗</span></div>
-            <div class="cv-item"><span>住所</span><span class="cv-item-description">住所については、請求があれば遅滞なく開示いたします。開示請求はBIO→CONTACTからお願いいたします。</span></div>
-            <div class="cv-item"><span>電話番号</span><span class="cv-item-description">電話番号については、請求があれば遅滞なく開示いたします。開示請求はBIO→CONTACTからお願いいたします。</span></div>
-            <div class="cv-item"><span>販売価格</span><span class="cv-item-description">商品、および、オプションによって価格が異なりますので、各商品のページをご確認ください。</span></div>
-            <div class="cv-item"><span>商品代金以外の料金</span><span class="cv-item-description">商品によって送料が異なりますので、各商品のページをご確認ください。<br>海外へのお届けについては、配送の国によって異なり、関税などの費用が掛かる場合があり、商品をお受け取りの際には、その一切の費用をご負担いただきます。</span></div>
-            <div class="cv-item"><span>商品の引渡し時期</span><span class="cv-item-description">在庫品に関しては、原則として、注文受付後7日以内に発送いたします。<br>受注生産品に関しては、ご注文をいただいてから製作に入りますため、原則90日以内に発送いたします。<br>海外発送の場合には、上記に通関日数が加わるのでご了承ください。</span></div>
-            <div class="cv-item"><span>お支払い方法</span><span class="cv-item-description">国内・海外の各種主要クレジットカード決済のみ利用可能です。</span></div>
-            <div class="cv-item"><span>お支払期限</span><span class="cv-item-description">クレジットカード決済の場合、商品注文時点でお支払いが確定し、引き落としについては各発行カード会社が定める期日となります。</span></div>
-            <div class="cv-item"><span>ご注文のキャンセルについて</span><span class="cv-item-description">ご注文時に「ご注文を確定する」ボタンをクリックした時点で、お客様のご注文を完了とさせていただきます。ご注文完了後のお客様からのご注文のキャンセルはお受けできません。</span></div>
-            <div class="cv-item"><span>返品について</span><span class="cv-item-description">返品は商品に欠陥がある場合を除きお応え出来かねますのでご了承ください。</span></div>
-            <div class="cv-item"><span>返品期限・返品手続</span><span class="cv-item-description">商品に欠陥があった場合のみ返品可能です。返品は、商品がお手元に届いてから5日以内に、「注文取消」ボタンからご連絡ください。</span></div>
-            <div class="cv-item"><span>返品送料</span><span class="cv-item-description">欠陥による返品の場合は、当店着払いにより対応させていただきます。</span></div>
+    <main class="work-content">
+        <div class="legal-section">
+            <h2>特定商取引法に基づく表記 / Specified Commercial Transaction Act (Japanese Law Prevails)</h2>
+            <div class="legal-item"><span>販売業者名 / Seller</span><span class="legal-item-description">Soichiro Tanaka</span></div>
+            <div class="legal-item"><span>代表責任者 / Representative</span><span class="legal-item-description">田中聡一朗 / Soichiro Tanaka</span></div>
+            <div class="legal-item"><span>住所 / Address</span><span class="legal-item-description">住所については、請求があれば遅滞なく開示いたします。開示請求は<a href="contact.html">お問い合わせページ</a>からお願いいたします。<br>Address will be disclosed upon request. Please contact us via our <a href="contact.html">contact page</a>.</span></div>
+            <div class="legal-item"><span>電話番号 / Phone</span><span class="legal-item-description">電話番号については、請求があれば遅滞なく開示いたします。開示請求は<a href="contact.html">お問い合わせページ</a>からお願いいたします。<br>Phone number will be disclosed upon request. Please contact us via our <a href="contact.html">contact page</a>.</span></div>
+            <div class="legal-item"><span>販売価格 / Price</span><span class="legal-item-description">商品、および、オプションによって価格が異なりますので、各商品のページをご確認ください。<br>Prices vary by product and options. Please check each product page for details.</span></div>
+            <div class="legal-item"><span>商品代金以外の料金 / Additional Fees</span><span class="legal-item-description">商品によって送料が異なりますので、各商品のページをご確認ください。海外へのお届けについては、配送の国によって異なり、関税などの費用が掛かる場合があり、商品をお受け取りの際には、その一切の費用をご負担いただきます。<br>Shipping costs vary by product (see each product page). For international orders, customs fees and duties may apply and are the buyer's responsibility.</span></div>
+            <div class="legal-item"><span>商品の引渡し時期 / Delivery</span><span class="legal-item-description">在庫品に関しては、原則として、注文受付後7日以内に発送いたします。受注生産品に関しては、ご注文をいただいてから製作に入りますため、原則90日以内に発送いたします。海外発送の場合には、上記に通関日数が加わるのでご了承ください。<br>In-stock items ship within 7 days. Made-to-order items ship within 90 days. International orders require additional customs clearance time.</span></div>
+            <div class="legal-item"><span>お支払い方法 / Payment</span><span class="legal-item-description">国内・海外の各種主要クレジットカード決済のみ利用可能です。<br>Major credit cards accepted (domestic and international).</span></div>
+            <div class="legal-item"><span>お支払期限 / Payment Due</span><span class="legal-item-description">クレジットカード決済の場合、商品注文時点でお支払いが確定し、引き落としについては各発行カード会社が定める期日となります。<br>For credit card payments, charges are processed at order confirmation. Billing follows your card issuer's schedule.</span></div>
+            <div class="legal-item"><span>ご注文のキャンセル / Order Cancellation</span><span class="legal-item-description">ご注文時に「ご注文を確定する」ボタンをクリックした時点で、お客様のご注文を完了とさせていただきます。ご注文完了後のお客様からのご注文のキャンセルはお受けできません。<br>Orders are final once confirmed. Cancellations after order confirmation cannot be accepted.</span></div>
+            <div class="legal-item"><span>返品について / Returns</span><span class="legal-item-description">返品は商品に欠陥がある場合を除きお応え出来かねますのでご了承ください。<br>Returns are accepted only for defective products.</span></div>
+            <div class="legal-item"><span>返品期限・返品手続 / Return Period</span><span class="legal-item-description">商品に欠陥があった場合のみ返品可能です。返品は、商品がお手元に届いてから5日以内に、「注文取消」ボタンからご連絡ください。<br>Returns for defects must be requested within 5 days of delivery via the order cancellation button.</span></div>
+            <div class="legal-item"><span>返品送料 / Return Shipping</span><span class="legal-item-description">欠陥による返品の場合は、当店着払いにより対応させていただきます。<br>Return shipping for defective items will be covered by us.</span></div>
         </div>
+        
+        <p>For inquiries, please visit our <a href="contact.html">contact page</a>.</p>
     </main>
     <div class="legal-policy">
         <a href="legal.html">LEGAL POLICY</a>
     </div>
+    <footer>
+        <p>&copy; 2025 SOTANAKA. All rights reserved.</p>
+    </footer>
     <script>
     // Toggle functionality for collapsible navigation
     document.addEventListener('DOMContentLoaded', function() {
