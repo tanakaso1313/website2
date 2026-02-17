@@ -17,11 +17,86 @@
     <title>Liminal Objects LO_HORSE - So Tanaka Studio Tokyo</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="liminal-light-s.css">
+    <style>
+        /* Custom cursor styles for LO_HORSE page */
+        body,
+        body *:not(#cursor):not(#cursor *),
+        body a,
+        body button,
+        body input,
+        body img {
+            cursor: none !important;
+        }
+        
+        #cursor,
+        #cursor * {
+            pointer-events: none !important;
+        }
+        
+        #cursor {
+            position: fixed;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+        }
+        
+        #cursor svg {
+            width: 40px;
+            height: 52px;
+            filter: drop-shadow(0 0 4px rgba(204, 31, 31, 0.6));
+        }
+    </style>
     <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script>
     <script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz"></script>
     <script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));window.amplitude.init('746eec9391b45c0239325340cd3baadd', {"autocapture":{"elementInteractions":true}});</script>
 </head>
 <body>
+    <!-- Custom cursor element -->
+    <div id="cursor">
+        <svg viewBox="0 0 100 130" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <!-- Head: x=50, y=0, width=50, height=30 -->
+            <rect x="50" y="0" width="50" height="30" stroke="#cc1f1f" stroke-width="1" fill="none"/>
+            <line x1="60" y1="0" x2="60" y2="30" stroke="#cc1f1f" stroke-width="1"/>
+            <line x1="70" y1="0" x2="70" y2="30" stroke="#cc1f1f" stroke-width="1"/>
+            <line x1="80" y1="0" x2="80" y2="30" stroke="#cc1f1f" stroke-width="1"/>
+            <line x1="90" y1="0" x2="90" y2="30" stroke="#cc1f1f" stroke-width="1"/>
+            <line x1="50" y1="10" x2="100" y2="10" stroke="#cc1f1f" stroke-width="1"/>
+            <line x1="50" y1="20" x2="100" y2="20" stroke="#cc1f1f" stroke-width="1"/>
+            
+            <!-- Neck: x=50, y=30, width=30, height=20 -->
+            <rect x="50" y="30" width="30" height="20" stroke="#cc1f1f" stroke-width="1" fill="none"/>
+            <line x1="60" y1="30" x2="60" y2="50" stroke="#cc1f1f" stroke-width="1"/>
+            <line x1="70" y1="30" x2="70" y2="50" stroke="#cc1f1f" stroke-width="1"/>
+            <line x1="50" y1="40" x2="80" y2="40" stroke="#cc1f1f" stroke-width="1"/>
+            
+            <!-- Body: x=10, y=50, width=70, height=30 -->
+            <rect x="10" y="50" width="70" height="30" stroke="#cc1f1f" stroke-width="1" fill="none"/>
+            <line x1="20" y1="50" x2="20" y2="80" stroke="#cc1f1f" stroke-width="1"/>
+            <line x1="30" y1="50" x2="30" y2="80" stroke="#cc1f1f" stroke-width="1"/>
+            <line x1="40" y1="50" x2="40" y2="80" stroke="#cc1f1f" stroke-width="1"/>
+            <line x1="50" y1="50" x2="50" y2="80" stroke="#cc1f1f" stroke-width="1"/>
+            <line x1="60" y1="50" x2="60" y2="80" stroke="#cc1f1f" stroke-width="1"/>
+            <line x1="70" y1="50" x2="70" y2="80" stroke="#cc1f1f" stroke-width="1"/>
+            <line x1="10" y1="60" x2="80" y2="60" stroke="#cc1f1f" stroke-width="1"/>
+            <line x1="10" y1="70" x2="80" y2="70" stroke="#cc1f1f" stroke-width="1"/>
+            
+            <!-- Front leg: x=10, y=80, width=20, height=50 -->
+            <rect x="10" y="80" width="20" height="50" stroke="#cc1f1f" stroke-width="1" fill="none"/>
+            <line x1="20" y1="80" x2="20" y2="130" stroke="#cc1f1f" stroke-width="1"/>
+            <line x1="10" y1="90" x2="30" y2="90" stroke="#cc1f1f" stroke-width="1"/>
+            <line x1="10" y1="100" x2="30" y2="100" stroke="#cc1f1f" stroke-width="1"/>
+            <line x1="10" y1="110" x2="30" y2="110" stroke="#cc1f1f" stroke-width="1"/>
+            <line x1="10" y1="120" x2="30" y2="120" stroke="#cc1f1f" stroke-width="1"/>
+            
+            <!-- Back leg: x=60, y=80, width=20, height=50 -->
+            <rect x="60" y="80" width="20" height="50" stroke="#cc1f1f" stroke-width="1" fill="none"/>
+            <line x1="70" y1="80" x2="70" y2="130" stroke="#cc1f1f" stroke-width="1"/>
+            <line x1="60" y1="90" x2="80" y2="90" stroke="#cc1f1f" stroke-width="1"/>
+            <line x1="60" y1="100" x2="80" y2="100" stroke="#cc1f1f" stroke-width="1"/>
+            <line x1="60" y1="110" x2="80" y2="110" stroke="#cc1f1f" stroke-width="1"/>
+            <line x1="60" y1="120" x2="80" y2="120" stroke="#cc1f1f" stroke-width="1"/>
+        </svg>
+    </div>
+    
     <div class="sidebar">
         <header>
              <h1><a href="index.html">S O  T A N A K A</a></h1>
@@ -100,6 +175,18 @@
 
     <script src="https://js.stripe.com/v3/"></script>
     <script src="script.js?v=2" defer></script>
+    
+    <!-- Custom cursor tracking script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cursor = document.getElementById('cursor');
+            
+            document.addEventListener('mousemove', function(e) {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+        });
+    </script>
 
     <footer>
         <p>&copy; 2025 SOTANAKA. All rights reserved.</p>
