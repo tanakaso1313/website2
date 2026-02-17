@@ -299,9 +299,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 const sizeLabel = pill.getAttribute('data-size-label') || '';
                 const price = pill.getAttribute('data-price') || '';
                 const href = pill.getAttribute('data-href') || '';
+                const priceId = pill.getAttribute('data-price-id') || '';
 
-                if (btn && productId) btn.setAttribute('data-product-id', productId);
-                if (btn && href) btn.setAttribute('href', href);
+                // API mode (data-price-id): update price ID but keep base product ID
+                if (priceId) {
+                    if (btn) btn.setAttribute('data-price-id', priceId);
+                } else {
+                    // Legacy mode (data-href): update product ID and href
+                    if (btn && productId) btn.setAttribute('data-product-id', productId);
+                    if (btn && href) btn.setAttribute('href', href);
+                }
+                
                 if (priceEl && price) priceEl.textContent = price;
                 if (sizeLabel) container.dataset.selectedSizeLabel = sizeLabel;
 

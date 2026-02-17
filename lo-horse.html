@@ -62,7 +62,7 @@
                             data-size-value="LO_HORSE_S"
                             data-size-label="Small"
                             data-price="¥20,900 (tax included)"
-                            data-href="https://buy.stripe.com/5kQ3cv9NRgUQcTL4PWeUU0l"
+                            data-price-id="price_1SlKWcEcQzNRltK0Bi9GW64L"
                         >S</button>
                         <button
                             type="button"
@@ -70,7 +70,7 @@
                             data-size-value="LO_HORSE_L"
                             data-size-label="Large"
                             data-price="¥27,500 (tax included)"
-                            data-href="https://buy.stripe.com/cNieVd9NR8ok06Z1DKeUU0k"
+                            data-price-id="price_1SlKX3EcQzNRltK0lTUSdxTK"
                         >L</button>
                     </div>
                 </div>
@@ -79,8 +79,8 @@
 
                 <p class="selection-summary" data-selection-summary></p>
 
-                <!-- Default is Small; JS will update this (href + product id) when size changes -->
-                <a href="#" class="add-to-cart" data-product-id="LO_HORSE" data-product-id="LO_HORSE_S">Checkout</a>
+                <!-- Default is Small; JS will update this (price id + product id) when size changes -->
+                <a href="#" class="add-to-cart" data-product-id="LO_HORSE" data-price-id="price_1SlKWcEcQzNRltK0Bi9GW64L">Checkout</a>
 
                 <p class="contact-info-text">Shipping calculated at checkout.<br>For inquiries, <a href="contact.html">reach out</a>.</p>
             </div>
@@ -99,7 +99,7 @@
     </div>
 
     <script src="https://js.stripe.com/v3/"></script>
-    <script src="script.js" defer></script>
+    <script src="script.js?v=2" defer></script>
 
     <footer>
         <p>&copy; 2025 SOTANAKA. All rights reserved.</p>
