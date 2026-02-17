@@ -1,4 +1,7 @@
 {
+  "buildCommand": "",
+  "outputDirectory": ".",
+  "installCommand": "",
   "routes": [
     {
       "src": "/(.*\\.(html|css|js|jpg|jpeg|png|gif|svg|webp|ico|json|xml|txt|pdf|webmanifest))$",
