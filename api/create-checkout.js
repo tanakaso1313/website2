@@ -22,11 +22,11 @@ module.exports = async (req, res) => {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
-    // Build description from color/size if provided
-    const descriptionParts = [];
-    if (size) descriptionParts.push(`Size: ${size}`);
-    if (color) descriptionParts.push(`Color: ${color}`);
-    const description = descriptionParts.length > 0 ? descriptionParts.join(' • ') : undefined;
+    // Build product name suffix from color/size if provided
+    const nameParts = [];
+    if (size) nameParts.push(size);
+    if (color) nameParts.push(color);
+    const nameSuffix = nameParts.length > 0 ? ` (${nameParts.join(', ')})` : '';
 
     // Create Stripe checkout session with metadata
     const session = await stripe.checkout.sessions.create({
@@ -35,8 +35,19 @@ module.exports = async (req, res) => {
         {
           price: priceId,
           quantity: 1,
+          adjustable_quantity: {
+            enabled: false,
+          },
         },
       ],
+      // Add product name customization
+      ...(nameSuffix && {
+        custom_text: {
+          submit: {
+            message: `${productId}${nameSuffix}`,
+          },
+        },
+      }),
       mode: 'payment',
       success_url: successUrl || `${req.headers.origin}/success`,
       cancel_url: cancelUrl || `${req.headers.origin}/cancel`,
