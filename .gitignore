@@ -4,3 +4,4 @@ node_modules/
 .env.local
 *.log
 .DS_Store
+images/mono_2/originals/
