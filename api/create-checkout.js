@@ -22,6 +22,12 @@ module.exports = async (req, res) => {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
+    // Build description from color/size if provided
+    const descriptionParts = [];
+    if (size) descriptionParts.push(`Size: ${size}`);
+    if (color) descriptionParts.push(`Color: ${color}`);
+    const description = descriptionParts.length > 0 ? descriptionParts.join(' • ') : undefined;
+
     // Create Stripe checkout session with metadata
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -29,6 +35,9 @@ module.exports = async (req, res) => {
         {
           price: priceId,
           quantity: 1,
+          ...(description && {
+            description: description,
+          }),
         },
       ],
       mode: 'payment',
