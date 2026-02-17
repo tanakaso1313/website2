@@ -241,11 +241,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const selectedChip = container.querySelector('.color-chip.selected');
             const color = selectedChip ? (selectedChip.getAttribute('data-color') || '') : '';
 
-            const parts = [];
-            if (size) parts.push(`Size: ${size}`);
-            if (color) parts.push(`Color: ${color}`);
+            // Abbreviate sizes: Small -> S, Large -> L
+            const sizeAbbr = size === 'Small' ? 'S' : (size === 'Large' ? 'L' : size);
 
-            el.textContent = parts.length ? `Selected — ${parts.join(' · ')}` : '';
+            const parts = [];
+            if (sizeAbbr) parts.push(sizeAbbr);
+            if (color) parts.push(color);
+
+            el.textContent = parts.length ? `Selected: ${parts.join(' · ')}` : '';
         };
 
         // Size selector support
