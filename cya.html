@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="C ya is a work by So Tanaka Studio.">
+    <meta name="keywords" content="C ya, So Tanaka, Tokyo designer, contemporary design, Japanese design">
+    <meta name="author" content="So Tanaka">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="C ya by So Tanaka Studio">
+    <meta property="og:description" content="C ya is a work by So Tanaka Studio.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sotanaka.com/cya.html">
+    <meta property="og:image" content="https://sotanaka.com/images/social/homepage-social.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://sotanaka.com/cya.html">
+    <title>C ya by So Tanaka Studio</title>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": "C ya",
+      "creator": {
+        "@type": "Person",
+        "name": "So Tanaka"
+      },
+      "dateCreated": "2025",
+      "url": "https://sotanaka.com/cya.html",
+      "description": "C ya is a work by So Tanaka Studio."
+    }
+    </script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="work-page.css">
+    <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script>
+    <script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz"></script>
+    <script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));window.amplitude.init('746eec9391b45c0239325340cd3baadd', {"autocapture":{"elementInteractions":true}});
+    
+    // Custom project tracking
+    document.addEventListener('DOMContentLoaded', function() {
+        amplitude.track('Project Viewed', {
+            project_name: 'C ya',
+            project_type: 'Work',
+            project_year: '2025'
+        });
+    });
+    </script>
+</head>
+<body>
+    <div class="sidebar">
+        <header>
+             <h1><a href="index.html">S O  T A N A K A</a></h1>
+        </header>
+        <nav>
+            <div class="category-nav">
+                <a href="index.html?filter=all" data-filter="all" id="all-link">WORK <span class="toggle-btn" id="toggle-btn">+</span></a>
+                <div class="sub-items" id="sub-items">
+                    <a href="index.html?filter=furniture" data-filter="furniture">FURNITURE</a>
+                    <a href="index.html?filter=light" data-filter="light">LIGHT</a>
+                    <a href="index.html?filter=other" data-filter="other">OTHER</a>
+                </div>
+                <a href="shop.html">SHOP</a>
+                <a href="bio.html">BIO</a>
+                <a href="archive.html">ARCHIVE</a>
+                <a href="contact.html">CONTACT</a>
+            </div>
+        </nav>
+    </div>
+    <main class="work-content">
+        <div class="work-description">
+            <h2>C ya</h2>
+            <br>
+            <p>2025</p>
+        </div>
+        <div class="work-images">
+            <img src="images/work - cya/1.cya_566520928.jpg" alt="C ya Image 1" class="lightbox-trigger">
+            <img src="images/work - cya/2.cya_567757694.jpg" alt="C ya Image 2" class="lightbox-trigger" style="margin-bottom: 0.3em;">
+            <p style="font-size: 9pt; text-align: left; margin: 0 0 2em 0;">Photos by Junya Igarashi.</p>
+        </div>
+    </main>
+
+    <div id="lightbox" class="lightbox">
+        <span class="close-button">&times;</span>
+        <img src="images/icons/prev-arrow.svg" class="prev-button">
+        <img class="lightbox-content" id="lightbox-img">
+        <img src="images/icons/next-arrow.svg" class="next-button">
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const closeButton = document.querySelector('.close-button');
+            const prevButton = document.querySelector('.prev-button');
+            const nextButton = document.querySelector('.next-button');
+            const imageTriggers = document.querySelectorAll('.lightbox-trigger');
+            const images = Array.from(imageTriggers).map(img => img.src);
+            let currentIndex;
+
+            function showImage(index) {
+                lightboxImg.src = images[index];
+                currentIndex = index;
+            }
+
+            imageTriggers.forEach((trigger, index) => {
+                trigger.addEventListener('click', () => {
+                    lightbox.classList.add('active');
+                    showImage(index);
+                });
+            });
+
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+            }
+
+            function showPrevImage() {
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                showImage(currentIndex);
+            }
+
+            function showNextImage() {
+                currentIndex = (currentIndex + 1) % images.length;
+                showImage(currentIndex);
+            }
+
+            closeButton.addEventListener('click', closeLightbox);
+            prevButton.addEventListener('click', showPrevImage);
+            nextButton.addEventListener('click', showNextImage);
+
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (lightbox.classList.contains('active')) {
+                    if (e.key === 'ArrowLeft') {
+                        showPrevImage();
+                    } else if (e.key === 'ArrowRight') {
+                        showNextImage();
+                    } else if (e.key === 'Escape') {
+                        closeLightbox();
+                    }
+                }
+            });
+        });
+    </script>
+    <footer>
+        <p>&copy; 2025 SOTANAKA. All rights reserved.</p>
+    </footer>
+    <script>
+    // Toggle functionality for collapsible navigation
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggleBtn = document.getElementById('toggle-btn');
+        const subItems = document.getElementById('sub-items');
+        const allLink = document.getElementById('all-link');
+        
+        if (toggleBtn && subItems) {
+            // Restore state from localStorage on page load
+            const navExpanded = localStorage.getItem('navExpanded') === 'true';
+            if (navExpanded) {
+                subItems.classList.add('expanded');
+                toggleBtn.textContent = '−';
+            }
+            
+            toggleBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                subItems.classList.toggle('expanded');
+                const isExpanded = subItems.classList.contains('expanded');
+                toggleBtn.textContent = isExpanded ? '−' : '+';
+                // Save state to localStorage
+                localStorage.setItem('navExpanded', isExpanded);
+            });
+            
+            // Prevent the ALL link from navigating when clicking the toggle
+            if (allLink) {
+                allLink.addEventListener('click', function(e) {
+                    // Only allow navigation if NOT clicking the toggle button
+                    if (e.target === toggleBtn) {
+                        e.preventDefault();
+                    }
+                });
+            }
+        }
+    });
+    </script>
+</body>
+</html>
