@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (galleryContainer) {
         // Detect if mobile for responsive images
         const isMobileDevice = window.innerWidth <= 768;
-        const imageFolder = isMobileDevice ? '_mobile' : '_2';
+        const imageFolder = isMobileDevice ? '_2_mobile' : '_2';
         
         const works = [
             { src: `images/top${imageFolder}/8.Let a_top_result_result.webp`, monoSrc: `images/mono${imageFolder}/8.Let a_top_mono_result_result.webp`, href: 'let-a-colored-paper-swim-in-clouds.html', category: 'other', alt: 'Let a' },
