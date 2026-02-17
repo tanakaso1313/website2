@@ -1,3 +1,4 @@
+# Security headers for all routes
 /*
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   Content-Security-Policy: default-src 'self'; script-src 'self' https://js.stripe.com/v3/; frame-src 'self' https://js.stripe.com/; base-uri 'self'; font-src 'self' https: data:; form-action 'self'; frame-ancestors 'self'; img-src 'self' data:; object-src 'none'; script-src-attr 'none'; style-src 'self' https: 'unsafe-inline'; upgrade-insecure-requests
@@ -8,3 +9,37 @@
   Permissions-Policy: geolocation=(), midi=(), microphone=(), camera=(), magnetometer=(), gyroscope=(), speaker=(), fullscreen=(self), payment=(self)
   Cross-Origin-Opener-Policy: same-origin
   Cross-Origin-Resource-Policy: same-origin
+
+# Cache static images for 1 year (immutable)
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.jpeg
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.gif
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache CSS and JS for 30 days
+/*.css
+  Cache-Control: public, max-age=2592000, immutable
+
+/*.js
+  Cache-Control: public, max-age=2592000, immutable
+
+# Cache JSON for 30 days
+/*.json
+  Cache-Control: public, max-age=2592000
+
+# HTML files cache for 1 hour with revalidation
+/*.html
+  Cache-Control: public, max-age=3600, must-revalidate
