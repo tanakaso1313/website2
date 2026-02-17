@@ -5,7 +5,14 @@
     "title": "Home",
     "url": "index.html",
     "description": "So Tanaka is a furniture and product design studio in Tokyo. Contemporary Japanese design pieces handcrafted in Japan.",
-    "keywords": ["home", "work", "portfolio", "furniture", "light", "design"]
+    "keywords": [
+      "home",
+      "work",
+      "portfolio",
+      "furniture",
+      "light",
+      "design"
+    ]
   },
   {
     "id": "page_shop",
@@ -13,7 +20,14 @@
     "title": "Shop",
     "url": "shop.html",
     "description": "Shop handcrafted furniture and lighting by So Tanaka Studio. Contemporary Japanese design pieces made in Tokyo.",
-    "keywords": ["shop", "buy", "purchase", "handcrafted", "furniture", "lighting"]
+    "keywords": [
+      "shop",
+      "buy",
+      "purchase",
+      "handcrafted",
+      "furniture",
+      "lighting"
+    ]
   },
   {
     "id": "page_bio",
@@ -21,7 +35,25 @@
     "title": "Bio",
     "url": "bio.html",
     "description": "About So Tanaka Studio. Material research and design studio established in 2020 by Soichiro Tanaka.",
-    "keywords": ["bio", "about", "studio", "designer", "tokyo", "exhibitions", "awards", "cont", "moro craft", "moro", "licht", "information", "esme tena", "stockist", "gallery", "tortoise general store", "ataw"]
+    "keywords": [
+      "bio",
+      "about",
+      "studio",
+      "designer",
+      "tokyo",
+      "exhibitions",
+      "awards",
+      "cont",
+      "moro craft",
+      "moro",
+      "licht",
+      "information",
+      "esme tena",
+      "stockist",
+      "gallery",
+      "tortoise general store",
+      "ataw"
+    ]
   },
   {
     "id": "page_archive",
@@ -29,7 +61,24 @@
     "title": "Archive",
     "url": "archive.html",
     "description": "Archive of past exhibitions and events from So Tanaka design studio.",
-    "keywords": ["archive", "exhibitions", "events", "history", "designtide", "moro craft", "liminal objects", "information", "vnsh", "let a colored paper", "rinnai aoyama", "tiers gallery", "2023", "2025", "solo exhibition", "group exhibition"]
+    "keywords": [
+      "archive",
+      "exhibitions",
+      "events",
+      "history",
+      "designtide",
+      "moro craft",
+      "liminal objects",
+      "information",
+      "vnsh",
+      "let a colored paper",
+      "rinnai aoyama",
+      "tiers gallery",
+      "2023",
+      "2025",
+      "solo exhibition",
+      "group exhibition"
+    ]
   },
   {
     "id": "page_contact",
@@ -37,7 +86,12 @@
     "title": "Contact",
     "url": "contact.html",
     "description": "Contact So Tanaka Studio",
-    "keywords": ["contact", "email", "instagram", "info"]
+    "keywords": [
+      "contact",
+      "email",
+      "instagram",
+      "info"
+    ]
   },
   {
     "id": "work_cya",
@@ -45,7 +99,13 @@
     "title": "C ya",
     "url": "cya.html",
     "description": "C ya work by So Tanaka Studio",
-    "keywords": ["c ya", "cya", "work", "junya igarashi", "photographer"]
+    "keywords": [
+      "c ya",
+      "cya",
+      "work",
+      "junya igarashi",
+      "photographer"
+    ]
   },
   {
     "id": "work_let_a_colored",
@@ -53,7 +113,17 @@
     "title": "Let a colored paper swim in clouds",
     "url": "let-a-colored-paper-swim-in-clouds.html",
     "description": "Installation work exploring color and form",
-    "keywords": ["let a colored", "lcsc", "installation", "color", "paper", "clouds", "white cement", "colored paper", "cement"]
+    "keywords": [
+      "let a colored",
+      "lcsc",
+      "installation",
+      "color",
+      "paper",
+      "clouds",
+      "white cement",
+      "colored paper",
+      "cement"
+    ]
   },
   {
     "id": "work_liminal_lamp",
@@ -61,7 +131,15 @@
     "title": "Liminal Lamp",
     "url": "liminal-lamp.html",
     "description": "Contemporary lighting design",
-    "keywords": ["liminal lamp", "light", "lighting", "lamp", "mdf", "paper", "lacquer"]
+    "keywords": [
+      "liminal lamp",
+      "light",
+      "lighting",
+      "lamp",
+      "mdf",
+      "paper",
+      "lacquer"
+    ]
   },
   {
     "id": "work_liminal_objects",
@@ -69,7 +147,15 @@
     "title": "Liminal Objects",
     "url": "liminal-objects.html",
     "description": "Series of sculptural objects exploring liminality",
-    "keywords": ["liminal objects", "sculpture", "objects", "lo", "mdf", "lacquer", "grid"]
+    "keywords": [
+      "liminal objects",
+      "sculpture",
+      "objects",
+      "lo",
+      "mdf",
+      "lacquer",
+      "grid"
+    ]
   },
   {
     "id": "work_memento",
@@ -77,7 +163,15 @@
     "title": "Memento",
     "url": "memento.html",
     "description": "Product design exploring memory and time",
-    "keywords": ["memento", "memory", "time", "mmnt", "porcelain", "glazed porcelain", "ceramic"]
+    "keywords": [
+      "memento",
+      "memory",
+      "time",
+      "mmnt",
+      "porcelain",
+      "glazed porcelain",
+      "ceramic"
+    ]
   },
   {
     "id": "work_vnsh",
@@ -85,7 +179,17 @@
     "title": "Vnsh",
     "url": "vnsh.html",
     "description": "Lighting series that transcends visibility",
-    "keywords": ["vnsh", "vanish", "light", "lighting", "designart", "aluminium", "aluminum", "stainless steel", "led"]
+    "keywords": [
+      "vnsh",
+      "vanish",
+      "light",
+      "lighting",
+      "designart",
+      "aluminium",
+      "aluminum",
+      "stainless steel",
+      "led"
+    ]
   },
   {
     "id": "work_lti",
@@ -93,7 +197,13 @@
     "title": "Less Than Instrument",
     "url": "lti.html",
     "description": "Interactive sound and light installation",
-    "keywords": ["lti", "less than instrument", "sound", "light", "interactive"]
+    "keywords": [
+      "lti",
+      "less than instrument",
+      "sound",
+      "light",
+      "interactive"
+    ]
   },
   {
     "id": "work_ori",
@@ -101,7 +211,15 @@
     "title": "ORI",
     "url": "ori.html",
     "description": "Furniture design exploring folding and structure",
-    "keywords": ["ori", "furniture", "console", "folding", "roche bobois", "marble", "mdf"]
+    "keywords": [
+      "ori",
+      "furniture",
+      "console",
+      "folding",
+      "roche bobois",
+      "marble",
+      "mdf"
+    ]
   },
   {
     "id": "work_transfer",
@@ -109,7 +227,15 @@
     "title": "Transfer",
     "url": "transfer.html",
     "description": "Material exploration through transfer processes",
-    "keywords": ["transfer", "trsf", "material", "process", "white cement", "colored paper", "cement"]
+    "keywords": [
+      "transfer",
+      "trsf",
+      "material",
+      "process",
+      "white cement",
+      "colored paper",
+      "cement"
+    ]
   },
   {
     "id": "product_LO_HORSE",
@@ -118,7 +244,12 @@
     "url": "lo-horse.html",
     "description": "Liminal Objects series - Horse form",
     "price": "From ¥20,900 (tax included)",
-    "keywords": ["lo_horse", "horse", "liminal objects", "sculpture"]
+    "keywords": [
+      "lo_horse",
+      "horse",
+      "liminal objects",
+      "sculpture"
+    ]
   },
   {
     "id": "product_liminal-light-s",
@@ -127,133 +258,194 @@
     "url": "liminal-lamp-s_shop.html",
     "description": "Small size liminal lamp",
     "price": "¥66,000 (inc. tax)",
-    "keywords": ["liminal lamp s", "small", "lamp", "lighting"]
+    "keywords": [
+      "liminal lamp s",
+      "small",
+      "lamp",
+      "lighting"
+    ]
   },
   {
-    "id": "product_LO/02",
+    "id": "product_LO / 02",
     "type": "shop",
-    "title": "LO/02",
+    "title": "LO / 02",
     "url": "lo-02.html",
-    "description": "Liminal Objects LO/02",
+    "description": "Liminal Objects LO / 02",
     "price": "¥11,000 (inc. tax)",
-    "keywords": ["lo_02", "liminal objects", "sculpture"]
+    "keywords": [
+      "lo_02",
+      "liminal objects",
+      "sculpture"
+    ]
   },
   {
-    "id": "product_LO/05",
+    "id": "product_LO / 05",
     "type": "shop",
-    "title": "LO/05",
+    "title": "LO / 05",
     "url": "lo-05.html",
-    "description": "Liminal Objects LO/05",
+    "description": "Liminal Objects LO / 05",
     "price": "¥20,900 (inc. tax)",
-    "keywords": ["lo_05", "liminal objects", "sculpture"]
+    "keywords": [
+      "lo_05",
+      "liminal objects",
+      "sculpture"
+    ]
   },
   {
-    "id": "product_LO/06",
+    "id": "product_LO / 06",
     "type": "shop",
-    "title": "LO/06",
+    "title": "LO / 06",
     "url": "lo-06.html",
-    "description": "Liminal Objects LO/06",
+    "description": "Liminal Objects LO / 06",
     "price": "¥20,900 (inc. tax)",
-    "keywords": ["lo_06", "liminal objects", "sculpture"]
+    "keywords": [
+      "lo_06",
+      "liminal objects",
+      "sculpture"
+    ]
   },
   {
-    "id": "product_LO/07",
+    "id": "product_LO / 07",
     "type": "shop",
-    "title": "LO/07",
+    "title": "LO / 07",
     "url": "lo-07.html",
-    "description": "Liminal Objects LO/07",
+    "description": "Liminal Objects LO / 07",
     "price": "¥23,100 (inc. tax)",
-    "keywords": ["lo_07", "liminal objects", "sculpture"]
+    "keywords": [
+      "lo_07",
+      "liminal objects",
+      "sculpture"
+    ]
   },
   {
-    "id": "product_LO/09",
+    "id": "product_LO / 09",
     "type": "shop",
-    "title": "LO/09",
+    "title": "LO / 09",
     "url": "lo-09.html",
-    "description": "Liminal Objects LO/09",
+    "description": "Liminal Objects LO / 09",
     "price": "¥25,300 (inc. tax)",
-    "keywords": ["lo_09", "liminal objects", "sculpture"]
+    "keywords": [
+      "lo_09",
+      "liminal objects",
+      "sculpture"
+    ]
   },
   {
-    "id": "product_LO/10",
+    "id": "product_LO / 10",
     "type": "shop",
-    "title": "LO/10",
+    "title": "LO / 10",
     "url": "lo-10.html",
-    "description": "Liminal Objects LO/10",
+    "description": "Liminal Objects LO / 10",
     "price": "¥23,100 (inc. tax)",
-    "keywords": ["lo_10", "liminal objects", "sculpture"]
+    "keywords": [
+      "lo_10",
+      "liminal objects",
+      "sculpture"
+    ]
   },
   {
-    "id": "product_LO/11",
+    "id": "product_LO / 11",
     "type": "shop",
-    "title": "LO/11",
+    "title": "LO / 11",
     "url": "lo-11.html",
-    "description": "Liminal Objects LO/11",
+    "description": "Liminal Objects LO / 11",
     "price": "¥30,800 (inc. tax)",
-    "keywords": ["lo_11", "liminal objects", "sculpture"]
+    "keywords": [
+      "lo_11",
+      "liminal objects",
+      "sculpture"
+    ]
   },
   {
-    "id": "product_LO/20",
+    "id": "product_LO / 20",
     "type": "shop",
-    "title": "LO/20",
+    "title": "LO / 20",
     "url": "lo-20.html",
-    "description": "Liminal Objects LO/20",
+    "description": "Liminal Objects LO / 20",
     "price": "¥33,000 (inc. tax)",
-    "keywords": ["lo_20", "liminal objects", "sculpture"]
+    "keywords": [
+      "lo_20",
+      "liminal objects",
+      "sculpture"
+    ]
   },
   {
-    "id": "product_LO/22",
+    "id": "product_LO / 22",
     "type": "shop",
-    "title": "LO/22",
+    "title": "LO / 22",
     "url": "lo-22.html",
-    "description": "Liminal Objects LO/22",
+    "description": "Liminal Objects LO / 22",
     "price": "¥38,500 (inc. tax)",
-    "keywords": ["lo_22", "liminal objects", "sculpture"]
+    "keywords": [
+      "lo_22",
+      "liminal objects",
+      "sculpture"
+    ]
   },
   {
-    "id": "product_LO/23",
+    "id": "product_LO / 23",
     "type": "shop",
-    "title": "LO/23",
+    "title": "LO / 23",
     "url": "lo-23.html",
-    "description": "Liminal Objects LO/23",
+    "description": "Liminal Objects LO / 23",
     "price": "¥27,500 (inc. tax)",
-    "keywords": ["lo_23", "liminal objects", "sculpture"]
+    "keywords": [
+      "lo_23",
+      "liminal objects",
+      "sculpture"
+    ]
   },
   {
-    "id": "product_LO/24",
+    "id": "product_LO / 24",
     "type": "shop",
-    "title": "LO/24",
+    "title": "LO / 24",
     "url": "lo-24.html",
-    "description": "Liminal Objects LO/24",
+    "description": "Liminal Objects LO / 24",
     "price": "¥40,700 (inc. tax)",
-    "keywords": ["lo_24", "liminal objects", "sculpture"]
+    "keywords": [
+      "lo_24",
+      "liminal objects",
+      "sculpture"
+    ]
   },
   {
-    "id": "product_LO/25",
+    "id": "product_LO / 25",
     "type": "shop",
-    "title": "LO/25",
+    "title": "LO / 25",
     "url": "lo-25.html",
-    "description": "Liminal Objects LO/25",
+    "description": "Liminal Objects LO / 25",
     "price": "¥35,200 (inc. tax)",
-    "keywords": ["lo_25", "liminal objects", "sculpture"]
+    "keywords": [
+      "lo_25",
+      "liminal objects",
+      "sculpture"
+    ]
   },
   {
-    "id": "product_LO/26",
+    "id": "product_LO / 26",
     "type": "shop",
-    "title": "LO/26",
+    "title": "LO / 26",
     "url": "lo-26.html",
-    "description": "Liminal Objects LO/26",
+    "description": "Liminal Objects LO / 26",
     "price": "¥35,200 (inc. tax)",
-    "keywords": ["lo_26", "liminal objects", "sculpture"]
+    "keywords": [
+      "lo_26",
+      "liminal objects",
+      "sculpture"
+    ]
   },
   {
-    "id": "product_LO/27",
+    "id": "product_LO / 27",
     "type": "shop",
-    "title": "LO/27",
+    "title": "LO / 27",
     "url": "lo-27.html",
-    "description": "Liminal Objects LO/27",
+    "description": "Liminal Objects LO / 27",
     "price": "¥40,700 (inc. tax)",
-    "keywords": ["lo_27", "liminal objects", "sculpture"]
+    "keywords": [
+      "lo_27",
+      "liminal objects",
+      "sculpture"
+    ]
   },
   {
     "id": "product_vnsh",
@@ -262,6 +454,11 @@
     "url": "vnsh_shop.html",
     "description": "Vnsh lighting series",
     "price": "¥126,500 (inc. tax)",
-    "keywords": ["vnsh", "vanish", "lighting", "lamp"]
+    "keywords": [
+      "vnsh",
+      "vanish",
+      "lighting",
+      "lamp"
+    ]
   }
 ]
