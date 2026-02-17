@@ -72,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const img = document.createElement('img');
                 img.src = work.monoSrc;
                 img.alt = work.alt;
+                img.loading = 'lazy'; // Add native lazy loading
 
                 link.appendChild(img);
                 imageWrapper.appendChild(link);
