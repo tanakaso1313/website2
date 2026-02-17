@@ -1,0 +1,34 @@
+Price ID,Product ID,Product Name,Product Statement Descriptor,Product Tax Code,Description,Created (UTC),Amount,Currency,Interval,Interval Count,Usage Type,Aggregate Usage,Billing Scheme,Trial Period Days,Tax Behavior
+price_1T1flVEcQzNRltK0yQiG7aZX,prod_TSi1Wprr5Y6zc1,LO_20,,txcd_99999999,,2026-02-17 04:20,33000,jpy,,,,,per_unit,,inclusive
+price_1SvC2BEcQzNRltK0YfYIxscH,prod_SrMk1MRXi2EYKq,LIMINAL LAMP S,,txcd_99999999,,2026-01-30 07:22,66000,jpy,,,,,per_unit,,inclusive
+price_1SlKX3EcQzNRltK0lTUSdxTK,prod_Tim5GcekRof9Vx,LO_HORSE_L,,txcd_99999999,,2026-01-03 02:25,27500,jpy,,,,,per_unit,,inclusive
+price_1SlKWcEcQzNRltK0Bi9GW64L,prod_Tim4qUXuJzf1xz,LO_HORSE_S,,txcd_99999999,,2026-01-03 02:25,20900,jpy,,,,,per_unit,,inclusive
+price_1SVu3XEcQzNRltK0doDGqweT,prod_TSpixmZGwWITPX,LO_06,,txcd_99999999,,2025-11-21 13:07,20900,jpy,,,,,per_unit,,inclusive
+price_1SVme7EcQzNRltK0q5Ry3T4O,prod_TSi41FnkfQA0zw,LO_27,,txcd_99999999,,2025-11-21 05:12,40700,jpy,,,,,per_unit,,inclusive
+price_1SVmdnEcQzNRltK04AMEWA4i,prod_TSi3VWjJsxjSTd,LO_26,,txcd_99999999,,2025-11-21 05:12,35200,jpy,,,,,per_unit,,inclusive
+price_1SVmdOEcQzNRltK0MtrUkQzz,prod_TSi3Fl50vu0qfU,LO_25,,txcd_99999999,,2025-11-21 05:11,35200,jpy,,,,,per_unit,,inclusive
+price_1SVmcnEcQzNRltK0TU6d1xpc,prod_TSi2kvreGPMVV0,LO_24,,txcd_99999999,,2025-11-21 05:11,40700,jpy,,,,,per_unit,,inclusive
+price_1SVmcPEcQzNRltK0T1pRh1kt,prod_TSi299bQvl4iYY,LO_23,,txcd_99999999,,2025-11-21 05:10,27500,jpy,,,,,per_unit,,inclusive
+price_1SVmc2EcQzNRltK0MC90bvD1,prod_TSi2jglyUNOH5E,LO_22,,txcd_99999999,,2025-11-21 05:10,38500,jpy,,,,,per_unit,,inclusive
+price_1SVmbNEcQzNRltK0RLTZ7JDx,prod_TSi1Wprr5Y6zc1,LO_20,,txcd_99999999,,2025-11-21 05:09,33333,jpy,,,,,per_unit,,inclusive
+price_1SVmb3EcQzNRltK0SXgzD1E4,prod_TSi1j8WRA1mWrq,LO_19,,txcd_99999999,,2025-11-21 05:09,20900,jpy,,,,,per_unit,,inclusive
+price_1SVmalEcQzNRltK0cz9DTIR9,prod_TSi0s7kX63W4Vc,LO_18,,txcd_99999999,,2025-11-21 05:09,104500,jpy,,,,,per_unit,,inclusive
+price_1SVma5EcQzNRltK0f9UgEEoU,prod_TSi0WpXybLrTnJ,LO_17,,txcd_99999999,,2025-11-21 05:08,82500,jpy,,,,,per_unit,,inclusive
+price_1SVmZfEcQzNRltK0wVQruPUm,prod_TShznuLNgGVxPC,LO_15,,txcd_99999999,,2025-11-21 05:07,52800,jpy,,,,,per_unit,,inclusive
+price_1SVmZEEcQzNRltK0QlNkhaVy,prod_TShzlAjBM7DY0K,LO_13,,txcd_99999999,,2025-11-21 05:07,46200,jpy,,,,,per_unit,,inclusive
+price_1SVmYuEcQzNRltK0W4ZHRzbg,prod_TShyvWS8isflUu,LO_12,,txcd_99999999,,2025-11-21 05:07,30800,jpy,,,,,per_unit,,inclusive
+price_1SVmYEEcQzNRltK0jOcxsg4L,prod_TShyXCveBdJ7tM,LO_11,,txcd_99999999,,2025-11-21 05:06,30800,jpy,,,,,per_unit,,inclusive
+price_1SVmXtEcQzNRltK0dsh8BZtb,prod_TShxgAqy3DrHtk,LO_10,,txcd_99999999,,2025-11-21 05:06,23100,jpy,,,,,per_unit,,inclusive
+price_1SVmXPEcQzNRltK0QsEq7lUL,prod_TShxDBbCL0y2tE,LO_09,,txcd_99999999,,2025-11-21 05:05,25300,jpy,,,,,per_unit,,inclusive
+price_1SVmWLEcQzNRltK0m5RbuiD0,prod_TShwusA8fYsD5L,LO_07,,txcd_99999999,,2025-11-21 05:04,23100,jpy,,,,,per_unit,,inclusive
+price_1SVmVxEcQzNRltK05Sl0sUlq,prod_TShvLWPmCvxDw4,LO_08,,txcd_99999999,,2025-11-21 05:04,20900,jpy,,,,,per_unit,,inclusive
+price_1SVmUsEcQzNRltK0qwk91vZQ,prod_TShuqKygChMEuJ,LO_05,,txcd_99999999,,2025-11-21 05:03,20900,jpy,,,,,per_unit,,inclusive
+price_1SVmTwEcQzNRltK0vOhiKAkS,prod_TShtpGUwJLziUV,LO_04,,txcd_99999999,,2025-11-21 05:02,16500,jpy,,,,,per_unit,,inclusive
+price_1SVmPPEcQzNRltK01zgMhZEW,prod_TShptChHuDuR7D,LO_03,,txcd_99999999,,2025-11-21 04:57,16500,jpy,,,,,per_unit,,inclusive
+price_1SVmP2EcQzNRltK05KJowWeL,prod_TShoaHMsIIlGhu,LO_02,,txcd_99999999,,2025-11-21 04:57,11000,jpy,,,,,per_unit,,inclusive
+price_1SVmKtEcQzNRltK08jvbqA2w,prod_TShknxhxHEdrez,LO_01,,txcd_99999999,,2025-11-21 04:52,11000,jpy,,,,,per_unit,,inclusive
+price_1SRanLEcQzNRltK0IPX6MFwN,prod_SoEGyBKVCd6kxQ,VNSH,,txcd_99999999,,2025-11-09 15:44,126500,jpy,,,,,per_unit,,inclusive
+price_1SRadQEcQzNRltK0SAMtMg7O,prod_SrMk1MRXi2EYKq,LIMINAL LAMP S,,txcd_99999999,,2025-11-09 15:34,68182,jpy,,,,,per_unit,,exclusive
+price_1SRaVdEcQzNRltK0QfQwITuO,prod_SoEGyBKVCd6kxQ,VNSH,,txcd_99999999,,2025-11-09 15:26,115000,jpy,,,,,per_unit,,exclusive
+price_1Rve0nEcQzNRltK0TD20siMZ,prod_SrMk1MRXi2EYKq,LIMINAL LAMP S,,txcd_99999999,,2025-08-13 12:42,75000,jpy,,,,,per_unit,,inclusive
+price_1RsboBEcQzNRltK07kdrLMy7,prod_SoEGyBKVCd6kxQ,VNSH,,txcd_99999999,,2025-08-05 03:45,105600,jpy,,,,,per_unit,,inclusive

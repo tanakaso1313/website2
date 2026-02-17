@@ -426,35 +426,42 @@ document.addEventListener('DOMContentLoaded', () => {
                 button.textContent = '...';
                 
                 try {
-                    // Create checkout session
-                    const response = await fetch('/create-checkout-session', {
+                    // NEW: Use Vercel API endpoint for dynamic checkout with metadata
+                    const VERCEL_API_URL = window.VERCEL_API_URL || 'https://sotanaka-shop.vercel.app/api/create-checkout';
+                    
+                    // Get the price ID from the button's data attribute
+                    const priceId = button.getAttribute('data-price-id');
+                    if (!priceId) {
+                        alert('Product configuration error. Please contact support.');
+                        return;
+                    }
+
+                    const response = await fetch(VERCEL_API_URL, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify({ productId, color, size })
+                        body: JSON.stringify({ 
+                            productId, 
+                            color, 
+                            size,
+                            priceId,
+                            successUrl: `${window.location.origin}/success.html`,
+                            cancelUrl: `${window.location.origin}/cancel.html`
+                        })
                     });
 
-                    const session = await response.json();
+                    const result = await response.json();
 
-                    if (response.ok) {
-                        // Redirect to Stripe Checkout
-                        const stripeClient = getStripe();
-                        const result = await stripeClient.redirectToCheckout({
-                            sessionId: session.id
-                        });
-
-                        if (result.error) {
-                            console.error('Stripe error:', result.error);
-                            alert('Payment failed. Please try again.');
-                        }
+                    if (response.ok && result.url) {
+                        // Redirect directly to Stripe Checkout (no need for Stripe.js)
+                        window.location.href = result.url;
                     } else {
-                        console.error('Server error:', session.error);
+                        console.error('API error:', result.error || result.message);
                         alert('Unable to process payment. Please try again.');
                     }
                 } catch (error) {
                     console.error('Network error:', error);
-                    // If Stripe.js is blocked, the size/color UI should still work, but dynamic checkout won't.
                     alert('Payment error. Please try again.');
                 } finally {
                     // Re-enable button
