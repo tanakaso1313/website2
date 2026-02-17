@@ -35,9 +35,6 @@ module.exports = async (req, res) => {
         {
           price: priceId,
           quantity: 1,
-          ...(description && {
-            description: description,
-          }),
         },
       ],
       mode: 'payment',
