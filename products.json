@@ -5,7 +5,8 @@
     "price": "From ¥20,900 (tax included)",
     "image": "LO_Horse.webp",
     "hoverImage": "LO_Horse.webp",
-    "page": "lo-horse.html"
+    "page": "lo-horse.html",
+    "altText": "LO HORSE sculptural MDF grid horse figure with red lacquer finish by So Tanaka Studio Tokyo"
   },
   {
     "id": "liminal-light-s",
@@ -13,7 +14,8 @@
     "price": "¥66,000 (inc. tax)",
     "image": "images/Shop - top/2.liminal lamp_result_result.webp",
     "hoverImage": "images/shop - liminal lamp/4.DSC06078_result_result.webp",
-    "page": "liminal-lamp-s_shop.html"
+    "page": "liminal-lamp-s_shop.html",
+    "altText": "Liminal Lamp S contemporary Japanese paper lamp sculptural lighting in MDF and lacquer by So Tanaka Studio"
   },
   {
     "id": "LO / 02",
@@ -21,7 +23,8 @@
     "price": "¥11,000 (inc. tax)",
     "image": "LO_02.webp",
     "hoverImage": "LO_02_G.webp",
-    "page": "lo-02.html"
+    "page": "lo-02.html",
+    "altText": "LO 02 geometric MDF sculptural object with white lacquer finish from Liminal Objects collection by So Tanaka"
   },
   {
     "id": "LO / 05",
@@ -29,7 +32,8 @@
     "price": "¥20,900 (inc. tax)",
     "image": "LO_05.webp",
     "hoverImage": "LO_05_G.webp",
-    "page": "lo-05.html"
+    "page": "lo-05.html",
+    "altText": "LO 05 architectural grid structure in MDF with colored lacquer finish handcrafted Japanese design"
   },
   {
     "id": "LO / 06",
@@ -37,7 +41,8 @@
     "price": "¥20,900 (inc. tax)",
     "image": "LO_06_G.webp",
     "hoverImage": "LO_06_R.webp",
-    "page": "lo-06.html"
+    "page": "lo-06.html",
+    "altText": "LO 06 three-dimensional grid sculpture in lacquered MDF contemporary minimalist furniture by So Tanaka Tokyo"
   },
   {
     "id": "LO / 07",
@@ -45,7 +50,8 @@
     "price": "¥23,100 (inc. tax)",
     "image": "LO_07.webp",
     "hoverImage": "LO_07.webp",
-    "page": "lo-07.html"
+    "page": "lo-07.html",
+    "altText": "LO 07 modular sculptural furniture piece in MDF and lacquer paint from Liminal Objects series"
   },
   {
     "id": "LO / 09",
@@ -53,7 +59,8 @@
     "price": "¥25,300 (inc. tax)",
     "image": "LO_09.webp",
     "hoverImage": "LO_09.webp",
-    "page": "lo-09.html"
+    "page": "lo-09.html",
+    "altText": "LO 09 architectural grid object in lacquered MDF minimalist Japanese design furniture by So Tanaka"
   },
   {
     "id": "LO / 10",
@@ -61,7 +68,8 @@
     "price": "¥23,100 (inc. tax)",
     "image": "LO_10_W.webp",
     "hoverImage": "LO_10_Y.webp",
-    "page": "lo-10.html"
+    "page": "lo-10.html",
+    "altText": "LO 10 geometric sculptural furniture in white and yellow lacquered MDF contemporary Tokyo design"
   },
   {
     "id": "LO / 11",
@@ -69,7 +77,8 @@
     "price": "¥30,800 (inc. tax)",
     "image": "LO_11.webp",
     "hoverImage": "LO_11.webp",
-    "page": "lo-11.html"
+    "page": "lo-11.html",
+    "altText": "LO 11 three-dimensional grid structure lacquered MDF sculptural design object by So Tanaka Studio"
   },
   {
     "id": "LO / 20",
@@ -77,7 +86,8 @@
     "price": "¥33,000 (inc. tax)",
     "image": "LO_20.webp",
     "hoverImage": "LO_20.webp",
-    "page": "lo-20.html"
+    "page": "lo-20.html",
+    "altText": "LO 20 modular grid furniture piece in MDF with lacquer finish handcrafted in Tokyo Japan"
   },
   {
     "id": "LO / 22",
@@ -85,7 +95,8 @@
     "price": "¥38,500 (inc. tax)",
     "image": "LO_22.webp",
     "hoverImage": "LO_22.webp",
-    "page": "lo-22.html"
+    "page": "lo-22.html",
+    "altText": "LO 22 architectural sculptural object lacquered MDF grid structure contemporary Japanese furniture"
   },
   {
     "id": "LO / 23",
@@ -93,7 +104,8 @@
     "price": "¥27,500 (inc. tax)",
     "image": "LO_23.webp",
     "hoverImage": "LO_23.webp",
-    "page": "lo-23.html"
+    "page": "lo-23.html",
+    "altText": "LO 23 geometric grid furniture in lacquered MDF minimalist design by So Tanaka Studio Tokyo"
   },
   {
     "id": "LO / 24",
@@ -101,7 +113,8 @@
     "price": "¥40,700 (inc. tax)",
     "image": "LO_24.webp",
     "hoverImage": "LO_24.webp",
-    "page": "lo-24.html"
+    "page": "lo-24.html",
+    "altText": "LO 24 three-dimensional grid sculptural furniture in MDF and lacquer paint contemporary Tokyo craft"
   },
   {
     "id": "LO / 25",
@@ -109,7 +122,8 @@
     "price": "¥35,200 (inc. tax)",
     "image": "L0_25.webp",
     "hoverImage": "L0_25.webp",
-    "page": "lo-25.html"
+    "page": "lo-25.html",
+    "altText": "LO 25 modular lacquered MDF furniture architectural grid design handcrafted by So Tanaka"
   },
   {
     "id": "LO / 26",
@@ -117,7 +131,8 @@
     "price": "¥35,200 (inc. tax)",
     "image": "LO_26.webp",
     "hoverImage": "LO_26.webp",
-    "page": "lo-26.html"
+    "page": "lo-26.html",
+    "altText": "LO 26 sculptural grid object in lacquered MDF minimalist Japanese furniture design Tokyo studio"
   },
   {
     "id": "LO / 27",
@@ -125,7 +140,8 @@
     "price": "¥40,700 (inc. tax)",
     "image": "LO_27_blackbg.webp",
     "hoverImage": "LO_27_W.webp",
-    "page": "lo-27.html"
+    "page": "lo-27.html",
+    "altText": "LO 27 architectural grid furniture piece lacquered MDF contemporary Japanese design by So Tanaka Studio"
   },
   {
     "id": "vnsh",
@@ -133,7 +149,8 @@
     "price": "¥126,500 (inc. tax)",
     "image": "images/Shop - top/1.vnsh_shop_result_result.webp",
     "hoverImage": "images/shop - vnsh/4.DSC02181_result_result.webp",
-    "page": "vnsh_shop.html"
+    "page": "vnsh_shop.html",
+    "altText": "VNSH contemporary floor lamp in aluminum stainless steel and MDF sculptural lighting by So Tanaka Studio Tokyo"
   },
   {
     "id": "LO_HORSE_S",
@@ -142,7 +159,8 @@
     "image": "LO_Horse.webp",
     "hoverImage": "LO_Horse.webp",
     "hidden": true,
-    "page": "lo-horse.html"
+    "page": "lo-horse.html",
+    "altText": "LO HORSE Small size sculptural MDF grid horse figure with red lacquer finish contemporary Japanese design"
   },
   {
     "id": "LO_HORSE_L",
@@ -151,7 +169,8 @@
     "image": "LO_Horse.jpg",
     "hoverImage": "LO_Horse.jpg",
     "hidden": true,
-    "page": "lo-horse.html"
+    "page": "lo-horse.html",
+    "altText": "LO HORSE Large size sculptural MDF grid horse figure with red lacquer finish handcrafted in Tokyo"
   },
   {
     "id": "LO / 01",
@@ -160,7 +179,8 @@
     "image": "images/top_2/6.Liminal Objects_top_result_result.webp",
     "hoverImage": "images/top_2/6.Liminal Objects_top_result_result.webp",
     "hidden": true,
-    "page": "lo-01.html"
+    "page": "lo-01.html",
+    "altText": "LO 01 geometric sculptural furniture in lacquered MDF from Liminal Objects collection by So Tanaka"
   },
   {
     "id": "LO / 03",
@@ -169,7 +189,8 @@
     "image": "images/top_2/6.Liminal Objects_top_result_result.webp",
     "hoverImage": "images/top_2/6.Liminal Objects_top_result_result.webp",
     "hidden": true,
-    "page": "lo-03.html"
+    "page": "lo-03.html",
+    "altText": "LO 03 modular grid furniture in MDF and lacquer paint contemporary Japanese design Tokyo"
   },
   {
     "id": "LO / 04",
@@ -178,7 +199,8 @@
     "image": "images/top_2/6.Liminal Objects_top_result_result.webp",
     "hoverImage": "images/top_2/6.Liminal Objects_top_result_result.webp",
     "hidden": true,
-    "page": "lo-04.html"
+    "page": "lo-04.html",
+    "altText": "LO 04 three-dimensional grid sculptural object in lacquered MDF minimalist furniture by So Tanaka"
   },
   {
     "id": "LO / 08",
@@ -187,7 +209,8 @@
     "image": "images/top_2/6.Liminal Objects_top_result_result.webp",
     "hoverImage": "images/top_2/6.Liminal Objects_top_result_result.webp",
     "hidden": true,
-    "page": "lo-08.html"
+    "page": "lo-08.html",
+    "altText": "LO 08 architectural grid furniture piece in MDF with lacquer finish handcrafted Japanese design"
   },
   {
     "id": "LO / 12",
@@ -196,7 +219,8 @@
     "image": "images/top_2/6.Liminal Objects_top_result_result.webp",
     "hoverImage": "images/top_2/6.Liminal Objects_top_result_result.webp",
     "hidden": true,
-    "page": "lo-12.html"
+    "page": "lo-12.html",
+    "altText": "LO 12 geometric sculptural furniture in lacquered MDF contemporary Tokyo design by So Tanaka Studio"
   },
   {
     "id": "LO / 13",
@@ -205,7 +229,8 @@
     "image": "images/top_2/6.Liminal Objects_top_result_result.webp",
     "hoverImage": "images/top_2/6.Liminal Objects_top_result_result.webp",
     "hidden": true,
-    "page": "lo-13.html"
+    "page": "lo-13.html",
+    "altText": "LO 13 modular grid structure in MDF and lacquer paint minimalist Japanese furniture design"
   },
   {
     "id": "LO / 15",
@@ -214,7 +239,8 @@
     "image": "images/top_2/6.Liminal Objects_top_result_result.webp",
     "hoverImage": "images/top_2/6.Liminal Objects_top_result_result.webp",
     "hidden": true,
-    "page": "lo-15.html"
+    "page": "lo-15.html",
+    "altText": "LO 15 three-dimensional grid sculptural furniture lacquered MDF handcrafted in Tokyo Japan"
   },
   {
     "id": "LO / 17",
@@ -223,7 +249,8 @@
     "image": "images/top_2/6.Liminal Objects_top_result_result.webp",
     "hoverImage": "images/top_2/6.Liminal Objects_top_result_result.webp",
     "hidden": true,
-    "page": "lo-17.html"
+    "page": "lo-17.html",
+    "altText": "LO 17 architectural grid furniture in MDF with lacquer finish contemporary Japanese design by So Tanaka"
   },
   {
     "id": "LO / 18",
@@ -232,7 +259,8 @@
     "image": "images/top_2/6.Liminal Objects_top_result_result.webp",
     "hoverImage": "images/top_2/6.Liminal Objects_top_result_result.webp",
     "hidden": true,
-    "page": "lo-18.html"
+    "page": "lo-18.html",
+    "altText": "LO 18 geometric sculptural object in lacquered MDF minimalist furniture Tokyo design studio"
   },
   {
     "id": "LO / 19",
@@ -241,6 +269,7 @@
     "image": "images/top_2/6.Liminal Objects_top_result_result.webp",
     "hoverImage": "images/top_2/6.Liminal Objects_top_result_result.webp",
     "hidden": true,
-    "page": "lo-19.html"
+    "page": "lo-19.html",
+    "altText": "LO 19 modular grid furniture piece in MDF and lacquer paint contemporary Japanese craft by So Tanaka"
   }
 ]

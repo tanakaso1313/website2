@@ -52,7 +52,9 @@
                 <a href="contact.html">CONTACT</a>
                 <a href="search.html">SEARCH</a>
             </div>
+            </div>
         </nav>
+    </div>
     </div>
     <div class="top-images"></div>
     <script>
@@ -74,9 +76,10 @@
                         let linkStart = product.page ? `<a href="${product.page}">` : '';
                         let linkEnd = product.page ? '</a>' : '';
                         const displayName = product.id && product.id.startsWith('LO_') ? product.id : product.name;
+                        const altText = product.altText || displayName;
                         productItem.innerHTML = `
                             ${linkStart}
-                                <img src="${product.image}" alt="${displayName}" data-hover-src="${product.hoverImage || product.image}">
+                                <img src="${product.image}" alt="${altText}" data-hover-src="${product.hoverImage || product.image}">
                                 <h3>${displayName}</h3>
                                  <p>${product.price}</p>
                              ${linkEnd}
@@ -95,7 +98,7 @@
                              img.src = originalSrc;
                          });
                          
-                         topImagesContainer.appendChild(productItem);
+                     topImagesContainer.appendChild(productItem);
                      });
                 })
                 .catch(error => {
@@ -103,9 +106,6 @@
                 });
         });
     </script>
-    <div class="legal-policy">
-        <a href="legal.html">LEGAL POLICY</a>
-    </div>
     <footer>
         <p>&copy; 2025 SOTANAKA. All rights reserved.</p>
     </footer>
