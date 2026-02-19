@@ -49,6 +49,13 @@
         #cursor svg {
             width: 40px;
             height: 52px;
+            transition: all 0.3s ease;
+        }
+        
+        /* Size L selected: larger cursor */
+        #cursor.size-large svg {
+            width: 60px;
+            height: 78px;
         }
     </style>
     <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script>
@@ -199,6 +206,52 @@
                 cursor.style.left = e.clientX + 'px';
                 cursor.style.top = e.clientY + 'px';
             });
+            
+            // Color mapping for the cursor (based on product colors)
+            const colorMap = {
+                'White': '#f3f3f3',
+                'Grey': '#cbcbcb',
+                'Natural': '#6e563a',
+                'Olive Grey': '#433c22',
+                'Light Khaki': '#d3ad84',
+                'Yellow': '#fceb65',
+                'Milk Orange': '#ebaa7e',
+                'Green': '#5ecb76',
+                'Neon Green': '#74fb4c',
+                'Blue': '#0000f5',
+                'Neon Red': '#ea3323'
+            };
+            
+            // Track color button clicks (with delay to ensure buttons are initialized)
+            setTimeout(() => {
+                document.querySelectorAll('[data-color]').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const colorName = this.getAttribute('data-color');
+                        const colorValue = colorMap[colorName] || '#cc1f1f'; // fallback to original red
+                        
+                        // Update cursor color only (no size change)
+                        const lines = cursor.querySelectorAll('svg rect, svg line');
+                        lines.forEach(line => {
+                            line.style.stroke = colorValue;
+                        });
+                    });
+                });
+                
+                // Track size button clicks
+                document.querySelectorAll('.size-pill').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const sizeValue = this.getAttribute('data-size-value');
+                        
+                        if (sizeValue && sizeValue.includes('_L')) {
+                            // Large size selected
+                            cursor.classList.add('size-large');
+                        } else {
+                            // Small size selected
+                            cursor.classList.remove('size-large');
+                        }
+                    });
+                });
+            }, 100);
         });
     </script>
 
