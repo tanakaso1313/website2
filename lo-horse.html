@@ -52,6 +52,15 @@
             transition: all 0.3s ease;
         }
         
+        /* Set rotation origin for legs to pivot from top (where they connect to body) */
+        #front-leg {
+            transform-origin: 20px 80px; /* x=20 (center of leg), y=80 (top of leg) */
+        }
+        
+        #back-leg {
+            transform-origin: 70px 80px; /* x=70 (center of leg), y=80 (top of leg) */
+        }
+        
         /* Size L selected: larger cursor */
         #cursor.size-large svg {
             width: 60px;
@@ -93,20 +102,24 @@
             <line x1="10" y1="70" x2="80" y2="70" stroke="#cc1f1f" stroke-width="1"/>
             
             <!-- Front leg: x=10, y=80, width=20, height=50 -->
-            <rect x="10" y="80" width="20" height="50" stroke="#cc1f1f" stroke-width="1" fill="none"/>
-            <line x1="20" y1="80" x2="20" y2="130" stroke="#cc1f1f" stroke-width="1"/>
-            <line x1="10" y1="90" x2="30" y2="90" stroke="#cc1f1f" stroke-width="1"/>
-            <line x1="10" y1="100" x2="30" y2="100" stroke="#cc1f1f" stroke-width="1"/>
-            <line x1="10" y1="110" x2="30" y2="110" stroke="#cc1f1f" stroke-width="1"/>
-            <line x1="10" y1="120" x2="30" y2="120" stroke="#cc1f1f" stroke-width="1"/>
+            <g id="front-leg">
+                <rect x="10" y="80" width="20" height="50" stroke="#cc1f1f" stroke-width="1" fill="none"/>
+                <line x1="20" y1="80" x2="20" y2="130" stroke="#cc1f1f" stroke-width="1"/>
+                <line x1="10" y1="90" x2="30" y2="90" stroke="#cc1f1f" stroke-width="1"/>
+                <line x1="10" y1="100" x2="30" y2="100" stroke="#cc1f1f" stroke-width="1"/>
+                <line x1="10" y1="110" x2="30" y2="110" stroke="#cc1f1f" stroke-width="1"/>
+                <line x1="10" y1="120" x2="30" y2="120" stroke="#cc1f1f" stroke-width="1"/>
+            </g>
             
             <!-- Back leg: x=60, y=80, width=20, height=50 -->
-            <rect x="60" y="80" width="20" height="50" stroke="#cc1f1f" stroke-width="1" fill="none"/>
-            <line x1="70" y1="80" x2="70" y2="130" stroke="#cc1f1f" stroke-width="1"/>
-            <line x1="60" y1="90" x2="80" y2="90" stroke="#cc1f1f" stroke-width="1"/>
-            <line x1="60" y1="100" x2="80" y2="100" stroke="#cc1f1f" stroke-width="1"/>
-            <line x1="60" y1="110" x2="80" y2="110" stroke="#cc1f1f" stroke-width="1"/>
-            <line x1="60" y1="120" x2="80" y2="120" stroke="#cc1f1f" stroke-width="1"/>
+            <g id="back-leg">
+                <rect x="60" y="80" width="20" height="50" stroke="#cc1f1f" stroke-width="1" fill="none"/>
+                <line x1="70" y1="80" x2="70" y2="130" stroke="#cc1f1f" stroke-width="1"/>
+                <line x1="60" y1="90" x2="80" y2="90" stroke="#cc1f1f" stroke-width="1"/>
+                <line x1="60" y1="100" x2="80" y2="100" stroke="#cc1f1f" stroke-width="1"/>
+                <line x1="60" y1="110" x2="80" y2="110" stroke="#cc1f1f" stroke-width="1"/>
+                <line x1="60" y1="120" x2="80" y2="120" stroke="#cc1f1f" stroke-width="1"/>
+            </g>
         </svg>
     </div>
     
@@ -196,7 +209,12 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const cursor = document.getElementById('cursor');
+            const frontLeg = document.getElementById('front-leg');
+            const backLeg = document.getElementById('back-leg');
             let hasMovedMouse = false;
+            let isMoving = false;
+            let moveTimeout;
+            let animationFrame = 0;
             
             document.addEventListener('mousemove', function(e) {
                 if (!hasMovedMouse) {
@@ -205,7 +223,44 @@
                 }
                 cursor.style.left = e.clientX + 'px';
                 cursor.style.top = e.clientY + 'px';
+                
+                // Start running animation
+                if (!isMoving) {
+                    isMoving = true;
+                    animateLegs();
+                }
+                
+                // Reset idle timeout
+                clearTimeout(moveTimeout);
+                moveTimeout = setTimeout(() => {
+                    isMoving = false;
+                    // Reset legs to default position
+                    frontLeg.style.transform = 'translateX(0)';
+                    backLeg.style.transform = 'translateX(0)';
+                }, 150); // Stop animation 150ms after cursor stops
             });
+            
+            // Animate legs moving left and right with rotation (running motion)
+            function animateLegs() {
+                if (!isMoving) return;
+                
+                animationFrame++;
+                const offset = 3; // pixels to move legs horizontally
+                const rotation = 15; // degrees to rotate
+                const cycle = animationFrame % 10; // 10 frames per cycle
+                
+                if (cycle < 5) {
+                    // Front leg forward and rotated, back leg backward and rotated opposite
+                    frontLeg.style.transform = `translateX(${offset}px) rotate(${rotation}deg)`;
+                    backLeg.style.transform = `translateX(-${offset}px) rotate(-${rotation}deg)`;
+                } else {
+                    // Front leg backward and rotated, back leg forward and rotated opposite
+                    frontLeg.style.transform = `translateX(-${offset}px) rotate(-${rotation}deg)`;
+                    backLeg.style.transform = `translateX(${offset}px) rotate(${rotation}deg)`;
+                }
+                
+                requestAnimationFrame(animateLegs);
+            }
             
             // Color mapping for the cursor (based on product colors)
             const colorMap = {
@@ -229,7 +284,7 @@
                         const colorName = this.getAttribute('data-color');
                         const colorValue = colorMap[colorName] || '#cc1f1f'; // fallback to original red
                         
-                        // Update cursor color only (no size change)
+                        // Update cursor color including leg groups
                         const lines = cursor.querySelectorAll('svg rect, svg line');
                         lines.forEach(line => {
                             line.style.stroke = colorValue;
