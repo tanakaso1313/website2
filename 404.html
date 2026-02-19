@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Page not found - So Tanaka Design Studio">
+    <meta name="robots" content="noindex">
+    <title>404 - Page Not Found | So Tanaka Studio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bio.css">
+    <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script>
+    <script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz"></script>
+    <script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));window.amplitude.init('746eec9391b45c0239325340cd3baadd', {"autocapture":{"elementInteractions":true}});
+    
+    // Track 404 events
+    document.addEventListener('DOMContentLoaded', function() {
+        window.amplitude.track('404 Page Viewed', {
+            page_type: '404',
+            attempted_url: window.location.pathname,
+            referrer: document.referrer
+        });
+    });
+    </script>
+    <style>
+        .error-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2em;
+        }
+        
+        .error-code {
+            font-size: 8em;
+            font-weight: 300;
+            line-height: 1;
+            margin: 0 0 0.2em 0;
+            color: #333;
+            letter-spacing: -0.02em;
+        }
+        
+        .error-message {
+            font-size: 1.5em;
+            font-weight: 400;
+            margin: 0 0 1em 0;
+            color: #333;
+        }
+        
+        .error-description {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin: 0 0 2em 0;
+            color: #666;
+        }
+        
+        .navigation-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8em;
+            margin: 2em 0;
+        }
+        
+        .navigation-links a {
+            display: block;
+            padding: 1em 1.5em;
+            background: #f5f5f5;
+            color: #333;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            font-size: 1em;
+        }
+        
+        .navigation-links a:hover {
+            background: #e8e8e8;
+            transform: translateX(4px);
+        }
+        
+        .navigation-links a::before {
+            content: '→ ';
+            margin-right: 0.5em;
+        }
+        
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 5em;
+            }
+            
+            .error-message {
+                font-size: 1.2em;
+            }
+            
+            .error-description {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <header>
+             <h1><a href="/">S O  T A N A K A</a></h1>
+        </header>
+        <nav>
+            <div class="main-links">
+                <a href="/">Work</a>
+                <a href="/furniture">Furniture</a>
+                <a href="/light">Light</a>
+                <a href="/other">Other</a>
+                <a href="/shop">Shop</a>
+                <a href="/bio">Bio</a>
+            </div>
+        </nav>
+    </div>
+    
+    <main>
+        <div class="error-container">
+            <h1 class="error-code">404</h1>
+            <h2 class="error-message">This page seems to have gone liminal</h2>
+            <p class="error-description">
+                Like one of our sculptural objects, this page exists somewhere between states — 
+                unfortunately, not the state you were looking for. It might have moved, 
+                been renamed, or perhaps it's just taking a contemplative pause.
+            </p>
+            
+            <div class="navigation-links">
+                <a href="/">View all work</a>
+                <a href="/furniture">Browse furniture designs</a>
+                <a href="/light">Explore lighting pieces</a>
+                <a href="/shop">Visit the shop</a>
+                <a href="/bio">Learn about the studio</a>
+            </div>
+            
+            <p style="margin-top: 3em; color: #999; font-size: 0.9em;">
+                If you believe this page should exist, please <a href="/contact" style="color: #666; text-decoration: underline;">let us know</a>.
+            </p>
+        </div>
+    </main>
+</body>
+</html>
