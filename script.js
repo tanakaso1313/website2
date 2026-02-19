@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Add footer after all images are rendered
             const footer = document.createElement('footer');
-            footer.innerHTML = '<p>&copy; 2025 SOTANAKA. All rights reserved.</p>';
+            footer.innerHTML = '<p>&copy; 2026 SOTANAKA. All rights reserved.</p>';
             galleryContainer.appendChild(footer);
 
             // Mobile scroll-based color change
