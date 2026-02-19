@@ -205,19 +205,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Update category links on all pages to point to dedicated category pages
-    filterLinks.forEach(link => {
-        const filter = link.dataset.filter;
-        if (filter) {
-            const categoryPages = {
-                'furniture': '/furniture',
-                'light': '/light',
-                'other': '/other'
-            };
-            link.href = categoryPages[filter] || `/?filter=${filter}`;
-        }
-    });
-
     // Stripe Checkout Integration
     const addToCartButtons = document.querySelectorAll('.add-to-cart');
     if (addToCartButtons.length > 0) {
