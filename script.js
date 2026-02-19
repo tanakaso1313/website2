@@ -145,9 +145,19 @@ document.addEventListener('DOMContentLoaded', () => {
             link.addEventListener('click', (e) => {
                 const filter = e.target.dataset.filter;
                 if (filter) {
-                    e.preventDefault();
-                    applyFilter(filter);
-                    history.pushState(null, '', `index.html?filter=${filter}`);
+                    // Navigate to dedicated category pages instead of filtering on homepage
+                    const categoryPages = {
+                        'furniture': '/furniture',
+                        'light': '/light',
+                        'other': '/other'
+                    };
+                    if (categoryPages[filter]) {
+                        window.location.href = categoryPages[filter];
+                    } else {
+                        e.preventDefault();
+                        applyFilter(filter);
+                        history.pushState(null, '', `/?filter=${filter}`);
+                    }
                 }
             });
         });
@@ -195,11 +205,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Update category links on all pages to point to index.html with filter
+    // Update category links on all pages to point to dedicated category pages
     filterLinks.forEach(link => {
         const filter = link.dataset.filter;
         if (filter) {
-            link.href = `index.html?filter=${filter}`;
+            const categoryPages = {
+                'furniture': '/furniture',
+                'light': '/light',
+                'other': '/other'
+            };
+            link.href = categoryPages[filter] || `/?filter=${filter}`;
         }
     });
 
