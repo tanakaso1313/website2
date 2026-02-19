@@ -3,96 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Page not found - So Tanaka Design Studio">
-    <meta name="robots" content="noindex">
-    <title>404 - Page Not Found | So Tanaka Studio</title>
+    <title>404 - Page Not Found | SO TANAKA</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <meta name="description" content="The page you're looking for doesn't exist. Take a moment to breathe and explore our work.">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="bio.css">
-    <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script>
-    <script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz"></script>
-    <script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));window.amplitude.init('746eec9391b45c0239325340cd3baadd', {"autocapture":{"elementInteractions":true}});
     
-    // Track 404 events
-    document.addEventListener('DOMContentLoaded', function() {
-        window.amplitude.track('404 Page Viewed', {
-            page_type: '404',
-            attempted_url: window.location.pathname,
-            referrer: document.referrer
-        });
+    <!-- Amplitude Analytics -->
+    <script>
+    !function(){"use strict";!function(e,t){var r=e.amplitude||{_q:[],_iq:{}};if(r.invoked)e.console&&console.error&&console.error("Amplitude snippet has been loaded.");else{r.invoked=!0;var n=t.createElement("script");n.type="text/javascript",n.integrity="sha384-+EO59vL/X7v6VE2s6/F4HxfHlK0nDUVWKVg8K9oUlvffAeeaShVBmbORTC2D3UF+",n.crossOrigin="anonymous",n.async=!0,n.src="https://cdn.amplitude.com/libs/analytics-browser-2.7.2-min.js.gz",n.onload=function(){e.amplitude.runQueuedFunctions||console.log("[Amplitude] Error: could not load SDK")};var s=t.getElementsByTagName("script")[0];s.parentNode.insertBefore(n,s);for(var o=function(){return this._q=[],this},i=["add","append","clearAll","prepend","set","setOnce","unset","preInsert","postInsert","remove","getUserProperties"],a=0;a<i.length;a++)r.Identify.prototype[i[a]]=o;for(var c=["getEventProperties","setProductId","setQuantity","setPrice","setRevenue","setRevenueType","setEventProperties"],u=0;u<c.length;u++)r.Revenue.prototype[c[u]]=o;var p=["getDeviceId","setDeviceId","getSessionId","setSessionId","getUserId","setUserId","setOptOut","setTransport","reset"],l=["init","add","remove","track","logEvent","identify","groupIdentify","setGroup","revenue","flush"];function d(e){function t(t,r){e[t]=function(){var n={promise:new Promise((r=>{e._q.push({name:t,args:Array.prototype.slice.call(arguments,0),resolve:r})}))};if(r)return n}}for(var r=0;r<p.length;r++)t(p[r],!1);for(var n=0;n<l.length;n++)t(l[n],!0)}d(r),r.createInstance=function(e){return r._iq[e]={_q:[]},d(r._iq[e]),r._iq[e]},e.amplitude=r}}(window,document)}();
+
+    amplitude.init('d6ae733fdc47ac47f3ac0cb28e7f78bf', {
+        defaultTracking: {
+            sessions: true,
+            pageViews: true,
+            formInteractions: false,
+            fileDownloads: false,
+        },
+    });
+
+    // Track 404 page view
+    amplitude.track('404 Page View', {
+        path: window.location.pathname,
+        referrer: document.referrer
     });
     </script>
-    <style>
-        .error-container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 2em;
-        }
-        
-        .error-code {
-            font-size: 8em;
-            font-weight: 300;
-            line-height: 1;
-            margin: 0 0 0.2em 0;
-            color: #333;
-            letter-spacing: -0.02em;
-        }
-        
-        .error-message {
-            font-size: 1.5em;
-            font-weight: 400;
-            margin: 0 0 1em 0;
-            color: #333;
-        }
-        
-        .error-description {
-            font-size: 1.1em;
-            line-height: 1.6;
-            margin: 0 0 2em 0;
-            color: #666;
-        }
-        
-        .navigation-links {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8em;
-            margin: 2em 0;
-        }
-        
-        .navigation-links a {
-            display: block;
-            padding: 1em 1.5em;
-            background: #f5f5f5;
-            color: #333;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: all 0.2s ease;
-            font-size: 1em;
-        }
-        
-        .navigation-links a:hover {
-            background: #e8e8e8;
-            transform: translateX(4px);
-        }
-        
-        .navigation-links a::before {
-            content: '→ ';
-            margin-right: 0.5em;
-        }
-        
-        @media (max-width: 768px) {
-            .error-code {
-                font-size: 5em;
-            }
-            
-            .error-message {
-                font-size: 1.2em;
-            }
-            
-            .error-description {
-                font-size: 1em;
-            }
-        }
-    </style>
 </head>
 <body>
     <div class="sidebar">
@@ -100,11 +35,13 @@
              <h1><a href="/">S O  T A N A K A</a></h1>
         </header>
         <nav>
-            <div class="main-links">
-                <a href="/">WORK</a>
-                <a href="/furniture">FURNITURE</a>
-                <a href="/light">LIGHT</a>
-                <a href="/other">OTHER</a>
+            <div class="category-nav">
+                <a href="/" data-filter="all" id="all-link">WORK <span class="toggle-btn" id="toggle-btn">+</span></a>
+                <div class="sub-items" id="sub-items">
+                    <a href="/furniture" data-filter="furniture">FURNITURE</a>
+                    <a href="/light" data-filter="light">LIGHT</a>
+                    <a href="/other" data-filter="other">OTHER</a>
+                </div>
                 <a href="/shop">SHOP</a>
                 <a href="/bio">BIO</a>
                 <a href="/archive">ARCHIVE</a>
@@ -115,17 +52,7 @@
     </div>
     
     <main class="bio-content">
-        <p>404</p>
-        <p>This page seems to have gone liminal.</p>
-        <p>Like one of our sculptural objects, this page exists somewhere between states — unfortunately, not the state you were looking for. It might have moved, been renamed, or perhaps it's just taking a contemplative pause.</p>
-        <br>
-        <p><a href="/">View all work</a><br>
-        <a href="/furniture">Browse furniture designs</a><br>
-        <a href="/light">Explore lighting pieces</a><br>
-        <a href="/shop">Visit the shop</a><br>
-        <a href="/bio">Learn about the studio</a></p>
-        <br>
-        <p>If you believe this page should exist, please <a href="/contact">let us know</a>.</p>
+        <p>Ooops... page not found. Head back to see our <a href="/" style="text-decoration: underline;">work</a> or browse the <a href="/shop" style="text-decoration: underline;">shop</a>.</p>
     </main>
 </body>
 </html>

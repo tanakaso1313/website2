@@ -156,7 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else {
                         e.preventDefault();
                         applyFilter(filter);
-                        history.pushState(null, '', `/?filter=${filter}`);
                     }
                 }
             });
