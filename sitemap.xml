@@ -7,7 +7,7 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/bio.html</loc>
+    <loc>https://sotanaka.com/bio</loc>
     <lastmod>2025-10-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -31,211 +31,211 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/contact.html</loc>
+    <loc>https://sotanaka.com/contact</loc>
     <lastmod>2025-10-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/shop.html</loc>
+    <loc>https://sotanaka.com/shop</loc>
     <lastmod>2025-10-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/transfer.html</loc>
-    <lastmod>2025-10-15</lastmod>
-    <changefreq>never</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://sotanaka.com/ori.html</loc>
+    <loc>https://sotanaka.com/transfer</loc>
     <lastmod>2025-10-15</lastmod>
     <changefreq>never</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/lti.html</loc>
+    <loc>https://sotanaka.com/ori</loc>
     <lastmod>2025-10-15</lastmod>
     <changefreq>never</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/vnsh.html</loc>
+    <loc>https://sotanaka.com/lti</loc>
     <lastmod>2025-10-15</lastmod>
     <changefreq>never</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/memento.html</loc>
+    <loc>https://sotanaka.com/vnsh</loc>
     <lastmod>2025-10-15</lastmod>
     <changefreq>never</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/liminal-objects.html</loc>
+    <loc>https://sotanaka.com/memento</loc>
     <lastmod>2025-10-15</lastmod>
     <changefreq>never</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/liminal-lamp.html</loc>
+    <loc>https://sotanaka.com/liminal-objects</loc>
     <lastmod>2025-10-15</lastmod>
     <changefreq>never</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/let-a-colored-paper-swim-in-clouds.html</loc>
+    <loc>https://sotanaka.com/liminal-lamp</loc>
     <lastmod>2025-10-15</lastmod>
     <changefreq>never</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/vnsh_shop.html</loc>
+    <loc>https://sotanaka.com/let-a-colored-paper-swim-in-clouds</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sotanaka.com/vnsh_shop</loc>
     <lastmod>2025-10-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/liminal-lamp-s_shop.html</loc>
+    <loc>https://sotanaka.com/liminal-lamp-s_shop</loc>
     <lastmod>2025-10-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/lo-01.html</loc>
+    <loc>https://sotanaka.com/lo-01</loc>
     <lastmod>2025-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/lo-02.html</loc>
+    <loc>https://sotanaka.com/lo-02</loc>
     <lastmod>2025-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/lo-03.html</loc>
+    <loc>https://sotanaka.com/lo-03</loc>
     <lastmod>2025-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/lo-04.html</loc>
+    <loc>https://sotanaka.com/lo-04</loc>
     <lastmod>2025-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/lo-05.html</loc>
+    <loc>https://sotanaka.com/lo-05</loc>
     <lastmod>2025-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/lo-06.html</loc>
+    <loc>https://sotanaka.com/lo-06</loc>
     <lastmod>2025-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/lo-07.html</loc>
+    <loc>https://sotanaka.com/lo-07</loc>
     <lastmod>2025-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/lo-09.html</loc>
+    <loc>https://sotanaka.com/lo-09</loc>
     <lastmod>2025-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/lo-10.html</loc>
+    <loc>https://sotanaka.com/lo-10</loc>
     <lastmod>2025-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/lo-11.html</loc>
+    <loc>https://sotanaka.com/lo-11</loc>
     <lastmod>2025-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/lo-12.html</loc>
+    <loc>https://sotanaka.com/lo-12</loc>
     <lastmod>2025-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/lo-13.html</loc>
+    <loc>https://sotanaka.com/lo-13</loc>
     <lastmod>2025-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/lo-15.html</loc>
+    <loc>https://sotanaka.com/lo-15</loc>
     <lastmod>2025-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/lo-17.html</loc>
+    <loc>https://sotanaka.com/lo-17</loc>
     <lastmod>2025-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/lo-18.html</loc>
+    <loc>https://sotanaka.com/lo-18</loc>
     <lastmod>2025-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/lo-19.html</loc>
+    <loc>https://sotanaka.com/lo-19</loc>
     <lastmod>2025-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/lo-20.html</loc>
+    <loc>https://sotanaka.com/lo-20</loc>
     <lastmod>2025-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/lo-22.html</loc>
+    <loc>https://sotanaka.com/lo-22</loc>
     <lastmod>2025-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/lo-23.html</loc>
+    <loc>https://sotanaka.com/lo-23</loc>
     <lastmod>2025-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/lo-24.html</loc>
+    <loc>https://sotanaka.com/lo-24</loc>
     <lastmod>2025-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/lo-25.html</loc>
+    <loc>https://sotanaka.com/lo-25</loc>
     <lastmod>2025-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/lo-26.html</loc>
+    <loc>https://sotanaka.com/lo-26</loc>
     <lastmod>2025-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/lo-27.html</loc>
+    <loc>https://sotanaka.com/lo-27</loc>
     <lastmod>2025-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
