@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contemporary Japanese design objects by So Tanaka Studio in Tokyo. Handcrafted design pieces including Liminal Objects, Memento, Transfer, and Let a colored paper swim in clouds.">
+    <meta name="keywords" content="Japanese design objects, contemporary design, minimalist design, Tokyo designer, Liminal Objects, Memento design, handcrafted design, Japanese design studio, So Tanaka design">
+    <meta name="author" content="So Tanaka">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Design Objects - So Tanaka Studio | Contemporary Japanese Design">
+    <meta property="article:publisher" content="https://sotanaka.com">
+    <meta property="og:description" content="Contemporary Japanese design objects by So Tanaka Studio. Handcrafted design pieces including Liminal Objects, Memento, and sculptural design works.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sotanaka.com/other">
+    <meta property="og:image" content="https://sotanaka.com/images/social/liminal-objects-social.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://sotanaka.com/other">
+    <title>Design Objects - Contemporary Japanese Design | So Tanaka Studio Tokyo</title>
+    <link rel="dns-prefetch" href="https://cdn.amplitude.com">
+    <link rel="preconnect" href="https://cdn.amplitude.com" crossorigin>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script>
+    <script defer src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz"></script>
+</head>
+<body>
+    <div class="sidebar">
+        <header>
+             <h1><a href="/">S O  T A N A K A</a></h1>
+        </header>
+        <nav>
+            <div class="category-nav">
+                <a href="/" data-filter="all" id="all-link">WORK <span class="toggle-btn" id="toggle-btn">+</span></a>
+                <div class="sub-items" id="sub-items" style="display: block;">
+                    <a href="/furniture" data-filter="furniture">FURNITURE</a>
+                    <a href="/light" data-filter="light">LIGHT</a>
+                    <a href="/other" data-filter="other" class="active">OTHER</a>
+                </div>
+                <a href="/shop">SHOP</a>
+                <a href="/bio">BIO</a>
+                <a href="/archive">ARCHIVE</a>
+                <a href="/contact">CONTACT</a>
+                <a href="/search">SEARCH</a>
+            </div>
+            <div class="mobile-work-links">
+                <a href="let-a-colored-paper-swim-in-clouds.html" data-work="LCSC">LCSC</a>
+                <a href="liminal-objects.html" data-work="LO">LO</a>
+                <a href="memento.html" data-work="MMNT">MMNT</a>
+                <a href="transfer.html" data-work="TRSF">TRSF</a>
+            </div>
+        </nav>
+    </div>
+    
+    <main>
+        <div class="gallery-container">
+        </div>
+    </main>
+    <script src="script.min.js"></script>
+    <script>
+    // Force other filter on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        const event = new CustomEvent('filterchange', { detail: { filter: 'other' } });
+        document.dispatchEvent(event);
+        
+        if (typeof renderGallery === 'function') {
+            renderGallery('other');
+        }
+    });
+    
+    // Initialize analytics
+    (function initAmplitude() {
+        if (typeof window.amplitude !== 'undefined' && typeof window.sessionReplay !== 'undefined') {
+            window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));
+            window.amplitude.init('746eec9391b45c0239325340cd3baadd', {"autocapture":{"elementInteractions":true}});
+            
+            window.amplitude.track('Category Page Viewed', {
+                page_type: 'category',
+                category: 'other',
+                page_name: 'Other Category'
+            });
+        } else {
+            setTimeout(initAmplitude, 100);
+        }
+    })();
+    </script>
+</body>
+</html>
