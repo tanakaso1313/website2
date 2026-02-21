@@ -17,18 +17,32 @@
     <title>Archive - So Tanaka Design Studio</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="bio.css">
+    <link rel="stylesheet" href="work-page.css">
     <style>
         /* Archive-specific styles */
-        .archive-section {
-            margin-bottom: 5em;
+        main {
+            padding-top: calc(7vh + 1em);
+            margin-left: 22vw;
         }
         
-        .archive-section h2 {
+        .archive-section {
+            display: flex;
+            padding-top: 0;
+            margin-bottom: 8em;
+        }
+        
+        .archive-description {
+            width: 25vw;
+            padding-left: 0;
+            padding-right: 5vw;
+        }
+        
+        .archive-description h2 {
             font-family: Arial, sans-serif;
             font-weight: normal;
             font-size: 16pt;
-            margin: 0 0 0.5em 0;
+            margin-top: calc(7vh + 1.9em);
+            margin-bottom: 2em;
         }
         
         .archive-meta {
@@ -37,77 +51,66 @@
             font-size: 0.95em;
         }
         
-        .archive-description {
+        .archive-text {
             margin-bottom: 2em;
             line-height: 1.6em;
             font-size: 0.95em;
         }
         
-        .archive-slideshow-container {
-            position: relative;
-            width: 100%;
-            height: 800px;
+        .archive-images {
+            width: 45vw;
+            padding-right: 3vw;
+            padding-top: 1em;
         }
         
-        .archive-slideshow-container img {
+        .archive-images img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            display: none;
+            margin-bottom: 2em;
             cursor: pointer;
         }
         
-        .archive-slideshow-container img.active {
-            display: block;
-        }
-        
-        .slideshow-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: transparent;
-            border: none;
-            padding: 0.5em 1em;
-            cursor: pointer;
-            font-size: 0.9em;
-            font-family: Arial, sans-serif;
-            font-weight: 200;
-            line-height: 1;
-            opacity: 0.3;
-            transition: opacity 0.3s;
-            z-index: 10;
-            color: #000;
-        }
-        
-        .slideshow-nav:hover {
-            opacity: 0.6;
-        }
-        
-        .slideshow-prev {
-            left: -3em;
-        }
-        
-        .slideshow-next {
-            right: -3em;
+        .exhibition-separator {
+            width: 100%;
+            height: 1px;
+            background-color: #ccc;
+            margin: 4em 0;
         }
         
         @media (max-width: 768px) {
+            main {
+                margin-left: 0;
+                padding-top: 2em;
+            }
+            
             .archive-section {
+                flex-direction: column;
+                padding-top: 0;
                 margin-bottom: 3em;
             }
             
-            .slideshow-nav {
-                padding: 0.7em 1em;
-                font-size: 1em;
+            .archive-description,
+            .archive-images {
+                width: 100%;
+                padding-left: 5vw;
+                padding-right: 5vw;
+                box-sizing: border-box;
             }
             
-            .slideshow-prev {
-                left: 0.5em;
+            .archive-description {
+                order: 2;
+                width: auto;
             }
             
-            .slideshow-next {
-                right: 0.5em;
+            .archive-images {
+                order: 1;
+                width: auto;
+            }
+            
+            .exhibition-separator {
+                margin-left: 5vw;
+                margin-right: 5vw;
+                margin-top: 2em;
+                margin-bottom: 2em;
             }
         }
     </style>
@@ -146,9 +149,11 @@
             </div>
         </nav>
     </div>
-    <main class="bio-content">
-        <!-- 1. DesignTide -->
-        <div class="archive-section">
+
+    <main>
+    <!-- 1. DesignTide 2025 -->
+    <div class="archive-section">
+        <div class="archive-description">
             <h2>Liminal Objects at DesignTide 2025</h2>
             <div class="archive-meta">
                 Group exhibition<br>
@@ -156,21 +161,21 @@
                 <a href="https://designtide.tokyo/market/" target="_blank" rel="noopener noreferrer">Rinnai Aoyama</a><br>
                 Tokyo, Japan
             </div>
-            <div class="archive-slideshow" data-slideshow="designtide">
-                <div class="archive-slideshow-container">
-                    <img src="designtide2025C08049.webp" alt="DesignTide photo 1" class="lightbox-trigger">
-                    <img src="designtide2025C08053-2.webp" alt="DesignTide photo 2" class="lightbox-trigger">
-                    <img src="designtide2025C08061.webp" alt="DesignTide photo 3" class="lightbox-trigger">
-                    <img src="designtide2025C08067.webp" alt="DesignTide photo 4" class="lightbox-trigger">
-                    <img src="designtide2025C08073.webp" alt="DesignTide photo 5" class="lightbox-trigger">
-                    <button class="slideshow-nav slideshow-prev" style="display: none;"><</button>
-                    <button class="slideshow-nav slideshow-next" style="display: none;">></button>
-                </div>
-            </div>
         </div>
-        
-        <!-- 2. Liminal Objects at Information -->
-        <div class="archive-section">
+        <div class="archive-images">
+            <img src="designtide2025C08049.webp" alt="DesignTide photo 1" class="lightbox-trigger">
+            <img src="designtide2025C08053-2.webp" alt="DesignTide photo 2" class="lightbox-trigger">
+            <img src="designtide2025C08061.webp" alt="DesignTide photo 3" class="lightbox-trigger">
+            <img src="designtide2025C08067.webp" alt="DesignTide photo 4" class="lightbox-trigger">
+            <img src="designtide2025C08073.webp" alt="DesignTide photo 5" class="lightbox-trigger">
+        </div>
+    </div>
+
+    <div class="exhibition-separator"></div>
+
+    <!-- 2. Liminal Objects at Information -->
+    <div class="archive-section">
+        <div class="archive-description">
             <h2>Liminal Objects at Information</h2>
             <div class="archive-meta">
                 Solo exhibition<br>
@@ -178,25 +183,25 @@
                 <a href="https://www.instagram.com/p/DFxHKoaz3xV/" target="_blank" rel="noopener noreferrer">Information</a><br>
                 Tokyo, Japan
             </div>
-            <div class="archive-slideshow" data-slideshow="liminal-objects">
-                <div class="archive-slideshow-container">
-                    <img src="information2025poster1.webp" alt="Exhibition poster 1" class="lightbox-trigger">
-                    <img src="information2025poster2.webp" alt="Exhibition poster 2" class="lightbox-trigger">
-                    <img src="loinformation2025C06015.webp" alt="Exhibition photo 3" class="lightbox-trigger">
-                    <img src="loinformation2025C06087 2-2.webp" alt="Exhibition photo 4" class="lightbox-trigger">
-                    <img src="images/work - liminal object/1.DSC06118_result_result_result.webp" alt="Exhibition photo 5" class="lightbox-trigger">
-                    <img src="images/work - liminal object/2.DSC06009_result_result_result.webp" alt="Exhibition photo 6" class="lightbox-trigger">
-                    <img src="images/work - liminal object/3.DSC06013_result_result_result.webp" alt="Exhibition photo 7" class="lightbox-trigger">
-                    <img src="images/work - liminal object/4.DSC06142_result_result_result.webp" alt="Exhibition photo 8" class="lightbox-trigger">
-                    <img src="images/work - liminal object/5.DSC06170_result_result_result.webp" alt="Exhibition photo 9" class="lightbox-trigger">
-                    <button class="slideshow-nav slideshow-prev" style="display: none;"><</button>
-                    <button class="slideshow-nav slideshow-next" style="display: none;">></button>
-                </div>
-            </div>
         </div>
-        
-        <!-- 3. Let a colored paper swim in clouds at Moro Craft -->
-        <div class="archive-section">
+        <div class="archive-images">
+            <img src="information2025poster1.webp" alt="Exhibition poster 1" class="lightbox-trigger">
+            <img src="information2025poster2.webp" alt="Exhibition poster 2" class="lightbox-trigger">
+            <img src="loinformation2025C06015.webp" alt="Exhibition photo 3" class="lightbox-trigger">
+            <img src="loinformation2025C06087 2-2.webp" alt="Exhibition photo 4" class="lightbox-trigger">
+            <img src="images/work - liminal object/1.DSC06118_result_result_result.webp" alt="Exhibition photo 5" class="lightbox-trigger">
+            <img src="images/work - liminal object/2.DSC06009_result_result_result.webp" alt="Exhibition photo 6" class="lightbox-trigger">
+            <img src="images/work - liminal object/3.DSC06013_result_result_result.webp" alt="Exhibition photo 7" class="lightbox-trigger">
+            <img src="images/work - liminal object/4.DSC06142_result_result_result.webp" alt="Exhibition photo 8" class="lightbox-trigger">
+            <img src="images/work - liminal object/5.DSC06170_result_result_result.webp" alt="Exhibition photo 9" class="lightbox-trigger">
+        </div>
+    </div>
+
+    <div class="exhibition-separator"></div>
+
+    <!-- 3. Let a colored paper swim in clouds at Moro Craft -->
+    <div class="archive-section">
+        <div class="archive-description">
             <h2>Exhibition Let a colored paper swim in clouds at Moro Craft</h2>
             <div class="archive-meta">
                 Solo exhibition<br>
@@ -204,23 +209,23 @@
                 <a href="https://www.instagram.com/p/DIVTg8yzKE-/" target="_blank" rel="noopener noreferrer">Moro Craft</a><br>
                 Tochigi, Japan
             </div>
-            <div class="archive-slideshow" data-slideshow="moro-craft">
-                <div class="archive-slideshow-container">
-                    <img src="coloredpapermoro2025C06771.webp" alt="Exhibition photo 1" class="lightbox-trigger">
-                    <img src="coloredpapermoro2025C06813.webp" alt="Exhibition photo 2" class="lightbox-trigger">
-                    <img src="images/work - Let a colored/1._result_result.webp" alt="Exhibition photo 3" class="lightbox-trigger">
-                    <img src="images/work - Let a colored/2.DSC06798_result_result.webp" alt="Exhibition photo 4" class="lightbox-trigger">
-                    <img src="images/work - Let a colored/3.DSC06786_result_result.webp" alt="Exhibition photo 5" class="lightbox-trigger">
-                    <img src="images/work - Let a colored/4.DSC06771_result_result.webp" alt="Exhibition photo 6" class="lightbox-trigger">
-                    <img src="images/work - Let a colored/5.DSC06761_result_result.webp" alt="Exhibition photo 7" class="lightbox-trigger">
-                    <button class="slideshow-nav slideshow-prev" style="display: none;"><</button>
-                    <button class="slideshow-nav slideshow-next" style="display: none;">></button>
-                </div>
-            </div>
         </div>
-        
-        <!-- 4. Designart 2023 -->
-        <div class="archive-section">
+        <div class="archive-images">
+            <img src="coloredpapermoro2025C06771.webp" alt="Exhibition photo 1" class="lightbox-trigger">
+            <img src="coloredpapermoro2025C06813.webp" alt="Exhibition photo 2" class="lightbox-trigger">
+            <img src="images/work - Let a colored/1._result_result.webp" alt="Exhibition photo 3" class="lightbox-trigger">
+            <img src="images/work - Let a colored/2.DSC06798_result_result.webp" alt="Exhibition photo 4" class="lightbox-trigger">
+            <img src="images/work - Let a colored/3.DSC06786_result_result.webp" alt="Exhibition photo 5" class="lightbox-trigger">
+            <img src="images/work - Let a colored/4.DSC06771_result_result.webp" alt="Exhibition photo 6" class="lightbox-trigger">
+            <img src="images/work - Let a colored/5.DSC06761_result_result.webp" alt="Exhibition photo 7" class="lightbox-trigger">
+        </div>
+    </div>
+
+    <div class="exhibition-separator"></div>
+
+    <!-- 4. Designart 2023 -->
+    <div class="archive-section">
+        <div class="archive-description">
             <h2>Vnsh at Designart 2023</h2>
             <div class="archive-meta">
                 Solo exhibition<br>
@@ -228,102 +233,28 @@
                 <a href="https://www.designart.jp/designarttokyo2023/exhibitions/3787/" target="_blank" rel="noopener noreferrer">Tiers Gallery</a><br>
                 Tokyo, Japan
             </div>
-            <div class="archive-description">
+            <div class="archive-text">
                 <p>So Tanaka presents his new lighting series, "vnsh."</p>
                 <p>Humans find purpose and meaning in phenomena and natural objects, segmenting the world. Light gives us a sense of hope and security, and we value its ability to illuminate and make visible, using it in a variety of ways. However, while some things are made visible by the effects of light, others disappear from view. The inside of a river reflecting the sunlight during the day is invisible. The moment lightning strikes, the surroundings are enveloped in white darkness.</p>
                 <p>"vnsh" invites viewers to transcend these stereotypes. By incorporating LEDs into a 5mm diameter pipe with slits, the lighting fixtures illuminate their surroundings while simultaneously disappearing into the light themselves. By transcending linguistic perception and reinterpreting things sensorily, the works create a tranquil yet surprising space.</p>
             </div>
-            <div class="archive-slideshow" data-slideshow="designart-2023">
-                <div class="archive-slideshow-container">
-                    <img src="designart2023poster.webp" alt="Designart 2023 poster" class="lightbox-trigger">
-                    <img src="designart2023.webp" alt="Designart 2023 photo" class="lightbox-trigger">
-                    <button class="slideshow-nav slideshow-prev" style="display: none;"><</button>
-                    <button class="slideshow-nav slideshow-next" style="display: none;">></button>
-                </div>
-            </div>
         </div>
-        
+        <div class="archive-images">
+            <img src="designart2023poster.webp" alt="Designart 2023 poster" class="lightbox-trigger">
+            <img src="designart2023.webp" alt="Designart 2023 photo" class="lightbox-trigger">
+        </div>
+    </div>
     </main>
 
-    <div id="lightbox" class="lightbox" style="display: none;">
-        <span class="close-button" style="display: none;">&times;</span>
+    <div id="lightbox" class="lightbox">
+        <span class="close-button">&times;</span>
         <img src="images/icons/prev-arrow.svg" class="prev-button">
         <img class="lightbox-content" id="lightbox-img">
         <img src="images/icons/next-arrow.svg" class="next-button">
     </div>
 
     <script>
-        // Slideshow functionality
-        class ArchiveSlideshow {
-            constructor(container) {
-                this.container = container;
-                this.images = container.querySelectorAll('.lightbox-trigger');
-                this.currentIndex = 0;
-                this.autoPlayInterval = null;
-                this.prevBtn = container.querySelector('.slideshow-prev');
-                this.nextBtn = container.querySelector('.slideshow-next');
-                
-                if (this.images.length > 0) {
-                    this.init();
-                }
-            }
-            
-            init() {
-                // Show first image
-                this.images[0].classList.add('active');
-                
-                // Show navigation buttons if more than one image
-                if (this.images.length > 1) {
-                    this.prevBtn.style.display = 'block';
-                    this.nextBtn.style.display = 'block';
-                    
-                    this.prevBtn.addEventListener('click', () => this.prev());
-                    this.nextBtn.addEventListener('click', () => this.next());
-                    
-                    // Start auto-play
-                    this.startAutoPlay();
-                    
-                    // Pause on hover
-                    this.container.addEventListener('mouseenter', () => this.stopAutoPlay());
-                    this.container.addEventListener('mouseleave', () => this.startAutoPlay());
-                }
-            }
-            
-            showImage(index) {
-                this.images[this.currentIndex].classList.remove('active');
-                this.currentIndex = index;
-                this.images[this.currentIndex].classList.add('active');
-            }
-            
-            next() {
-                const nextIndex = (this.currentIndex + 1) % this.images.length;
-                this.showImage(nextIndex);
-            }
-            
-            prev() {
-                const prevIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
-                this.showImage(prevIndex);
-            }
-            
-            startAutoPlay() {
-                this.autoPlayInterval = setInterval(() => this.next(), 4000); // 4 seconds
-            }
-            
-            stopAutoPlay() {
-                if (this.autoPlayInterval) {
-                    clearInterval(this.autoPlayInterval);
-                    this.autoPlayInterval = null;
-                }
-            }
-        }
-        
-        // Lightbox functionality
         document.addEventListener('DOMContentLoaded', () => {
-            // Initialize slideshows
-            const slideshows = document.querySelectorAll('.archive-slideshow');
-            slideshows.forEach(slideshow => new ArchiveSlideshow(slideshow));
-            
-            // Initialize lightbox
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
             const closeButton = document.querySelector('.close-button');
