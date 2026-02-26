@@ -7,6 +7,8 @@ Sitemap: https://sotanaka.com/sitemap.xml
 # Disallow utility pages
 Disallow: /success.html
 Disallow: /cancel.html
+Disallow: /search.html
+Disallow: /search
 
 # Disallow .html extension URLs (canonical versions are without .html)
 Disallow: /*.html$
