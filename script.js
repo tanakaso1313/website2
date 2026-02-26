@@ -18,12 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
             { src: `images/top${imageFolder}/1.transfer_top_result_result.webp`, monoSrc: `images/mono${imageFolder}/1.transfer_top_mono_result_result.webp`, href: 'transfer.html', category: 'other', alt: 'transfer' }
         ];
 
-        // Deterministic random helper
-        const seed = (n) => {
-            const x = Math.sin(n * 12.9898) * 43758.5453;
-            return x - Math.floor(x);
-        };
-
         const renderGallery = (filter = 'all') => {
             // Clear gallery using safer method than innerHTML
             while (galleryContainer.firstChild) {
@@ -40,9 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     imageWrapper.classList.add('let-a-size');
                 }
 
-                // Use work.id directly to avoid O(n²) findIndex lookup
-                const originalIndex = works.findIndex(w => w.alt === work.alt);
-                const filteredIndex = index; // Current position in filtered results
+                const originalIndex = index; // Use index in works array
                 const isMobile = window.innerWidth <= 768;
                 
                 if (isMobile) {
@@ -136,16 +128,12 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         };
 
-        const applyFilter = (filter) => {
-            renderGallery(filter);
-        };
-
         const urlParams = new URLSearchParams(window.location.search);
         const filterFromUrl = urlParams.get('filter');
         if (filterFromUrl) {
-            applyFilter(filterFromUrl);
+            renderGallery(filterFromUrl);
         } else {
-            applyFilter('all');
+            renderGallery('all');
         }
 
         // Add scroll listener once after initial render
@@ -165,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         window.location.href = categoryPages[filter];
                     } else {
                         e.preventDefault();
-                        applyFilter(filter);
+                        renderGallery(filter);
                     }
                 }
             });
@@ -218,23 +206,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Stripe Checkout Integration
     const addToCartButtons = document.querySelectorAll('.add-to-cart');
     if (addToCartButtons.length > 0) {
-        // Stripe is only needed for the dynamic checkout-session flow.
-        // For direct Stripe Payment Links (https://buy.stripe.com/...), we can redirect without Stripe.js.
-        let stripe = null;
-        const getStripe = () => {
-            if (stripe) return stripe;
-            if (typeof Stripe !== 'function') {
-                throw new Error('Stripe.js not loaded');
-            }
-            // Stripe publishable key should be set via config.js
-            const publishableKey = window.STRIPE_PUBLISHABLE_KEY || window.APP_CONFIG?.STRIPE_PUBLISHABLE_KEY;
-            if (!publishableKey) {
-                throw new Error('Stripe publishable key not configured');
-            }
-            stripe = Stripe(publishableKey);
-            return stripe;
-        };
-
         const colorOptions = [
             // neutrals
             { label: 'White', swatch: 'rgb(243, 243, 243)' },
