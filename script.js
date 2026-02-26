@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { src: `images/top${imageFolder}/3.LTI_top_result_result.webp`, monoSrc: `images/mono${imageFolder}/3.LTI_top_mono_result_result.webp`, href: 'lti.html', category: 'light', alt: 'LTI' },
             { src: `images/top${imageFolder}/2.ORI_top_result_result.webp`, monoSrc: `images/mono${imageFolder}/2.ORI_top_mono_result_result.webp`, href: 'ori.html', category: 'furniture', alt: 'ORI' },
             { src: `images/top${imageFolder}/1.transfer_top_result_result.webp`, monoSrc: `images/mono${imageFolder}/1.transfer_top_mono_result_result.webp`, href: 'transfer.html', category: 'other', alt: 'transfer' }
-        ].map(work => ({ ...work, src: `${work.src}?v=${new Date().getTime()}`, monoSrc: `${work.monoSrc}?v=${new Date().getTime()}` }));
+        ];
 
         // Deterministic random helper
         const seed = (n) => {
@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             const filteredWorks = filter === 'all' ? works : works.filter(w => w.category === filter);
             let maxZIndex = filteredWorks.length;
+            let activeWrapper = null;
 
             filteredWorks.forEach((work, index) => {
                 const imageWrapper = document.createElement('div');
@@ -39,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     imageWrapper.classList.add('let-a-size');
                 }
 
-                // Use both original index (for desktop consistency) and filtered index (for mobile positioning)
+                // Use work.id directly to avoid O(n²) findIndex lookup
                 const originalIndex = works.findIndex(w => w.alt === work.alt);
                 const filteredIndex = index; // Current position in filtered results
                 const isMobile = window.innerWidth <= 768;
@@ -85,10 +86,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 imageWrapper.appendChild(link);
                 galleryContainer.appendChild(imageWrapper);
 
-                // Desktop hover behavior - when activating (hover/tap), bring to front
+                // Desktop hover behavior - track active wrapper to avoid full DOM query
                 imageWrapper.addEventListener('mouseenter', () => {
-                    document.querySelectorAll('.image-wrapper').forEach(iw => iw.classList.remove('active'));
+                    if (activeWrapper && activeWrapper !== imageWrapper) {
+                        activeWrapper.classList.remove('active');
+                    }
                     imageWrapper.classList.add('active');
+                    activeWrapper = imageWrapper;
                     maxZIndex++;
                     imageWrapper.style.zIndex = maxZIndex;
                     img.src = work.src;
