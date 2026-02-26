@@ -75,23 +75,40 @@
                         .forEach(product => {
                         const productItem = document.createElement('div');
                         productItem.classList.add('product-item');
-                        let linkStart = product.page ? `<a href="${product.page}">` : '';
-                        let linkEnd = product.page ? '</a>' : '';
+                        
+                        // Prepare safe values
                         const displayName = product.id && product.id.startsWith('LO_') ? product.id : product.name;
                         const altText = product.altText || displayName;
-                        productItem.innerHTML = `
-                            ${linkStart}
-                                <img src="${product.image}" alt="${altText}" data-hover-src="${product.hoverImage || product.image}">
-                                <h3>${displayName}</h3>
-                                 <p>${product.price}</p>
-                             ${linkEnd}
-                         `;
+                        const originalSrc = product.image;
+                        const hoverSrc = product.hoverImage || product.image;
+                        
+                        // Create elements safely using DOM methods
+                        const img = document.createElement('img');
+                        img.setAttribute('src', originalSrc);
+                        img.setAttribute('alt', altText);
+                        img.setAttribute('data-hover-src', hoverSrc);
+                        
+                        const h3 = document.createElement('h3');
+                        h3.textContent = displayName;
+                        
+                        const p = document.createElement('p');
+                        p.textContent = product.price;
+                        
+                        // Conditionally wrap in link if page exists
+                        if (product.page) {
+                            const link = document.createElement('a');
+                            link.setAttribute('href', product.page);
+                            link.appendChild(img);
+                            link.appendChild(h3);
+                            link.appendChild(p);
+                            productItem.appendChild(link);
+                        } else {
+                            productItem.appendChild(img);
+                            productItem.appendChild(h3);
+                            productItem.appendChild(p);
+                        }
                          
                          // Add hover functionality for image switching
-                         const img = productItem.querySelector('img');
-                         const originalSrc = product.image;
-                         const hoverSrc = product.hoverImage || product.image;
-                         
                          productItem.addEventListener('mouseenter', () => {
                              img.src = hoverSrc;
                          });
