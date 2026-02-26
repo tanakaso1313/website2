@@ -19,8 +19,9 @@ app.use(helmet({
     contentSecurityPolicy: {
         directives: {
             defaultSrc: ["'self'"],
-            scriptSrc: ["'self'", "https://js.stripe.com/v3/", "'unsafe-inline'"],
-            frameSrc: ["'self'", "https://js.stripe.com/"]
+            scriptSrc: ["'self'", "https://js.stripe.com/v3/", "https://cdn.amplitude.com/"],
+            frameSrc: ["'self'", "https://js.stripe.com/"],
+            connectSrc: ["'self'", "https://api.amplitude.com", "https://api2.amplitude.com"]
         }
     },
     strictTransportSecurity: {

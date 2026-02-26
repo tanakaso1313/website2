@@ -25,7 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const renderGallery = (filter = 'all') => {
-            galleryContainer.innerHTML = '';
+            // Clear gallery using safer method than innerHTML
+            while (galleryContainer.firstChild) {
+                galleryContainer.removeChild(galleryContainer.firstChild);
+            }
             const filteredWorks = filter === 'all' ? works : works.filter(w => w.category === filter);
             let maxZIndex = filteredWorks.length;
 
@@ -101,7 +104,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Add footer after all images are rendered
             const footer = document.createElement('footer');
-            footer.innerHTML = '<p>&copy; 2026 SOTANAKA. All rights reserved.</p>';
+            const footerText = document.createElement('p');
+            footerText.textContent = '© 2026 SOTANAKA. All rights reserved.';
+            footer.appendChild(footerText);
             galleryContainer.appendChild(footer);
 
             // Mobile scroll-based color change
@@ -171,9 +176,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Disable transitions on page load
         subItems.classList.add('preload');
         
-        // Restore state from localStorage on page load
-        const navExpanded = localStorage.getItem('navExpanded') === 'true';
-        if (navExpanded) {
+        // Restore state from localStorage on page load with validation
+        const navExpandedRaw = localStorage.getItem('navExpanded');
+        const navExpanded = navExpandedRaw === 'true';
+        if (navExpanded && (navExpandedRaw === 'true' || navExpandedRaw === 'false')) {
             subItems.classList.add('expanded');
             toggleBtn.textContent = '−';
         }
@@ -189,8 +195,8 @@ document.addEventListener('DOMContentLoaded', () => {
             subItems.classList.toggle('expanded');
             const isExpanded = subItems.classList.contains('expanded');
             toggleBtn.textContent = isExpanded ? '−' : '+';
-            // Save state to localStorage
-            localStorage.setItem('navExpanded', isExpanded);
+            // Save state to localStorage (boolean converted to string)
+            localStorage.setItem('navExpanded', String(isExpanded));
         });
         
         // Prevent the ALL link from navigating when clicking the toggle
@@ -215,7 +221,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (typeof Stripe !== 'function') {
                 throw new Error('Stripe.js not loaded');
             }
-            stripe = Stripe('pk_live_51RqS8cEcQzNRltK0GJYqWrHsLYlZgJ7YlUE8tRONOBfvgUzuJUDxA2NhQaBwS7oMz3dOCjjHhLRoKhC3N2Cx8XYz00xNvmKcCT'); // Replace with your publishable key
+            // Stripe publishable key should be set via config.js
+            const publishableKey = window.STRIPE_PUBLISHABLE_KEY || window.APP_CONFIG?.STRIPE_PUBLISHABLE_KEY;
+            if (!publishableKey) {
+                throw new Error('Stripe publishable key not configured');
+            }
+            stripe = Stripe(publishableKey);
             return stripe;
         };
 
@@ -471,8 +482,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     const result = await response.json();
 
                     if (response.ok && result.url) {
-                        // Redirect directly to Stripe Checkout (no need for Stripe.js)
-                        window.location.href = result.url;
+                        // Validate that the URL is a Stripe checkout URL before redirecting
+                        if (result.url.startsWith('https://checkout.stripe.com/')) {
+                            window.location.href = result.url;
+                        } else {
+                            console.error('Invalid checkout URL:', result.url);
+                            alert('Invalid checkout URL. Please contact support.');
+                        }
                     } else {
                         console.error('API error:', result.error || result.message);
                         alert('Unable to process payment. Please try again.');

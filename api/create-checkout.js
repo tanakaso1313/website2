@@ -1,8 +1,14 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 module.exports = async (req, res) => {
-  // Enable CORS for GitHub Pages domain
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  // Restrict CORS to specific allowed origins
+  const allowedOrigins = (process.env.CORS_ALLOWED_ORIGINS || 'https://sotanaka.com').split(',');
+  const origin = req.headers.origin;
+  
+  if (origin && allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+  
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
@@ -18,8 +24,42 @@ module.exports = async (req, res) => {
   try {
     const { productId, color, size, priceId, successUrl, cancelUrl } = req.body;
 
-    if (!productId || !priceId) {
-      return res.status(400).json({ error: 'Missing required fields' });
+    // Input validation
+    if (!productId || typeof productId !== 'string' || productId.length > 100) {
+      return res.status(400).json({ error: 'Invalid product ID' });
+    }
+    
+    if (!priceId || typeof priceId !== 'string' || !priceId.startsWith('price_')) {
+      return res.status(400).json({ error: 'Invalid price ID' });
+    }
+    
+    // Validate URLs to prevent open redirect
+    const validateUrl = (url, fieldName) => {
+      if (!url) return false;
+      try {
+        const parsed = new URL(url);
+        // Only allow https and same origin
+        return parsed.protocol === 'https:' && allowedOrigins.some(o => url.startsWith(o));
+      } catch {
+        return false;
+      }
+    };
+    
+    if (successUrl && !validateUrl(successUrl, 'successUrl')) {
+      return res.status(400).json({ error: 'Invalid success URL' });
+    }
+    
+    if (cancelUrl && !validateUrl(cancelUrl, 'cancelUrl')) {
+      return res.status(400).json({ error: 'Invalid cancel URL' });
+    }
+    
+    // Validate optional color and size
+    if (color && (typeof color !== 'string' || color.length > 50)) {
+      return res.status(400).json({ error: 'Invalid color' });
+    }
+    
+    if (size && (typeof size !== 'string' || size.length > 50)) {
+      return res.status(400).json({ error: 'Invalid size' });
     }
 
     // Build product name suffix from color/size if provided
