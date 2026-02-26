@@ -8,5 +8,8 @@ Sitemap: https://sotanaka.com/sitemap.xml
 Disallow: /success.html
 Disallow: /cancel.html
 
+# Disallow .html extension URLs (canonical versions are without .html)
+Disallow: /*.html$
+
 # Disallow legacy filter URLs
 Disallow: /*?filter=
