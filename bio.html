@@ -73,41 +73,41 @@
         <div class="cv-section">
             <h2>Stockists</h2>
             <div class="cv-item"><span>Online</span><span class="cv-item-description"><a href="/shop">So Tanaka Shop</a></span></div>
-            <div class="cv-item expandable" onclick="toggleStockist(this)">
+            <div class="cv-item expandable" data-stockist-toggle>
                 <span>Tokyo, Japan</span>
-                <span class="cv-item-description"><a href="https://item.licht-gallery.com/?pid=180238309" target="_blank" onclick="event.stopPropagation()">Licht</a></span>
+                <span class="cv-item-description"><a href="https://item.licht-gallery.com/?pid=180238309" target="_blank" data-link-inside-toggle>Licht</a></span>
             </div>
             <div class="stockist-details" style="display: none; margin-top: 0.3em; margin-left: 200px; opacity: 1; line-height: 1.5em;">
                 <a href="https://maps.app.goo.gl/R9VpGnTpivJR2KXC6" target="_blank">Map</a><br>
                 <a href="https://www.instagram.com/licht_gallery/" target="_blank">Instagram</a>
             </div>
-            <div class="cv-item expandable" onclick="toggleStockist(this)">
+            <div class="cv-item expandable" data-stockist-toggle>
                 <span>Tokyo, Japan</span>
-                <span class="cv-item-description"><a href="https://inform-ation.jp/" target="_blank" onclick="event.stopPropagation()">Information</a></span>
+                <span class="cv-item-description"><a href="https://inform-ation.jp/" target="_blank" data-link-inside-toggle>Information</a></span>
             </div>
             <div class="stockist-details" style="display: none; margin-top: 0.3em; margin-left: 200px; opacity: 1; line-height: 1.5em;">
                 <a href="https://maps.app.goo.gl/s76mT8y5h5VsefDF6" target="_blank">Map</a><br>
                 <a href="https://www.instagram.com/information.jp/" target="_blank">Instagram</a>
             </div>
-            <div class="cv-item expandable" onclick="toggleStockist(this)">
+            <div class="cv-item expandable" data-stockist-toggle>
                 <span>Tochigi, Japan</span>
-                <span class="cv-item-description"><a href="https://www.instagram.com/moro_images" target="_blank" onclick="event.stopPropagation()">Moro Craft</a></span>
+                <span class="cv-item-description"><a href="https://www.instagram.com/moro_images" target="_blank" data-link-inside-toggle>Moro Craft</a></span>
             </div>
             <div class="stockist-details" style="display: none; margin-top: 0.3em; margin-left: 200px; opacity: 1; line-height: 1.5em;">
                 <a href="https://maps.app.goo.gl/XqWGZDz5YxLegPF3A" target="_blank">Map</a><br>
                 <a href="https://www.instagram.com/moro_images" target="_blank">Instagram</a>
             </div>
-            <div class="cv-item expandable" onclick="toggleStockist(this)">
+            <div class="cv-item expandable" data-stockist-toggle>
                 <span>Osaka, Japan</span>
-                <span class="cv-item-description"><a href="https://esmetena.com/" target="_blank" onclick="event.stopPropagation()">Esme Tena</a></span>
+                <span class="cv-item-description"><a href="https://esmetena.com/" target="_blank" data-link-inside-toggle>Esme Tena</a></span>
             </div>
             <div class="stockist-details" style="display: none; margin-top: 0.3em; margin-left: 200px; opacity: 1; line-height: 1.5em;">
                 <a href="https://maps.app.goo.gl/sUuUSdeqkbqQkRxC6" target="_blank">Map</a><br>
                 <a href="https://www.instagram.com/esme.tena.shop/" target="_blank">Instagram</a>
             </div>
-            <div class="cv-item expandable" onclick="toggleStockist(this)">
+            <div class="cv-item expandable" data-stockist-toggle>
                 <span>Nagoya, Japan</span>
-                <span class="cv-item-description"><a href="https://www.instagram.com/cont_sheepstore/" target="_blank" onclick="event.stopPropagation()">Cont</a></span>
+                <span class="cv-item-description"><a href="https://www.instagram.com/cont_sheepstore/" target="_blank" data-link-inside-toggle>Cont</a></span>
             </div>
             <div class="stockist-details" style="display: none; margin-top: 0.3em; margin-left: 200px; opacity: 1; line-height: 1.5em;">
                 <a href="https://maps.app.goo.gl/Vxqq2rNRa6VuTQmR7" target="_blank">Map</a><br>
@@ -166,17 +166,27 @@
         <p>&copy; 2026 SOTANAKA. All rights reserved.</p>
     </footer>
     <script>
-        function toggleStockist(element) {
-            element.classList.toggle('expanded');
-            const details = element.nextElementSibling;
-            if (details && details.classList.contains('stockist-details')) {
-                if (details.style.display === 'none' || details.style.display === '') {
-                    details.style.display = 'block';
-                } else {
-                    details.style.display = 'none';
-                }
-            }
-        }
+        // Attach stockist toggle handlers via addEventListener (CSP-safe)
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('[data-stockist-toggle]').forEach(function(element) {
+                element.addEventListener('click', function(e) {
+                    // Don't toggle if clicking a link inside
+                    if (e.target.hasAttribute('data-link-inside-toggle') || e.target.closest('[data-link-inside-toggle]')) {
+                        return;
+                    }
+                    
+                    element.classList.toggle('expanded');
+                    const details = element.nextElementSibling;
+                    if (details && details.classList.contains('stockist-details')) {
+                        if (details.style.display === 'none' || details.style.display === '') {
+                            details.style.display = 'block';
+                        } else {
+                            details.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
     </script>
     <script>
     // Toggle functionality for collapsible navigation
