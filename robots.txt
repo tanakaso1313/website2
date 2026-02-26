@@ -7,3 +7,6 @@ Sitemap: https://sotanaka.com/sitemap.xml
 # Disallow utility pages
 Disallow: /success.html
 Disallow: /cancel.html
+
+# Disallow legacy filter URLs
+Disallow: /*?filter=
