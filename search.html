@@ -294,30 +294,56 @@
         
         // Display search results
         function displayResults(results, query) {
-            if (results.length === 0) {
-                searchResults.innerHTML = '<div class="search-no-results">No results found.</div>';
-                return;
+            // Clear previous results
+            while (searchResults.firstChild) {
+                searchResults.removeChild(searchResults.firstChild);
             }
             
-            let html = '';
+            if (results.length === 0) {
+                const noResultsDiv = document.createElement('div');
+                noResultsDiv.className = 'search-no-results';
+                noResultsDiv.textContent = 'No results found.';
+                searchResults.appendChild(noResultsDiv);
+                return;
+            }
             
             results.forEach(item => {
                 const typeLabel = item.type === 'page' ? 'Page' : 
                                  item.type === 'work' ? 'Work' : 
                                  'Shop';
                 
-                html += `
-                    <div class="search-result-item">
-                        <div class="search-result-title">
-                            <a href="${item.url}">${escapeHtml(item.title)}</a>
-                            <span class="search-result-type">${typeLabel}</span>
-                        </div>
-                        ${item.price ? `<div class="search-result-price">${escapeHtml(item.price)}</div>` : ''}
-                    </div>
-                `;
+                // Create result item container
+                const resultItem = document.createElement('div');
+                resultItem.className = 'search-result-item';
+                
+                // Create title container
+                const titleDiv = document.createElement('div');
+                titleDiv.className = 'search-result-title';
+                
+                // Create link element safely
+                const link = document.createElement('a');
+                link.setAttribute('href', item.url);
+                link.textContent = item.title;
+                titleDiv.appendChild(link);
+                
+                // Create type label
+                const typeSpan = document.createElement('span');
+                typeSpan.className = 'search-result-type';
+                typeSpan.textContent = typeLabel;
+                titleDiv.appendChild(typeSpan);
+                
+                resultItem.appendChild(titleDiv);
+                
+                // Add price if present
+                if (item.price) {
+                    const priceDiv = document.createElement('div');
+                    priceDiv.className = 'search-result-price';
+                    priceDiv.textContent = item.price;
+                    resultItem.appendChild(priceDiv);
+                }
+                
+                searchResults.appendChild(resultItem);
             });
-            
-            searchResults.innerHTML = html;
         }
         
         // Escape HTML to prevent XSS
