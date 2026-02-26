@@ -20,8 +20,9 @@
     <link rel="dns-prefetch" href="https://cdn.amplitude.com">
     <link rel="preconnect" href="https://cdn.amplitude.com" crossorigin>
     <link rel="stylesheet" href="style.css">
-    <script defer src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script>
-    <script defer src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz"></script>
+    <script src="config.js"></script>
+    <script defer src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="sidebar">
@@ -69,8 +70,8 @@
     // Initialize analytics
     (function initAmplitude() {
         if (typeof window.amplitude !== 'undefined' && typeof window.sessionReplay !== 'undefined') {
-            window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));
-            window.amplitude.init('746eec9391b45c0239325340cd3baadd', {"autocapture":{"elementInteractions":true}});
+            window.amplitude.add(window.sessionReplay.plugin({sampleRate: 0.1}));
+            window.amplitude.init(window.AMPLITUDE_API_KEY || '746eec9391b45c0239325340cd3baadd', {"autocapture":{"elementInteractions":true}});
             
             window.amplitude.track('Category Page Viewed', {
                 page_type: 'category',

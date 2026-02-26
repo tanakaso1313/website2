@@ -16,6 +16,7 @@
     <link rel="canonical" href="https://sotanaka.com/lti">
     <title>Less Than Instrument | SOTANAKA</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <script src="config.js"></script>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -39,9 +40,9 @@
     </script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="work-page.css">
-    <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script>
-    <script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz"></script>
-    <script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));window.amplitude.init('746eec9391b45c0239325340cd3baadd', {"autocapture":{"elementInteractions":true}});
+    <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz" crossorigin="anonymous"></script>
+    <script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz" crossorigin="anonymous"></script>
+    <script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 0.1}));window.amplitude.init(window.AMPLITUDE_API_KEY || '746eec9391b45c0239325340cd3baadd', {"autocapture":{"elementInteractions":true}});
     
     // Custom project tracking
     document.addEventListener('DOMContentLoaded', function() {

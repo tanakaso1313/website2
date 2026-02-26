@@ -20,6 +20,7 @@
     <!-- DNS prefetch and preconnect for external resources -->
     <link rel="dns-prefetch" href="https://cdn.amplitude.com">
     <link rel="preconnect" href="https://cdn.amplitude.com" crossorigin>
+    <script src="config.js"></script>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -42,8 +43,8 @@
     </script>
     <link rel="stylesheet" href="style.css">
     <!-- Defer analytics to unblock rendering -->
-    <script defer src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz"></script>
-    <script defer src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz"></script>
+    <script defer src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="sidebar">
@@ -108,8 +109,8 @@
     // Wait for Amplitude to load, then initialize
     (function initAmplitude() {
         if (typeof window.amplitude !== 'undefined' && typeof window.sessionReplay !== 'undefined') {
-            window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));
-            window.amplitude.init('746eec9391b45c0239325340cd3baadd', {"autocapture":{"elementInteractions":true}});
+            window.amplitude.add(window.sessionReplay.plugin({sampleRate: 0.1}));
+            window.amplitude.init(window.AMPLITUDE_API_KEY || '746eec9391b45c0239325340cd3baadd', {"autocapture":{"elementInteractions":true}});
             
             // Track homepage view
             if (document.readyState === 'complete') {
