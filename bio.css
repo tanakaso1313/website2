@@ -82,17 +82,18 @@
     flex-shrink: 0;
 }
 
+.cv-item-exhibition .cv-item-description {
+    flex: 1;
+    margin-left: 10px;
+    vertical-align: top;
+}
+
 .cv-item-exhibition .type-col {
     width: 110px;
     white-space: nowrap;
     flex-shrink: 0;
     margin-left: 10px;
-}
-
-.cv-item-exhibition .cv-item-description {
-    flex: 1;
-    margin-left: 10px;
-    vertical-align: top;
+    text-align: right;
 }
 
 footer {
