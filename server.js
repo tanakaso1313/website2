@@ -102,7 +102,7 @@ app.post('/create-checkout-session', async (req, res) => {
         metadata,
     });
 
-    res.json({ id: session.id });
+    res.json({ sessionId: session.id, url: session.url });
 });
 
 app.listen(8080, () => console.log('Running on port 8080'));
