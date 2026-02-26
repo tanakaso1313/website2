@@ -5,3 +5,6 @@ node_modules/
 *.log
 .DS_Store
 images/mono_2/originals/
+
+# Claude AI editor worktrees (should never be committed)
+.claude/
