@@ -19,9 +19,10 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="liminal-light-s.css">
     <script src="config.js"></script>
-    <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz" crossorigin="anonymous"></script>
-    <script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz" crossorigin="anonymous"></script>
-    <script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 0.1}));window.amplitude.init(window.AMPLITUDE_API_KEY || '746eec9391b45c0239325340cd3baadd', {"autocapture":{"elementInteractions":true}});</script>
+    <!-- Amplitude Analytics -->
+    <script defer src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz" crossorigin="anonymous"></script>
+    <script defer src="analytics.js"></script>
 </head>
 <body>
     <div class="sidebar">
@@ -73,6 +74,8 @@
 
     <script src="https://js.stripe.com/v3/"></script>
     <script src="script.min.js" defer></script>
+    <!-- Lightbox functionality -->
+    <script src="lightbox.js"></script>
     <footer>
         <p>&copy; 2026 SOTANAKA. All rights reserved.</p>
     </footer>
