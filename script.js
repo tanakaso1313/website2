@@ -108,30 +108,28 @@ document.addEventListener('DOMContentLoaded', () => {
             footerText.textContent = '© 2026 SOTANAKA. All rights reserved.';
             footer.appendChild(footerText);
             galleryContainer.appendChild(footer);
+        };
 
-            // Mobile scroll-based color change
-            const handleScroll = () => {
-                if (window.innerWidth > 768) return;
+        // Mobile scroll-based color change - defined once to prevent listener leaks
+        const handleScroll = () => {
+            if (window.innerWidth > 768) return;
 
-                const viewportCenter = window.innerHeight / 2;
+            const viewportCenter = window.innerHeight / 2;
 
-                document.querySelectorAll('.image-wrapper').forEach(iw => {
-                    const img = iw.querySelector('img');
-                    const work = works.find(w => w.alt === img.alt);
-                    if (!work) return;
+            document.querySelectorAll('.image-wrapper').forEach(iw => {
+                const img = iw.querySelector('img');
+                const work = works.find(w => w.alt === img.alt);
+                if (!work) return;
 
-                    const rect = iw.getBoundingClientRect();
-                    const imageCenter = rect.top + rect.height / 2;
+                const rect = iw.getBoundingClientRect();
+                const imageCenter = rect.top + rect.height / 2;
 
-                    if (Math.abs(imageCenter - viewportCenter) < rect.height / 2) {
-                        img.src = work.src;
-                    } else {
-                        img.src = work.monoSrc;
-                    }
-                });
-            };
-
-            window.addEventListener('scroll', handleScroll);
+                if (Math.abs(imageCenter - viewportCenter) < rect.height / 2) {
+                    img.src = work.src;
+                } else {
+                    img.src = work.monoSrc;
+                }
+            });
         };
 
         const applyFilter = (filter) => {
@@ -145,6 +143,9 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             applyFilter('all');
         }
+
+        // Add scroll listener once after initial render
+        window.addEventListener('scroll', handleScroll);
 
         filterLinks.forEach(link => {
             link.addEventListener('click', (e) => {
@@ -176,10 +177,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Disable transitions on page load
         subItems.classList.add('preload');
         
-        // Restore state from localStorage on page load with validation
+        // Restore state from localStorage on page load
         const navExpandedRaw = localStorage.getItem('navExpanded');
         const navExpanded = navExpandedRaw === 'true';
-        if (navExpanded && (navExpandedRaw === 'true' || navExpandedRaw === 'false')) {
+        if (navExpanded) {
             subItems.classList.add('expanded');
             toggleBtn.textContent = '−';
         }
