@@ -115,17 +115,20 @@
         }
     </style>
     <script src="config.js"></script>
-    <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz" crossorigin="anonymous"></script>
-    <script src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz" crossorigin="anonymous"></script>
-    <script>window.amplitude.add(window.sessionReplay.plugin({sampleRate: 0.1}));window.amplitude.init(window.AMPLITUDE_API_KEY || '746eec9391b45c0239325340cd3baadd', {"autocapture":{"elementInteractions":true}});
-    
+    <!-- Amplitude Analytics -->
+    <script defer src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.amplitude.com/libs/plugin-session-replay-browser-1.8.0-min.js.gz" crossorigin="anonymous"></script>
+    <script defer src="analytics.js"></script>
+    <script>
     // Custom archive page tracking
     document.addEventListener('DOMContentLoaded', function() {
-        window.amplitude.track('Archive Page Viewed', {
-            page_type: 'archive',
-            page_name: 'So Tanaka Archive',
-            content_type: 'exhibition_archive'
-        });
+        if (typeof window.amplitude !== 'undefined') {
+            window.amplitude.track('Archive Page Viewed', {
+                page_type: 'archive',
+                page_name: 'So Tanaka Archive',
+                content_type: 'exhibition_archive'
+            });
+        }
     });
     </script>
 </head>
@@ -254,105 +257,10 @@
         <img src="images/icons/next-arrow.svg" class="next-button">
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            const closeButton = document.querySelector('.close-button');
-            const prevButton = document.querySelector('.prev-button');
-            const nextButton = document.querySelector('.next-button');
-            const imageTriggers = document.querySelectorAll('.lightbox-trigger');
-            const images = Array.from(imageTriggers).map(img => img.src);
-            let currentIndex;
-
-            function showImage(index) {
-                lightboxImg.src = images[index];
-                currentIndex = index;
-            }
-
-            imageTriggers.forEach((trigger, index) => {
-                trigger.addEventListener('click', () => {
-                    lightbox.classList.add('active');
-                    showImage(index);
-                });
-            });
-
-            function closeLightbox() {
-                lightbox.classList.remove('active');
-            }
-
-            function showPrevImage() {
-                currentIndex = (currentIndex - 1 + images.length) % images.length;
-                showImage(currentIndex);
-            }
-
-            function showNextImage() {
-                currentIndex = (currentIndex + 1) % images.length;
-                showImage(currentIndex);
-            }
-
-            closeButton.addEventListener('click', closeLightbox);
-            prevButton.addEventListener('click', showPrevImage);
-            nextButton.addEventListener('click', showNextImage);
-
-            lightbox.addEventListener('click', (e) => {
-                if (e.target === lightbox) {
-                    closeLightbox();
-                }
-            });
-
-            document.addEventListener('keydown', (e) => {
-                if (lightbox.classList.contains('active')) {
-                    if (e.key === 'ArrowLeft') {
-                        showPrevImage();
-                    } else if (e.key === 'ArrowRight') {
-                        showNextImage();
-                    } else if (e.key === 'Escape') {
-                        closeLightbox();
-                    }
-                }
-            });
-        });
-    </script>
+    <script src="lightbox.js"></script>
     <footer>
         <p>&copy; 2026 SOTANAKA. All rights reserved.</p>
     </footer>
-    <script>
-    // Toggle functionality for collapsible navigation
-    document.addEventListener('DOMContentLoaded', function() {
-        const toggleBtn = document.getElementById('toggle-btn');
-        const subItems = document.getElementById('sub-items');
-        const allLink = document.getElementById('all-link');
-        
-        if (toggleBtn && subItems) {
-            // Restore state from localStorage on page load
-            const navExpanded = localStorage.getItem('navExpanded') === 'true';
-            if (navExpanded) {
-                subItems.classList.add('expanded');
-                toggleBtn.textContent = '−';
-            }
-            
-            toggleBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                subItems.classList.toggle('expanded');
-                const isExpanded = subItems.classList.contains('expanded');
-                toggleBtn.textContent = isExpanded ? '−' : '+';
-                // Save state to localStorage
-                localStorage.setItem('navExpanded', isExpanded);
-            });
-            
-            // Prevent the ALL link from navigating when clicking the toggle
-            if (allLink) {
-                allLink.addEventListener('click', function(e) {
-                    // Only allow navigation if NOT clicking the toggle button
-                    if (e.target === toggleBtn) {
-                        e.preventDefault();
-                    }
-                });
-            }
-        }
-    });
-    </script>
+    <script src="script.min.js"></script>
 </body>
 </html>
