@@ -460,5 +460,21 @@
       "lighting",
       "lamp"
     ]
+  },
+  {
+    "id": "work_mo_lamp",
+    "type": "work",
+    "title": "MO Lamp",
+    "url": "mo-lamp.html",
+    "description": "Sculptural lighting work exploring light and form",
+    "keywords": [
+      "mo lamp",
+      "lighting",
+      "sculptural lamp",
+      "lamp",
+      "light",
+      "sculpture",
+      "2025"
+    ]
   }
 ]
