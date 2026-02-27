@@ -128,6 +128,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         };
 
+        // Expose renderGallery globally so category pages can access it
+        window.renderGallery = renderGallery;
+
         const urlParams = new URLSearchParams(window.location.search);
         const filterFromUrl = urlParams.get('filter');
         if (filterFromUrl) {
