@@ -79,57 +79,6 @@
     </main>
     <script src="https://js.stripe.com/v3/"></script>
     <script src="script.min.js" defer></script>
-    <script>
-        let slideIndex = 1;
-        let slideTimeout;
-        let isPaused = false;
-        const slideshowContainer = document.querySelector('.slideshow-container');
-        slideshowContainer.addEventListener('mousedown', (e) => {
-            if (e.target.classList.contains('slide-overlay-left') || e.target.classList.contains('slide-overlay-right')) {
-                return;
-            }
-            isPaused = true;
-            clearTimeout(slideTimeout);
-        });
-        slideshowContainer.addEventListener('mouseup', () => {
-            if (isPaused) {
-                isPaused = false;
-                autoShowSlides();
-            }
-        });
-        slideshowContainer.addEventListener('mouseleave', () => {
-            if (isPaused) {
-                isPaused = false;
-                autoShowSlides();
-            }
-        });
-        function plusSlides(n) {
-            clearTimeout(slideTimeout);
-            showSlides(slideIndex += n);
-            if (isPaused) {
-                autoShowSlides();
-            }
-        }
-        function showSlides(n) {
-            let i;
-            let slides = document.getElementsByClassName("slide");
-            if (n > slides.length) {slideIndex = 1}
-            if (n < 1) {slideIndex = slides.length}
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            slides[slideIndex-1].style.display = "block";
-        }
-        function autoShowSlides() {
-            if(isPaused) return;
-            slideTimeout = setTimeout(() => {
-                plusSlides(1);
-            }, 4000);
-        }
-        showSlides(slideIndex);
-        autoShowSlides();
-    </script>
-
     <!-- Lightbox functionality -->
     <script src="lightbox.js"></script>
     
