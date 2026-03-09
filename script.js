@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const img = document.createElement('img');
                 img.src = work.monoSrc;
                 img.alt = work.alt;
-                img.loading = 'lazy'; // Add native lazy loading
+                img.loading = index === 0 ? 'eager' : 'lazy'; // First image loads eagerly for LCP
 
                 link.appendChild(img);
                 imageWrapper.appendChild(link);

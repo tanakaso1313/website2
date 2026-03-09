@@ -298,17 +298,19 @@ main {
         width: 80vw;
         max-width: 80vw;
         height: auto;
+        aspect-ratio: 2 / 3; /* Reserve space before image loads to prevent CLS */
         margin: 0 auto 2vw auto;
         display: block;
         left: auto;
         top: auto;
         transform: none;
     }
-    
-    .image-wrapper img { 
+
+    .image-wrapper img {
         width: 100%;
-        height: auto;
+        height: 100%;
         display: block;
+        object-fit: cover;
         max-width: none;
         max-height: none;
     }
