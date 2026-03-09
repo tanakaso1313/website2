@@ -73,6 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 img.src = work.monoSrc;
                 img.alt = work.alt;
                 img.loading = index === 0 ? 'eager' : 'lazy'; // First image loads eagerly for LCP
+                if (index === 0) img.fetchPriority = 'high'; // Boost priority for LCP image
 
                 link.appendChild(img);
                 imageWrapper.appendChild(link);
