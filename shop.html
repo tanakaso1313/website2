@@ -74,7 +74,11 @@
                 })
                 .then(products => {
                     products
-                        .filter(product => !product.hidden)
+                        .filter(product => {
+                            const status = product.status || 'available';
+                            // Show available and sold_out (not discontinued or variants)
+                            return status === 'available' || status === 'sold_out';
+                        })
                         .forEach(product => {
                         const productItem = document.createElement('div');
                         productItem.classList.add('product-item');

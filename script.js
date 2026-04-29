@@ -206,6 +206,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Status-aware purchase area: hide checkout for discontinued/sold_out products
+    // Reads product status from products.json (single source of truth)
+    const checkoutBtns = document.querySelectorAll('.add-to-cart');
+    if (checkoutBtns.length > 0) {
+        fetch('/products.json')
+            .then(r => r.ok ? r.json() : null)
+            .catch(() => null)
+            .then(products => {
+                if (!Array.isArray(products)) return;
+                checkoutBtns.forEach(btn => {
+                    const productId = btn.getAttribute('data-product-id');
+                    const product = products.find(p => p.id === productId);
+                    if (!product) return;
+                    const status = product.status || 'available';
+                    if (status === 'discontinued' || status === 'sold_out') {
+                        const purchaseInfo = btn.closest('.purchase-info');
+                        if (!purchaseInfo) return;
+                        const message = status === 'discontinued'
+                            ? 'This piece is no longer available.'
+                            : 'Currently sold out.';
+                        const notice = document.createElement('p');
+                        notice.className = 'unavailable-notice';
+                        notice.textContent = message;
+                        notice.style.cssText = 'font-style: italic; opacity: 0.7; margin: 1em 0;';
+                        btn.replaceWith(notice);
+                    }
+                });
+            });
+    }
+
     // Stripe Checkout Integration
     const addToCartButtons = document.querySelectorAll('.add-to-cart');
     if (addToCartButtons.length > 0) {
