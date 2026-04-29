@@ -6,5 +6,13 @@ node_modules/
 .DS_Store
 images/mono_2/originals/
 
+# Raw photo originals at repo root – we ship .webp only.
+# Source JPGs should live in your local Downloads/photo library, not here.
+/*.JPG
+/*.jpg
+/*.jpeg
+/*.PNG
+/*.png
+
 # Claude AI editor worktrees (should never be committed)
 .claude/
