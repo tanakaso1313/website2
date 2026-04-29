@@ -210,22 +210,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const addToCartButtons = document.querySelectorAll('.add-to-cart');
     if (addToCartButtons.length > 0) {
         const colorOptions = [
-            // neutrals
+            // neutrals (light → dark)
             { label: 'White', swatch: 'rgb(243, 243, 243)' },
             { label: 'Grey', swatch: 'rgb(203, 203, 203)' },
+            { label: 'Warm Grey', swatch: 'rgb(193, 194, 176)' },
+            { label: 'Light Khaki', swatch: 'rgb(211, 173, 132)' },
             { label: 'Natural', swatch: 'rgb(110, 86, 58)' },
             { label: 'Olive Grey', swatch: 'rgb(67, 60, 34)' },
-            { label: 'Light Khaki', swatch: 'rgb(211, 173, 132)' },
-            // warm tones
+            // rainbow (R → O → Y → G → B), with pink grouped with reds
+            { label: 'Neon Red', swatch: 'rgb(234, 51, 35)' },
+            { label: 'Berry Pink', swatch: 'rgb(199, 67, 112)' },
+            { label: 'Milk Orange', swatch: 'rgb(245, 190, 126)' },
             { label: 'Yellow', swatch: 'rgb(252, 235, 101)' },
-            { label: 'Milk Orange', swatch: 'rgb(235, 170, 126)' },
-            // greens
-            { label: 'Green', swatch: 'rgb(94, 203, 118)' },
+            { label: 'Neon Yellow', swatch: 'rgb(242, 247, 81)' },
+            { label: 'Green', swatch: 'rgb(70, 156, 102)' },
             { label: 'Neon Green', swatch: 'rgb(116, 251, 76)' },
-            // blue
-            { label: 'Blue', swatch: 'rgb(0, 0, 245)' },
-            // accent
-            { label: 'Neon Red', swatch: 'rgb(234, 51, 35)' }
+            { label: 'Blue', swatch: 'rgb(0, 0, 245)' }
         ];
 
         const updateSelectionSummary = (container) => {

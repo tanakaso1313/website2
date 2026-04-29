@@ -266,6 +266,19 @@
     ]
   },
   {
+    "id": "product_LO / 01",
+    "type": "shop",
+    "title": "LO / 01",
+    "url": "lo-01.html",
+    "description": "Liminal Objects LO / 01",
+    "price": "¥11,000 (inc. tax)",
+    "keywords": [
+      "lo_01",
+      "liminal objects",
+      "sculpture"
+    ]
+  },
+  {
     "id": "product_LO / 02",
     "type": "shop",
     "title": "LO / 02",
@@ -274,6 +287,32 @@
     "price": "¥11,000 (inc. tax)",
     "keywords": [
       "lo_02",
+      "liminal objects",
+      "sculpture"
+    ]
+  },
+  {
+    "id": "product_LO / 03",
+    "type": "shop",
+    "title": "LO / 03",
+    "url": "lo-03.html",
+    "description": "Liminal Objects LO / 03",
+    "price": "¥16,500 (inc. tax)",
+    "keywords": [
+      "lo_03",
+      "liminal objects",
+      "sculpture"
+    ]
+  },
+  {
+    "id": "product_LO / 04",
+    "type": "shop",
+    "title": "LO / 04",
+    "url": "lo-04.html",
+    "description": "Liminal Objects LO / 04",
+    "price": "¥16,500 (inc. tax)",
+    "keywords": [
+      "lo_04",
       "liminal objects",
       "sculpture"
     ]
