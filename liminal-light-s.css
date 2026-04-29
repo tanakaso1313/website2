@@ -74,6 +74,19 @@
     font-size: 0.7em;
     color: #666;
     max-width: 400px;
+    /* Reserve a single line of vertical space so the Checkout button
+       doesn't shift when a color is selected. */
+    margin: 0.5em 0 !important;
+    line-height: 1.4em;
+    min-height: 1.4em;
+}
+
+/* Force empty summary to still take a line by injecting an invisible
+   non-breaking space. Without this, the <p> collapses and the button
+   jumps when the user selects a color. */
+.selection-summary:empty::before {
+    content: '\00a0';
+    visibility: hidden;
 }
 
 .description {

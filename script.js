@@ -242,21 +242,21 @@ document.addEventListener('DOMContentLoaded', () => {
     if (addToCartButtons.length > 0) {
         const colorOptions = [
             // neutrals (light → dark)
-            { label: 'White', swatch: 'rgb(243, 243, 243)' },
-            { label: 'Grey', swatch: 'rgb(203, 203, 203)' },
-            { label: 'Warm Grey', swatch: 'rgb(193, 194, 176)' },
-            { label: 'Light Khaki', swatch: 'rgb(211, 173, 132)' },
-            { label: 'Natural', swatch: 'rgb(110, 86, 58)' },
-            { label: 'Olive Grey', swatch: 'rgb(67, 60, 34)' },
+            { label: 'white', swatch: 'rgb(243, 243, 243)' },
+            { label: 'grey', swatch: 'rgb(203, 203, 203)' },
+            { label: 'warm grey', swatch: 'rgb(193, 194, 176)' },
+            { label: 'light khaki', swatch: 'rgb(211, 173, 132)' },
+            { label: 'natural', swatch: 'rgb(110, 86, 58)' },
+            { label: 'olive grey', swatch: 'rgb(67, 60, 34)' },
             // rainbow (R → O → Y → G → B), with pink grouped with reds
-            { label: 'Neon Red', swatch: 'rgb(234, 51, 35)' },
-            { label: 'Berry Pink', swatch: 'rgb(199, 67, 112)' },
-            { label: 'Milk Orange', swatch: 'rgb(245, 190, 126)' },
-            { label: 'Yellow', swatch: 'rgb(252, 235, 101)' },
-            { label: 'Neon Yellow', swatch: 'rgb(242, 247, 81)' },
-            { label: 'Green', swatch: 'rgb(70, 156, 102)' },
-            { label: 'Neon Green', swatch: 'rgb(116, 251, 76)' },
-            { label: 'Blue', swatch: 'rgb(0, 0, 245)' }
+            { label: 'neon red', swatch: 'rgb(234, 51, 35)' },
+            { label: 'berry pink', swatch: 'rgb(199, 67, 112)' },
+            { label: 'milk orange', swatch: 'rgb(245, 190, 126)' },
+            { label: 'yellow', swatch: 'rgb(252, 235, 101)' },
+            { label: 'neon yellow', swatch: 'rgb(242, 247, 81)' },
+            { label: 'green', swatch: 'rgb(70, 156, 102)' },
+            { label: 'neon green', swatch: 'rgb(116, 251, 76)' },
+            { label: 'blue', swatch: 'rgb(0, 0, 245)' }
         ];
 
         const updateSelectionSummary = (container) => {
@@ -275,7 +275,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (sizeAbbr) parts.push(sizeAbbr);
             if (color) parts.push(color);
 
-            el.textContent = parts.length ? `Selected: ${parts.join(' · ')}` : '';
+            // Use a non-breaking space placeholder when empty so the line
+             // always reserves vertical space and the Checkout button doesn't
+             // shift when a color/size is selected.
+             el.textContent = parts.length ? `Selected: ${parts.join(' · ')}` : '\u00A0';
         };
 
         // Size selector support
