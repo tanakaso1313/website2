@@ -389,7 +389,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (colorChips && colorChips.length > 0) {
                     const selectedChip = Array.from(colorChips).find(c => c.classList.contains('selected'));
                     color = selectedChip ? selectedChip.getAttribute('data-color') : '';
-                    if (!color && productId && productId.startsWith('LO_')) {
+                    if (!color && productId && (productId.startsWith('LO_') || productId.startsWith('LO /'))) {
                         alert('Please select a color.');
                         event.preventDefault();
                         return;

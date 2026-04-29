@@ -1,14 +1,5 @@
 [
   {
-    "id": "liminal-light-s",
-    "name": "LIMINAL LAMP S",
-    "price": "¥66,000 (inc. tax)",
-    "image": "images/Shop - top/2.liminal lamp_result_result.webp",
-    "hoverImage": "images/shop - liminal lamp/4.DSC06078_result_result.webp",
-    "page": "liminal-lamp-s_shop.html",
-    "altText": "Liminal Lamp S contemporary Japanese paper lamp sculptural lighting in MDF and lacquer by So Tanaka Studio"
-  },
-  {
     "id": "LO / 01",
     "name": "LO / 01",
     "price": "¥11,000 (inc. tax)",
@@ -79,6 +70,15 @@
     "hoverImage": "LO_23_shop_h.webp",
     "page": "lo-23.html",
     "altText": "LO 23 geometric grid furniture in lacquered MDF minimalist design by So Tanaka Studio Tokyo"
+  },
+  {
+    "id": "liminal-light-s",
+    "name": "LIMINAL LAMP S",
+    "price": "¥66,000 (inc. tax)",
+    "image": "images/Shop - top/2.liminal lamp_result_result.webp",
+    "hoverImage": "images/shop - liminal lamp/4.DSC06078_result_result.webp",
+    "page": "liminal-lamp-s_shop.html",
+    "altText": "Liminal Lamp S contemporary Japanese paper lamp sculptural lighting in MDF and lacquer by So Tanaka Studio"
   },
   {
     "id": "LO / HORSE",
