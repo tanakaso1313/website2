@@ -59,7 +59,7 @@
 }
 
 .cv-item span:first-child {
-    width: 290px;
+    width: 320px;
     white-space: nowrap;
     flex-shrink: 0;
 }
