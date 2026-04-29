@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const imageFolder = isMobileDevice ? '_2_mobile' : '_2';
         
         const works = [
+            { src: `images/top${imageFolder}/9.MO Lamp_top_result_result.webp`, monoSrc: `images/mono${imageFolder}/9.MO Lamp_top_mono_result_result.webp`, href: 'mo-lamp.html', category: 'light', alt: 'MO Lamp' },
             { src: `images/top${imageFolder}/8.Let a_top_result_result.webp`, monoSrc: `images/mono${imageFolder}/8.Let a_top_mono_result_result.webp`, href: 'let-a-colored-paper-swim-in-clouds.html', category: 'other', alt: 'Let a' },
             { src: `images/top${imageFolder}/7.Liminal Lamp_top_result_result.webp`, monoSrc: `images/mono${imageFolder}/7.Liminal Lamp_top_mono_result_result.webp`, href: 'liminal-lamp.html', category: 'light', alt: 'Liminal Lamp' },
             { src: `images/top${imageFolder}/6.Liminal Objects_top_result_result.webp`, monoSrc: `images/mono${imageFolder}/6.Liminal Objects_top_mono_result.webp`, href: 'liminal-objects.html', category: 'other', alt: 'Liminal Objects' },
