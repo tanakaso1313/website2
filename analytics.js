@@ -10,9 +10,9 @@
         // Add session replay plugin with 10% sample rate
         window.amplitude.add(window.sessionReplay.plugin({sampleRate: 0.1}));
         
-        // Initialize Amplitude with API key from config.js or fallback
+        // Initialize Amplitude with API key from config.js
         window.amplitude.init(
-            window.AMPLITUDE_API_KEY || '746eec9391b45c0239325340cd3baadd',
+            window.AMPLITUDE_API_KEY,
             {"autocapture": {"elementInteractions": true}}
         );
     } else {
