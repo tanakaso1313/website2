@@ -141,7 +141,34 @@ footer p {
         margin-left: 0;
         margin-right: 0;
     }
-    
+
+    /* Stack CV rows vertically so the right column isn't squeezed/clipped */
+    .cv-item,
+    .cv-item-exhibition {
+        flex-direction: column;
+    }
+
+    .cv-item span:first-child,
+    .cv-item-exhibition .year-col {
+        width: auto;
+        white-space: normal;
+    }
+
+    .cv-item-description,
+    .cv-item-exhibition .cv-item-description {
+        margin-left: 0;
+    }
+
+    .cv-item-exhibition .type-col {
+        width: auto;
+        margin-left: 0;
+        text-align: left;
+    }
+
+    .stockist-details {
+        margin-left: 0 !important;
+    }
+
     footer {
         right: 5vw;
         bottom: 10px;

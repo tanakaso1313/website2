@@ -147,20 +147,11 @@ document.addEventListener('DOMContentLoaded', () => {
         filterLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 const filter = e.target.dataset.filter;
-                if (filter) {
-                    // Navigate to dedicated category pages instead of filtering on homepage
-                    const categoryPages = {
-                        'furniture': '/furniture',
-                        'light': '/light',
-                        'other': '/other'
-                    };
-                    if (categoryPages[filter]) {
-                        window.location.href = categoryPages[filter];
-                    } else {
-                        e.preventDefault();
-                        renderGallery(filter);
-                    }
+                if (filter === 'all') {
+                    e.preventDefault();
+                    renderGallery('all');
                 }
+                // furniture/light/other links have correct hrefs — let default navigation handle them
             });
         });
     }

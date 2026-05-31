@@ -274,6 +274,7 @@
 @media (max-width: 768px) {
     .work-content {
         flex-direction: column;
+        margin-left: 0;
         padding: 0 5vw;
         padding-top: calc(7vh + 2em);
         display: flex;
