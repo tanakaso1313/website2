@@ -1,22 +1,19 @@
 /**
  * Amplitude Analytics initialization module
- * Handles Amplitude SDK initialization with session replay
+ * Handles Amplitude SDK initialization (event tracking only — no session replay).
  */
 (function initAmplitude() {
     'use strict';
-    
-    // Check if Amplitude libraries are loaded
-    if (typeof window.amplitude !== 'undefined' && typeof window.sessionReplay !== 'undefined') {
-        // Add session replay plugin with 10% sample rate
-        window.amplitude.add(window.sessionReplay.plugin({sampleRate: 0.1}));
-        
+
+    // Check if Amplitude is loaded
+    if (typeof window.amplitude !== 'undefined') {
         // Initialize Amplitude with API key from config.js
         window.amplitude.init(
             window.AMPLITUDE_API_KEY,
             {"autocapture": {"elementInteractions": true}}
         );
     } else {
-        // Retry after a short delay if scripts haven't loaded yet
+        // Retry after a short delay if the script hasn't loaded yet
         setTimeout(initAmplitude, 100);
     }
 })();
