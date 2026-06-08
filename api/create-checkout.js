@@ -60,17 +60,33 @@ const REGIONS = {
   },
 };
 
-// Resolve the single shipping option + allowed countries for a product + chosen region.
-// Japan-only products always ship domestic, ignoring any client-sent region.
-// Returns null for a missing/invalid region (so the caller can 400).
+// Full EMS country list (union of all regions). Used as a fallback when no region
+// is supplied (e.g. an older cached front end) so checkout never hard-fails.
+const ALL_COUNTRIES = ['JP', ...REGIONS.asia.countries, ...REGIONS.eu.countries, ...REGIONS.amaf.countries];
+
+// Resolve shipping option(s) + allowed countries for a product + chosen region.
+// - Japan-only products always ship domestic (ignore any client region).
+// - A valid region -> single rate for that region, address locked to it.
+// - Missing/invalid region (old cached front end) -> show all options, self-select
+//   (graceful fallback so checkout never breaks during front-end cache propagation).
 function shippingFor(product, region) {
-  const r = product.jpOnly ? 'japan' : region;
-  const def = REGIONS[r];
-  if (!def) return null;
+  if (product.jpOnly) {
+    return { region: 'japan', allowed: ['JP'], options: [{ shipping_rate: SHIP.JP_FREE }] };
+  }
+  const def = region && REGIONS[region];
+  if (def) {
+    return { region, allowed: def.countries, options: [{ shipping_rate: def.rate(product.band) }] };
+  }
+  const heavy = product.band === '1.5';
   return {
-    region: r,
-    allowed: def.countries,
-    options: [{ shipping_rate: def.rate(product.band) }],
+    region: 'all',
+    allowed: ALL_COUNTRIES,
+    options: [
+      { shipping_rate: SHIP.JP_FREE },
+      { shipping_rate: heavy ? SHIP.ASIA_15 : SHIP.ASIA_1 },
+      { shipping_rate: heavy ? SHIP.EU_15   : SHIP.EU_1 },
+      { shipping_rate: heavy ? SHIP.AMAF_15 : SHIP.AMAF_1 },
+    ],
   };
 }
 
@@ -137,11 +153,9 @@ module.exports = async (req, res) => {
     if (color) nameParts.push(color);
     const nameSuffix = nameParts.length > 0 ? ` (${nameParts.join(', ')})` : '';
 
-    // Shipping derived from the trusted catalog entry + the region the buyer chose.
+    // Shipping derived from the trusted catalog entry + the region the buyer chose
+    // (falls back to all options if no region supplied; never hard-fails).
     const shipping = shippingFor(product, region);
-    if (!shipping) {
-      return res.status(400).json({ error: 'Please select a shipping region.' });
-    }
 
     // Checkout messaging: duties notice (international destinations only) + optional variant label.
     // Domestic Japan skips the import-duties notice (irrelevant for domestic buyers).
