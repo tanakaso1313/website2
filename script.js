@@ -402,6 +402,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
+            // Inject a "Ship to" region selector for shippable products (Japan-only pieces skip it)
+            if (productId && !['VNSH', 'LIMINAL LAMP S'].includes(productId)) {
+                const rc = button.closest('.purchase-info') || button.parentElement;
+                if (rc && !rc.querySelector('.ship-region')) {
+                    const rwrap = document.createElement('div');
+                    rwrap.className = 'ship-region-selector';
+                    const rlabel = document.createElement('label');
+                    rlabel.textContent = 'Ship to';
+                    const rsel = document.createElement('select');
+                    rsel.className = 'ship-region';
+                    [['', 'Select region…'], ['japan', 'Japan'], ['asia', 'Asia'], ['eu', 'Europe / Oceania / Middle East / Canada'], ['amaf', 'Americas / Africa']]
+                        .forEach(([v, t]) => {
+                            const o = document.createElement('option');
+                            o.value = v;
+                            o.textContent = t;
+                            if (v === '') { o.disabled = true; o.selected = true; }
+                            rsel.appendChild(o);
+                        });
+                    rwrap.appendChild(rlabel);
+                    rwrap.appendChild(rsel);
+                    rc.insertBefore(rwrap, button);
+                }
+            }
+
             button.addEventListener('click', async (event) => {
                 const productId = button.getAttribute('data-product-id');
 
@@ -453,6 +477,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 event.preventDefault(); // Stop # jump for dynamic flow
+
+                // Require a shipping region (non-Japan-only products show the selector)
+                let region = '';
+                const regionSel = container ? container.querySelector('.ship-region') : null;
+                if (regionSel) {
+                    region = regionSel.value;
+                    if (!region) {
+                        alert('Please select a shipping region.');
+                        return;
+                    }
+                }
                 
                 // Disable button to prevent double-clicks
                 button.disabled = true;
@@ -478,6 +513,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             productId, 
                             color, 
                             size,
+                            region,
                             priceId,
                             successUrl: `${window.location.origin}/success.html`,
                             cancelUrl: `${window.location.origin}/cancel.html`

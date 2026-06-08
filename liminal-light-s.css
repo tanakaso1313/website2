@@ -190,6 +190,22 @@
     padding: 0.2em 0.4em;
 }
 
+.ship-region-selector {
+    margin-top: 1em;
+    margin-bottom: 0.75em;
+}
+
+.ship-region-selector label {
+    display: block;
+    margin-bottom: 0.35em;
+}
+
+.ship-region {
+    width: 100%;
+    max-width: 320px;
+    padding: 0.2em 0.4em;
+}
+
 .color-chips {
     display: flex;
     flex-wrap: wrap;

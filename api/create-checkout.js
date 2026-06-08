@@ -37,22 +37,40 @@ const PRODUCTS = {
   'LIMINAL LAMP S': { name: 'Liminal Lamp S', prices: ['price_1SvC2BEcQzNRltK0YfYIxscH'], jpOnly: true },
 };
 
-// EMS-serviceable, Stripe-supported destinations (Georgia/Russia/Cuba + suspended states excluded)
-const INTL_COUNTRIES = ["JP","CN","KR","TW","HK","MO","SG","MY","TH","VN","ID","PH","IN","LK","BD","NP","PK","KH","LA","MM","BN","BT","MV","MN","AU","NZ","FJ","NC","PG","SB","CK","CA","MX","PM","AE","SA","QA","KW","OM","BH","JO","IL","LB","TR","IS","IE","GB","GG","JE","FR","DE","IT","ES","PT","NL","BE","LU","CH","AT","DK","NO","SE","FI","PL","CZ","SK","HU","RO","BG","GR","HR","SI","EE","LV","LT","MT","CY","AD","MC","SM","LI","MK","AZ","US","PR","GU","ZA","EG","MA","TN","DZ","KE","NG","GH","SN","CI","TG","UG","ET","GA","DJ","RW","ZW","MU","RE","BR","AR","CL","PE","CO","VE","EC","PY","UY","PA","CR","HN","SV","JM","TT","BB","GF","GP","MQ"];
+// --- Shipping regions (buyer picks one on the product page) ---
+// Each region maps to its Stripe-supported destination countries
+// (Georgia/Russia/Cuba + suspended states excluded) and the shipping rate
+// applied for that region + the product's weight band.
+const REGIONS = {
+  japan: {
+    countries: ['JP'],
+    rate: () => SHIP.JP_FREE,
+  },
+  asia: {
+    countries: ['CN','KR','TW','HK','MO','SG','MY','TH','VN','ID','PH','IN','LK','BD','NP','PK','KH','LA','MM','BN','BT','MV','MN'],
+    rate: (band) => (band === '1.5' ? SHIP.ASIA_15 : SHIP.ASIA_1),
+  },
+  eu: {
+    countries: ['AU','NZ','FJ','NC','PG','SB','CK','CA','MX','PM','AE','SA','QA','KW','OM','BH','JO','IL','LB','TR','IS','IE','GB','GG','JE','FR','DE','IT','ES','PT','NL','BE','LU','CH','AT','DK','NO','SE','FI','PL','CZ','SK','HU','RO','BG','GR','HR','SI','EE','LV','LT','MT','CY','AD','MC','SM','LI','MK','AZ'],
+    rate: (band) => (band === '1.5' ? SHIP.EU_15 : SHIP.EU_1),
+  },
+  amaf: {
+    countries: ['US','PR','GU','ZA','EG','MA','TN','DZ','KE','NG','GH','SN','CI','TG','UG','ET','GA','DJ','RW','ZW','MU','RE','BR','AR','CL','PE','CO','VE','EC','PY','UY','PA','CR','HN','SV','JM','TT','BB','GF','GP','MQ'],
+    rate: (band) => (band === '1.5' ? SHIP.AMAF_15 : SHIP.AMAF_1),
+  },
+};
 
-function shippingFor(product) {
-  if (product.jpOnly) {
-    return { allowed: ['JP'], options: [{ shipping_rate: SHIP.JP_FREE }] };
-  }
-  const heavy = product.band === '1.5';
+// Resolve the single shipping option + allowed countries for a product + chosen region.
+// Japan-only products always ship domestic, ignoring any client-sent region.
+// Returns null for a missing/invalid region (so the caller can 400).
+function shippingFor(product, region) {
+  const r = product.jpOnly ? 'japan' : region;
+  const def = REGIONS[r];
+  if (!def) return null;
   return {
-    allowed: INTL_COUNTRIES,
-    options: [
-      { shipping_rate: SHIP.JP_FREE },
-      { shipping_rate: heavy ? SHIP.ASIA_15 : SHIP.ASIA_1 },
-      { shipping_rate: heavy ? SHIP.EU_15   : SHIP.EU_1 },
-      { shipping_rate: heavy ? SHIP.AMAF_15 : SHIP.AMAF_1 },
-    ],
+    region: r,
+    allowed: def.countries,
+    options: [{ shipping_rate: def.rate(product.band) }],
   };
 }
 
@@ -71,7 +89,7 @@ module.exports = async (req, res) => {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   try {
-    const { productId, color, size, priceId, successUrl, cancelUrl } = req.body;
+    const { productId, color, size, priceId, successUrl, cancelUrl, region } = req.body;
 
     // Validate product + price against the server-side catalog.
     // Never trust the client's product/price pairing.
@@ -119,13 +137,16 @@ module.exports = async (req, res) => {
     if (color) nameParts.push(color);
     const nameSuffix = nameParts.length > 0 ? ` (${nameParts.join(', ')})` : '';
 
-    // Shipping derived from the trusted catalog entry (not client input)
-    const shipping = shippingFor(product);
+    // Shipping derived from the trusted catalog entry + the region the buyer chose.
+    const shipping = shippingFor(product, region);
+    if (!shipping) {
+      return res.status(400).json({ error: 'Please select a shipping region.' });
+    }
 
-    // Checkout messaging: duties notice (international products only) + optional variant label.
-    // Japan-only products skip the import-duties notice (irrelevant for domestic buyers).
+    // Checkout messaging: duties notice (international destinations only) + optional variant label.
+    // Domestic Japan skips the import-duties notice (irrelevant for domestic buyers).
     const customText = {};
-    if (!product.jpOnly) {
+    if (shipping.region !== 'japan') {
       customText.shipping_address = {
         message: 'Import duties and taxes are not included and are the responsibility of the recipient.',
       };
@@ -152,6 +173,7 @@ module.exports = async (req, res) => {
         color: color || '',
         size: size || '',
         ship_band: product.jpOnly ? 'jp_only' : product.band,
+        ship_region: shipping.region,
       },
       payment_intent_data: {
         metadata: {
@@ -161,8 +183,8 @@ module.exports = async (req, res) => {
         },
       },
       billing_address_collection: 'required',
+      // Address locked to the chosen region; single rate for that region + band
       shipping_address_collection: { allowed_countries: shipping.allowed },
-      // Free Japan + international zone rates (Japan-only for large pieces)
       shipping_options: shipping.options,
       automatic_tax: { enabled: true },
       allow_promotion_codes: false,
