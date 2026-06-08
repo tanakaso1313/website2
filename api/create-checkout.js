@@ -3,13 +3,13 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 // --- Shipping rates (Japan Post EMS) ---
 // Live Stripe shipping_rate IDs; override per-mode via env if ever needed.
 const SHIP = {
-  JP_FREE: process.env.SHIP_JP_FREE || 'shr_1TgAxZEcQzNRltK0bnk71HLV',
-  ASIA_1:  process.env.SHIP_ASIA_1  || 'shr_1TgAUmEcQzNRltK0gVTzZWqU',
-  ASIA_15: process.env.SHIP_ASIA_15 || 'shr_1TgAUnEcQzNRltK0RmN3RuM0',
-  EU_1:    process.env.SHIP_EU_1    || 'shr_1TgAUnEcQzNRltK0D5gAlTOg',
-  EU_15:   process.env.SHIP_EU_15   || 'shr_1TgAUnEcQzNRltK0rnjdckUs',
-  AMAF_1:  process.env.SHIP_AMAF_1  || 'shr_1TgAUnEcQzNRltK031LJvC7r',
-  AMAF_15: process.env.SHIP_AMAF_15 || 'shr_1TgAUoEcQzNRltK08BPl5JBb',
+  JP_FREE: process.env.SHIP_JP_FREE || 'shr_1TgBFdEcQzNRltK0bGC85vOY',
+  ASIA_1:  process.env.SHIP_ASIA_1  || 'shr_1TgBFdEcQzNRltK0E91Xqxl1',
+  ASIA_15: process.env.SHIP_ASIA_15 || 'shr_1TgBFdEcQzNRltK0BC8YYJBJ',
+  EU_1:    process.env.SHIP_EU_1    || 'shr_1TgBFeEcQzNRltK0pPpEO99J',
+  EU_15:   process.env.SHIP_EU_15   || 'shr_1TgBFeEcQzNRltK0XQiKdM6V',
+  AMAF_1:  process.env.SHIP_AMAF_1  || 'shr_1TgBFeEcQzNRltK0ahd2ejsi',
+  AMAF_15: process.env.SHIP_AMAF_15 || 'shr_1TgBFeEcQzNRltK0WKsjKVR0',
 };
 
 // --- Product catalog: server-side source of truth ---
