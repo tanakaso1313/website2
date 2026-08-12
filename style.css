@@ -32,7 +32,6 @@ select {
     font: inherit;
 }
 
-
 .sidebar {
     position: fixed;
     top: 7vh;
@@ -84,35 +83,6 @@ select {
 
 .sidebar nav a:hover::after {
     visibility: visible;
-}
-
-/* Instagram mark, pinned to the bottom of the page on every screen.
-   Sits on the sidebar's left edge, just above the legal line. */
-.sidebar-social {
-    position: fixed;
-    left: 5vw;
-    bottom: 3em;
-    display: inline-block;
-    line-height: 0;
-    color: #000;
-    opacity: 0.35;
-    transition: opacity 0.2s ease;
-    z-index: 100;
-}
-
-.sidebar-social:hover { opacity: 1; }
-
-.sidebar-social svg {
-    width: 15px;
-    height: 15px;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 1.4;
-}
-
-.sidebar-social svg .dot {
-    fill: currentColor;
-    stroke: none;
 }
 
 .main-nav {
@@ -200,14 +170,12 @@ main {
     align-items: flex-start;
 }
 
-
 .image-wrapper img {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
     cursor: pointer;
 }
-
 
 .mobile-work-links {
     display: none;
@@ -261,11 +229,6 @@ main {
 
     .category-nav {
         margin-bottom: 0.5rem;
-    }
-
-    .sidebar-social {
-        position: static;
-        margin-top: 1.5em;
     }
 
     .legal-policy {
