@@ -13,24 +13,6 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://sotanaka.com/furniture</loc>
-    <lastmod>2026-02-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://sotanaka.com/light</loc>
-    <lastmod>2026-02-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://sotanaka.com/other</loc>
-    <lastmod>2026-02-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
     <loc>https://sotanaka.com/contact</loc>
     <lastmod>2026-02-26</lastmod>
     <changefreq>yearly</changefreq>
@@ -180,4 +162,35 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+    <url>
+        <loc>https://sotanaka.com/archive/liminal-objects-at-designtide</loc>
+        <changefreq>yearly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://sotanaka.com/archive/liminal-objects-at-information-gallery</loc>
+        <changefreq>yearly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://sotanaka.com/archive/let-a-colored-paper-swim-in-clouds-at-moro</loc>
+        <changefreq>yearly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://sotanaka.com/archive/vnsh-at-designart</loc>
+        <changefreq>yearly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://sotanaka.com/archive/uneri-at-3daysofdesign</loc>
+        <changefreq>yearly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://sotanaka.com/archive/liminal-objects-and-vnsh-at-cont-gallery</loc>
+        <changefreq>yearly</changefreq>
+        <priority>0.6</priority>
+    </url>
 </urlset>

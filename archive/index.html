@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Past exhibitions by SOTANAKA.">
+    <meta name="author" content="SOTANAKA">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Archive | SOTANAKA">
+    <meta property="og:description" content="Past exhibitions by SOTANAKA.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sotanaka.com/archive">
+    <meta property="og:image" content="https://sotanaka.com/images/social/homepage-social.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://sotanaka.com/archive">
+    <title>Archive | SOTANAKA</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/work-page.css">
+    <style>
+        /* Archive-specific styles */
+        main {
+            padding-top: var(--content-top);
+            margin-left: max(22vw, 215px);
+        }
+        
+        .archive-section {
+            display: flex;
+            padding-top: 0;
+            margin-bottom: 8em;
+        }
+        
+        .archive-description {
+            width: 25vw;
+            padding-left: 0;
+            padding-right: 5vw;
+        }
+        
+        /* Matches the product-page title treatment. */
+        .archive-description h2 {
+            font-family: var(--font-sans);
+            font-weight: 400;
+            font-size: 13px;
+            letter-spacing: 0.26em;
+            text-transform: uppercase;
+            margin: 0 0 24px 0;
+        }
+
+        /* Same rhythm and text size as the product pages. */
+        .archive-meta {
+            margin: 0 0 24px 0;
+            line-height: 1.6em;
+        }
+        
+        .archive-text {
+            margin: 0 0 24px 0;
+            line-height: 1.6em;
+        }
+
+        .archive-description > br {
+            display: none;
+        }
+        
+        .archive-images {
+            width: 45vw;
+            padding-right: 3vw;
+            padding-top: 0;
+        }
+        
+        .archive-images img {
+            width: 100%;
+            margin-bottom: 2em;
+            cursor: pointer;
+        }
+        
+        .exhibition-separator {
+            width: 100%;
+            height: 1px;
+            background-color: #ccc;
+            margin: 4em 0;
+        }
+        
+        @media (max-width: 768px) {
+            main {
+                margin-left: 0;
+                padding: 4vh 5vw 10vh 5vw;
+            }
+            
+            .archive-section {
+                flex-direction: column;
+                padding-top: 0;
+                margin-bottom: 3em;
+            }
+            
+            .archive-description,
+            .archive-images {
+                width: 100%;
+                padding-left: 5vw;
+                padding-right: 5vw;
+                box-sizing: border-box;
+            }
+            
+            .archive-description {
+                order: 1;
+                width: auto;
+            }
+            
+            .archive-images {
+                order: 2;
+                width: auto;
+            }
+            
+            .exhibition-separator {
+                margin-left: 5vw;
+                margin-right: 5vw;
+                margin-top: 2em;
+                margin-bottom: 2em;
+            }
+        }
+
+        /* Archive index: one square per exhibition, grouped by year. */
+        .year-block { display: flex; align-items: flex-start; margin-bottom: 5.5em; }
+        .year-label {
+            flex: 0 0 8em;
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 0.26em;
+            padding-top: 0.2em;
+        }
+        .year-works { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 3vw 2vw; }
+
+        @media (max-width: 768px) {
+            .year-block { flex-direction: column; margin-bottom: 3.5em; }
+            /* flex-basis is height once the block stacks, so release it */
+            .year-label { flex: none; margin-bottom: 1em; }
+            .year-works { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .work { display: block; }
+        .work-thumb {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            background: #fafafa;
+        }
+        .work-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(1);
+            transition: filter 0.25s ease;
+        }
+        .work:hover .work-thumb img { filter: none; }
+        .work-name {
+            margin-top: 12px;
+            font-size: 13px;
+            letter-spacing: 0.26em;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 768px) {
+            /* one square per row on phones */
+            .year-works { grid-template-columns: 1fr; width: 100%; }
+        }
+    </style>
+    <script src="/config.js"></script>
+    <!-- Amplitude Analytics -->
+    <script defer src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz" crossorigin="anonymous"></script>
+    <script defer src="/analytics.js"></script>
+    <script>
+    // Custom archive page tracking
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof window.amplitude !== 'undefined') {
+            window.amplitude.track('Archive Page Viewed', {
+                page_type: 'archive',
+                page_name: 'SOTANAKA Archive',
+                content_type: 'exhibition_archive'
+            });
+        }
+    });
+    </script>
+</head>
+<body>
+    <div class="sidebar">
+        <header>
+             <h1><a href="/">S O  T A N A K A</a></h1>
+        </header>
+        <nav>
+            <div class="category-nav">
+                <a href="/">WORKS</a>
+                <a href="/shop">SHOP</a>
+                <a href="/bio">BIO</a>
+                <a href="/archive">ARCHIVE</a>
+                <a href="/contact">CONTACT</a>
+            </div>
+        </nav>
+        <a class="sidebar-social" href="https://www.instagram.com/s_o_tanaka" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5"/>
+                <circle cx="12" cy="12" r="4.1"/>
+                <circle class="dot" cx="17.1" cy="6.9" r="1.05"/>
+            </svg>
+        </a>
+    </div>
+
+    <main>
+                <div class="year-block">
+            <div class="year-label">2026</div>
+            <div class="year-works">
+                <a class="work" href="/archive/uneri-at-3daysofdesign">
+                    <div class="work-thumb"><img src="/3days2026-cover.webp" alt="Uneri at 3daysofdesign" loading="lazy"></div>
+                    <div class="work-name">Uneri at 3daysofdesign</div>
+                </a>
+            </div>
+        </div>
+<div class="year-block">
+            <div class="year-label">2025</div>
+            <div class="year-works">
+                <a class="work" href="/archive/liminal-objects-at-designtide">
+                    <div class="work-thumb"><img src="/designtide2025-key-visual.webp" alt="Liminal Objects at DesignTide" loading="lazy"></div>
+                    <div class="work-name">Liminal Objects at DesignTide</div>
+                </a>
+                <a class="work" href="/archive/liminal-objects-and-vnsh-at-cont-gallery">
+                    <div class="work-thumb"><img src="/cont2025-cover.webp" alt="Liminal Objects and Vnsh at Cont Gallery" loading="lazy"></div>
+                    <div class="work-name">Liminal Objects and Vnsh at Cont Gallery</div>
+                </a>
+                <a class="work" href="/archive/liminal-objects-at-information-gallery">
+                    <div class="work-thumb"><img src="/information2025poster1.webp" alt="Liminal Objects at Information Gallery" loading="lazy"></div>
+                    <div class="work-name">Liminal Objects at Information Gallery</div>
+                </a>
+                <a class="work" href="/archive/let-a-colored-paper-swim-in-clouds-at-moro">
+                    <div class="work-thumb"><img src="/moro2025-key-visual.webp" alt="Let a colored paper swim in clouds at Moro" loading="lazy"></div>
+                    <div class="work-name">Let a colored paper swim in clouds at Moro</div>
+                </a>
+            </div>
+        </div>
+        <div class="year-block">
+            <div class="year-label">2023</div>
+            <div class="year-works">
+                <a class="work" href="/archive/vnsh-at-designart">
+                    <div class="work-thumb"><img src="/designart2023poster.webp" alt="Vnsh at Designart" loading="lazy"></div>
+                    <div class="work-name">Vnsh at Designart</div>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <div id="lightbox" class="lightbox">
+        <span class="close-button">&times;</span>
+        <img src="/images/icons/prev-arrow.svg" class="prev-button" alt="Previous image">
+        <img class="lightbox-content" id="lightbox-img" alt="">
+        <img src="/images/icons/next-arrow.svg" class="next-button" alt="Next image">
+    </div>
+
+    <script src="/lightbox.js"></script>
+    <footer>
+        <p>&copy; 2026 SOTANAKA. All rights reserved.</p>
+    </footer>
+    <script src="/script.min.js?v=10"></script>
+
+</body>
+</html>

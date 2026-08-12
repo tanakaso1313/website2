@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="So Tanaka is a furniture and product design studio in Tokyo. Contemporary Japanese design pieces handcrafted in Japan.">
-    <meta name="keywords" content="Japanese designer furniture, handcrafted Japanese furniture, contemporary Japanese design, contemporary Japanese craft, Japanese design studio, emerging Japanese designer, liminal design, minimalist Japanese furniture, So Tanaka, furniture design, Tokyo designer, young Japanese designer, liminal objects">
-    <meta name="author" content="So Tanaka">
+    <meta name="description" content="SOTANAKA is a Tokyo-based design studio established in 2020 by Soichiro Tanaka, working across furniture, lighting and objects.">
+    <meta name="author" content="SOTANAKA">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="So Tanaka - Furniture and Product Design Studio">
+    <meta property="og:title" content="SOTANAKA">
     <meta property="article:publisher" content="https://sotanaka.com">
-    <meta property="og:description" content="So Tanaka is a furniture and product design studio in Tokyo. Contemporary Japanese design pieces handcrafted in Japan.">
+    <meta property="og:description" content="SOTANAKA is a Tokyo-based design studio established in 2020 by Soichiro Tanaka, working across furniture, lighting and objects.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://sotanaka.com/">
     <meta property="og:image" content="https://sotanaka.com/images/social/homepage-social.jpg">
@@ -29,7 +28,7 @@
       "alternateName": ["So Tanaka", "Soichiro Tanaka", "So Tanaka Design Studio", "Sotanaka", "sotanaka", "SoTanaka"],
       "url": "https://sotanaka.com",
       "logo": "https://sotanaka.com/images/social/homepage-social.jpg",
-      "description": "SOTANAKA (So Tanaka) is a furniture and product design studio in Tokyo, founded by Soichiro Tanaka. Contemporary Japanese design pieces handcrafted in Japan.",
+      "description": "SOTANAKA is a Tokyo-based design studio established in 2020 by Soichiro Tanaka, working across furniture, lighting and objects.",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Tokyo",
@@ -54,6 +53,46 @@
     <link rel="stylesheet" href="style.css">
     <!-- Defer analytics to unblock rendering -->
     <script defer src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz" crossorigin="anonymous"></script>
+    <style>
+        /* Landing grid: works by year, newest first. */
+        main {
+            padding-top: var(--content-top);
+            margin-left: max(22vw, 215px);
+            padding-right: 5vw;
+            padding-left: 0;
+            max-width: none;
+        }
+        .year-block { display: flex; align-items: flex-start; margin-bottom: 5.5em; }
+        .year-label {
+            flex: 0 0 8em;
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 0.26em;
+            padding-top: 0.2em;
+        }
+        .year-works { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 3vw 2vw; }
+        .work { display: block; }
+        .work-thumb { width: 100%; aspect-ratio: 1 / 1; overflow: hidden; background: #fafafa; }
+        .work-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .work-name {
+            margin-top: 12px;
+            font-size: 13px;
+            letter-spacing: 0.26em;
+            text-transform: uppercase;
+        }
+        @media (max-width: 768px) {
+            main { margin-left: 0; padding: 4vh 5vw 10vh 5vw; }
+            .year-block { flex-direction: column; margin-bottom: 3.5em; }
+            /* flex-basis is height once the block stacks, so release it */
+            .year-label { flex: none; margin-bottom: 1em; }
+            .year-works { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            /* one square per row on phones */
+            .year-works { grid-template-columns: 1fr; width: 100%; }
+        }
+    </style>
 </head>
 <body>
     <div class="sidebar">
@@ -62,17 +101,11 @@
         </header>
         <nav>
             <div class="category-nav">
-                <a href="/" data-filter="all" id="all-link">WORK <span class="toggle-btn" id="toggle-btn">+</span></a>
-                <div class="sub-items" id="sub-items">
-                    <a href="/furniture" data-filter="furniture">FURNITURE</a>
-                    <a href="/light" data-filter="light">LIGHT</a>
-                    <a href="/other" data-filter="other">OTHER</a>
-                </div>
+                <a href="/">WORKS</a>
                 <a href="/shop">SHOP</a>
                 <a href="/bio">BIO</a>
                 <a href="/archive">ARCHIVE</a>
                 <a href="/contact">CONTACT</a>
-                <a href="/search">SEARCH</a>
             </div>
             <div class="mobile-work-links">
                 <a href="/uneri" data-work="UNRI">UNRI</a>
@@ -87,41 +120,37 @@
                 <a href="/transfer" data-work="TRSF">TRSF</a>
             </div>
         </nav>
+        <a class="sidebar-social" href="https://www.instagram.com/s_o_tanaka" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5"/>
+                <circle cx="12" cy="12" r="4.1"/>
+                <circle class="dot" cx="17.1" cy="6.9" r="1.05"/>
+            </svg>
+        </a>
     </div>
     
     <main>
-        <div class="gallery-container">
-        </div>
+        <div class="work-grid" id="workGrid"></div>
     </main>
     
-    <!-- Redirect old ?filter= URLs to new category pages -->
+    <!-- Legacy ?filter= URLs: the category pages are retired, so send them home. -->
     <script>
     (function handleLegacyFilterRedirect() {
-        const params = new URLSearchParams(window.location.search);
-        const filter = params.get('filter');
-        
-        if (filter) {
-            const redirectMap = {
-                'furniture': '/furniture',
-                'light': '/light',
-                'other': '/other'
-            };
-            
-            if (redirectMap[filter]) {
-                window.location.replace(redirectMap[filter]);
-            }
+        if (new URLSearchParams(location.search).get('filter')) {
+            history.replaceState(null, '', '/');
         }
     })();
     </script>
     
-    <script src="script.min.js?v=10" defer></script>
+    <script src="works.js"></script>
+    <script src="landing.js"></script>
     <!-- Amplitude Analytics -->
     <script defer src="analytics.js"></script>
     <script>
     // Track homepage view using the helper from analytics.js
     window.trackPageView('Homepage Viewed', {
         page_type: 'homepage',
-        page_name: 'So Tanaka Studio Homepage',
+        page_name: 'SOTANAKA Homepage',
         studio_location: 'Tokyo',
         founding_year: '2020'
     });

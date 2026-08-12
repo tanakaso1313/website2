@@ -1,7 +1,7 @@
 .bio-content {
-    padding-top: calc(7vh + 6em);
+    padding-top: var(--content-top);
     padding-right: 5vw;
-    padding-left: 28vw;
+    padding-left: max(17vw, calc(215px - 5vw));
 }
 
 .bio-content p {
@@ -17,8 +17,8 @@
 }
 
 .bio-content h2 {
-    font-family: Arial, sans-serif;
-    font-weight: normal;
+    font-family: var(--font-sans);
+    font-weight: 300;
     font-size: 1.2em;
     margin-bottom: 1em;
 }

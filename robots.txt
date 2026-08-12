@@ -1,17 +1,13 @@
 User-agent: *
 Allow: /
 
-# Sitemap
 Sitemap: https://sotanaka.com/sitemap.xml
 
-# Disallow utility pages
-Disallow: /success.html
-Disallow: /cancel.html
-Disallow: /search.html
-Disallow: /search
-
-# Disallow .html extension URLs (canonical versions are without .html)
-Disallow: /*.html$
-
-# Disallow legacy filter URLs
+# Legacy filter URLs are duplicate views of the works index.
 Disallow: /*?filter=
+
+# Nothing else is blocked on purpose. Pages that should stay out of the index
+# (success, cancel, policies, the retired category pages) carry a noindex tag,
+# and the .html duplicates carry rel=canonical to their extensionless URL.
+# Both only work if the crawler is allowed to fetch the page and read them,
+# so those URLs must not be disallowed here.

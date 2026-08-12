@@ -2,83 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Contemporary Japanese furniture design by So Tanaka Studio in Tokyo. Handcrafted furniture pieces including ORI console and other minimalist furniture designs.">
-    <meta name="keywords" content="Japanese furniture, contemporary furniture, minimalist furniture, Tokyo furniture designer, ORI console, handcrafted furniture, Japanese design studio, So Tanaka furniture">
-    <meta name="author" content="So Tanaka">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Furniture - So Tanaka Studio | Contemporary Japanese Furniture Design">
-    <meta property="article:publisher" content="https://sotanaka.com">
-    <meta property="og:description" content="Contemporary Japanese furniture design by So Tanaka Studio in Tokyo. Handcrafted furniture pieces including ORI console and minimalist designs.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://sotanaka.com/furniture">
-    <meta property="og:image" content="https://sotanaka.com/images/social/homepage-social.jpg">
-    <meta name="twitter:card" content="summary_large_image">
-    <link rel="canonical" href="https://sotanaka.com/furniture">
-    <title>Furniture | SOTANAKA</title>
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="dns-prefetch" href="https://cdn.amplitude.com">
-    <link rel="preconnect" href="https://cdn.amplitude.com" crossorigin>
-    <link rel="stylesheet" href="style.css">
-    <script src="config.js"></script>
-    <!-- Amplitude Analytics -->
-    <script defer src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz" crossorigin="anonymous"></script>
-    <script defer src="analytics.js"></script>
+    <meta http-equiv="refresh" content="0; url=/">
+    <link rel="canonical" href="https://sotanaka.com/">
+    <meta name="robots" content="noindex, follow">
+    <title>SOTANAKA</title>
+    <script>location.replace('/');</script>
 </head>
 <body>
-    <div class="sidebar">
-        <header>
-             <h1><a href="/">S O  T A N A K A</a></h1>
-        </header>
-        <nav>
-            <div class="category-nav">
-                <a href="/" data-filter="all" id="all-link">WORK <span class="toggle-btn" id="toggle-btn">−</span></a>
-                <div class="sub-items expanded" id="sub-items">
-                    <a href="/furniture" data-filter="furniture" class="active">FURNITURE</a>
-                    <a href="/light" data-filter="light">LIGHT</a>
-                    <a href="/other" data-filter="other">OTHER</a>
-                </div>
-                <a href="/shop">SHOP</a>
-                <a href="/bio">BIO</a>
-                <a href="/archive">ARCHIVE</a>
-                <a href="/contact">CONTACT</a>
-                <a href="/search">SEARCH</a>
-            </div>
-            <div class="mobile-work-links">
-                <a href="/uneri" data-work="UNRI">UNRI</a>
-                <a href="/ori" data-work="ORI">ORI</a>
-            </div>
-        </nav>
-    </div>
-    
-    <main>
-        <div class="gallery-container">
-        </div>
-    </main>
-    <script src="script.min.js?v=10"></script>
-    <script>
-    // Force furniture filter on page load
-    document.addEventListener('DOMContentLoaded', function() {
-        // Set filter to furniture
-        const event = new CustomEvent('filterchange', { detail: { filter: 'furniture' } });
-        document.dispatchEvent(event);
-        
-        // Trigger the gallery render with furniture filter
-        if (typeof renderGallery === 'function') {
-            renderGallery('furniture');
-        }
-    });
-    
-    // Custom category tracking
-    document.addEventListener('DOMContentLoaded', function() {
-        if (typeof window.amplitude !== 'undefined') {
-            window.amplitude.track('Category Page Viewed', {
-                page_type: 'category',
-                category: 'furniture',
-                page_name: 'Furniture Category'
-            });
-        }
-    });
-    </script>
+    <p><a href="/">SOTANAKA</a></p>
 </body>
 </html>

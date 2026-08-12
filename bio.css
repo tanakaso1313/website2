@@ -1,11 +1,76 @@
 .bio-content {
-    padding-top: calc(7vh + 6em);
+    padding-top: var(--content-top);
     padding-right: 5vw;
-    padding-left: 28vw;
+    padding-left: max(17vw, calc(215px - 5vw));
 }
 
+:root { --measure: 62em; }
+
+/* Every block shares one outer width, so right edges align down the page. */
+.about-block,
+.cv-section {
+    max-width: var(--measure);
+}
+
+.section-link {
+    display: inline-block;
+    margin-top: 24px;
+    font-size: 13px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: #999;
+    transition: color 0.2s ease;
+}
+
+.section-link:hover { color: #000; }
+
 .bio-content p {
-    margin-bottom: 2em;
+    margin: 0 0 24px 0;
+    line-height: 1.6;
+}
+
+/* About: statement text with the portrait alongside it. */
+.about-block {
+    display: flex;
+    align-items: stretch;     /* portrait matches the text block's height */
+    gap: 0;
+    margin-bottom: 24px;
+}
+
+.about-text {
+    flex: 1 1 auto;
+    max-width: 34em;          /* ~58 characters; the statement is long-form,
+                                 so it needs a wider measure than a spec list */
+    /* Gap to the portrait tracks the sidebar-to-text gap at every width.
+       Menu gap = 22vw - 181px (nav is a fixed size); the block already
+       contributes 148px of slack, so subtract it here. */
+    padding-right: max(2vw, calc(22vw - 329px));
+    box-sizing: border-box;
+}
+
+.about-portrait {
+    flex: 0 0 300px;
+    max-width: 300px;
+    margin: 0 0 0 auto;       /* sit on the measure's right edge, level with
+                                 the exhibition table's Solo/Group column */
+    position: relative;       /* image is absolute inside, so the text alone
+                                 sets the row height and the photo matches it */
+}
+
+.about-portrait img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.contact-intro {
+    max-width: 34em;          /* same reading measure as the bio statement */
+    margin-bottom: 24px !important;
+    line-height: 1.6;
 }
 
 .contact-info p {
@@ -13,21 +78,21 @@
 }
 
 .cv-section {
-    margin-bottom: 2em;
+    margin-bottom: 5.5em;
 }
 
 .bio-content h2 {
-    font-family: Arial, sans-serif;
-    font-weight: normal;
-    font-size: 1em;
-    margin-bottom: 1em;
-    padding-bottom: 0.3em;
-    border-bottom: 1px solid #000;
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    margin: 0 0 24px 0;
 }
 
 .cv-item {
     display: flex;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.28em;
 }
 
 .cv-item.expandable {
@@ -49,7 +114,7 @@
     display: none;
     margin-top: 0.3em;
     margin-bottom: 1em;
-    margin-left: 200px;
+    margin-left: 0;
     opacity: 1;
     line-height: 1.5em;
 }
@@ -59,12 +124,15 @@
 }
 
 .cv-item span:first-child {
-    width: 320px;
+    width: 15em;
     white-space: nowrap;
     flex-shrink: 0;
 }
 
 .cv-item-description {
+    /* Proportional alternates tighten full-width CJK punctuation such as 」
+       so it doesn't leave a gap before following Latin text. */
+    font-feature-settings: "palt" 1;
     flex: 1;
     margin-left: 10px;
     vertical-align: top;
@@ -73,11 +141,11 @@
 /* 3-column layout for exhibitions */
 .cv-item-exhibition {
     display: flex;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.28em;
 }
 
 .cv-item-exhibition .year-col {
-    width: 80px;
+    width: 15em;
     white-space: nowrap;
     flex-shrink: 0;
 }
@@ -89,7 +157,7 @@
 }
 
 .cv-item-exhibition .type-col {
-    width: 110px;
+    width: 6em;
     white-space: nowrap;
     flex-shrink: 0;
     margin-left: 10px;
@@ -142,6 +210,25 @@ footer p {
         margin-right: 0;
     }
 
+    /* Portrait drops below the statement on narrow screens. */
+    .about-block {
+        flex-direction: column;
+        gap: 2em;
+    }
+
+    .about-portrait {
+        flex: none;
+        width: 100%;
+        max-width: 100%;      /* match the text column's width */
+        margin: 0;            /* reset the desktop right-edge pin */
+        position: static;     /* stacked below the text: natural height again */
+    }
+
+    .about-portrait img {
+        position: static;
+        height: auto;
+    }
+
     /* Stack CV rows vertically so the right column isn't squeezed/clipped */
     .cv-item,
     .cv-item-exhibition {
@@ -170,7 +257,9 @@ footer p {
     }
 
     footer {
-        right: 5vw;
-        bottom: 10px;
+        /* position: relative here, so a right offset would shift it left */
+        right: auto;
+        bottom: auto;
+        padding-right: 5vw;
     }
 }

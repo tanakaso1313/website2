@@ -369,7 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     wrapper.className = 'color-selector';
 
                     const label = document.createElement('label');
-                    label.textContent = 'Color';
+                    label.textContent = 'Color:';
 
                     const chips = document.createElement('div');
                     chips.className = 'color-chips';
@@ -396,8 +396,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     wrapper.appendChild(label);
                     wrapper.appendChild(chips);
 
+                    // Sit below the price, so the price still leads the block.
                     const firstPrice = container.querySelector('p');
-                    container.insertBefore(wrapper, firstPrice || container.firstChild);
+                    if (firstPrice) firstPrice.after(wrapper);
+                    else container.insertBefore(wrapper, container.firstChild);
                     updateSelectionSummary(container);
                 }
             }
@@ -409,7 +411,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const rwrap = document.createElement('div');
                     rwrap.className = 'ship-region-selector';
                     const rlabel = document.createElement('label');
-                    rlabel.textContent = 'Ship to';
+                    rlabel.textContent = 'Ship to:';
                     const rsel = document.createElement('select');
                     rsel.className = 'ship-region';
                     [['', 'Select region…'], ['japan', 'Japan'], ['asia', 'Asia'], ['eu', 'Europe / Oceania / Middle East / Canada'], ['amaf', 'Americas / Africa']]
