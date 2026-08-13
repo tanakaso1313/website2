@@ -140,12 +140,16 @@
     <!-- Amplitude Analytics -->
     <script defer src="analytics.js"></script>
     <script>
-    // Track homepage view using the helper from analytics.js
-    window.trackPageView('Homepage Viewed', {
-        page_type: 'homepage',
-        page_name: 'SOTANAKA Homepage',
-        studio_location: 'Tokyo',
-        founding_year: '2020'
+    // analytics.js is deferred, so it has not run yet while this inline script
+    // is being parsed. Wait for DOMContentLoaded, which fires after deferred
+    // scripts have executed and defined the helper.
+    document.addEventListener('DOMContentLoaded', function() {
+        window.trackPageView('Homepage Viewed', {
+            page_type: 'homepage',
+            page_name: 'SOTANAKA Homepage',
+            studio_location: 'Tokyo',
+            founding_year: '2020'
+        });
     });
     </script>
 </body>
