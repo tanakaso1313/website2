@@ -54,7 +54,7 @@
     <!-- Defer analytics to unblock rendering -->
     <script defer src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz" crossorigin="anonymous"></script>
     <style>
-        /* Landing grid: works by year, newest first. */
+        /* Landing grid: works newest first. */
         main {
             padding-top: var(--content-top);
             margin-left: max(22vw, 215px);
@@ -62,15 +62,7 @@
             padding-left: 0;
             max-width: none;
         }
-        .year-block { display: flex; align-items: flex-start; margin-bottom: 5.5em; }
-        .year-label {
-            flex: 0 0 8em;
-            font-size: 13px;
-            font-weight: 400;
-            letter-spacing: 0.26em;
-            padding-top: 0.2em;
-        }
-        .year-works { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 3vw 2vw; }
+        .works-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3vw 2vw; margin-bottom: 5.5em; }
         .work { display: block; }
         .work-thumb { width: 100%; aspect-ratio: 1 / 1; overflow: hidden; background: #fafafa; }
         .work-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -82,15 +74,12 @@
         }
         @media (max-width: 768px) {
             main { margin-left: 0; padding: 4vh 5vw 10vh 5vw; }
-            .year-block { flex-direction: column; margin-bottom: 3.5em; }
-            /* flex-basis is height once the block stacks, so release it */
-            .year-label { flex: none; margin-bottom: 1em; }
-            .year-works { grid-template-columns: repeat(2, 1fr); }
+            .works-grid { grid-template-columns: repeat(2, 1fr); margin-bottom: 3.5em; }
         }
 
         @media (max-width: 768px) {
             /* one square per row on phones */
-            .year-works { grid-template-columns: 1fr; width: 100%; }
+            .works-grid { grid-template-columns: 1fr; width: 100%; }
         }
     </style>
 </head>
@@ -108,6 +97,7 @@
                 <a href="/contact">CONTACT</a>
             </div>
             <div class="mobile-work-links">
+                <a href="/curly" data-work="CRLY">CRLY</a>
                 <a href="/uneri" data-work="UNRI">UNRI</a>
                 <a href="/mo-lamp" data-work="MO">MO</a>
                 <a href="/let-a-colored-paper-swim-in-clouds" data-work="LCSC">LCSC</a>

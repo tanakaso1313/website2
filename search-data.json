@@ -110,7 +110,7 @@
   {
     "id": "work_let_a_colored",
     "type": "work",
-    "title": "Let a colored paper swim in clouds",
+    "title": "Let a Colored Paper Swim in the Clouds",
     "url": "let-a-colored-paper-swim-in-clouds.html",
     "description": "Installation work exploring color and form",
     "keywords": [
@@ -203,6 +203,23 @@
       "sound",
       "light",
       "interactive"
+    ]
+  },
+  {
+    "id": "work_curly",
+    "type": "work",
+    "title": "Curly",
+    "url": "curly.html",
+    "description": "Table lamp with a self-supporting shade of curled washi paper on a cylindrical aluminum base",
+    "keywords": [
+      "curly",
+      "lighting",
+      "lamp",
+      "table lamp",
+      "washi",
+      "paper",
+      "aluminum",
+      "2026"
     ]
   },
   {
