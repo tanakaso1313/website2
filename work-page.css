@@ -221,3 +221,63 @@ footer p {
 .work-description .exh-start {
     margin-top: 48px;
 }
+
+/* ---------- Work page text column ----------
+   Title, year, description, a compact list of details, an optional shop link, then
+   exhibitions. One rhythm throughout: 28px between groups, tight spacing within them. */
+.work-description h2 { margin-bottom: 6px; }
+.work-description .work-year {
+    margin: 0 0 28px 0;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    color: #888;
+}
+.work-description .work-text p {
+    margin: 0 0 1em 0;
+    line-height: 1.6;
+}
+.work-description .work-text p:last-child { margin-bottom: 0; }
+
+.work-specs {
+    display: grid;
+    grid-template-columns: 7.5em minmax(0, 1fr);
+    column-gap: 1em;
+    row-gap: 8px;
+    margin: 28px 0 0 0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+.work-specs dt {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #888;
+    padding-top: 2px;
+}
+.work-specs dd { margin: 0; }
+
+.work-description .work-shop { margin: 28px 0 0 0; }
+.work-shop a {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.work-exhibitions { margin-top: 44px; }
+.work-description .work-subhead { margin: 0 0 14px 0; }
+.work-exhibitions h3 {
+    margin: 16px 0 8px 0;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #888;
+}
+.work-exhibitions ul { list-style: none; margin: 0; padding: 0; }
+.work-exhibitions li { margin: 0 0 10px 0; font-size: 14px; line-height: 1.45; }
+.work-exhibitions a { color: inherit; text-decoration: none; }
+.work-exhibitions a:hover .exh-venue { text-decoration: underline; text-underline-offset: 3px; }
+.exh-venue, .exh-date { display: block; }
+.exh-date { color: #888; font-size: 13px; }
