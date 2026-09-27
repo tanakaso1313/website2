@@ -100,7 +100,8 @@
             }
             .topline { top: 0; }
             .midline { top: auto; bottom: 0; transform: none; padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px)); }
-            .midline .group { gap: 6vw; }
+            /* one evenly spaced row, the same as the bottom bar on every other page */
+            .midline .group { display: contents; }
         }
     </style>
 </head>
