@@ -174,12 +174,12 @@ module.exports = async (req, res) => {
     const SITE = allowedOrigins[0] || 'https://sotanaka.com';
 
     // Final confirmation screen (特定商取引法 第12条の6): name the terms and link to where they
-    // are set out, rather than repeating them here. Shown under the Pay button, in both
-    // languages because Stripe switches the page language with the buyer's browser.
+    // are set out, rather than repeating them here. One short line under the Pay button, in
+    // Japanese for buyers shipping to Japan (the buyers the law protects), English otherwise.
     customText.after_submit = {
-      message:
-        `Cancellation, returns and delivery times: see our [shipping, returns & legal notice](${SITE}/policies).\n\n` +
-        `キャンセル・返品・お届け時期については、[特定商取引法に基づく表記](${SITE}/policies)をご確認ください。`,
+      message: shipping.region === 'japan'
+        ? `キャンセル・返品・お届け時期：[特定商取引法に基づく表記](${SITE}/policies)`
+        : `Cancellation, returns & delivery: [see terms](${SITE}/policies)`,
     };
 
     const session = await stripe.checkout.sessions.create({
