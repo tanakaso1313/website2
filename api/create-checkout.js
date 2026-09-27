@@ -157,7 +157,8 @@ module.exports = async (req, res) => {
     // (falls back to all options if no region supplied; never hard-fails).
     const shipping = shippingFor(product, region);
 
-    // Checkout messaging: duties notice (international destinations only) + optional variant label.
+    // Checkout messaging: duties notice (international destinations only), optional variant label,
+    // and the link to the terms (added below, once SITE is known).
     // Domestic Japan skips the import-duties notice (irrelevant for domestic buyers).
     const customText = {};
     if (shipping.region !== 'japan') {
@@ -171,6 +172,15 @@ module.exports = async (req, res) => {
 
     // Trusted base for redirect fallbacks (never derive from the Origin header)
     const SITE = allowedOrigins[0] || 'https://sotanaka.com';
+
+    // Final confirmation screen (特定商取引法 第12条の6): name the terms and link to where they
+    // are set out, rather than repeating them here. Shown under the Pay button, in both
+    // languages because Stripe switches the page language with the buyer's browser.
+    customText.after_submit = {
+      message:
+        `Cancellation, returns and delivery times: see our [shipping, returns & legal notice](${SITE}/policies).\n\n` +
+        `キャンセル・返品・お届け時期については、[特定商取引法に基づく表記](${SITE}/policies)をご確認ください。`,
+    };
 
     const session = await stripe.checkout.sessions.create({
       // payment_method_types omitted: Stripe auto-shows the methods enabled in the
