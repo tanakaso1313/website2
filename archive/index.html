@@ -21,7 +21,7 @@
         /* Archive-specific styles */
         main {
             padding-top: var(--content-top);
-            margin-left: max(22vw, 215px);
+            margin-left: var(--content-left);
         }
         
         .archive-section {
@@ -182,20 +182,16 @@
     </script>
 </head>
 <body>
-    <div class="sidebar">
-        <header>
-             <h1><a href="/">S O  T A N A K A</a></h1>
-        </header>
-        <nav>
-            <div class="category-nav">
-                <a href="/">WORKS</a>
-                <a href="/shop">SHOP</a>
-                <a href="/bio">BIO</a>
-                <a href="/archive">ARCHIVE</a>
-                <a href="/contact">CONTACT</a>
-            </div>
-        </nav>
-    </div>
+    <header class="site-name">
+        <h1><a href="/">S O T A N A K A</a></h1>
+    </header>
+    <nav class="site-nav" aria-label="Main">
+        <a href="/">Works</a>
+        <a href="/shop">Shop</a>
+        <a href="/bio">Bio</a>
+        <a href="/archive" aria-current="page">Archive</a>
+        <a href="/contact">Contact</a>
+    </nav>
 
     <main>
                 <div class="year-block">

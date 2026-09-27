@@ -15,6 +15,9 @@ window.SOTANAKA_WORKS = [
   { name: 'Transfer',     href: '/transfer', category: 'object',     year: 2019, file: '1.transfer' }
 ];
 
-/* Resting state is the halftoned monochrome image; hover swaps to the clean colour photo. */
-window.workSrc  = w => encodeURI(`images/top_2/${w.file}_top_result_result.webp`);
-window.workMono = w => encodeURI(`images/mono_2/${w.file}${w.monoSuffix || '_top_mono_result_result.webp'}`);
+/* Resting state is the halftoned monochrome image; hover swaps to the clean colour photo.
+   Phones get the 600px-wide versions: about a quarter of the download for the same look.
+   Tablets keep the full-size ones, which the 600px versions would look soft at. */
+const SOTANAKA_IMG_SET = window.matchMedia('(max-width: 500px)').matches ? '_2_mobile' : '_2';
+window.workSrc  = w => encodeURI(`images/top${SOTANAKA_IMG_SET}/${w.file}_top_result_result.webp`);
+window.workMono = w => encodeURI(`images/mono${SOTANAKA_IMG_SET}/${w.file}${w.monoSuffix || '_top_mono_result_result.webp'}`);

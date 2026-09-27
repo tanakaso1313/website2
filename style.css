@@ -3,6 +3,9 @@
     /* Vertical start of every page's content: level with the SOTANAKA wordmark.
        7vh (sidebar top) + 1em sidebar padding + the h1's 1em top margin. */
     --content-top: calc(7vh + 36px);
+    /* Left edge of page content. The old left-hand menu needed max(22vw, 215px);
+       with the menu on one line along the top, content starts at the page margin. */
+    --content-left: 5vw;
 }
 
 body {
@@ -310,4 +313,35 @@ footer {
 
 footer p {
     margin: 0;
+}
+
+/* ---------- Site menu: name top left, links top right, on one line ----------
+   Both invert against whatever passes behind them, like the homepage menu. */
+.site-name, .site-nav {
+    position: fixed; top: 24px; z-index: 100;
+    color: #fff; mix-blend-mode: difference;
+    font-size: 12px; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase;
+    line-height: 1.5;
+}
+.site-name { left: 24px; }
+.site-name h1 { margin: 0; font: inherit; letter-spacing: inherit; }
+.site-nav { right: 24px; display: flex; gap: 3vw; }
+.site-name a, .site-nav a { color: inherit; text-decoration: none; }
+.site-nav a:hover, .site-nav a[aria-current] { text-decoration: underline; text-underline-offset: 4px; }
+
+/* Phones and upright tablets: plain white bars, name at the top and links at the bottom
+   (same as the homepage on these screens). */
+@media (max-width: 768px), (orientation: portrait) and (max-width: 1100px) {
+    .site-name, .site-nav {
+        left: 0; right: 0; mix-blend-mode: normal; color: #000; background: #fff;
+        padding: 14px 16px; font-size: 11px; letter-spacing: 0.12em;
+    }
+    .site-name { top: 0; }
+    .site-nav {
+        top: auto; bottom: 0; justify-content: space-between; gap: 0;
+        padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+    }
+    /* keep the start and end of each page clear of the two bars */
+    body { padding-top: 56px; padding-bottom: 56px; }
+    footer { bottom: 56px; }
 }

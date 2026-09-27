@@ -1,7 +1,7 @@
 .bio-content {
     padding-top: var(--content-top);
     padding-right: 5vw;
-    padding-left: max(17vw, calc(215px - 5vw));
+    padding-left: calc(var(--content-left) - 5vw); /* main already sits 5vw in */
 }
 
 :root { --measure: 62em; }

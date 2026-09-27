@@ -1,11 +1,11 @@
 .work-content {
     display: flex;
     padding-top: var(--content-top);
-    margin-left: max(22vw, 215px);
+    margin-left: var(--content-left);
 }
 
 .work-description {
-    width: 25vw;
+    width: 30vw;
     padding-left: 0;
     padding-right: 5vw;
 }
@@ -20,7 +20,7 @@
 }
 
 .work-images {
-    width: 45vw;
+    width: 55vw;
     padding-right: 3vw;
     padding-top: 0;
 }

@@ -62,56 +62,64 @@
             padding-left: 0;
             max-width: none;
         }
-        .works-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3vw 2vw; margin-bottom: 5.5em; }
-        .work { display: block; }
-        .work-thumb { width: 100%; aspect-ratio: 1 / 1; overflow: hidden; background: #fafafa; }
-        .work-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .work-name {
-            margin-top: 12px;
-            font-size: 13px;
-            letter-spacing: 0.26em;
-            text-transform: uppercase;
-        }
-        @media (max-width: 768px) {
-            main { margin-left: 0; padding: 4vh 5vw 10vh 5vw; }
-            .works-grid { grid-template-columns: repeat(2, 1fr); margin-bottom: 3.5em; }
-        }
+        /* Landing: centred column of works that loops endlessly, with a blended midline nav */
+        body { background: #fff; }
+        main { margin: 0 !important; padding: 0 !important; max-width: none !important; }
+        /* even gap all the way, including where the loop joins the last work to the first */
+        .column { position: relative; display: flex; flex-direction: column; align-items: center; gap: 16vh; padding: 8vh 0; }
+        .plate { display: block; width: 28vw; }
+        /* one frame for every photo; 3:4 photos lose a thin slice at the sides */
+        .plate img { width: 100%; aspect-ratio: 2 / 3; height: auto; display: block; object-fit: cover; }
+        .plate-name { margin-top: 12px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #777; }
 
-        @media (max-width: 768px) {
-            /* one square per row on phones */
-            .works-grid { grid-template-columns: 1fr; width: 100%; }
+        /* Navigation: fixed lines that invert against whatever passes behind them */
+        .midline, .topline {
+            position: fixed; left: 0; right: 0; z-index: 100;
+            display: flex; justify-content: space-between; align-items: baseline;
+            padding: 0 24px; color: #fff; mix-blend-mode: difference; pointer-events: none;
+            font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+        }
+        .midline { top: 50%; transform: translateY(-50%); }
+        /* two groups, so no link sits in the middle where every photo passes */
+        .midline .group { display: flex; gap: 5vw; }
+        .topline { top: 24px; }
+        .topline h1 { margin: 0; font: inherit; letter-spacing: inherit; }
+        .midline a, .topline a { color: inherit; text-decoration: none; pointer-events: auto; }
+        .midline a[aria-current] { text-decoration: underline; text-underline-offset: 4px; }
+
+        /* Phones and upright tablets: the photo always fills the middle of the screen, so links
+           blended over the halftone dots become unreadable. The name and links move to plain white
+           bars at the top and bottom, and the photos scroll between them. */
+        @media (max-width: 768px), (orientation: portrait) and (max-width: 1100px) {
+            .column { gap: 12vh; padding: 8vh 0; }
+            /* as wide as a phone allows, but never taller than the space between the bars */
+            .plate { width: min(78vw, calc((100vh - 150px) / 1.5)); }
+            .midline, .topline {
+                mix-blend-mode: normal; color: #000; background: #fff;
+                padding: 14px 16px; letter-spacing: 0.12em; font-size: 11px;
+            }
+            .topline { top: 0; }
+            .midline { top: auto; bottom: 0; transform: none; padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px)); }
+            .midline .group { gap: 6vw; }
         }
     </style>
 </head>
 <body>
-    <div class="sidebar">
-        <header>
-             <h1><a href="/">S O  T A N A K A</a></h1>
-        </header>
-        <nav>
-            <div class="category-nav">
-                <a href="/">WORKS</a>
-                <a href="/shop">SHOP</a>
-                <a href="/bio">BIO</a>
-                <a href="/archive">ARCHIVE</a>
-                <a href="/contact">CONTACT</a>
-            </div>
-            <div class="mobile-work-links">
-                <a href="/curly" data-work="CRLY">CRLY</a>
-                <a href="/uneri" data-work="UNRI">UNRI</a>
-                <a href="/mo-lamp" data-work="MO">MO</a>
-                <a href="/let-a-colored-paper-swim-in-clouds" data-work="LCSC">LCSC</a>
-                <a href="/liminal-lamp" data-work="LL">LL</a>
-                <a href="/liminal-objects" data-work="LO">LO</a>
-                <a href="/memento" data-work="MMNT">MMNT</a>
-                <a href="/vnsh" data-work="VNSH">VNSH</a>
-                <a href="/lti" data-work="LTI">LTI</a>
-                <a href="/ori" data-work="ORI">ORI</a>
-                <a href="/transfer" data-work="TRSF">TRSF</a>
-            </div>
-        </nav>
-    </div>
-    
+    <nav class="midline" aria-label="Main">
+        <div class="group">
+            <a href="/" aria-current="page">Works</a>
+            <a href="/shop">Shop</a>
+        </div>
+        <div class="group">
+            <a href="/bio">Bio</a>
+            <a href="/archive">Archive</a>
+            <a href="/contact">Contact</a>
+        </div>
+    </nav>
+    <header class="topline">
+        <h1><a href="/">S O T A N A K A</a></h1>
+    </header>
+
     <main>
         <div class="work-grid" id="workGrid"></div>
     </main>

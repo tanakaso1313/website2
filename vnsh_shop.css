@@ -1,7 +1,7 @@
 .product-content {
     display: flex;
     padding-top: var(--content-top);
-    margin-left: max(22vw, 215px);
+    margin-left: var(--content-left);
 }
 
 .product-details {
