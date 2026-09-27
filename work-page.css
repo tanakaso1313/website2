@@ -238,23 +238,7 @@ footer p {
 }
 .work-description .work-text p:last-child { margin-bottom: 0; }
 
-.work-specs {
-    display: grid;
-    grid-template-columns: 7.5em minmax(0, 1fr);
-    column-gap: 1em;
-    row-gap: 8px;
-    margin: 28px 0 0 0;
-    font-size: 14px;
-    line-height: 1.5;
-}
-.work-specs dt {
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #888;
-    padding-top: 2px;
-}
-.work-specs dd { margin: 0; }
+/* .work-specs lives in style.css, shared with the shop product pages */
 
 .work-description .work-shop { margin: 28px 0 0 0; }
 .work-shop a {

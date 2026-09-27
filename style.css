@@ -345,3 +345,76 @@ footer p {
     body { padding-top: 56px; padding-bottom: 56px; }
     footer { bottom: 56px; }
 }
+
+/* ---------- Details list (work pages and shop product pages) ---------- */
+.work-specs {
+    display: grid;
+    grid-template-columns: 7.5em minmax(0, 1fr);
+    column-gap: 1em;
+    row-gap: 8px;
+    margin: 28px 0 0 0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+.work-specs dt {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #888;
+    padding-top: 2px;
+}
+.work-specs dd { margin: 0; }
+
+/* ---------- Shop product pages: purchase column ----------
+   Selectors repeat .shop-product so they outrank the page stylesheets
+   (liminal-light-s.css, vnsh_shop.css), which load after this file. */
+.shop-product.shop-product h2 { margin: 0 0 20px 0; }
+.shop-product.shop-product .work-specs { margin: 0; }
+.shop-product.shop-product .purchase-info { gap: 22px; margin: 32px 0 0 0; }
+.shop-product.shop-product .purchase-info p,
+.shop-product.shop-product .purchase-info .price { margin: 0; }
+.shop-product.shop-product .purchase-info .price { font-size: 18px; line-height: 1.3; }
+/* picker labels match the details labels */
+.shop-product.shop-product .size-label,
+.shop-product.shop-product .color-selector label,
+.shop-product.shop-product .ship-region-selector label {
+    display: block;
+    margin: 0 0 8px 0;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #888;
+}
+.shop-product.shop-product .color-selector,
+.shop-product.shop-product .ship-region-selector,
+.shop-product.shop-product .size-selector { margin: 0; }
+.shop-product.shop-product .contact-info-text {
+    font-size: 12px;
+    line-height: 1.5;
+    color: #888;
+}
+.shop-product.shop-product .contact-info-text a {
+    display: block;
+    margin-top: 4px;
+    color: #888;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+.shop-product.shop-product .more-link { margin: 8px 0 0 0; }
+.shop-product.shop-product .more-link a {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #000;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+/* "Selected: …" keeps its line so the button doesn't jump on first pick (liminal-light-s.css);
+   tuck it up under the swatches so the empty line doesn't read as a gap. !important because
+   the page stylesheet sets this margin with !important. */
+.shop-product.shop-product .selection-summary {
+    margin: -14px 0 0 0 !important;
+    font-size: 12px;
+    color: #888;
+}
+
