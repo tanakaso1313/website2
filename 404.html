@@ -23,7 +23,7 @@
             fileDownloads: false,
         },
         // Same rule as analytics.js: no local previews, no owner browsers (?notrack=1).
-        optOut: location.hostname.replace(/^www\./, '') !== 'sotanaka.com' || (function () { try { return localStorage.getItem('sotanaka_notrack') === '1'; } catch (e) { return false; } })(),
+        optOut: location.hostname.replace(/^www\./, '') !== 'sotanaka.com' || navigator.webdriver || /bot|crawl|spider|slurp|scrap|headless|preview|facebookexternalhit|embedly|bytespider|ahrefs|semrush|lighthouse|pingdom|uptime|monitor/i.test(navigator.userAgent || '') || (function () { try { return localStorage.getItem('sotanaka_notrack') === '1'; } catch (e) { return false; } })(),
     });
 
     // Track 404 page view
