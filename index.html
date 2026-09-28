@@ -22,34 +22,196 @@
     <link rel="preconnect" href="https://cdn.amplitude.com" crossorigin>
     <script src="config.js"></script>
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
       "@type": "Organization",
+      "@id": "https://sotanaka.com/#studio",
       "name": "SOTANAKA",
-      "alternateName": ["So Tanaka", "Soichiro Tanaka", "So Tanaka Design Studio", "Sotanaka", "sotanaka", "SoTanaka"],
+      "alternateName": [
+        "Sotanaka",
+        "SoTanaka",
+        "So Tanaka Design Studio"
+      ],
       "url": "https://sotanaka.com",
       "logo": "https://sotanaka.com/images/social/homepage-social.jpg",
-      "description": "SOTANAKA is a Tokyo-based design studio established in 2020 by Soichiro Tanaka, working across furniture, lighting and objects.",
+      "description": [
+        {
+          "@value": "SOTANAKA is a Tokyo-based design studio established in 2020 by Soichiro Tanaka, working across furniture, lighting and objects.",
+          "@language": "en"
+        },
+        {
+          "@value": "SOTANAKAは、デザイナー田中聡一朗が2020年に設立した東京を拠点とするデザインスタジオです。家具、照明、オブジェを手がけています。",
+          "@language": "ja"
+        }
+      ],
+      "foundingDate": "2020",
+      "foundingLocation": {
+        "@type": "Place",
+        "name": "Tokyo, Japan"
+      },
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Tokyo",
         "addressCountry": "JP"
       },
-      "foundingDate": "2020",
+      "knowsAbout": [
+        "Furniture design",
+        "Lighting design",
+        "Object design"
+      ],
+      "founder": {
+        "@id": "https://sotanaka.com/#soichiro-tanaka"
+      },
       "sameAs": [
         "https://www.instagram.com/s_o_tanaka"
       ],
-      "founder": {
-        "@type": "Person",
-        "name": "Soichiro Tanaka",
-        "alternateName": "So Tanaka",
-        "jobTitle": "Furniture and Product Designer",
-        "worksFor": { "@type": "Organization", "name": "SOTANAKA" },
-        "sameAs": [
-          "https://www.instagram.com/s_o_tanaka"
-        ]
+      "subjectOf": [
+        {
+          "@type": "Article",
+          "headline": "My widzieliśmy gałęzie, a ci artyści z Tokio zrobili z nich szykowne meble, których się pragnie",
+          "url": "https://www.focus.pl/artykul/my-widzielismy-galezie-zrobili-z-nich-meble",
+          "datePublished": "2026",
+          "publisher": {
+            "@type": "Organization",
+            "name": "Focus"
+          }
+        },
+        {
+          "@type": "Article",
+          "headline": "When Tokyo's Fallen Branches Become Furniture You Can't Ignore",
+          "url": "https://www.yankodesign.com/2026/07/11/when-tokyos-fallen-branches-become-furniture-you-cant-ignore/",
+          "datePublished": "2026",
+          "publisher": {
+            "@type": "Organization",
+            "name": "Yanko Design"
+          }
+        },
+        {
+          "@type": "Article",
+          "headline": "Circular Approaches in Copenhagen, Design Perspectives",
+          "url": "https://www.german-design-council.de/en/design-perspectives/article-detail/circular-approaches-in-copenhagen",
+          "datePublished": "2026",
+          "publisher": {
+            "@type": "Organization",
+            "name": "German Design Council"
+          }
+        },
+        {
+          "@type": "Article",
+          "headline": "Uneri, Sotanaka's Collection Designed with Nature",
+          "url": "https://designwanted.com/uneri-sotanakas-collection-designed-with-nature/",
+          "datePublished": "2026",
+          "publisher": {
+            "@type": "Organization",
+            "name": "DesignWanted"
+          }
+        },
+        {
+          "@type": "Article",
+          "headline": "Uneri Grounds Us in the Intricacies of Growth",
+          "url": "https://design-milk.com/uneri-grounds-us-in-the-intricacies-of-growth/",
+          "datePublished": "2026",
+          "publisher": {
+            "@type": "Organization",
+            "name": "Design Milk"
+          }
+        },
+        {
+          "@type": "Article",
+          "headline": "Montmorillonite Museum vol.06「MO Lamp」",
+          "url": "https://pedalandsenza.com/blogs/news/sotanaka",
+          "datePublished": "2025",
+          "publisher": {
+            "@type": "Organization",
+            "name": "Pedal & Senza"
+          }
+        },
+        {
+          "@type": "Article",
+          "headline": "リレーコラム：若手デザイナーの眼差し",
+          "url": "http://www.pdweb.jp/column/newage/n_2403_tanaka.shtml",
+          "datePublished": "2024",
+          "publisher": {
+            "@type": "Organization",
+            "name": "PDWeb"
+          }
+        },
+        {
+          "@type": "Article",
+          "headline": "言葉、音、光が紡ぐ、So Tanakaのクリエイションの源泉",
+          "url": "https://www.beyondmag.jp/posts/745",
+          "datePublished": "2023",
+          "publisher": {
+            "@type": "Organization",
+            "name": "Beyond Magazine"
+          }
+        },
+        {
+          "@type": "CreativeWork",
+          "headline": "Roche Bobois Design Award",
+          "url": "https://www.youtube.com/watch?v=VAU1E0KKOeE",
+          "datePublished": "2021",
+          "publisher": {
+            "@type": "Organization",
+            "name": "Roche Bobois"
+          }
+        },
+        {
+          "@type": "Article",
+          "headline": "田中聡一朗個展「Transfer, Transparency」",
+          "url": "https://www.japandesign.ne.jp/event/transfer-transparency-tata/",
+          "datePublished": "2020",
+          "publisher": {
+            "@type": "Organization",
+            "name": "JDN"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://sotanaka.com/#soichiro-tanaka",
+      "name": "Soichiro Tanaka",
+      "alternateName": [
+        "So Tanaka",
+        "田中聡一朗"
+      ],
+      "jobTitle": "Furniture and Product Designer",
+      "description": "Designer and founder of SOTANAKA, a design studio in Tokyo.",
+      "worksFor": {
+        "@id": "https://sotanaka.com/#studio"
+      },
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Musashino Art University"
+      },
+      "award": [
+        "Kokuyo Design Award 2024 Merit and Audience Awards winner for Memento",
+        "Designart Tokyo Under 30 winner for Vnsh (2023)",
+        "Designart Tokyo Under 30 winner for Less Than Instrument (with Kentaro Takagi) (2021)",
+        "Lexus Design Award shortlisted for Less Than Instrument (2021)",
+        "Lexus Design Award shortlisted for PE Pottery (2020)",
+        "Roche Bobois Award 2019 winner for ORI Console"
+      ],
+      "url": "https://sotanaka.com/bio",
+      "sameAs": [
+        "https://www.instagram.com/s_o_tanaka"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://sotanaka.com/#website",
+      "name": "SOTANAKA",
+      "url": "https://sotanaka.com",
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "https://sotanaka.com/#studio"
       }
     }
+  ]
+}
     </script>
     <!-- Defer analytics to unblock rendering -->
     <script defer src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz" crossorigin="anonymous"></script>
@@ -123,6 +285,28 @@
 
     <main>
         <div class="work-grid" id="workGrid"></div>
+        <!-- Shown only when JavaScript is off: gives crawlers that do not run scripts the studio description and a plain list of the works. -->
+        <noscript>
+            <section class="works-text">
+                <p>SOTANAKA is a Tokyo-based design studio established in 2020 by Soichiro Tanaka, working across furniture, lighting and objects.</p>
+                <p lang="ja">SOTANAKAは、デザイナー田中聡一朗が2020年に設立した東京を拠点とするデザインスタジオです。家具、照明、オブジェを手がけています。</p>
+                <h2>Works</h2>
+                <ul>
+                <li><a href="/curly">Curly</a> (2026). Curly is a table lamp by SOTANAKA, shaped by the curl paper keeps from being rolled for storage and transport.</li>
+                <li><a href="/uneri">Uneri</a> (2026). Uneri is a furniture collection by SOTANAKA, made from branches pruned from Tokyo's street trees and fallen wood gathered from local parks.</li>
+                <li><a href="/mo-lamp">MO Lamp</a> (2025). MO Lamp is a sculptural lighting work by SOTANAKA.</li>
+                <li><a href="/let-a-colored-paper-swim-in-clouds">Let a Colored Paper Swim in the Clouds</a> (2025). Let a Colored Paper Swim in the Clouds is a series of works in white cement and colored paper by SOTANAKA.</li>
+                <li><a href="/liminal-lamp">Liminal Lamp</a> (2025). Liminal Lamp is a lighting collection by SOTANAKA.</li>
+                <li><a href="/liminal-objects">Liminal Objects</a> (2025). Liminal Objects is a series of grid works in MDF and lacquer paint by SOTANAKA.</li>
+                <li><a href="/cya">C ya</a> (2025). C ya is a work by SOTANAKA exploring the curved mirror as a Japanese cultural object.</li>
+                <li><a href="/memento">Memento</a> (2023). Memento is a functional sculptural form in glazed porcelain by SOTANAKA.</li>
+                <li><a href="/vnsh">Vnsh</a> (2023). Vnsh is a lighting work in aluminium, stainless steel and MDF by SOTANAKA.</li>
+                <li><a href="/ori">ORI</a> (2019). Ori is a console in marble and MDF designed by SOTANAKA for Roche Bobois, Paris.</li>
+                <li><a href="/lti">Less Than Instrument</a> (2020). Less Than Instrument is a lighting collection in steel and copper by SOTANAKA.</li>
+                <li><a href="/transfer">Transfer</a> (2019). Transfer is a series of works in white cement and colored paper by SOTANAKA.</li>
+                </ul>
+            </section>
+        </noscript>
     </main>
     
     <!-- Legacy ?filter= URLs: the category pages are retired, so send them home. -->
