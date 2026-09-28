@@ -233,6 +233,11 @@
         /* one frame for every photo; 3:4 photos lose a thin slice at the sides */
         .plate img { width: 100%; aspect-ratio: 2 / 3; height: auto; display: block; object-fit: cover; }
         .plate-name { margin-top: 12px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #000; }
+        /* Touch screens have no hover: the photo nearest the middle of the screen shows in colour,
+           faded in over the halftone (landing.js adds the colour layer and the .in-colour class). */
+        .plate { position: relative; }
+        .plate img.colour { position: absolute; top: 0; left: 0; opacity: 0; transition: opacity 0.4s ease; }
+        .plate.in-colour img.colour { opacity: 1; }
 
         /* Navigation: fixed lines that invert against whatever passes behind them */
         .midline, .topline {

@@ -6,6 +6,8 @@
 const COPIES = 7;      // the middle copy is the real one; the others give the loop room to wrap unseen
 const REAL = Math.floor(COPIES / 2);
 const SETTLE_MS = 150; // quiet time after the last scroll before the loop re-centres
+// Phones and tablets cannot hover, so instead of hover the photo nearest the middle of the screen turns to colour.
+const TOUCH = window.matchMedia('(hover: none)').matches;
 
 document.addEventListener('DOMContentLoaded', () => {
     const root = document.getElementById('workGrid');
@@ -41,6 +43,16 @@ document.addEventListener('DOMContentLoaded', () => {
             caption.textContent = w.name;
 
             link.append(img, caption);
+            if (TOUCH) {
+                // Colour layer over the halftone, faded in while this work is in the middle of the screen.
+                const colour = document.createElement('img');
+                colour.className = 'colour';
+                colour.src = window.workSrc(w);
+                colour.alt = '';
+                colour.loading = 'lazy';
+                colour.decoding = 'async';
+                link.insertBefore(colour, caption);
+            }
             column.appendChild(link);
         });
     }
@@ -87,4 +99,30 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('touchend', () => { touching = false; settle(); }, { passive: true });
     window.addEventListener('touchcancel', () => { touching = false; settle(); }, { passive: true });
     window.addEventListener('resize', settle);
+
+    if (TOUCH) {
+        // Colour goes on every copy of the centred work, not just the one on screen, so when the loop
+        // re-centres by whole periods the photo that lands in the middle is already in colour: no flash.
+        let current = -1;
+        let queued = false;
+        const colourCentre = () => {
+            queued = false;
+            const mid = window.innerHeight / 2;
+            let best = 0, bestDist = Infinity;
+            plates.forEach((p, i) => {
+                const r = p.getBoundingClientRect();
+                if (r.bottom < 0 || r.top > window.innerHeight) return;
+                const d = Math.abs((r.top + r.bottom) / 2 - mid);
+                if (d < bestDist) { bestDist = d; best = i; }
+            });
+            const work = best % n;
+            if (work === current) return;
+            current = work;
+            plates.forEach((p, i) => p.classList.toggle('in-colour', i % n === work));
+        };
+        const queue = () => { if (!queued) { queued = true; requestAnimationFrame(colourCentre); } };
+        window.addEventListener('scroll', queue, { passive: true });
+        window.addEventListener('resize', queue);
+        colourCentre();
+    }
 });
