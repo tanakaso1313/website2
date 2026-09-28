@@ -47,7 +47,7 @@
    way to it. */
 .more-link {
     font-size: 0.85em;
-    color: #666;
+    color: #000;
 }
 
 .more-link a {
@@ -82,7 +82,7 @@
 
 .contact-info-text {
     font-size: 0.7em;
-    color: #666;
+    color: #000;
     margin: 0;
     max-width: 400px;
 }
@@ -93,7 +93,7 @@
 
 .selection-summary {
     font-size: 0.7em;
-    color: #666;
+    color: #000;
     max-width: 400px;
     /* Reserve a single line of vertical space so the Checkout button
        doesn't shift when a color is selected. */

@@ -222,8 +222,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         const notice = document.createElement('p');
                         notice.className = 'unavailable-notice';
                         notice.textContent = message;
-                        notice.style.cssText = 'font-style: italic; opacity: 0.7; margin: 1em 0;';
+                        notice.style.cssText = 'font-style: italic; margin: 1em 0;';
                         btn.replaceWith(notice);
+                        // Nothing to ship, so drop the region picker too.
+                        purchaseInfo.querySelectorAll('.ship-region-selector').forEach(el => el.remove());
                     }
                 });
             });

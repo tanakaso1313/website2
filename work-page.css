@@ -230,7 +230,7 @@ footer p {
     margin: 0 0 28px 0;
     font-size: 13px;
     letter-spacing: 0.08em;
-    color: #888;
+    color: #000;
 }
 .work-description .work-text p {
     margin: 0 0 1em 0;
@@ -257,11 +257,11 @@ footer p {
     font-weight: 400;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: #888;
+    color: #000;
 }
 .work-exhibitions ul { list-style: none; margin: 0; padding: 0; }
 .work-exhibitions li { margin: 0 0 10px 0; font-size: 14px; line-height: 1.45; }
 .work-exhibitions a { color: inherit; text-decoration: none; }
 .work-exhibitions a:hover .exh-venue { text-decoration: underline; text-underline-offset: 3px; }
 .exh-venue, .exh-date { display: block; }
-.exh-date { color: #888; font-size: 13px; }
+.exh-date { color: #000; font-size: 13px; }

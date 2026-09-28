@@ -360,7 +360,7 @@ footer p {
     font-size: 11px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: #888;
+    color: #000;
     padding-top: 2px;
 }
 .work-specs dd { margin: 0; }
@@ -383,7 +383,7 @@ footer p {
     font-size: 11px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: #888;
+    color: #000;
 }
 .shop-product.shop-product .color-selector,
 .shop-product.shop-product .ship-region-selector,
@@ -391,12 +391,12 @@ footer p {
 .shop-product.shop-product .contact-info-text {
     font-size: 12px;
     line-height: 1.5;
-    color: #888;
+    color: #000;
 }
 .shop-product.shop-product .contact-info-text a {
     display: block;
     margin-top: 4px;
-    color: #888;
+    color: #000;
     text-decoration: underline;
     text-underline-offset: 3px;
 }
@@ -415,6 +415,6 @@ footer p {
 .shop-product.shop-product .selection-summary {
     margin: -14px 0 0 0 !important;
     font-size: 12px;
-    color: #888;
+    color: #000;
 }
 
