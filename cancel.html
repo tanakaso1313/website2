@@ -30,6 +30,9 @@
             text-decoration: none;
         }
     </style>
+    <script src="config.js"></script>
+    <script defer src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz" crossorigin="anonymous"></script>
+    <script defer src="analytics.js"></script>
 </head>
 <body>
     <header class="site-name">
@@ -85,6 +88,21 @@
                 });
             }
         }
+    });
+    </script>
+    <script>
+    // Analytics: the order details the product page saved just before sending the buyer
+    // to Stripe. Cleared straight away so a refresh can't count the same order twice.
+    document.addEventListener('DOMContentLoaded', function () {
+        var order = null;
+        try {
+            order = JSON.parse(localStorage.getItem('sotanaka_pending_order') || 'null');
+            localStorage.removeItem('sotanaka_pending_order');
+        } catch (e) {}
+        var props = order ? order : {};
+        props.details_known = !!order;
+        if (order && order.started_at) props.minutes_at_stripe = Math.round((Date.now() - order.started_at) / 60000);
+        if (typeof window.trackPageView === 'function') window.trackPageView('Checkout Cancelled', props);
     });
     </script>
 </body>

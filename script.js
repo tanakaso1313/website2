@@ -434,6 +434,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 const productId = button.getAttribute('data-product-id');
 
                 const container = button.closest('.purchase-info');
+
+                // Analytics: what happened when Checkout was pressed. Waits at most 800ms for
+                // the event to be sent, so a redirect straight after never loses it.
+                const priceEl = container ? container.querySelector('.price') : null;
+                const priceJpy = priceEl ? parseInt(priceEl.textContent.replace(/[^0-9]/g, ''), 10) || null : null;
+                const orderDetails = () => ({ product: productId, color, size, region, price_jpy: priceJpy, page: window.location.pathname });
+                const trackCheckout = (name, extra) => {
+                    try {
+                        if (!window.amplitude || typeof window.amplitude.track !== 'function') return Promise.resolve();
+                        const sent = window.amplitude.track(name, Object.assign(orderDetails(), extra || {}));
+                        // Send now rather than in Amplitude's next 1s batch, or a redirect can beat it.
+                        const flushed = typeof window.amplitude.flush === 'function' ? window.amplitude.flush() : null;
+                        const done = (flushed && flushed.promise) || (sent && sent.promise) || Promise.resolve();
+                        return Promise.race([done, new Promise(r => setTimeout(r, 800))]);
+                    } catch (e) {
+                        return Promise.resolve();
+                    }
+                };
+                const blocked = (reason, extra) => { trackCheckout('Checkout Blocked', Object.assign({ reason }, extra || {})); };
+                // Remembered for the success / cancel pages Stripe returns to (same browser).
+                const rememberOrder = () => {
+                    try { localStorage.setItem('sotanaka_pending_order', JSON.stringify(Object.assign(orderDetails(), { started_at: Date.now() }))); } catch (e) {}
+                };
+                let region = '';
                 const colorChips = container ? container.querySelectorAll('.color-chip') : null;
                 let color = '';
 
@@ -444,6 +468,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const selectedChip = Array.from(colorChips).find(c => c.classList.contains('selected'));
                     color = selectedChip ? selectedChip.getAttribute('data-color') : '';
                     if (!color && productId && (productId.startsWith('LO_') || productId.startsWith('LO /'))) {
+                        blocked('no_colour');
                         alert('Please select a color.');
                         event.preventDefault();
                         return;
@@ -454,6 +479,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const opt = sizeSelect.selectedOptions && sizeSelect.selectedOptions[0];
                     size = (opt && opt.getAttribute('data-size-label')) ? opt.getAttribute('data-size-label') : '';
                     if (!size) {
+                        blocked('no_size');
                         alert('Please select a size.');
                         event.preventDefault();
                         return;
@@ -474,6 +500,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (color) refParts.push(color);
                         const ref = refParts.join(' / ');
                         const separator = href.includes('?') ? '&' : '?';
+                        rememberOrder();
+                        await trackCheckout('Checkout Started', { via: 'payment_link' });
                         window.location.href = `${href}${separator}client_reference_id=${encodeURIComponent(ref)}`;
                         return;
                     }
@@ -483,11 +511,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 event.preventDefault(); // Stop # jump for dynamic flow
 
                 // Require a shipping region (non-Japan-only products show the selector)
-                let region = '';
                 const regionSel = container ? container.querySelector('.ship-region') : null;
                 if (regionSel) {
                     region = regionSel.value;
                     if (!region) {
+                        blocked('no_region');
                         alert('Please select a shipping region.');
                         return;
                     }
@@ -504,6 +532,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Get the price ID from the button's data attribute
                     const priceId = button.getAttribute('data-price-id');
                     if (!priceId) {
+                        blocked('config_error');
                         alert('Product configuration error. Please contact support.');
                         return;
                     }
@@ -529,17 +558,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (response.ok && result.url) {
                         // Validate that the URL is a Stripe checkout URL before redirecting
                         if (result.url.startsWith('https://checkout.stripe.com/')) {
+                            rememberOrder();
+                            await trackCheckout('Checkout Started', { via: 'checkout' });
                             window.location.href = result.url;
                         } else {
                             console.error('Invalid checkout URL:', result.url);
+                            blocked('invalid_checkout_url');
                             alert('Invalid checkout URL. Please contact support.');
                         }
                     } else {
                         console.error('API error:', result.error || result.message);
+                        blocked('checkout_error', { status: response.status, error: String(result.error || result.message || '').slice(0, 120) });
                         alert('Unable to process payment. Please try again.');
                     }
                 } catch (error) {
                     console.error('Network error:', error);
+                    blocked('network_error', { error: String(error && error.message || error).slice(0, 120) });
                     alert('Payment error. Please try again.');
                 } finally {
                     // Re-enable button
