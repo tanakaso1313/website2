@@ -22,6 +22,8 @@
             formInteractions: false,
             fileDownloads: false,
         },
+        // Same rule as analytics.js: no local previews, no owner browsers (?notrack=1).
+        optOut: location.hostname.replace(/^www\./, '') !== 'sotanaka.com' || (function () { try { return localStorage.getItem('sotanaka_notrack') === '1'; } catch (e) { return false; } })(),
     });
 
     // Track 404 page view
