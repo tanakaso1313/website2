@@ -235,6 +235,9 @@
         /* one frame for every photo; 3:4 photos lose a thin slice at the sides */
         .plate img { width: 100%; aspect-ratio: 2 / 3; height: auto; display: block; object-fit: cover; }
         .plate-name { margin-top: 12px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #000; }
+        /* NEW tag (works.js isNew): a small outlined label beside the name */
+        .plate-new { display: inline-block; margin-left: 8px; padding: 1px 4px 0; border: 1px solid #000;
+            font-size: 8px; letter-spacing: 0.16em; line-height: 1.4; vertical-align: 1px; }
         /* Touch screens have no hover: the photo nearest the middle of the screen shows in colour,
            faded in over the halftone (landing.js adds the colour layer and the .in-colour class). */
         .plate { position: relative; }

@@ -1,7 +1,8 @@
 /* Single source of truth for the works shown on the landing page.
-   `year` drives the chronological grouping. */
+   `year` drives the chronological grouping. `isNew: true` adds a small NEW tag after the name;
+   delete it when the work is no longer new. */
 window.SOTANAKA_WORKS = [
-  { name: 'Curly',        href: '/curly',    category: 'lighting',  year: 2026, file: '12.curly' },
+  { name: 'Curly',        href: '/curly',    category: 'lighting',  year: 2026, file: '12.curly', isNew: true },
   { name: 'Uneri',        href: '/uneri',    category: 'furniture', year: 2026, file: '10.uneri' },
   { name: 'MO Lamp',      href: '/mo-lamp',  category: 'lighting',     year: 2025, file: '9.MO Lamp' },
   { name: 'Let a Colored Paper Swim in the Clouds', href: '/let-a-colored-paper-swim-in-clouds', category: 'object', year: 2025, file: '8.Let a' },

@@ -50,6 +50,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const caption = document.createElement('div');
             caption.className = 'plate-name';
             caption.textContent = w.name;
+            if (w.isNew) {
+                const tag = document.createElement('span');
+                tag.className = 'plate-new';
+                tag.textContent = 'New';
+                caption.append(' ', tag);
+            }
 
             link.append(img, caption);
             if (w.meta) {
