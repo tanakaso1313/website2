@@ -272,6 +272,22 @@
             /* one evenly spaced row, the same as the bottom bar on every other page */
             .midline .group { display: contents; }
         }
+        /* Scroll hint: thin chevron in the white gap under the first photo's name, gently bobbing;
+           gone after the first scroll. */
+        .scroll-hint {
+            position: absolute; left: 50%; top: calc(100% + 36px); z-index: 2;
+            transform: translateX(-50%);
+            color: #000; pointer-events: none;
+            opacity: 0; transition: opacity 0.6s ease;
+        }
+        .scroll-hint svg { display: block; animation: hint-bob 1.6s ease-in-out infinite alternate; }
+        .scroll-hint.show { opacity: 1; }
+        .scroll-hint.gone { opacity: 0; }
+        @keyframes hint-bob { from { transform: translateY(0); } to { transform: translateY(5px); } }
+        @media (prefers-reduced-motion: reduce) { .scroll-hint svg { animation: none; } }
+        @media (max-width: 768px), (orientation: portrait) and (max-width: 1100px) {
+            .scroll-hint { top: calc(100% + 22px); }
+        }
     </style>
 </head>
 <body>
@@ -315,6 +331,10 @@
             </section>
         </noscript>
     </main>
+    <!-- Scroll hint: a small arrow until the first scroll, then it fades away for good. -->
+    <div class="scroll-hint" aria-hidden="true">
+        <svg viewBox="0 0 16 9" width="16" height="9"><path d="M1 1l7 7 7-7" fill="none" stroke="currentColor" stroke-width="1"/></svg>
+    </div>
     
     <!-- Legacy ?filter= URLs: the category pages are retired, so send them home. -->
     <script>
@@ -326,9 +346,35 @@
     </script>
     
     <script src="works.js"></script>
-    <!-- Opening spin: the column starts at this work and glides up to the newest one (see landing.js). -->
-    <script>window.SOTANAKA_SPIN_FROM = 'Liminal Objects';</script>
     <script src="landing.js"></script>
+    <script>
+    // Show the scroll hint once the column has settled, and remove it at the visitor's first scroll.
+    // The column opens by scrolling itself into place, so only movement after that counts.
+    window.addEventListener('load', function () {
+        var hint = document.querySelector('.scroll-hint');
+        if (!hint) return;
+        // Sit under the photo nearest the top of the screen (the newest work), in the gap before the next one.
+        var first = null, best = Infinity;
+        document.querySelectorAll('.plate').forEach(function (p) {
+            var d = Math.abs(p.getBoundingClientRect().top);
+            if (d < best) { best = d; first = p; }
+        });
+        if (!first) return;
+        var anchor = first.querySelector('.plate-name') || first;
+        anchor.style.position = 'relative';
+        anchor.appendChild(hint);
+        var start = window.scrollY, done = false;
+        var hide = function () {
+            if (done) return;
+            done = true;
+            hint.classList.add('gone');
+            setTimeout(function () { hint.remove(); }, 700);
+        };
+        setTimeout(function () { if (!done) hint.classList.add('show'); }, 600);
+        window.addEventListener('scroll', function () { if (Math.abs(window.scrollY - start) > 30) hide(); }, { passive: true });
+        ['wheel', 'touchmove', 'keydown'].forEach(function (e) { window.addEventListener(e, hide, { passive: true, once: true }); });
+    });
+    </script>
     <!-- Amplitude Analytics -->
     <script defer src="analytics.js"></script>
     <script>
