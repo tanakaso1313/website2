@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     for (let copy = 0; copy < COPIES; copy++) {
         const isReal = copy === REAL;
-        works.forEach(w => {
+        works.forEach((w, i) => {
             const link = document.createElement('a');
             link.className = 'plate';
             link.href = w.href;
@@ -35,6 +35,15 @@ document.addEventListener('DOMContentLoaded', () => {
             img.src = window.workMono(w);
             img.alt = isReal ? w.name : '';
             img.decoding = 'async';
+            // Only the photo the page opens on loads straight away (first, at high priority);
+            // the rest load as they come near the screen. The copies share files, so once a work's
+            // photo has loaded, every copy of it shows instantly, including after the loop re-centres.
+            if (isReal && i === 0) {
+                img.loading = 'eager';
+                img.fetchPriority = 'high';
+            } else {
+                img.loading = 'lazy';
+            }
             link.addEventListener('mouseenter', () => { img.src = window.workSrc(w); });
             link.addEventListener('mouseleave', () => { img.src = window.workMono(w); });
 
