@@ -83,7 +83,7 @@
   {
     "id": "LO / HORSE",
     "name": "LO / HORSE",
-    "price": "From ¥20,900 (tax included)",
+    "price": "From ¥20,900 (inc. tax)",
     "image": "LO_Horse.webp",
     "hoverImage": "LO_Horse.webp",
     "page": "lo-horse.html",
@@ -191,7 +191,7 @@
   {
     "id": "LO_HORSE_S",
     "name": "LO_HORSE Small",
-    "price": "¥20,900 (tax included)",
+    "price": "¥20,900 (inc. tax)",
     "image": "LO_Horse.webp",
     "hoverImage": "LO_Horse.webp",
     "page": "lo-horse.html",
@@ -201,7 +201,7 @@
   {
     "id": "LO_HORSE_L",
     "name": "LO_HORSE Large",
-    "price": "¥27,500 (tax included)",
+    "price": "¥27,500 (inc. tax)",
     "image": "LO_Horse.jpg",
     "hoverImage": "LO_Horse.jpg",
     "page": "lo-horse.html",

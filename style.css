@@ -369,52 +369,56 @@ footer p {
    Selectors repeat .shop-product so they outrank the page stylesheets
    (liminal-light-s.css, vnsh_shop.css), which load after this file. */
 .shop-product.shop-product h2 { margin: 0 0 20px 0; }
-.shop-product.shop-product .work-specs { margin: 0; }
-.shop-product.shop-product .purchase-info { gap: 22px; margin: 32px 0 0 0; }
-.shop-product.shop-product .purchase-info p,
-.shop-product.shop-product .purchase-info .price { margin: 0; }
-.shop-product.shop-product .purchase-info .price { font-size: 18px; line-height: 1.3; }
-/* picker labels match the details labels */
-.shop-product.shop-product .size-label,
-.shop-product.shop-product .color-selector label,
-.shop-product.shop-product .ship-region-selector label {
-    display: block;
-    margin: 0 0 8px 0;
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #000;
+/* The details and the purchase rows (built by script.js: Price, Size, Colour, Ship to) read as one
+   list: small caps labels, 14px values, the same 12px between every row including across the join. */
+.shop-product.shop-product .work-specs { margin: 0; row-gap: 12px; }
+.shop-product.shop-product .purchase-info { display: flex; flex-direction: column; gap: 28px; margin: 12px 0 0 0; }
+.shop-product.shop-product .purchase-info p { margin: 0; }
+.shop-product.shop-product .buy-specs { margin: 0; row-gap: 12px; }
+.shop-product.shop-product .buy-specs dt { padding-top: 3px; }
+.shop-product.shop-product .buy-specs .price { font-size: 14px; line-height: 1.5; }
+
+/* Colour: one row of small squares (two rows of 7 on phones), a name line underneath */
+.shop-product.shop-product .color-chips { display: flex; flex-wrap: wrap; gap: 5px; margin: 2px 0 0 0; }
+.shop-product.shop-product .color-chip {
+    width: 15px; height: 15px; min-width: 0; padding: 0; margin: 0; border: 0; border-radius: 0;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12); cursor: pointer;
 }
-.shop-product.shop-product .color-selector,
-.shop-product.shop-product .ship-region-selector,
-.shop-product.shop-product .size-selector { margin: 0; }
-.shop-product.shop-product .contact-info-text {
-    font-size: 12px;
-    line-height: 1.5;
-    color: #000;
+.shop-product.shop-product .color-chip.selected { outline: 1px solid #000; outline-offset: 2px; }
+.shop-product.shop-product .chip-name { margin: 10px 0 0 0; min-height: 21px; font-size: 14px; line-height: 1.5; color: #000; }
+.shop-product.shop-product .chip-name.count { padding-top: 3px; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.4; }
+.shop-product.shop-product .chip-name.preview { opacity: 0.45; }
+
+/* Ship to and Size: plain text choices with a square mark, filled when chosen.
+   The size buttons' own box styles (liminal-light-s.css) are !important, hence the !important here. */
+.shop-product.shop-product .choices { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+.shop-product.shop-product .size-pills { display: flex; gap: 18px; }
+.shop-product.shop-product .choice,
+.shop-product.shop-product .size-pill,
+.shop-product.shop-product .size-pill.selected {
+    display: inline-flex; align-items: center; gap: 9px; padding: 0; margin: 0;
+    width: auto !important; height: auto !important; border: 0 !important; background: none !important;
+    color: #000 !important; box-shadow: none !important;
+    font: inherit; font-size: 14px; line-height: 1.5; text-align: left; cursor: pointer;
 }
-.shop-product.shop-product .contact-info-text a {
-    display: block;
-    margin-top: 4px;
-    color: #000;
-    text-decoration: underline;
-    text-underline-offset: 3px;
+.shop-product.shop-product .choice-mark,
+.shop-product.shop-product .size-pill::before { content: ""; flex: none; width: 8px; height: 8px; border: 1px solid #000; }
+.shop-product.shop-product .choice[aria-pressed="true"] .choice-mark,
+.shop-product.shop-product .size-pill.selected::before { background: #000; }
+
+/* Checkout: slim, in the labels' small caps */
+.shop-product.shop-product .add-to-cart {
+    display: block; height: auto; padding: 16px 0; border-radius: 0;
+    background: #000; color: #fff; text-align: center;
+    font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase;
 }
-.shop-product.shop-product .more-link { margin: 8px 0 0 0; }
+.shop-product.shop-product .contact-info-text { margin-top: -14px; font-size: 12px; line-height: 1.5; color: #000; }
+.shop-product.shop-product .contact-info-text a { color: #000; text-decoration: underline; text-underline-offset: 3px; }
 .shop-product.shop-product .more-link a {
-    font-size: 12px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #000;
-    text-decoration: underline;
-    text-underline-offset: 4px;
+    font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: #000; text-decoration: underline; text-underline-offset: 4px;
 }
-/* "Selected: …" keeps its line so the button doesn't jump on first pick (liminal-light-s.css);
-   tuck it up under the swatches so the empty line doesn't read as a gap. !important because
-   the page stylesheet sets this margin with !important. */
-.shop-product.shop-product .selection-summary {
-    margin: -14px 0 0 0 !important;
-    font-size: 12px;
-    color: #000;
+@media (max-width: 768px) {
+    .shop-product.shop-product .color-chips { display: grid; grid-template-columns: repeat(7, 15px); gap: 6px; }
 }
 

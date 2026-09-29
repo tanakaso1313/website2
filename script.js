@@ -1,3 +1,99 @@
+/* Shop product pages: the purchase controls become rows of the details list (Price, Size, Colour,
+   Ship to), so the whole panel reads as one spec sheet. The controls the checkout reads stay in the
+   page: the real price line and the size buttons are moved, not copied, and the region dropdown is
+   kept but hidden while the Ship to row drives it. */
+function buildBuyPanel(container) {
+    if (!container || container.querySelector('.buy-specs')) return;
+    const dl = document.createElement('dl');
+    dl.className = 'work-specs buy-specs';
+    const row = (key, label, content) => {
+        const dt = document.createElement('dt');
+        const dd = document.createElement('dd');
+        dt.textContent = label;
+        dt.dataset.buyRow = key;
+        dd.dataset.buyRow = key;
+        dd.appendChild(content);
+        dl.append(dt, dd);
+    };
+    const choice = (text) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'choice';
+        b.setAttribute('aria-pressed', 'false');
+        const mark = document.createElement('span');
+        mark.className = 'choice-mark';
+        mark.setAttribute('aria-hidden', 'true');
+        b.append(mark, document.createTextNode(text));
+        return b;
+    };
+    const cap = (t) => t.charAt(0).toUpperCase() + t.slice(1);
+
+    const price = container.querySelector('.price');
+    if (price) row('price', 'Price', price);
+
+    const sizes = container.querySelector('[data-size-selector]');
+    if (sizes) {
+        const label = sizes.querySelector('.size-label');
+        if (label) label.remove();
+        row('size', 'Size', sizes);
+    }
+
+    const chips = container.querySelector('.color-chips');
+    if (chips) {
+        // Under the swatches: the number of colours at rest, the hovered colour as a preview,
+        // and the chosen colour once picked.
+        const box = document.createElement('div');
+        const name = document.createElement('p');
+        const count = chips.querySelectorAll('.color-chip').length;
+        let chosen = '';
+        const rest = () => {
+            name.className = 'chip-name' + (chosen ? ' chosen' : ' count');
+            name.textContent = chosen ? cap(chosen) : `${count} colours`;
+        };
+        rest();
+        const wrapper = chips.closest('.color-selector');
+        box.append(chips, name);
+        chips.addEventListener('mouseover', (e) => {
+            const c = e.target.closest('.color-chip');
+            if (!c) return;
+            const n = c.getAttribute('data-color') || '';
+            name.className = 'chip-name' + (n === chosen ? ' chosen' : ' preview');
+            name.textContent = cap(n);
+        });
+        chips.addEventListener('mouseleave', rest);
+        chips.addEventListener('click', (e) => {
+            const c = e.target.closest('.color-chip');
+            if (!c) return;
+            chosen = c.getAttribute('data-color') || '';
+            rest();
+        });
+        row('colour', 'Colour', box);
+        if (wrapper) wrapper.remove();
+        const summary = container.querySelector('[data-selection-summary]');
+        if (summary) summary.hidden = true;
+    }
+
+    const select = container.querySelector('select.ship-region');
+    if (select) {
+        const list = document.createElement('div');
+        list.className = 'choices';
+        Array.from(select.options).forEach((o) => {
+            if (!o.value) return;
+            const b = choice(o.textContent.replace(/ \/ /g, ', '));
+            b.addEventListener('click', () => {
+                select.value = o.value;
+                select.dispatchEvent(new Event('change', { bubbles: true }));
+                list.querySelectorAll('.choice').forEach((x) => x.setAttribute('aria-pressed', x === b ? 'true' : 'false'));
+            });
+            list.appendChild(b);
+        });
+        select.closest('.ship-region-selector').hidden = true;
+        row('ship', 'Ship to', list);
+    }
+
+    container.insertBefore(dl, container.firstChild);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const galleryContainer = document.querySelector('.gallery-container');
     const filterLinks = document.querySelectorAll('.category-nav a');
@@ -217,15 +313,27 @@ document.addEventListener('DOMContentLoaded', () => {
                         const purchaseInfo = btn.closest('.purchase-info');
                         if (!purchaseInfo) return;
                         const message = status === 'discontinued'
-                            ? 'This piece is no longer available.'
-                            : 'Currently sold out.';
-                        const notice = document.createElement('p');
-                        notice.className = 'unavailable-notice';
-                        notice.textContent = message;
-                        notice.style.cssText = 'font-style: italic; margin: 1em 0;';
-                        btn.replaceWith(notice);
-                        // Nothing to ship, so drop the region picker too.
-                        purchaseInfo.querySelectorAll('.ship-region-selector').forEach(el => el.remove());
+                            ? 'No longer available.'
+                            : 'Sold out.';
+                        // Nothing to choose or ship: drop the pickers and the shipping note, and state
+                        // the status as a row of the details list (a plain line if the list isn't there).
+                        purchaseInfo.querySelectorAll('.ship-region-selector, [data-buy-row="ship"], [data-buy-row="colour"], .color-selector, .contact-info-text')
+                            .forEach(el => el.remove());
+                        const list = purchaseInfo.querySelector('.buy-specs');
+                        if (list) {
+                            const dt = document.createElement('dt');
+                            const dd = document.createElement('dd');
+                            dt.textContent = 'Status';
+                            dd.textContent = message.replace(/\.$/, '');
+                            dd.className = 'unavailable-notice';
+                            list.append(dt, dd);
+                            btn.remove();
+                        } else {
+                            const notice = document.createElement('p');
+                            notice.className = 'unavailable-notice';
+                            notice.textContent = message;
+                            btn.replaceWith(notice);
+                        }
                     }
                 });
             });
@@ -429,6 +537,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     rc.insertBefore(rwrap, button);
                 }
             }
+
+            buildBuyPanel(button.closest('.purchase-info'));
 
             button.addEventListener('click', async (event) => {
                 const productId = button.getAttribute('data-product-id');

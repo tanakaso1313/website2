@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="robots" content="noindex">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SOTANAKA is a Tokyo-based design studio established in 2020 by Soichiro Tanaka, working across furniture, lighting and objects.">
+    <meta name="author" content="SOTANAKA">
+    <meta property="og:title" content="SOTANAKA">
+    <meta property="article:publisher" content="https://sotanaka.com">
+    <meta property="og:description" content="SOTANAKA is a Tokyo-based design studio established in 2020 by Soichiro Tanaka, working across furniture, lighting and objects.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sotanaka.com/">
+    <meta property="og:image" content="https://sotanaka.com/images/social/homepage-social.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://sotanaka.com/">
+    <title>SOTANAKA</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <!-- DNS prefetch and preconnect for external resources -->
+    <link rel="dns-prefetch" href="https://cdn.amplitude.com">
+    <link rel="preconnect" href="https://cdn.amplitude.com" crossorigin>
+    <script src="config.js"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "SOTANAKA",
+      "alternateName": ["So Tanaka", "Soichiro Tanaka", "So Tanaka Design Studio", "Sotanaka", "sotanaka", "SoTanaka"],
+      "url": "https://sotanaka.com",
+      "logo": "https://sotanaka.com/images/social/homepage-social.jpg",
+      "description": "SOTANAKA is a Tokyo-based design studio established in 2020 by Soichiro Tanaka, working across furniture, lighting and objects.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Tokyo",
+        "addressCountry": "JP"
+      },
+      "foundingDate": "2020",
+      "sameAs": [
+        "https://www.instagram.com/s_o_tanaka"
+      ],
+      "founder": {
+        "@type": "Person",
+        "name": "Soichiro Tanaka",
+        "alternateName": "So Tanaka",
+        "jobTitle": "Furniture and Product Designer",
+        "worksFor": { "@type": "Organization", "name": "SOTANAKA" },
+        "sameAs": [
+          "https://www.instagram.com/s_o_tanaka"
+        ]
+      }
+    }
+    </script>
+    <!-- Defer analytics to unblock rendering -->
+    <script defer src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz" crossorigin="anonymous"></script>
+    <style>
+        /* Landing grid: works newest first. */
+        main {
+            padding-top: var(--content-top);
+            margin-left: max(22vw, 215px);
+            padding-right: 5vw;
+            padding-left: 0;
+            max-width: none;
+        }
+        /* PROTOTYPE v6: centred column, endless scroll, blended midline nav */
+        body { background: #fff; }
+        main { margin: 0 !important; padding: 0 !important; max-width: none !important; }
+        /* even gap all the way, including where the loop joins the last work to the first */
+        .column { position: relative; display: flex; flex-direction: column; align-items: center; gap: 16vh; padding: 8vh 0; }
+        .plate { display: block; width: 28vw; }
+        /* one frame for every photo; 3:4 photos lose a thin slice at the sides */
+        .plate img { width: 100%; aspect-ratio: 2 / 3; height: auto; display: block; object-fit: cover; }
+        .plate-name { margin-top: 12px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #777; }
+
+        /* Navigation: fixed lines that invert against whatever passes behind them */
+        .midline, .topline {
+            position: fixed; left: 0; right: 0; z-index: 100;
+            display: flex; justify-content: space-between; align-items: baseline;
+            padding: 0 24px; color: #fff; mix-blend-mode: difference; pointer-events: none;
+            font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+        }
+        .midline { top: 50%; transform: translateY(-50%); }
+        /* two groups, so no link sits in the middle where every photo passes */
+        .midline .group { display: flex; gap: 5vw; }
+        .topline { top: 24px; }
+        .midline a, .topline a { color: inherit; text-decoration: none; pointer-events: auto; }
+        .midline a[aria-current] { text-decoration: underline; text-underline-offset: 4px; }
+
+        /* Phones and upright tablets: the photo always fills the middle of the screen, so links
+           blended over the halftone dots become unreadable. The name and links move to plain white
+           bars at the top and bottom, and the photos scroll between them. */
+        @media (max-width: 768px), (orientation: portrait) and (max-width: 1100px) {
+            .column { gap: 12vh; padding: 8vh 0; }
+            /* as wide as a phone allows, but never taller than the space between the bars */
+            .plate { width: min(78vw, calc((100vh - 150px) / 1.5)); }
+            .midline, .topline {
+                mix-blend-mode: normal; color: #000; background: #fff;
+                padding: 14px 16px; letter-spacing: 0.12em; font-size: 11px;
+            }
+            .topline { top: 0; }
+            .midline { top: auto; bottom: 0; transform: none; padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px)); }
+            /* one evenly spaced row, the same as the bottom bar on every other page */
+            .midline .group { display: contents; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="midline" aria-label="Main">
+        <div class="group">
+            <a href="/" aria-current="page">Works</a>
+            <a href="/shop">Shop</a>
+        </div>
+        <div class="group">
+            <a href="/bio">Bio</a>
+            <a href="/archive">Archive</a>
+            <a href="/contact">Contact</a>
+        </div>
+    </nav>
+    <header class="topline">
+        <a href="/">S O T A N A K A</a>
+    </header>
+
+    <main>
+        <div class="work-grid" id="workGrid"></div>
+    </main>
+    
+    <!-- Legacy ?filter= URLs: the category pages are retired, so send them home. -->
+    <script>
+    (function handleLegacyFilterRedirect() {
+        if (new URLSearchParams(location.search).get('filter')) {
+            history.replaceState(null, '', '/');
+        }
+    })();
+    </script>
+    
+    <script src="works.js"></script>
+    <script src="scatter-v6.js"></script>
+    <!-- Amplitude Analytics -->
+    <script defer src="analytics.js"></script>
+    <script>
+    // analytics.js is deferred, so it has not run yet while this inline script
+    // is being parsed. Wait for DOMContentLoaded, which fires after deferred
+    // scripts have executed and defined the helper.
+    document.addEventListener('DOMContentLoaded', function() {
+        window.trackPageView('Homepage Viewed', {
+            page_type: 'homepage',
+            page_name: 'SOTANAKA Homepage',
+            studio_location: 'Tokyo',
+            founding_year: '2020'
+        });
+    });
+    </script>
+</body>
+</html>

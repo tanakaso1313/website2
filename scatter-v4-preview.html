@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="robots" content="noindex">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SOTANAKA is a Tokyo-based design studio established in 2020 by Soichiro Tanaka, working across furniture, lighting and objects.">
+    <meta name="author" content="SOTANAKA">
+    <meta property="og:title" content="SOTANAKA">
+    <meta property="article:publisher" content="https://sotanaka.com">
+    <meta property="og:description" content="SOTANAKA is a Tokyo-based design studio established in 2020 by Soichiro Tanaka, working across furniture, lighting and objects.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sotanaka.com/">
+    <meta property="og:image" content="https://sotanaka.com/images/social/homepage-social.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://sotanaka.com/">
+    <title>SOTANAKA</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <!-- DNS prefetch and preconnect for external resources -->
+    <link rel="dns-prefetch" href="https://cdn.amplitude.com">
+    <link rel="preconnect" href="https://cdn.amplitude.com" crossorigin>
+    <script src="config.js"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "SOTANAKA",
+      "alternateName": ["So Tanaka", "Soichiro Tanaka", "So Tanaka Design Studio", "Sotanaka", "sotanaka", "SoTanaka"],
+      "url": "https://sotanaka.com",
+      "logo": "https://sotanaka.com/images/social/homepage-social.jpg",
+      "description": "SOTANAKA is a Tokyo-based design studio established in 2020 by Soichiro Tanaka, working across furniture, lighting and objects.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Tokyo",
+        "addressCountry": "JP"
+      },
+      "foundingDate": "2020",
+      "sameAs": [
+        "https://www.instagram.com/s_o_tanaka"
+      ],
+      "founder": {
+        "@type": "Person",
+        "name": "Soichiro Tanaka",
+        "alternateName": "So Tanaka",
+        "jobTitle": "Furniture and Product Designer",
+        "worksFor": { "@type": "Organization", "name": "SOTANAKA" },
+        "sameAs": [
+          "https://www.instagram.com/s_o_tanaka"
+        ]
+      }
+    }
+    </script>
+    <!-- Defer analytics to unblock rendering -->
+    <script defer src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz" crossorigin="anonymous"></script>
+    <style>
+        /* Landing grid: works newest first. */
+        main {
+            padding-top: var(--content-top);
+            margin-left: max(22vw, 215px);
+            padding-right: 5vw;
+            padding-left: 0;
+            max-width: none;
+        }
+        /* PROTOTYPE v4/v5: tall panes */
+        .panes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6vw; padding-bottom: 10vw; }
+        .pane { position: relative; display: block; aspect-ratio: 2 / 3; overflow: hidden; }
+        .pane img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity .6s ease; }
+        .pane-text {
+            position: absolute; inset: 0;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2.4em;
+            text-align: center; padding: 0 1.5em;
+            font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase;
+            opacity: 0; transition: opacity .6s ease;
+            pointer-events: none;
+        }
+        .pane-category { font-size: 11px; letter-spacing: 0.24em; text-transform: none; color: #666; }
+
+        /* v4: photo gives way to the title */
+        body[data-hover="text"] .pane:hover img,
+        body[data-hover="text"] .pane:focus-visible img { opacity: 0; }
+        body[data-hover="text"] .pane:hover .pane-text,
+        body[data-hover="text"] .pane:focus-visible .pane-text { opacity: 1; }
+
+        /* v5: full-page colour photo behind the grid */
+        .backdrop { position: fixed; inset: 0; z-index: 0; opacity: 0; transition: opacity .6s ease; pointer-events: none; }
+        .backdrop img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        body[data-hover="backdrop"] main { position: relative; z-index: 1; }
+        body.backdrop-on .backdrop { opacity: 1; }
+        body.backdrop-on .pane img { opacity: 0; }
+        body.backdrop-on .pane:hover,
+        body.backdrop-on .pane:focus-visible { background: rgba(255, 255, 255, 0.55); }
+        body.backdrop-on .pane:hover .pane-text,
+        body.backdrop-on .pane:focus-visible .pane-text { opacity: 1; }
+        body.backdrop-on .pane-category { color: #222; }
+
+        @media (max-width: 768px) {
+            main { margin-left: 0; padding: 4vh 5vw 10vh 5vw; }
+            .panes { grid-template-columns: 1fr; gap: 14vw; }
+            /* no hover on phones: show the title under the photo instead */
+            .pane { aspect-ratio: auto; overflow: visible; }
+            .pane img { aspect-ratio: 2 / 3; height: auto; }
+            .pane-text { position: static; opacity: 1; flex-direction: row; justify-content: flex-start; gap: 1.2em; padding: 12px 0 0; letter-spacing: 0.2em; }
+            .backdrop { display: none; }
+        }
+    </style>
+</head>
+<body data-hover="text">
+    <div class="sidebar">
+        <header>
+             <h1><a href="/">S O  T A N A K A</a></h1>
+        </header>
+        <nav>
+            <div class="category-nav">
+                <a href="/">WORKS</a>
+                <a href="/shop">SHOP</a>
+                <a href="/bio">BIO</a>
+                <a href="/archive">ARCHIVE</a>
+                <a href="/contact">CONTACT</a>
+            </div>
+            <div class="mobile-work-links">
+                <a href="/uneri" data-work="UNRI">UNRI</a>
+                <a href="/mo-lamp" data-work="MO">MO</a>
+                <a href="/let-a-colored-paper-swim-in-clouds" data-work="LCSC">LCSC</a>
+                <a href="/liminal-lamp" data-work="LL">LL</a>
+                <a href="/liminal-objects" data-work="LO">LO</a>
+                <a href="/memento" data-work="MMNT">MMNT</a>
+                <a href="/vnsh" data-work="VNSH">VNSH</a>
+                <a href="/lti" data-work="LTI">LTI</a>
+                <a href="/ori" data-work="ORI">ORI</a>
+                <a href="/transfer" data-work="TRSF">TRSF</a>
+            </div>
+        </nav>
+    </div>
+    
+    <main>
+        <div class="work-grid" id="workGrid"></div>
+    </main>
+    
+    <!-- Legacy ?filter= URLs: the category pages are retired, so send them home. -->
+    <script>
+    (function handleLegacyFilterRedirect() {
+        if (new URLSearchParams(location.search).get('filter')) {
+            history.replaceState(null, '', '/');
+        }
+    })();
+    </script>
+    
+    <script src="works.js"></script>
+    <script src="scatter-v4.js"></script>
+    <!-- Amplitude Analytics -->
+    <script defer src="analytics.js"></script>
+    <script>
+    // analytics.js is deferred, so it has not run yet while this inline script
+    // is being parsed. Wait for DOMContentLoaded, which fires after deferred
+    // scripts have executed and defined the helper.
+    document.addEventListener('DOMContentLoaded', function() {
+        window.trackPageView('Homepage Viewed', {
+            page_type: 'homepage',
+            page_name: 'SOTANAKA Homepage',
+            studio_location: 'Tokyo',
+            founding_year: '2020'
+        });
+    });
+    </script>
+</body>
+</html>
