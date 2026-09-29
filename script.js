@@ -2,6 +2,9 @@
    Ship to), so the whole panel reads as one spec sheet. The controls the checkout reads stay in the
    page: the real price line and the size buttons are moved, not copied, and the region dropdown is
    kept but hidden while the Ship to row drives it. */
+// Pieces that ship within Japan only: no region picker, and the Ship to row says so.
+const JAPAN_ONLY = ['VNSH', 'LIMINAL LAMP S'];
+
 function buildBuyPanel(container) {
     if (!container || container.querySelector('.buy-specs')) return;
     const dl = document.createElement('dl');
@@ -89,6 +92,21 @@ function buildBuyPanel(container) {
         });
         select.closest('.ship-region-selector').hidden = true;
         row('ship', 'Ship to', list);
+    }
+
+    const cta = container.querySelector('.add-to-cart');
+    if (!select && cta && JAPAN_ONLY.includes(cta.getAttribute('data-product-id'))) {
+        const box = document.createElement('div');
+        const where = document.createElement('p');
+        where.textContent = 'Japan';
+        const ask = document.createElement('p');
+        ask.className = 'ship-elsewhere';
+        const link = document.createElement('a');
+        link.href = '/contact';
+        link.textContent = 'Get in touch';
+        ask.append('Outside Japan? ', link);
+        box.append(where, ask);
+        row('ship', 'Ship to', box);
     }
 
     container.insertBefore(dl, container.firstChild);
@@ -515,7 +533,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Inject a "Ship to" region selector for shippable products (Japan-only pieces skip it)
-            if (productId && !['VNSH', 'LIMINAL LAMP S'].includes(productId)) {
+            if (productId && !JAPAN_ONLY.includes(productId)) {
                 const rc = button.closest('.purchase-info') || button.parentElement;
                 if (rc && !rc.querySelector('.ship-region')) {
                     const rwrap = document.createElement('div');
