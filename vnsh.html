@@ -56,6 +56,36 @@
         }
     });
     </script>
+    <style>
+        /* ---- Light switch (same as Curly) ---- */
+        .light-frame { position: relative; margin-bottom: 2em; }
+        .light-frame img { margin-bottom: 0 !important; }
+        .light-frame .lit-photo { position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity 1.4s ease; }
+        body.lit .light-frame .lit-photo { opacity: 1; pointer-events: auto; }
+        .light-switch {
+            position: absolute; top: 14px; left: 14px; z-index: 2;
+            display: inline-flex; align-items: center; gap: 10px; margin: 0; padding: 8px 10px;
+            background: none; border: 0; cursor: pointer; font: inherit; color: #fff !important;
+            font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+        }
+        .light-dot { width: 10px; height: 10px; border-radius: 50%; border: 1px solid currentColor; transition: background 0.6s ease, box-shadow 0.6s ease; }
+        body.lit .light-dot { background: #f3d9a4; border-color: #f3d9a4; box-shadow: 0 0 10px 3px rgba(243, 217, 164, 0.55); }
+        .light-switch:focus-visible { outline: 1px solid currentColor; outline-offset: 4px; }
+
+        /* The room goes dark when the lamp is on. */
+        body, .work-content, footer, .site-name, .site-nav { transition: background-color 1.4s ease, color 1.4s ease; }
+        body.lit { background: #0e0d0c; color: #e9e4da; }
+        body.lit .work-content, body.lit .work-content *, body.lit footer, body.lit footer a { color: #e9e4da !important; }
+        @media (max-width: 768px), (orientation: portrait) and (max-width: 1100px) {
+            body.lit .site-name, body.lit .site-nav { background: #0e0d0c; color: #e9e4da; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .light-frame .lit-photo, body, .work-content, footer, .site-name, .site-nav, .light-dot { transition: none; }
+        }
+        /* Vnsh's unlit photo is a pale room: the switch reads dark until the light is on. */
+        .light-switch { color: #000 !important; }
+        body.lit .light-switch { color: #fff !important; }
+    </style>
 </head>
 <body>
     <header class="site-name">
@@ -84,6 +114,12 @@
             <p class="work-shop"><a href="/vnsh_shop">View in shop →</a></p>
         </div>
         <div class="work-images">
+            <!-- Light switch: the lit photo fades in over the unlit one; the page dims and the lamp all but vanishes into its own light. -->
+            <div class="light-frame">
+                <img src="images/work - vnsh/7.c.jpg のコピー_result_result.webp" alt="Vnsh unlit, two floor lamps of thin aluminium pipe in a white room" class="lightbox-trigger">
+                <img src="images/work - vnsh/8.cc.jpg のコピー_result_result.webp" alt="Vnsh lit, the pipes disappearing into the light they cast on the wall" class="lightbox-trigger lit-photo">
+                <button type="button" class="light-switch" aria-pressed="false"><span class="light-dot" aria-hidden="true"></span><span class="light-label">Turn on</span></button>
+            </div>
             <img src="images/work - vnsh/1.DSC02181_result_result.webp" alt="Vnsh aluminium floor lamp, front view" class="lightbox-trigger">
             <img src="images/work - vnsh/2.DSC02201 (2)_result_result.webp" alt="VNSH sculptural floor lamp in aluminum and stainless steel with LED lighting" class="lightbox-trigger">
             <div class="half-width-container">
@@ -95,9 +131,7 @@
                 <img src="images/work - vnsh/6.bb.jpg のコピー_result_result.webp" alt="Vnsh, close-up of the aluminium pipe and LED slit" class="lightbox-trigger">
             </div>
              <div class="half-width-container">
-                <img src="images/work - vnsh/7.c.jpg のコピー_result_result.webp" alt="VNSH floor lamp in dark setting illuminated wall lighting atmospheric effect" class="lightbox-trigger">
-                <img src="images/work - vnsh/8.cc.jpg のコピー_result_result.webp" alt="Vnsh, detail of the aluminium and stainless steel construction" class="lightbox-trigger">
-            </div>
+                    </div>
             <div class="image-credit-container">
                 <img src="images/work - vnsh/9.d.jpg のコピー_result_result.webp" alt="Vnsh floor lamp, exhibition view at Designart" class="lightbox-trigger">
                 <p class="photo-credit">Photo by Mitsuo Suma</p>
@@ -117,5 +151,18 @@
         <p>&copy; 2026 SOTANAKA. All rights reserved.</p>
     </footer>
     <script src="script.min.js?v=12"></script>
+    <script>
+    // Vnsh light switch: toggles the lit photo and dims the page. Starts off on every visit.
+    (function () {
+        var btn = document.querySelector('.light-switch');
+        if (!btn) return;
+        var label = btn.querySelector('.light-label');
+        btn.addEventListener('click', function () {
+            var on = document.body.classList.toggle('lit');
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            label.textContent = on ? 'Turn off' : 'Turn on';
+        });
+    })();
+    </script>
 </body>
 </html>

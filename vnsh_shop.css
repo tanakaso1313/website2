@@ -310,3 +310,18 @@
 .product-details .purchase-info p:last-child {
     margin-bottom: 0;
 }
+
+/* Desktop: same text column, photo size and photo spacing as the work pages (work-page.css). */
+@media (min-width: 769px) {
+    .work-description, .product-details { width: 30vw; }
+    .work-images { width: 55vw; padding-right: 3vw; }
+    .work-images img { margin-bottom: 2em; }
+}
+
+/* Phones: same photo width and spacing as the work pages. The page already has its 5vw side margin,
+   so the photo column adds none. 36px between photos is what the work pages show on phones
+   (their 2em margin plus the line gap under an inline image). */
+@media (max-width: 768px) {
+    .work-images { padding-left: 0; padding-right: 0; }
+    .work-images img { margin-bottom: 36px !important; }
+}
