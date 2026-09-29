@@ -43,6 +43,13 @@ document.addEventListener('DOMContentLoaded', () => {
             caption.textContent = w.name;
 
             link.append(img, caption);
+            if (w.meta) {
+                // Extra caption lines (the archive uses them for date and venue).
+                const meta = document.createElement('div');
+                meta.className = 'plate-meta';
+                w.meta.forEach((line, i) => { if (i) meta.appendChild(document.createElement('br')); meta.appendChild(document.createTextNode(line)); });
+                link.appendChild(meta);
+            }
             if (TOUCH) {
                 // Colour layer over the halftone, faded in while this work is in the middle of the screen.
                 const colour = document.createElement('img');
@@ -68,7 +75,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
     // Open on the real copy, with the newest work just below the top edge.
-    window.scrollTo(0, realTop() - window.innerHeight * 0.08);
+    const restAt = () => realTop() - window.innerHeight * 0.08;
+    // Opening spin (homepage only: it names the work to start from). The column starts that far down
+    // and glides back up to the newest work in SPIN_MS. Skipped for visitors who ask for reduced motion.
+    const spinFrom = works.findIndex(w => w.name === window.SOTANAKA_SPIN_FROM);
+    const SPIN_MS = 1800;
+    if (window.SOTANAKA_SPIN_FROM && spinFrom < 0) {
+        console.warn('Opening spin skipped: no work named "' + window.SOTANAKA_SPIN_FROM + '" in works.js');
+    }
+    let spinning = false;
+    if (spinFrom > 0 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const end = restAt();
+        const start = end + (plates[spinFrom].offsetTop - plates[0].offsetTop);
+        const ease = t => 0.5 - Math.cos(Math.PI * t) / 2;
+        let t0 = null;
+        spinning = true;
+        window.scrollTo(0, start);
+        // Any touch, wheel, key or click hands control straight back to the visitor.
+        const stop = () => { spinning = false; };
+        ['touchstart', 'wheel', 'keydown', 'mousedown'].forEach(e => window.addEventListener(e, stop, { once: true, passive: true }));
+        const step = now => {
+            if (!spinning) return;
+            if (t0 === null) t0 = now;
+            const t = Math.min(1, (now - t0) / SPIN_MS);
+            window.scrollTo(0, start + (end - start) * ease(t));
+            if (t < 1) requestAnimationFrame(step); else spinning = false;
+        };
+        requestAnimationFrame(step);
+    } else {
+        window.scrollTo(0, restAt());
+    }
 
     // Move the view back to the real copy by whole periods; the frame is identical either side.
     // Doing this mid-flick would stop a phone's momentum scroll dead, so it waits until the page
@@ -88,11 +124,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let settleTimer = null;
     const settle = () => {
         clearTimeout(settleTimer);
-        settleTimer = setTimeout(() => { if (!touching) recentre(); }, SETTLE_MS);
+        settleTimer = setTimeout(() => { if (!touching && !spinning) recentre(); }, SETTLE_MS);
     };
     window.addEventListener('scroll', () => {
         // Last resort: an extremely long fling reached the end of the extra copies.
-        if (nearEdge() && !touching) recentre();
+        if (nearEdge() && !touching && !spinning) recentre();
         else settle();
     }, { passive: true });
     window.addEventListener('touchstart', () => { touching = true; clearTimeout(settleTimer); }, { passive: true });

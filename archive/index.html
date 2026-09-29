@@ -118,50 +118,18 @@
             }
         }
 
-        /* Archive index: one square per exhibition, grouped by year. */
-        .year-block { display: flex; align-items: flex-start; margin-bottom: 5.5em; }
-        .year-label {
-            flex: 0 0 8em;
-            font-size: 13px;
-            font-weight: 400;
-            letter-spacing: 0.26em;
-            padding-top: 0.2em;
-        }
-        .year-works { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 3vw 2vw; }
-
-        @media (max-width: 768px) {
-            .year-block { flex-direction: column; margin-bottom: 3.5em; }
-            /* flex-basis is height once the block stacks, so release it */
-            .year-label { flex: none; margin-bottom: 1em; }
-            .year-works { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        .work { display: block; }
-        .work-thumb {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            overflow: hidden;
-            background: #fafafa;
-        }
-        .work-thumb img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            filter: grayscale(1);
-            transition: filter 0.25s ease;
-        }
-        .work:hover .work-thumb img { filter: none; }
-        .work-name {
-            margin-top: 12px;
-            font-size: 13px;
-            letter-spacing: 0.26em;
-            text-transform: uppercase;
-        }
-
-        @media (max-width: 768px) {
-            /* one square per row on phones */
-            .year-works { grid-template-columns: 1fr; width: 100%; }
+        /* Archive index: the homepage's scrolling column (landing.js), one halftone photo per exhibition. */
+        main { margin: 0 !important; padding: 0 !important; max-width: none !important; }
+        .column { position: relative; display: flex; flex-direction: column; align-items: center; gap: 16vh; padding: 8vh 0; }
+        .plate { display: block; width: 28vw; position: relative; color: #000; text-decoration: none; }
+        .plate img { width: 100%; aspect-ratio: 2 / 3; height: auto; display: block; object-fit: cover; }
+        .plate img.colour { position: absolute; top: 0; left: 0; opacity: 0; transition: opacity 0.4s ease; }
+        .plate.in-colour img.colour { opacity: 1; }
+        .plate-name { margin-top: 12px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #000; }
+        .plate-meta { margin-top: 6px; font-size: 12px; line-height: 1.5; color: #000; }
+        @media (max-width: 768px), (orientation: portrait) and (max-width: 1100px) {
+            .column { gap: 12vh; padding: 8vh 0; }
+            .plate { width: min(78vw, calc((100vh - 220px) / 1.5)); }
         }
     </style>
     <script src="/config.js"></script>
@@ -194,46 +162,81 @@
     </nav>
 
     <main>
-                <div class="year-block">
-            <div class="year-label">2026</div>
-            <div class="year-works">
-                <a class="work" href="/archive/uneri-at-3daysofdesign">
-                    <div class="work-thumb"><img src="/3days2026-cover.webp" alt="Uneri at 3daysofdesign" loading="lazy"></div>
-                    <div class="work-name">Uneri at 3daysofdesign</div>
-                </a>
-            </div>
-        </div>
-<div class="year-block">
-            <div class="year-label">2025</div>
-            <div class="year-works">
-                <a class="work" href="/archive/liminal-objects-at-designtide">
-                    <div class="work-thumb"><img src="/designtide2025-key-visual.webp" alt="Liminal Objects at DesignTide" loading="lazy"></div>
-                    <div class="work-name">Liminal Objects at DesignTide</div>
-                </a>
-                <a class="work" href="/archive/liminal-objects-and-vnsh-at-cont-gallery">
-                    <div class="work-thumb"><img src="/cont2025-cover.webp" alt="Liminal Objects and Vnsh at Cont Gallery" loading="lazy"></div>
-                    <div class="work-name">Liminal Objects and Vnsh at Cont Gallery</div>
-                </a>
-                <a class="work" href="/archive/liminal-objects-at-information-gallery">
-                    <div class="work-thumb"><img src="/information2025poster1.webp" alt="Liminal Objects at Information Gallery" loading="lazy"></div>
-                    <div class="work-name">Liminal Objects at Information Gallery</div>
-                </a>
-                <a class="work" href="/archive/let-a-colored-paper-swim-in-clouds-at-moro">
-                    <div class="work-thumb"><img src="/moro2025-key-visual.webp" alt="Let a Colored Paper Swim in the Clouds at Moro" loading="lazy"></div>
-                    <div class="work-name">Let a Colored Paper Swim in the Clouds at Moro</div>
-                </a>
-            </div>
-        </div>
-        <div class="year-block">
-            <div class="year-label">2023</div>
-            <div class="year-works">
-                <a class="work" href="/archive/vnsh-at-designart">
-                    <div class="work-thumb"><img src="/designart2023poster.webp" alt="Vnsh at Designart" loading="lazy"></div>
-                    <div class="work-name">Vnsh at Designart</div>
-                </a>
-            </div>
-        </div>
+        <div class="work-grid" id="workGrid"></div>
+        <noscript><ul><li><a href="/archive/uneri-at-3daysofdesign">3daysofdesign</a>, 10–12 June 2026, Copenhagen, Denmark</li><li><a href="/archive/liminal-objects-at-designtide">DesignTide</a>, 18–21 December 2025, Rinnai, Tokyo, Japan</li><li><a href="/archive/liminal-objects-and-vnsh-at-cont-gallery">Structure</a>, 3–20 October 2025, Cont Gallery, Nagoya, Japan</li><li><a href="/archive/liminal-objects-at-information-gallery">Liminal Objects</a>, 16–24 August 2025, Information, Tokyo, Japan</li><li><a href="/archive/let-a-colored-paper-swim-in-clouds-at-moro">Let a Colored Paper Swim in the Clouds</a>, 26 April – 6 May 2025, Moro, Tochigi, Japan</li><li><a href="/archive/vnsh-at-designart">Designart Tokyo</a>, 20–29 October 2023, Tiers Gallery, Tokyo, Japan</li></ul></noscript>
     </main>
+    <script>
+    // Exhibitions for the scrolling column, newest first. Halftone at rest, colour on hover (or in the
+    // middle of the screen on phones). Phones get the 600px versions, as on the homepage.
+    window.SOTANAKA_WORKS = [
+        {
+            "name": "3daysofdesign",
+            "href": "/archive/uneri-at-3daysofdesign",
+            "year": 2026,
+            "file": "3days",
+            "meta": [
+                "10–12 June 2026",
+                "Copenhagen, Denmark"
+            ]
+        },
+        {
+            "name": "DesignTide",
+            "href": "/archive/liminal-objects-at-designtide",
+            "year": 2025,
+            "file": "designtide",
+            "meta": [
+                "18–21 December 2025",
+                "Rinnai, Tokyo, Japan"
+            ]
+        },
+        {
+            "name": "Structure",
+            "href": "/archive/liminal-objects-and-vnsh-at-cont-gallery",
+            "year": 2025,
+            "file": "cont",
+            "meta": [
+                "3–20 October 2025",
+                "Cont Gallery, Nagoya, Japan"
+            ]
+        },
+        {
+            "name": "Liminal Objects",
+            "href": "/archive/liminal-objects-at-information-gallery",
+            "year": 2025,
+            "file": "information",
+            "meta": [
+                "16–24 August 2025",
+                "Information, Tokyo, Japan"
+            ]
+        },
+        {
+            "name": "Let a Colored Paper Swim in the Clouds",
+            "href": "/archive/let-a-colored-paper-swim-in-clouds-at-moro",
+            "year": 2025,
+            "file": "moro",
+            "meta": [
+                "26 April – 6 May 2025",
+                "Moro, Tochigi, Japan"
+            ]
+        },
+        {
+            "name": "Designart Tokyo",
+            "href": "/archive/vnsh-at-designart",
+            "year": 2023,
+            "file": "designart",
+            "meta": [
+                "20–29 October 2023",
+                "Tiers Gallery, Tokyo, Japan"
+            ]
+        }
+    ];
+    (function () {
+        var set = window.matchMedia('(max-width: 500px)').matches ? '_mobile' : '';
+        window.workSrc = function (w) { return '/images/archive-scroll/top' + set + '/' + w.file + '.webp'; };
+        window.workMono = function (w) { return '/images/archive-scroll/ht' + set + '/' + w.file + '.webp'; };
+    })();
+    </script>
+    <script src="/landing.js"></script>
 
     <div id="lightbox" class="lightbox">
         <span class="close-button">&times;</span>

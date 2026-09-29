@@ -56,6 +56,33 @@
         }
     });
     </script>
+    <style>
+        /* ---- Curly light switch ---- */
+        .light-frame { position: relative; margin-bottom: 2em; }
+        .light-frame img { margin-bottom: 0 !important; }
+        .light-frame .lit-photo { position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity 1.4s ease; }
+        body.lit .light-frame .lit-photo { opacity: 1; pointer-events: auto; }
+        .light-switch {
+            position: absolute; top: 14px; left: 14px; z-index: 2;
+            display: inline-flex; align-items: center; gap: 10px; margin: 0; padding: 8px 10px;
+            background: none; border: 0; cursor: pointer; font: inherit; color: #fff !important;
+            font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+        }
+        .light-dot { width: 10px; height: 10px; border-radius: 50%; border: 1px solid currentColor; transition: background 0.6s ease, box-shadow 0.6s ease; }
+        body.lit .light-dot { background: #f3d9a4; border-color: #f3d9a4; box-shadow: 0 0 10px 3px rgba(243, 217, 164, 0.55); }
+        .light-switch:focus-visible { outline: 1px solid currentColor; outline-offset: 4px; }
+
+        /* The room goes dark when the lamp is on. */
+        body, .work-content, footer, .site-name, .site-nav { transition: background-color 1.4s ease, color 1.4s ease; }
+        body.lit { background: #0e0d0c; color: #e9e4da; }
+        body.lit .work-content, body.lit .work-content *, body.lit footer, body.lit footer a { color: #e9e4da !important; }
+        @media (max-width: 768px), (orientation: portrait) and (max-width: 1100px) {
+            body.lit .site-name, body.lit .site-nav { background: #0e0d0c; color: #e9e4da; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .light-frame .lit-photo, body, .work-content, footer, .site-name, .site-nav, .light-dot { transition: none; }
+        }
+    </style>
 </head>
 <body>
     <header class="site-name">
@@ -81,8 +108,12 @@
             </dl>
         </div>
         <div class="work-images">
-            <img src="images/work - curly/1.curly.webp" alt="Curly table lamp, curled washi paper shade on a cylindrical aluminum base with a coiled black cord" class="lightbox-trigger">
-            <img src="images/work - curly/2.curly.webp" alt="Curly lit, the washi shade glowing warm with light pooling on the floor" class="lightbox-trigger">
+            <!-- Light switch: the lit photo sits on top of the unlit one and fades in; the page dims with it. -->
+            <div class="light-frame">
+                <img src="images/work - curly/1.curly.webp" alt="Curly table lamp, curled washi paper shade on a cylindrical aluminum base with a coiled black cord" class="lightbox-trigger">
+                <img src="images/work - curly/2.curly.webp" alt="Curly lit, the washi shade glowing warm with light pooling on the floor" class="lightbox-trigger lit-photo">
+                <button type="button" class="light-switch" aria-pressed="false"><span class="light-dot" aria-hidden="true"></span><span class="light-label">Turn on</span></button>
+            </div>
             <img src="images/work - curly/3.curly.webp" alt="Curly seen from the side, the paper shade leaning on its aluminum base" class="lightbox-trigger">
             <img src="images/work - curly/4.curly.webp" alt="Curly from the front, both curled edges of the shade meeting at the top" class="lightbox-trigger">
             <img src="images/work - curly/5.curly.webp" alt="Curly from another angle, showing the metal pins that hold the shade" class="lightbox-trigger">
@@ -103,5 +134,18 @@
         <p>&copy; 2026 SOTANAKA. All rights reserved.</p>
     </footer>
     <script src="script.min.js?v=12"></script>
+    <script>
+    // Curly light switch: toggles the lit photo and dims the page. Starts off on every visit.
+    (function () {
+        var btn = document.querySelector('.light-switch');
+        if (!btn) return;
+        var label = btn.querySelector('.light-label');
+        btn.addEventListener('click', function () {
+            var on = document.body.classList.toggle('lit');
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            label.textContent = on ? 'Turn off' : 'Turn on';
+        });
+    })();
+    </script>
 </body>
 </html>
