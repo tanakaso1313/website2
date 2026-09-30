@@ -414,6 +414,11 @@ footer p {
 }
 .shop-product.shop-product .ship-elsewhere { margin: 2px 0 0 0; font-size: 12px; line-height: 1.5; color: #000; }
 .shop-product.shop-product .ship-elsewhere a { color: #000; text-decoration: underline; text-underline-offset: 3px; }
+/* 3D preview (lo3d.js / lo3d-viewer.js): last in the gallery, the photos' width and 4:5 proportion */
+.lo3d { position: relative; width: 100%; aspect-ratio: 4 / 5; margin: 0 0 2em; background: #fbfbfa; touch-action: pan-y; cursor: grab; }
+.lo3d canvas { display: block; width: 100%; height: 100%; }
+.lo3d .note { position: absolute; left: 12px; bottom: 10px; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; opacity: .45; pointer-events: none; }
+.lo3d-colors { margin: -1.4em 0 2em; font-size: 12px; line-height: 1.5; opacity: .55; }
 /* Checkout notes (script.js showBuyNote): a missing choice named in red inside its row */
 .shop-product.shop-product .purchase-info .buy-note { margin: 6px 0 0 0; font-size: 12px; line-height: 1.5; color: #b3261e; }
 .shop-product.shop-product .purchase-info .buy-note a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }

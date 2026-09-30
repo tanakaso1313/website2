@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="LO / 02, from the Liminal Objects series by SOTANAKA. MDF, lacquer paint.">
+    <meta name="description" content="LO / 01, from the Liminal Objects series by SOTANAKA. MDF, lacquer paint.">
     <meta name="author" content="SOTANAKA">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="LO / 02 | SOTANAKA">
-    <meta property="og:description" content="LO / 02, from the Liminal Objects series by SOTANAKA. MDF, lacquer paint.">
+    <meta property="og:title" content="LO / 01 | SOTANAKA">
+    <meta property="og:description" content="LO / 01, from the Liminal Objects series by SOTANAKA. MDF, lacquer paint.">
     <meta property="og:type" content="product">
-    <meta property="og:url" content="https://sotanaka.com/lo-02">
+    <meta property="og:url" content="https://sotanaka.com/lo-01">
     <meta property="og:image" content="https://sotanaka.com/images/social/liminal-objects-social.jpg">
     <meta name="twitter:card" content="summary_large_image">
-    <link rel="canonical" href="https://sotanaka.com/lo-02">
-    <title>LO / 02 | SOTANAKA</title>
+    <link rel="canonical" href="https://sotanaka.com/lo-01">
+    <title>LO / 01 | SOTANAKA</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="liminal-light-s.css">
@@ -21,7 +21,13 @@
     <!-- Amplitude Analytics -->
     <script defer src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz" crossorigin="anonymous"></script>
     <script defer src="analytics.js"></script>
-    <script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.min.js" } }</script>
+    <script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js" } }</script>
+    <style>
+    .lo3d { position: relative; width: 100%; aspect-ratio: 4 / 5; margin: 0 0 2em; background: #fbfbfa; touch-action: pan-y; cursor: grab; }
+    .lo3d canvas { display: block; width: 100%; height: 100%; }
+    .lo3d-colors { margin: -1.4em 0 2em; font-size: 12px; line-height: 1.5; opacity: .55; }
+    .lo3d .note { position: absolute; left: 12px; bottom: 10px; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; opacity: .45; pointer-events: none; }
+    </style>
 </head>
 <body>
     <header class="site-name">
@@ -36,24 +42,24 @@
     </nav>
     <main class="work-content">
         <div class="work-description shop-product">
-            <h2>LO / 02</h2>
+            <h2>LO / 01</h2>
             <dl class="work-specs">
                 <dt>Material</dt><dd>MDF, lacquer paint</dd>
-                <dt>Dimensions</dt><dd>W117 D71 H140 mm</dd>
+                <dt>Dimensions</dt><dd>W117 D117 H71 mm</dd>
                 <dt>Lead time</dt><dd>4 weeks</dd>
             </dl>
             <div class="purchase-info">
-                <p class="price">¥16,500 (inc. tax)</p>
-                <a href="#" class="add-to-cart" data-product-id="LO / 02" data-price-id="price_1Tg9jwEcQzNRltK0lbf6q7ww">Checkout</a>
+                <p class="price">¥14,300 (inc. tax)</p>
+                <a href="#" class="add-to-cart" data-product-id="LO / 01" data-price-id="price_1Tg9jJEcQzNRltK0LVYhUP9Y">Checkout</a>
                 <p class="contact-info-text">Shipping within Japan is free; international rates are calculated at checkout.</p>
                 <p class="more-link"><a href="/liminal-objects">View collection →</a></p>
             </div>
         </div>
         <div class="work-images">
-            <img src="LO_02_1.webp" alt="LO / 02" class="lightbox-trigger">
-            <img src="LO_02_2.webp" alt="LO / 02" class="lightbox-trigger">
-            <img src="LO_02_3.webp" alt="LO / 02" class="lightbox-trigger">
-            <div class="lo3d" data-shape="LO / 02" role="img" aria-label="3D preview of LO / 02. Drag to turn it."><span class="note">3D · drag to turn</span></div>
+            <img src="LO_01_1.webp" alt="LO / 01" class="lightbox-trigger">
+            <img src="LO_01_2.webp" alt="LO / 01" class="lightbox-trigger">
+            <img src="LO_01_3.webp" alt="LO / 01" class="lightbox-trigger">
+            <div class="lo3d" id="lo3d" data-shape="LO / 01"><span class="note">3D · drag to turn</span></div>
             <p class="lo3d-colors">Colors in this 3D preview are approximate and may differ from the photos and the finished piece.</p>
         </div>
     </main>
@@ -131,6 +137,10 @@
         <p><a href="/policies">Shipping, returns &amp; legal notice</a></p>
         <p>&copy; 2026 SOTANAKA. All rights reserved.</p>
     </footer>
-    <script type="module" src="/lo3d.js?v=1"></script>
+    <script type="module">
+    import { SHAPES, mount } from '/lo3d-viewer.js';
+    const el = document.getElementById('lo3d');
+    window.__lo3d = mount(el, SHAPES[el.dataset.shape], { room: 1.7 });
+    </script>
 </body>
 </html>

@@ -21,6 +21,7 @@
     <!-- Amplitude Analytics -->
     <script defer src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz" crossorigin="anonymous"></script>
     <script defer src="analytics.js"></script>
+    <script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.min.js" } }</script>
 </head>
 <body>
     <header class="site-name">
@@ -53,6 +54,8 @@
             <img src="LO_23_2.webp" alt="LO / 23" class="lightbox-trigger">
             <img src="LO_23_3.webp" alt="LO / 23" class="lightbox-trigger">
             <img src="LO_23_4.webp" alt="LO / 23" class="lightbox-trigger">
+            <div class="lo3d" data-shape="LO / 23" role="img" aria-label="3D preview of LO / 23. Drag to turn it."><span class="note">3D · drag to turn</span></div>
+            <p class="lo3d-colors">Colors in this 3D preview are approximate and may differ from the photos and the finished piece.</p>
         </div>
     </main>
 
@@ -69,5 +72,6 @@
         <p><a href="/policies">Shipping, returns &amp; legal notice</a></p>
         <p>&copy; 2026 SOTANAKA. All rights reserved.</p>
     </footer>
+    <script type="module" src="/lo3d.js?v=1"></script>
 </body>
 </html>
