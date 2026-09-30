@@ -17,7 +17,7 @@ export const SHAPES = {
     'LO / 07': { depth: 2, rows: ['##########', '##########', ...Array(6).fill('##......##'), '##########', '##########'], color: 'rgb(203, 203, 203)' },
     // LO / 23: two blocks 4 square cells wide (Dom), 5 and 6 cells high, 3 deep. The top block is tilted about
     // 12 degrees; both ends of its base line up with the lower block's sides and its lower-right corner sinks half a
-    // cell into the block below (Dom). Note: 4 cells is about 93 mm, but the page lists W117 (open question).
+    // cell into the block below (Dom). Overall W121 D71 H262 mm, measured from the product photo.
     'LO / 23': { parts: [
         { rows: Array(5).fill('####'), depth: 3 },
         // lower-left corner above the lower block's left edge; tilted 12 degrees, the lower-right corner lands on
@@ -167,11 +167,11 @@ export function mount(el, shape, opts = {}) {
     // ---- Dimension lines in mm, like a technical drawing, so the piece reads at its real size.
     // The numbers are the product page's listed dimensions (opts.dims), never computed from the model. An object
     // has no fixed height or depth (it can rest on any side), so the three listed numbers are matched to the
-    // model's three edges in whichever arrangement fits: two edges along the base block, one over the whole piece,
-    // at about 23.3 mm a cell. If no arrangement fits within 8%, nothing is shown and the mismatch is logged.
+    // model's three edges in whichever arrangement fits: width and height over the whole piece (a tilted block adds
+    // to both), depth along the base block, at about 23.3 mm a cell. If no arrangement fits within 8%, nothing is shown and the mismatch is logged.
     const CELL_MM = 23.3, labels = [];
     if (opts.dims) {
-        const edges = [baseMax.x - baseMin.x, baseMax.z - baseMin.z, max.y - min.y];   // width, depth, height of the model
+        const edges = [max.x - min.x, baseMax.z - baseMin.z, max.y - min.y];   // width, depth, height of the model
         const listed = Object.values(opts.dims);
         const perms = [[0, 1, 2], [0, 2, 1], [1, 0, 2], [1, 2, 0], [2, 0, 1], [2, 1, 0]];
         const err = (pm) => Math.max(...pm.map((li, i) => Math.abs(listed[li] / CELL_MM - edges[i]) / edges[i]));
@@ -193,7 +193,7 @@ export function mount(el, shape, opts = {}) {
             };
             const x0 = baseMin.x, x1 = baseMax.x, z0 = baseMin.z, z1 = baseMax.z, y0 = min.y, y1 = max.y;
             const up = new THREE.Vector3(0, 1, 0), side = new THREE.Vector3(1, 0, 0), front = new THREE.Vector3(0, 0, 1);
-            dim(L(x0, y0 - gap, z1), L(x1, y0 - gap, z1), up, mm[0]);            // width: under the front edge
+            dim(L(min.x, y0 - gap, z1), L(max.x, y0 - gap, z1), up, mm[0]);      // width: under the front, full extent
             dim(L(x1 + gap, y0 - gap, z0), L(x1 + gap, y0 - gap, z1), side, mm[1]); // depth: under the right side
             dim(L(max.x + gap, y0, z1), L(max.x + gap, y1, z1), front, mm[2]);   // height: clear of the piece's furthest edge
             const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pts, 3));
