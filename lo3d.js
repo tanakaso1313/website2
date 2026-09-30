@@ -6,7 +6,7 @@ const box = document.querySelector('.lo3d');
 if (box) {
     const notice = document.querySelector('.lo3d-colors');
     const fail = (err) => { console.error('3D preview could not load:', err); box.remove(); if (notice) notice.remove(); };
-    new IntersectionObserver((entries, io) => {
+    const watch = () => new IntersectionObserver((entries, io) => {
         if (!entries.some((e) => e.isIntersecting)) return;
         io.disconnect();
         import('/lo3d-viewer.js?v=1').then(({ SHAPES, mount }) => {
@@ -16,4 +16,7 @@ if (box) {
             box.dataset.ready = '1';
         }).catch(fail);
     }, { rootMargin: '600px' }).observe(box);
+    // Start watching only once the photos above it have loaded: before that the gallery is short,
+    // the preview looks close to the screen, and three.js would download for every visitor.
+    if (document.readyState === 'complete') watch(); else window.addEventListener('load', watch, { once: true });
 }
