@@ -24,6 +24,28 @@
         }
     });
     </script>
+    <style>
+    /* 404: a memory game with minimal line drawings of the works (drawings live in the ICONS map below) */
+    .lost { padding: var(--content-top) 5vw 110px; display: flex; flex-direction: column; align-items: center; gap: 22px; text-align: center; }
+    .lost .kicker { font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; opacity: 0.55; margin: 0; }
+    .lost .line { font-size: 14px; line-height: 1.5; margin: 0; max-width: 34em; }
+    .lost .hint { font-size: 12px; opacity: 0.55; margin: 0; min-height: 18px; }
+    .lost .ways { display: flex; gap: 28px; justify-content: center; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; }
+    .lost .ways a { color: inherit; text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+    .board { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; width: min(440px, 88vw); }
+    .card { aspect-ratio: 1; perspective: 600px; border: 0; padding: 0; background: none; cursor: pointer; }
+    .card .in { position: relative; width: 100%; height: 100%; transition: transform .45s ease; transform-style: preserve-3d; }
+    .card.up .in, .card.done .in { transform: rotateY(180deg); }
+    .card .face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; display: flex; align-items: center; justify-content: center; }
+    .card .back { background: #f4f3f0; box-shadow: inset 0 0 0 1px rgba(0,0,0,.06); }
+    .card .back::after { content: ""; width: 6px; height: 6px; border: 1px solid rgba(0,0,0,.35); }
+    .card .front { background: #fff; box-shadow: inset 0 0 0 1px rgba(0,0,0,.14); transform: rotateY(180deg); color: #000; }
+    .card .front svg { width: 60%; height: 60%; }
+    .card.done .front { box-shadow: inset 0 0 0 1px #000; }
+    .names { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; max-width: 460px; min-height: 18px; font-size: 12px; }
+    .names a { color: inherit; }
+    @media (prefers-reduced-motion: reduce) { .card .in { transition: none; } }
+    </style>
 </head>
 <body>
     <header class="site-name">
@@ -37,8 +59,52 @@
         <a href="/contact">Contact</a>
     </nav>
     
-    <main class="bio-content">
-        <p>Oops… page not found. Head back to see our <a href="/" style="text-decoration: underline;">work</a> or browse the <a href="/shop" style="text-decoration: underline;">shop</a>.</p>
+    <main class="lost">
+        <p class="kicker">Page not found</p>
+        <p class="line">We can't find the page you're looking for, but you can find our works by playing a memory game.</p>
+        <div class="board" id="board" aria-label="Memory game"></div>
+        <p class="hint" id="hint" aria-live="polite">Turn two cards.</p>
+        <div class="names" id="names"></div>
+        <div class="ways"><a href="#" id="again">Play again</a><a href="/">All works</a><a href="/shop">Shop</a></div>
     </main>
+    <script src="/works.js"></script>
+    <script>
+    // One line drawing per work, keyed by the names in works.js. A work without a drawing is simply left out.
+    const ICONS = {"Curly": "<path d=\"M15 12v17a9 2.6 0 0 0 18 0V12\"/><path d=\"M15 12a9 2.6 0 0 1 18 0\"/><path d=\"M21 10.4c4-2.2 10-1.6 12 1.6\"/><path d=\"M28 13.3v18.2\"/><path d=\"M21.5 31.4V39h5v-7.6\"/><path d=\"M21.5 38c-1.4-2.6-2.8-2.6-3.8 0s-2.4 2.6-3.8 0-2.4-2.6-3.8 0-2.4 2.6-3.8 0\"/>", "Uneri": "<ellipse cx=\"24\" cy=\"14\" rx=\"15\" ry=\"3.6\"/><path d=\"M19 17.4c-.8 6-3.6 10.5-3.8 22.6\"/><path d=\"M17.6 27c2 2.6 3 6.4 3.2 13\"/><path d=\"M29.5 17.4c1 6.6 4.2 10.8 3.2 22.6\"/><path d=\"M31.2 25.6c-2.2 2.4-3.8 5.6-4 9.4\"/><path d=\"M16.2 32.5l-3-1.8\"/>", "MO Lamp": "<path d=\"M15.5 28.5A10.5 10.5 0 1 1 32.5 28.5\"/><path d=\"M12.5 41l.8-10.5 2.8-2.8 3.6 1.4 3.5-2.6 4.3 1.7 4 2.8.3 10z\"/><path d=\"M17.5 34.5l2.5 1.6M28 32.5l2.2 1.4\"/>", "Let a Colored Paper Swim in the Clouds": "<path d=\"M18 7.5l5-2.2 6 .9 2 3.3-.6 6 1 4.4-.7 6.2 1 5.6-.8 5.3-3.2 2.4-5.2-.4-3.6.2-1.7-3.3.8-5.2-1.1-5 .9-6-1-5.2z\"/><path d=\"M22.6 7.2l.2 32.6M26.4 7l-.2 33\"/><path d=\"M17.3 26.8h14\"/>", "Liminal Lamp": "<path d=\"M11 5H35V21H11z\"/><path d=\"M15.0 5V21M19.0 5V21M23.0 5V8.5M23.0 17.5V21M27.0 5V21M31.0 5V21M11 9.0H19M27 9.0H35M11 13.0H19M27 13.0H35M11 17.0H19M27 17.0H35\" stroke-width=\".55\"/><path d=\"M19 8.5h8v9h-8z\"/><path d=\"M24 21H35V31H24z\"/><path d=\"M27.67 21V31M31.33 21V31M24 24.33H35M24 27.67H35\" stroke-width=\".55\"/><path d=\"M14 31H28V42H14z\"/><path d=\"M17.5 31V42M21.0 31V42M24.5 31V42M14 34.67H28M14 38.33H28\" stroke-width=\".55\"/>", "Liminal Objects": "<path d=\"M10 10h28v28H10z\"/><path d=\"M19.3 10v28M28.6 10v28M10 19.3h28M10 28.6h28\"/>", "C ya": "<circle cx=\"24\" cy=\"16\" r=\"9\"/><path d=\"M24 25v17M19 42h10\"/><path d=\"M20 13c1.5-2 3.5-2.5 5-2\"/>", "Memento": "<path d=\"M9 27c1-8 8-12 16-12 9 0 14 4 14 10 0 6-7 9-16 9-9 0-14-2-14-7z\"/><path d=\"M16 25c1.5-2.5 3-2.5 4 0s2.5 2.5 4 0 2.5-2.5 4 0\"/>", "Vnsh": "<path d=\"M19 40L31 5M29 40L17 5\"/><ellipse cx=\"24\" cy=\"41\" rx=\"9\" ry=\"1.9\"/>", "ORI": "<path d=\"M7 15h34v19H7z\"/><path d=\"M7 15l4 3.5h30M11 18.5V34\"/>", "Less Than Instrument": "<path d=\"M9 9h30v30H9z\"/><path d=\"M9 23.7L14.5 39M9.2 9L20.0 39M14.7 9L25.5 39M20.2 9L31.0 39M25.7 9L36.5 39M31.2 9L39 30.7M36.7 9L39 15.4M14.5 9L9 24.3M20.0 9L9.2 39M25.5 9L14.7 39M31.0 9L20.2 39M36.5 9L25.7 39M39 17.3L31.2 39M39 32.6L36.7 39\" stroke-width=\"1\"/>", "Transfer": "<path d=\"M9 37L24 9l15 28z\"/><path d=\"M24 9l-4.5 28M24 9l7.5 28\"/>"};
+    const icon = (name) => `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name]}</svg>`;
+    const WORKS = (window.SOTANAKA_WORKS || []).filter(w => ICONS[w.name]);
+    const board = document.getElementById('board'), hint = document.getElementById('hint'), names = document.getElementById('names');
+    const shuffle = (a) => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+    function deal() {
+        board.innerHTML = ''; names.innerHTML = ''; hint.textContent = 'Turn two cards.';
+        let open = [], lock = false, moves = 0, matched = 0;
+        // The newest work always plays, plus five others at random
+        const newest = WORKS[0];
+        const pick = [newest, ...shuffle(WORKS.slice(1)).slice(0, 5)];
+        shuffle([...pick, ...pick]).forEach(w => {
+            const b = document.createElement('button'); b.type = 'button'; b.className = 'card'; b.setAttribute('aria-label', 'Hidden card');
+            b.innerHTML = `<div class="in"><div class="face back"></div><div class="face front">${icon(w.name)}</div></div>`;
+            b.addEventListener('click', () => {
+                if (lock || b.classList.contains('up') || b.classList.contains('done')) return;
+                b.classList.add('up'); b.setAttribute('aria-label', w.name); open.push([b, w]);
+                if (open.length < 2) return;
+                moves++; const [[b1, w1], [b2, w2]] = open; open = [];
+                if (w1 === w2) {
+                    b1.classList.add('done'); b2.classList.add('done'); matched++;
+                    const a = document.createElement('a'); a.href = w1.href; a.textContent = w1.name; names.appendChild(a);
+                    const left = pick.length - matched;
+                    hint.textContent = left ? `${w1.name}. ${left} ${left === 1 ? 'pair' : 'pairs'} left.` : `All found, in ${moves} moves. The page is still lost, but here are the works.`;
+                    if (!left && window.amplitude) window.amplitude.track('404 Game Completed', { moves });
+                } else {
+                    lock = true;
+                    setTimeout(() => { [b1, b2].forEach(x => { x.classList.remove('up'); x.setAttribute('aria-label', 'Hidden card'); }); lock = false; }, 800);
+                }
+            });
+            board.appendChild(b);
+        });
+    }
+    document.getElementById('again').addEventListener('click', (e) => { e.preventDefault(); deal(); });
+    if (WORKS.length >= 6) deal(); else { board.hidden = true; hint.textContent = ''; }
+    </script>
 </body>
 </html>
