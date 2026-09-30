@@ -15,13 +15,14 @@ export const SHAPES = {
     'LO / 05': { depth: 3, rows: [...Array(4).fill('..#####'), ...Array(5).fill('#####..')], color: 'rgb(203, 203, 203)' },
     'LO / 06': { depth: 3, rows: [...Array(6).fill('###...'), ...Array(4).fill('######')], color: 'rgb(110, 86, 58)' },
     'LO / 07': { depth: 2, rows: ['##########', '##########', ...Array(6).fill('##......##'), '##########', '##########'], color: 'rgb(203, 203, 203)' },
-    // LO / 23: a 5 x 5 block with a 5 x 6 block on top, tilted about 12 degrees. Both ends of the top block's
-    // base line up with the bottom block's sides; its lower-right corner sinks into the block below (Dom).
+    // LO / 23: two blocks 4 square cells wide (Dom), 5 and 6 cells high, 3 deep. The top block is tilted about
+    // 12 degrees; both ends of its base line up with the lower block's sides and its lower-right corner sinks half a
+    // cell into the block below (Dom). Note: 4 cells is about 93 mm, but the page lists W117 (open question).
     'LO / 23': { parts: [
-        { rows: Array(5).fill('#####'), depth: 3 },
-        // lower-left corner straight above the bottom block's left edge; tilted 12 degrees, its lower-right corner
-        // lands on the right edge (5 cos 12 = 4.9) and half a cell into the block below (5.54 - 5 sin 12 = 4.5)
-        { rows: Array(6).fill('#####'), depth: 3, rotate: -12, pivot: [0, 0], at: [0, 5.54] },
+        { rows: Array(5).fill('####'), depth: 3 },
+        // lower-left corner above the lower block's left edge; tilted 12 degrees, the lower-right corner lands on
+        // the right edge (4 cos 12 = 3.91) and half a cell into the block below (5.33 - 4 sin 12 = 4.5)
+        { rows: Array(6).fill('####'), depth: 3, rotate: -12, pivot: [0, 0], at: [0, 5.33] },
     ], color: 'rgb(0, 30, 255)' },
 };
 

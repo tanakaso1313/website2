@@ -9,7 +9,7 @@ if (box) {
     const watch = () => new IntersectionObserver((entries, io) => {
         if (!entries.some((e) => e.isIntersecting)) return;
         io.disconnect();
-        import('/lo3d-viewer.js?v=9').then(({ SHAPES, mount }) => {
+        import('/lo3d-viewer.js?v=11').then(({ SHAPES, mount }) => {
             const shape = SHAPES[box.dataset.shape];
             if (!shape) throw new Error(`no 3D shape for ${box.dataset.shape}`);
             // the dimensions listed on this page (e.g. "W117 D117 H71 mm") label the 3D dimension lines
