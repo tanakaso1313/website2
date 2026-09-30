@@ -74,9 +74,7 @@ export function mount(el, shape, opts = {}) {
     // Measured against the swatches with a screenshot test (typical face within a few percent).
     scene.add(new THREE.HemisphereLight(0xffffff, 0xbfbfbf, 0.1));
     const sun = new THREE.DirectionalLight(0xffffff, 0.16);
-    sun.position.set(6, 14, 9); sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048); sun.shadow.radius = 4;
-    const R = Math.max(W, H, D);
-    Object.assign(sun.shadow.camera, { left: -R, right: R, top: R, bottom: -R, near: 1, far: 60 });
+    sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048); sun.shadow.radius = 4;
     scene.add(sun);
     const floor = new THREE.Mesh(new THREE.PlaneGeometry(80, 80), new THREE.ShadowMaterial({ opacity: 0.12 }));
     floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
@@ -93,6 +91,16 @@ export function mount(el, shape, opts = {}) {
     const piece = new THREE.Group(); piece.add(mesh); scene.add(piece);
     // float the piece clear of the floor so it can turn over completely without touching it
     const radius0 = Math.hypot(W, H, D) / 2; piece.position.y = radius0 + 0.3;
+    // Shadow light: aimed at the spot on the floor where the piece's shadow falls, from well above the piece,
+    // with an area wide enough for the shadow at any angle (the piece's radius, stretched by the slanted light).
+    // A fixed area around the middle of the floor clipped the shadow when the piece turned.
+    const sunDir = new THREE.Vector3(6, 14, 9).normalize();
+    const shadowAt = new THREE.Vector3(-sunDir.x / sunDir.y * piece.position.y, 0, -sunDir.z / sunDir.y * piece.position.y);
+    sun.target.position.copy(shadowAt); scene.add(sun.target);
+    sun.position.copy(shadowAt).addScaledVector(sunDir, radius0 * 6);
+    const reach = radius0 * 1.9 + 1;
+    Object.assign(sun.shadow.camera, { left: -reach, right: reach, top: reach, bottom: -reach, near: 0.5, far: radius0 * 12 });
+    sun.shadow.camera.updateProjectionMatrix();
 
     // frame the piece: distance from its bounding sphere, looking slightly down
     const radius = radius0, target = new THREE.Vector3(0, piece.position.y, 0);
