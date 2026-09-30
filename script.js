@@ -4,6 +4,8 @@
    kept but hidden while the Ship to row drives it. */
 // Pieces that ship within Japan only: no region picker, and the Ship to row says so.
 const JAPAN_ONLY = ['VNSH', 'LIMINAL LAMP S'];
+// Colour names are stored and sent to Stripe/Amplitude as "grey" etc. (data, unchanged); only the displayed name is American.
+const shown = (t) => t.replace(/grey/g, 'gray');
 
 function buildBuyPanel(container) {
     if (!container || container.querySelector('.buy-specs')) return;
@@ -51,7 +53,7 @@ function buildBuyPanel(container) {
         let chosen = '';
         const rest = () => {
             name.className = 'chip-name' + (chosen ? ' chosen' : ' count');
-            name.textContent = chosen ? cap(chosen) : `${count} colours`;
+            name.textContent = chosen ? cap(shown(chosen)) : `${count} colors`;
         };
         rest();
         const wrapper = chips.closest('.color-selector');
@@ -61,7 +63,7 @@ function buildBuyPanel(container) {
             if (!c) return;
             const n = c.getAttribute('data-color') || '';
             name.className = 'chip-name' + (n === chosen ? ' chosen' : ' preview');
-            name.textContent = cap(n);
+            name.textContent = cap(shown(n));
         });
         chips.addEventListener('mouseleave', rest);
         chips.addEventListener('click', (e) => {
@@ -70,7 +72,7 @@ function buildBuyPanel(container) {
             chosen = c.getAttribute('data-color') || '';
             rest();
         });
-        row('colour', 'Colour', box);
+        row('colour', 'Color', box);
         if (wrapper) wrapper.remove();
         const summary = container.querySelector('[data-selection-summary]');
         if (summary) summary.hidden = true;
@@ -393,7 +395,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const parts = [];
             if (sizeAbbr) parts.push(sizeAbbr);
-            if (color) parts.push(color);
+            if (color) parts.push(shown(color));
 
             // Use a non-breaking space placeholder when empty so the line
              // always reserves vertical space and the Checkout button doesn't
@@ -508,8 +510,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         chip.className = 'color-chip';
                         chip.setAttribute('data-color', colorLabel);
                         chip.style.backgroundColor = swatch;
-                        chip.setAttribute('aria-label', colorLabel);
-                        chip.title = colorLabel;
+                        chip.setAttribute('aria-label', shown(colorLabel));
+                        chip.title = shown(colorLabel);
                         chip.textContent = '';
 
                         chip.addEventListener('click', () => {

@@ -1,6 +1,6 @@
 # SOTANAKA
 
-> SOTANAKA is a Tokyo-based design studio established in 2020 by designer Soichiro Tanaka (田中聡一朗, also known as So Tanaka), working across furniture, lighting and objects.
+> SOTANAKA is a Tokyo-based design studio established in 2020 by designer Soichiro Tanaka (田中聡一朗, also known as So Tanaka), working across furniture, lighting, and objects.
 
 SOTANAKAは、デザイナー田中聡一朗が2020年に設立した東京を拠点とするデザインスタジオです。家具、照明、オブジェを手がけています。
 
@@ -10,14 +10,14 @@ Soichiro Tanaka studied at Musashino Art University, Department of Industrial, I
 
 ## Pages
 
-- [Bio](https://sotanaka.com/bio): about the studio, stockists, exhibitions, awards and press
-- [Shop](https://sotanaka.com/shop): Furniture, lighting and objects by SOTANAKA, available to order.
+- [Bio](https://sotanaka.com/bio): about the studio, stockists, exhibitions, awards, and press
+- [Shop](https://sotanaka.com/shop): Furniture, lighting, and objects by SOTANAKA, available to order.
 - [Archive](https://sotanaka.com/archive): past exhibitions
-- [Contact](https://sotanaka.com/contact): info@sotanaka.com, for exhibitions, commissions, production collaborations, wholesale enquiries or studio visits
+- [Contact](https://sotanaka.com/contact): info@sotanaka.com, for exhibitions, commissions, production collaborations, wholesale inquiries, or studio visits
 
 ## Works
 
-- [Curly](https://sotanaka.com/curly) (2026): Curly is a table lamp by SOTANAKA, shaped by the curl paper keeps from being rolled for storage and transport.
+- [Curly](https://sotanaka.com/curly) (2026): Curly is a table lamp by SOTANAKA, shaped by the curl that paper keeps from being rolled for storage and transport.
 - [Uneri](https://sotanaka.com/uneri) (2026): Uneri is a furniture collection by SOTANAKA, made from branches pruned from Tokyo's street trees and fallen wood gathered from local parks.
 - [MO Lamp](https://sotanaka.com/mo-lamp) (2025): MO Lamp is a sculptural lighting work by SOTANAKA.
 - [Let a Colored Paper Swim in the Clouds](https://sotanaka.com/let-a-colored-paper-swim-in-clouds) (2025): Let a Colored Paper Swim in the Clouds is a series of works in white cement and colored paper by SOTANAKA.
@@ -25,7 +25,7 @@ Soichiro Tanaka studied at Musashino Art University, Department of Industrial, I
 - [Liminal Objects](https://sotanaka.com/liminal-objects) (2025): Liminal Objects is a series of grid works in MDF and lacquer paint by SOTANAKA.
 - [C ya](https://sotanaka.com/cya) (2025): C ya is a work by SOTANAKA exploring the curved mirror as a Japanese cultural object.
 - [Memento](https://sotanaka.com/memento) (2023): Memento is a functional sculptural form in glazed porcelain by SOTANAKA.
-- [Vnsh](https://sotanaka.com/vnsh) (2023): Vnsh is a lighting work in aluminium, stainless steel and MDF by SOTANAKA.
+- [Vnsh](https://sotanaka.com/vnsh) (2023): Vnsh is a lighting work in aluminum, stainless steel, and MDF by SOTANAKA.
 - [ORI](https://sotanaka.com/ori) (2019): Ori is a console in marble and MDF designed by SOTANAKA for Roche Bobois, Paris.
 - [Less Than Instrument](https://sotanaka.com/lti) (2020): Less Than Instrument is a lighting collection in steel and copper by SOTANAKA.
 - [Transfer](https://sotanaka.com/transfer) (2019): Transfer is a series of works in white cement and colored paper by SOTANAKA.
