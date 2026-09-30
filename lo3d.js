@@ -9,7 +9,7 @@ if (box) {
     const watch = () => new IntersectionObserver((entries, io) => {
         if (!entries.some((e) => e.isIntersecting)) return;
         io.disconnect();
-        import('/lo3d-viewer.js?v=2').then(({ SHAPES, mount }) => {
+        import('/lo3d-viewer.js?v=3').then(({ SHAPES, mount }) => {
             const shape = SHAPES[box.dataset.shape];
             if (!shape) throw new Error(`no 3D shape for ${box.dataset.shape}`);
             mount(box, shape, { room: 1.7 });

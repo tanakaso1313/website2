@@ -411,7 +411,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { label: 'natural', swatch: 'rgb(110, 86, 58)' },
             { label: 'olive grey', swatch: 'rgb(67, 60, 34)' },
             // rainbow (R → O → Y → G → B), with pink grouped with reds
-            { label: 'neon red', swatch: 'rgb(234, 51, 35)' },
+            { label: 'neon red', swatch: 'rgb(255, 36, 24)' },
             { label: 'berry pink', swatch: 'rgb(199, 67, 112)' },
             { label: 'milk orange', swatch: 'rgb(245, 190, 126)' },
             { label: 'yellow', swatch: 'rgb(252, 235, 101)' },
