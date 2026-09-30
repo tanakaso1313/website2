@@ -237,7 +237,7 @@
     .product-content {
         flex-direction: column;
         padding: 0 5vw;
-        padding-top: var(--content-top);
+        padding-top: 2em;   /* same gap under the header as the work pages on phones */
         margin-left: 0;
         display: flex;
     }

@@ -314,7 +314,7 @@
         flex-direction: column;
         margin-left: 0;
         padding: 0 5vw;
-        padding-top: var(--content-top);
+        padding-top: 2em;   /* same gap under the header as the work pages on phones */
         display: flex;
     }
 
