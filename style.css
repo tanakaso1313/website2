@@ -414,6 +414,10 @@ footer p {
 }
 .shop-product.shop-product .ship-elsewhere { margin: 2px 0 0 0; font-size: 12px; line-height: 1.5; color: #000; }
 .shop-product.shop-product .ship-elsewhere a { color: #000; text-decoration: underline; text-underline-offset: 3px; }
+/* Checkout notes (script.js showBuyNote): a missing choice named inside its row, the row label marked */
+.shop-product.shop-product .purchase-info .buy-note { margin: 6px 0 0 0; font-size: 12px; line-height: 1.5; color: #b3261e; }
+.shop-product.shop-product .purchase-info .buy-note a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.shop-product.shop-product .buy-specs dt.needs { color: #b3261e; }
 .shop-product.shop-product .contact-info-text { margin-top: -14px; font-size: 12px; line-height: 1.5; color: #000; }
 .shop-product.shop-product .contact-info-text a { color: #000; text-decoration: underline; text-underline-offset: 3px; }
 .shop-product.shop-product .more-link a {

@@ -7,6 +7,43 @@ const JAPAN_ONLY = ['VNSH', 'LIMINAL LAMP S'];
 // Colour names are stored and sent to Stripe/Amplitude as "grey" etc. (data, unchanged); only the displayed name is American.
 const shown = (t) => t.replace(/grey/g, 'gray');
 
+// Checkout messages live in the panel, not in browser pop-ups: a missing choice is named inside its
+// own row (Color, Size, Ship to) and the row label is marked; anything else goes under Checkout.
+// Every note clears as soon as the buyer makes a choice.
+function clearBuyNotes(container) {
+    if (!container) return;
+    container.querySelectorAll('.buy-note').forEach((n) => n.remove());
+    container.querySelectorAll('.needs').forEach((n) => n.classList.remove('needs'));
+}
+function showBuyNote(container, key, content) {
+    if (!container) return;
+    clearBuyNotes(container);
+    const note = document.createElement('p');
+    note.className = 'buy-note';
+    note.setAttribute('role', 'alert');
+    note.append(content);
+    const dd = key ? container.querySelector(`dd[data-buy-row="${key}"]`) : null;
+    const cta = container.querySelector('.add-to-cart');
+    if (dd) {
+        const dt = container.querySelector(`dt[data-buy-row="${key}"]`);
+        if (dt) dt.classList.add('needs');
+        dd.appendChild(note);
+    } else if (cta) {
+        cta.insertAdjacentElement('afterend', note);
+    } else {
+        container.appendChild(note);
+    }
+    note.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+}
+function checkoutFailedNote() {
+    const f = document.createDocumentFragment();
+    const a = document.createElement('a');
+    a.href = '/contact';
+    a.textContent = 'get in touch';
+    f.append("Checkout didn't open. Please try again, or ", a, '.');
+    return f;
+}
+
 function buildBuyPanel(container) {
     if (!container || container.querySelector('.buy-specs')) return;
     const dl = document.createElement('dl');
@@ -112,6 +149,9 @@ function buildBuyPanel(container) {
     }
 
     container.insertBefore(dl, container.firstChild);
+    container.addEventListener('click', (e) => {
+        if (e.target.closest('.choice, .color-chip, .size-pill')) clearBuyNotes(container);
+    });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -599,7 +639,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     color = selectedChip ? selectedChip.getAttribute('data-color') : '';
                     if (!color && productId && (productId.startsWith('LO_') || productId.startsWith('LO /'))) {
                         blocked('no_colour');
-                        alert('Please select a color.');
+                        showBuyNote(container, 'colour', 'Choose a color to continue.');
                         event.preventDefault();
                         return;
                     }
@@ -610,7 +650,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     size = (opt && opt.getAttribute('data-size-label')) ? opt.getAttribute('data-size-label') : '';
                     if (!size) {
                         blocked('no_size');
-                        alert('Please select a size.');
+                        showBuyNote(container, 'size', 'Choose a size to continue.');
                         event.preventDefault();
                         return;
                     }
@@ -646,7 +686,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     region = regionSel.value;
                     if (!region) {
                         blocked('no_region');
-                        alert('Please select a shipping region.');
+                        showBuyNote(container, 'ship', 'Choose where to ship to continue.');
                         return;
                     }
                 }
@@ -663,7 +703,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const priceId = button.getAttribute('data-price-id');
                     if (!priceId) {
                         blocked('config_error');
-                        alert('Product configuration error. Please contact support.');
+                        showBuyNote(container, null, checkoutFailedNote());
                         return;
                     }
 
@@ -694,17 +734,17 @@ document.addEventListener('DOMContentLoaded', () => {
                         } else {
                             console.error('Invalid checkout URL:', result.url);
                             blocked('invalid_checkout_url');
-                            alert('Invalid checkout URL. Please contact support.');
+                            showBuyNote(container, null, checkoutFailedNote());
                         }
                     } else {
                         console.error('API error:', result.error || result.message);
                         blocked('checkout_error', { status: response.status, error: String(result.error || result.message || '').slice(0, 120) });
-                        alert('Unable to process payment. Please try again.');
+                        showBuyNote(container, null, checkoutFailedNote());
                     }
                 } catch (error) {
                     console.error('Network error:', error);
                     blocked('network_error', { error: String(error && error.message || error).slice(0, 120) });
-                    alert('Payment error. Please try again.');
+                    showBuyNote(container, null, checkoutFailedNote());
                 } finally {
                     // Re-enable button
                     button.disabled = false;

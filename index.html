@@ -16,6 +16,10 @@
     <link rel="canonical" href="https://sotanaka.com/">
     <title>SOTANAKA</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Start the first homepage photo (the newest work, halftone) before the scripts run.
+         Must match what works.js/landing.js load first; tools/check_home_preload.py checks it. -->
+    <link rel="preload" as="image" href="images/mono_2_mobile/12.curly_top_mono_result_result.webp" media="(max-width: 500px)" fetchpriority="high">
+    <link rel="preload" as="image" href="images/mono_2/12.curly_top_mono_result_result.webp" media="(min-width: 501px)" fetchpriority="high">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <!-- DNS prefetch and preconnect for external resources -->
     <link rel="dns-prefetch" href="https://cdn.amplitude.com">
@@ -328,8 +332,8 @@
                 <li><a href="/cya">C ya</a> (2025). C ya is a work by SOTANAKA exploring the curved mirror as a Japanese cultural object.</li>
                 <li><a href="/memento">Memento</a> (2023). Memento is a functional sculptural form in glazed porcelain by SOTANAKA.</li>
                 <li><a href="/vnsh">Vnsh</a> (2023). Vnsh is a lighting work in aluminum, stainless steel, and MDF by SOTANAKA.</li>
-                <li><a href="/ori">ORI</a> (2019). ORI is a console in marble and MDF designed by SOTANAKA for Roche Bobois, Paris.</li>
                 <li><a href="/lti">Less Than Instrument</a> (2020). Less Than Instrument is a lighting collection in steel and copper by SOTANAKA.</li>
+                <li><a href="/ori">ORI</a> (2019). ORI is a console in marble and MDF designed by SOTANAKA for Roche Bobois, Paris.</li>
                 <li><a href="/transfer">Transfer</a> (2019). Transfer is a series of works in white cement and colored paper by SOTANAKA.</li>
                 </ul>
             </section>
@@ -349,8 +353,8 @@
     })();
     </script>
     
-    <script src="works.js"></script>
-    <script src="landing.js"></script>
+    <script defer src="works.js"></script>
+    <script defer src="landing.js"></script>
     <script>
     // Show the scroll hint once the column has settled, and remove it at the visitor's first scroll.
     // The column opens by scrolling itself into place, so only movement after that counts.

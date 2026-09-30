@@ -33,7 +33,7 @@ const PRODUCTS = {
   'LO / 07':        { name: 'LO / 07',        prices: ['price_1TgA1QEcQzNRltK0N8PcDhrB'], band: '1.5' },
   'LO / 23':        { name: 'LO / 23',        prices: ['price_1SVmcPEcQzNRltK0T1pRh1kt'], band: '1.5' },
   'LO_HORSE':       { name: 'LO Horse',       prices: ['price_1SlKWcEcQzNRltK0Bi9GW64L', 'price_1SlKX3EcQzNRltK0lTUSdxTK'], band: '1.5' },
-  'VNSH':           { name: 'VNSH',           prices: ['price_1SRanLEcQzNRltK0IPX6MFwN'], jpOnly: true },
+  'VNSH':           { name: 'Vnsh',           prices: ['price_1SRanLEcQzNRltK0IPX6MFwN'], jpOnly: true },
   'LIMINAL LAMP S': { name: 'Liminal Lamp S', prices: ['price_1SvC2BEcQzNRltK0YfYIxscH'], jpOnly: true },
 };
 
@@ -150,7 +150,8 @@ module.exports = async (req, res) => {
     // Optional variant label for the Stripe submit message
     const nameParts = [];
     if (size) nameParts.push(size);
-    if (color) nameParts.push(color);
+    // Shown to the buyer in American spelling; metadata below keeps the stored value (e.g. "warm grey").
+    if (color) nameParts.push(color.replace(/grey/g, 'gray'));
     const nameSuffix = nameParts.length > 0 ? ` (${nameParts.join(', ')})` : '';
 
     // Shipping derived from the trusted catalog entry + the region the buyer chose
