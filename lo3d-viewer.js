@@ -9,9 +9,9 @@ export const SHAPES = {
     // Worked out from the product photos and listed dimensions, confirmed by the studio (30 Sep 2026).
     // LO / HORSE has no shape yet, so its page shows no preview.
     'LO / 01': { depth: 3, rows: ['#####', '#####', '#####', '###..', '###..'], color: 'rgb(116, 251, 76)' },
-    'LO / 02': { depth: 3, rows: Array(6).fill('#####'), color: 'rgb(255, 36, 24)' },
+    'LO / 02': { depth: 3, rows: Array(6).fill('#####'), color: 'rgb(255, 72, 36)' },
     'LO / 03': { depth: 5, rows: Array(5).fill('#####'), color: 'rgb(0, 30, 255)' },
-    'LO / 04': { depth: 3, rows: Array(10).fill('###'), color: 'rgb(255, 36, 24)' },
+    'LO / 04': { depth: 3, rows: Array(10).fill('###'), color: 'rgb(255, 72, 36)' },
     'LO / 05': { depth: 3, rows: [...Array(4).fill('..#####'), ...Array(5).fill('#####..')], color: 'rgb(203, 203, 203)' },
     'LO / 06': { depth: 3, rows: [...Array(6).fill('###...'), ...Array(4).fill('######')], color: 'rgb(110, 86, 58)' },
     'LO / 07': { depth: 2, rows: ['##########', '##########', ...Array(6).fill('##......##'), '##########', '##########'], color: 'rgb(203, 203, 203)' },
