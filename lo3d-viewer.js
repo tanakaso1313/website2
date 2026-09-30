@@ -15,11 +15,13 @@ export const SHAPES = {
     'LO / 05': { depth: 3, rows: [...Array(4).fill('..#####'), ...Array(5).fill('#####..')], color: 'rgb(203, 203, 203)' },
     'LO / 06': { depth: 3, rows: [...Array(6).fill('###...'), ...Array(4).fill('######')], color: 'rgb(110, 86, 58)' },
     'LO / 07': { depth: 2, rows: ['##########', '##########', ...Array(6).fill('##......##'), '##########', '##########'], color: 'rgb(203, 203, 203)' },
-    // LO / 23: a 5 x 5 block with a 5 x 6 block on top, tilted about 12 degrees; the top block's lower-right
-    // corner sinks about half a cell into the block below, where the two are joined (read from the photos).
+    // LO / 23: a 5 x 5 block with a 5 x 6 block on top, tilted about 12 degrees. Both ends of the top block's
+    // base line up with the bottom block's sides; its lower-right corner sinks into the block below (Dom).
     'LO / 23': { parts: [
         { rows: Array(5).fill('#####'), depth: 3 },
-        { rows: Array(6).fill('#####'), depth: 3, rotate: -12, pivot: [5, 0], at: [4.7, 4.5] },
+        // lower-left corner straight above the bottom block's left edge; tilted 12 degrees, its lower-right corner
+        // lands on the right edge (5 cos 12 = 4.9) and half a cell into the block below (5.54 - 5 sin 12 = 4.5)
+        { rows: Array(6).fill('#####'), depth: 3, rotate: -12, pivot: [0, 0], at: [0, 5.54] },
     ], color: 'rgb(0, 30, 255)' },
 };
 
@@ -67,8 +69,11 @@ export function mount(el, shape, opts = {}) {
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(28, 1, 0.1, 200);
-    scene.add(new THREE.HemisphereLight(0xffffff, 0xdcd9d2, 1.3));
-    const sun = new THREE.DirectionalLight(0xffffff, 1.8);
+    // Color accuracy first: most of the look comes from the material's own color (emissive), so faces show
+    // the chip's value; a little light adds just enough shading to read the lattice in 3D.
+    // Measured against the swatches with a screenshot test (typical face within a few percent).
+    scene.add(new THREE.HemisphereLight(0xffffff, 0xbfbfbf, 0.1));
+    const sun = new THREE.DirectionalLight(0xffffff, 0.16);
     sun.position.set(6, 14, 9); sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048); sun.shadow.radius = 4;
     const R = Math.max(W, H, D);
     Object.assign(sun.shadow.camera, { left: -R, right: R, top: R, bottom: -R, near: 1, far: 60 });
@@ -76,7 +81,7 @@ export function mount(el, shape, opts = {}) {
     const floor = new THREE.Mesh(new THREE.PlaneGeometry(80, 80), new THREE.ShadowMaterial({ opacity: 0.12 }));
     floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
 
-    const material = new THREE.MeshStandardMaterial({ color: shape.color, roughness: 0.42, metalness: 0 });
+    const material = new THREE.MeshLambertMaterial({ color: shape.color, emissive: shape.color, emissiveIntensity: 0.93 });
     const mesh = new THREE.InstancedMesh(new THREE.BoxGeometry(1, 1, 1), material, bars.length);
     mesh.castShadow = true; mesh.receiveShadow = true;
     const m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), s = new THREE.Vector3(), Z = new THREE.Vector3(0, 0, 1);
@@ -99,19 +104,20 @@ export function mount(el, shape, opts = {}) {
     }
     new ResizeObserver(resize).observe(el); resize();
 
-    // Turns slowly on its own. Dragging turns it freely in any direction (over the top, underneath).
-    // On phones a drag that starts sideways turns the piece; one that starts up or down scrolls the page.
+    // Turns slowly on its own and gently rocks forward and back, so the top and underside come into view.
+    // With a mouse, dragging turns it freely in any direction. With a finger, only sideways movement turns it:
+    // up and down always scrolls the page, so the two never get confused.
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const spin = reduced ? 0 : 0.0035, Y = new THREE.Vector3(0, 1, 0), X = new THREE.Vector3(1, 0, 0), dq = new THREE.Quaternion();
     piece.quaternion.setFromAxisAngle(Y, -0.5);
-    let drag = null, resumeAt = 0;
+    let drag = null, resumeAt = 0, lastRock = 0;
     el.addEventListener('pointerdown', (e) => { drag = { x: e.clientX, y: e.clientY }; el.setPointerCapture(e.pointerId); });
     el.addEventListener('pointermove', (e) => {
         if (!drag) return;
         const dx = e.clientX - drag.x, dy = e.clientY - drag.y; drag.x = e.clientX; drag.y = e.clientY;
         // rotate about the screen's axes, so up always means "tip the top away" whatever the current angle
         piece.quaternion.premultiply(dq.setFromAxisAngle(Y, dx * 0.01));
-        piece.quaternion.premultiply(dq.setFromAxisAngle(X, dy * 0.01));
+        if (e.pointerType !== 'touch') piece.quaternion.premultiply(dq.setFromAxisAngle(X, dy * 0.01));
     });
     const release = () => { drag = null; resumeAt = performance.now() + 2500; };
     el.addEventListener('pointerup', release); el.addEventListener('pointercancel', release);
@@ -119,13 +125,17 @@ export function mount(el, shape, opts = {}) {
     new IntersectionObserver(([en]) => { visible = en.isIntersecting; }).observe(el);
     renderer.setAnimationLoop((t) => {
         if (!visible) return;
-        if (!drag && t > resumeAt) piece.quaternion.premultiply(dq.setFromAxisAngle(Y, spin));
+        if (!drag && t > resumeAt) {
+            piece.quaternion.premultiply(dq.setFromAxisAngle(Y, spin));
+            const rock = reduced ? 0 : 0.45 * Math.sin(t / 3200);      // radians, about 26 degrees each way
+            piece.quaternion.premultiply(dq.setFromAxisAngle(X, rock - lastRock)); lastRock = rock;
+        }
         renderer.render(scene, camera);
     });
 
     // color follows the chips
     let chosen = shape.color;
-    const setColor = (c) => material.color.set(c);
+    const setColor = (c) => { material.color.set(c); material.emissive.set(c); };
     document.addEventListener('click', (e) => { const c = e.target.closest('.color-chip'); if (c) { chosen = c.style.backgroundColor; setColor(chosen); } });
     document.addEventListener('mouseover', (e) => { const c = e.target.closest('.color-chip'); if (c) setColor(c.style.backgroundColor); });
     document.addEventListener('mouseout', (e) => { if (e.target.closest('.color-chip')) setColor(chosen); });
