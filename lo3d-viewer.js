@@ -105,20 +105,34 @@ export function mount(el, shape, opts = {}) {
     new ResizeObserver(resize).observe(el); resize();
 
     // Turns slowly on its own and gently rocks forward and back, so the top and underside come into view.
-    // With a mouse, dragging turns it freely in any direction. With a finger, only sideways movement turns it:
-    // up and down always scrolls the page, so the two never get confused.
+    // Mouse: dragging turns it freely in any direction.
+    // Finger: normally only sideways movement turns it and up/down scrolls the page. A tap "holds" the piece
+    // (thin outline): while held, a finger turns it in any direction and the page doesn't scroll there.
+    // A tap outside, or scrolling it off screen, lets go.
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const spin = reduced ? 0 : 0.0035, Y = new THREE.Vector3(0, 1, 0), X = new THREE.Vector3(1, 0, 0), dq = new THREE.Quaternion();
     piece.quaternion.setFromAxisAngle(Y, -0.5);
-    let drag = null, resumeAt = 0, lastRock = 0;
-    el.addEventListener('pointerdown', (e) => { drag = { x: e.clientX, y: e.clientY }; el.setPointerCapture(e.pointerId); });
+    const touchNote = el.querySelector('.n-touch'), touchText = touchNote ? touchNote.textContent : '';
+    let drag = null, resumeAt = 0, lastRock = 0, held = false;
+    const hold = (on) => {
+        held = on; el.classList.toggle('held', on);
+        el.style.touchAction = on ? 'none' : '';          // while held the finger belongs to the piece, not the page
+        if (touchNote) touchNote.textContent = on ? 'Holding · tap outside to let go' : touchText;
+    };
+    el.addEventListener('pointerdown', (e) => { drag = { x: e.clientX, y: e.clientY, x0: e.clientX, y0: e.clientY, t0: performance.now() }; el.setPointerCapture(e.pointerId); });
     el.addEventListener('pointermove', (e) => {
         if (!drag) return;
         const dx = e.clientX - drag.x, dy = e.clientY - drag.y; drag.x = e.clientX; drag.y = e.clientY;
         // rotate about the screen's axes, so up always means "tip the top away" whatever the current angle
         piece.quaternion.premultiply(dq.setFromAxisAngle(Y, dx * 0.01));
-        if (e.pointerType !== 'touch') piece.quaternion.premultiply(dq.setFromAxisAngle(X, dy * 0.01));
+        if (e.pointerType !== 'touch' || held) piece.quaternion.premultiply(dq.setFromAxisAngle(X, dy * 0.01));
     });
+    el.addEventListener('pointerup', (e) => {
+        // a short, still touch is a tap: it takes hold of the piece, or lets go if already held
+        if (drag && e.pointerType === 'touch' && Math.hypot(e.clientX - drag.x0, e.clientY - drag.y0) < 8 && performance.now() - drag.t0 < 350) hold(!held);
+    });
+    document.addEventListener('pointerdown', (e) => { if (held && !el.contains(e.target)) hold(false); }, true);
+    new IntersectionObserver(([en]) => { if (!en.isIntersecting && held) hold(false); }).observe(el);
     const release = () => { drag = null; resumeAt = performance.now() + 2500; };
     el.addEventListener('pointerup', release); el.addEventListener('pointercancel', release);
     let visible = true;
