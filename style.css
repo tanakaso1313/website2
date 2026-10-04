@@ -418,8 +418,6 @@ footer p {
 .lo3d { position: relative; width: 100%; aspect-ratio: 4 / 5; margin: 0 0 2em; background: #fbfbfa; touch-action: pan-y; cursor: grab; }
 .lo3d canvas { display: block; width: 100%; height: 100%; }
 .lo3d .note { position: absolute; left: 12px; bottom: 10px; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; opacity: .45; pointer-events: none; }
-.lo3d .dim { position: absolute; left: 0; top: 0; font-size: 11px; letter-spacing: .06em; color: rgba(0, 0, 0, .62); white-space: nowrap; pointer-events: none;
-    text-shadow: 0 0 3px #fbfbfa, 0 0 3px #fbfbfa, 0 0 6px #fbfbfa; }
 .lo3d .n-touch { display: none; }
 .lo3d.held { box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .35); }
 @media (hover: none) and (pointer: coarse) { .lo3d .n-touch { display: inline; } .lo3d .n-mouse { display: none; } }

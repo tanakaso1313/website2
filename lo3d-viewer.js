@@ -36,8 +36,7 @@ export function mount(el, shape, opts = {}) {
     const bars = [];                       // { mid: Vector3, axis: 0|1|2, rot: radians about the front axis }
     let nCells = 0;
     const min = new THREE.Vector3(Infinity, Infinity, Infinity), max = new THREE.Vector3(-Infinity, -Infinity, -Infinity);
-    const baseMin = min.clone(), baseMax = max.clone();   // the first (base) block: where width and depth are measured
-    for (const [pi, part] of parts.entries()) {
+    for (const part of parts) {
         const h = part.rows.length, d = part.depth, rot = THREE.MathUtils.degToRad(part.rotate || 0);
         const pivot = part.pivot || [0, 0], at = part.at || [0, 0];
         const place = (x, y, z) => {        // block coords -> piece coords: turn about the pivot, then move it to `at`
@@ -59,7 +58,6 @@ export function mount(el, shape, opts = {}) {
         for (const [a, b] of edges.values()) {
             const pa = place(...a), pb = place(...b);
             min.min(pa).min(pb); max.max(pa).max(pb);
-            if (pi === 0) { baseMin.min(pa).min(pb); baseMax.max(pa).max(pb); }
             bars.push({ mid: pa.add(pb).multiplyScalar(0.5), axis: a[0] !== b[0] ? 0 : a[1] !== b[1] ? 1 : 2, rot });
         }
     }
@@ -146,7 +144,7 @@ export function mount(el, shape, opts = {}) {
     new IntersectionObserver(([en]) => { if (!en.isIntersecting && held) hold(false); }).observe(el);
     const release = () => { drag = null; resumeAt = performance.now() + 2500; };
     el.addEventListener('pointerup', release); el.addEventListener('pointercancel', release);
-    let visible = true, onFrame = () => {};
+    let visible = true;
     new IntersectionObserver(([en]) => { visible = en.isIntersecting; }).observe(el);
     renderer.setAnimationLoop((t) => {
         if (!visible) return;
@@ -155,7 +153,7 @@ export function mount(el, shape, opts = {}) {
             const rock = reduced ? 0 : 0.45 * Math.sin(t / 3200);      // radians, about 26 degrees each way
             piece.quaternion.premultiply(dq.setFromAxisAngle(X, rock - lastRock)); lastRock = rock;
         }
-        renderer.render(scene, camera); onFrame();
+        renderer.render(scene, camera);
     });
 
     // color follows the chips
@@ -164,53 +162,5 @@ export function mount(el, shape, opts = {}) {
     document.addEventListener('click', (e) => { const c = e.target.closest('.color-chip'); if (c) { chosen = c.style.backgroundColor; setColor(chosen); } });
     document.addEventListener('mouseover', (e) => { const c = e.target.closest('.color-chip'); if (c) setColor(c.style.backgroundColor); });
     document.addEventListener('mouseout', (e) => { if (e.target.closest('.color-chip')) setColor(chosen); });
-    // ---- Dimension lines in mm, like a technical drawing, so the piece reads at its real size.
-    // The numbers are the product page's listed dimensions (opts.dims), never computed from the model. An object
-    // has no fixed height or depth (it can rest on any side), so the three listed numbers are matched to the
-    // model's three edges in whichever arrangement fits: width and height over the whole piece (a tilted block adds
-    // to both), depth along the base block, at about 23.3 mm a cell. If no arrangement fits within 8%, nothing is shown and the mismatch is logged.
-    const CELL_MM = 23.3, labels = [];
-    if (opts.dims) {
-        const edges = [max.x - min.x, baseMax.z - baseMin.z, max.y - min.y];   // width, depth, height of the model
-        const listed = Object.values(opts.dims);
-        const perms = [[0, 1, 2], [0, 2, 1], [1, 0, 2], [1, 2, 0], [2, 0, 1], [2, 1, 0]];
-        const err = (pm) => Math.max(...pm.map((li, i) => Math.abs(listed[li] / CELL_MM - edges[i]) / edges[i]));
-        const best = perms.reduce((a, b) => (err(b) < err(a) ? b : a));
-        const mm = best.map((li) => listed[li]);
-        if (err(best) > 0.08) {
-            console.error('3D preview: listed dimensions do not match the model, so none are shown:',
-                listed.join(' / '), 'mm vs model', edges.map((e) => (e * CELL_MM).toFixed(0)).join(' / '), 'mm');
-        } else {
-            const L = (x, y, z) => new THREE.Vector3(x, y, z).sub(centre);          // piece coords -> centred
-            const gap = 0.7, tick = 0.25, pts = [], lines = new THREE.Group();
-            const seg = (a, b) => pts.push(a.x, a.y, a.z, b.x, b.y, b.z);
-            const dim = (a, b, tickDir, text) => {
-                seg(a, b);
-                seg(a.clone().addScaledVector(tickDir, -tick), a.clone().addScaledVector(tickDir, tick));
-                seg(b.clone().addScaledVector(tickDir, -tick), b.clone().addScaledVector(tickDir, tick));
-                const span = document.createElement('span'); span.className = 'dim'; span.textContent = `${text} mm`;
-                el.appendChild(span); labels.push({ span, at: a.clone().add(b).multiplyScalar(0.5) });
-            };
-            const x0 = baseMin.x, x1 = baseMax.x, z0 = baseMin.z, z1 = baseMax.z, y0 = min.y, y1 = max.y;
-            const up = new THREE.Vector3(0, 1, 0), side = new THREE.Vector3(1, 0, 0), front = new THREE.Vector3(0, 0, 1);
-            dim(L(min.x, y0 - gap, z1), L(max.x, y0 - gap, z1), up, mm[0]);      // width: under the front, full extent
-            dim(L(x1 + gap, y0 - gap, z0), L(x1 + gap, y0 - gap, z1), side, mm[1]); // depth: under the right side
-            dim(L(max.x + gap, y0, z1), L(max.x + gap, y1, z1), front, mm[2]);   // height: clear of the piece's furthest edge
-            const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pts, 3));
-            lines.add(new THREE.LineSegments(g, new THREE.LineBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.45 })));
-            piece.add(lines);
-        }
-    }
-    const v = new THREE.Vector3();
-    function placeLabels() {
-        if (!labels.length) return;
-        const w = el.clientWidth, h = el.clientHeight;
-        for (const { span, at } of labels) {
-            v.copy(at).applyMatrix4(piece.matrixWorld).project(camera);
-            span.style.transform = `translate(-50%, -50%) translate(${(v.x + 1) / 2 * w}px, ${(1 - v.y) / 2 * h}px)`;
-        }
-    }
-    onFrame = placeLabels;
-
-    return { cells: nCells, bars: bars.length, setColor, piece, dims: labels.length };
+    return { cells: nCells, bars: bars.length, setColor, piece };
 }

@@ -9,13 +9,10 @@ if (box) {
     const watch = () => new IntersectionObserver((entries, io) => {
         if (!entries.some((e) => e.isIntersecting)) return;
         io.disconnect();
-        import('/lo3d-viewer.js?v=12').then(({ SHAPES, mount }) => {
+        import('/lo3d-viewer.js?v=13').then(({ SHAPES, mount }) => {
             const shape = SHAPES[box.dataset.shape];
             if (!shape) throw new Error(`no 3D shape for ${box.dataset.shape}`);
-            // the dimensions listed on this page (e.g. "W117 D117 H71 mm") label the 3D dimension lines
-            const dd = [...document.querySelectorAll('.work-specs dt')].find((d) => d.textContent.trim() === 'Dimensions');
-            const m = dd && dd.nextElementSibling ? dd.nextElementSibling.textContent.match(/W(\d+)\s*D(\d+)\s*H(\d+)/) : null;
-            mount(box, shape, { room: 1.7, dims: m ? { W: +m[1], D: +m[2], H: +m[3] } : null });
+            mount(box, shape, { room: 1.7 });
             box.dataset.ready = '1';
         }).catch(fail);
     }, { rootMargin: '600px' }).observe(box);
