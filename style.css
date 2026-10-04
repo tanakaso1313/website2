@@ -378,6 +378,10 @@ footer p {
 .shop-product.shop-product .buy-specs dt { padding-top: 3px; }
 .shop-product.shop-product .buy-specs .price { font-size: 14px; line-height: 1.5; }
 
+/* No browser tap flash on the shop's own controls (phones paint a coloured box over a tapped button) */
+.shop-product.shop-product .color-chip, .shop-product.shop-product .choice, .shop-product.shop-product .size-pill,
+.shop-product.shop-product .add-to-cart { -webkit-tap-highlight-color: transparent; }
+
 /* Colour: one row of small squares (two rows of 7 on phones), a name line underneath */
 .shop-product.shop-product .color-chips { display: flex; flex-wrap: wrap; gap: 5px; margin: 2px 0 0 0; }
 .shop-product.shop-product .color-chip {
