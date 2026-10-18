@@ -52,6 +52,14 @@
     color: #000;
 }
 
+.product-item .tile-cue {
+    display: block;
+    margin: 4px 0 0 0;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: #000;
+}
+
 .mobile-menu-trigger {
     display: none;
     cursor: pointer;

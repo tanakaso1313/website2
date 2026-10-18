@@ -16,7 +16,7 @@
     <title>Shop | SOTANAKA</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="shop.css">
+    <link rel="stylesheet" href="shop.css?v=2">
     <script src="config.js"></script>
     <script src="https://js.stripe.com/v3/"></script>
     <!-- Amplitude Analytics -->
@@ -107,19 +107,23 @@
                         
                         const p = document.createElement('p');
                         p.textContent = product.price;
-                        
+
+                        const parts = [img, h3, p];
+                        if (product.cue) {
+                            const cue = document.createElement('span');
+                            cue.className = 'tile-cue';
+                            cue.textContent = product.cue;
+                            parts.push(cue);
+                        }
+
                         // Conditionally wrap in link if page exists
                         if (product.page) {
                             const link = document.createElement('a');
-                            link.setAttribute('href', product.page);
-                            link.appendChild(img);
-                            link.appendChild(h3);
-                            link.appendChild(p);
+                            link.setAttribute('href', '/' + product.page.replace(/\.html$/, ''));
+                            parts.forEach(el => link.appendChild(el));
                             productItem.appendChild(link);
                         } else {
-                            productItem.appendChild(img);
-                            productItem.appendChild(h3);
-                            productItem.appendChild(p);
+                            parts.forEach(el => productItem.appendChild(el));
                         }
                          
                          // Add hover functionality for image switching

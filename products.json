@@ -6,7 +6,8 @@
     "image": "LO_01_shop.webp",
     "hoverImage": "LO_01_shop_h.webp",
     "page": "lo-01.html",
-    "altText": "LO / 01, grid structure in lacquered MDF"
+    "altText": "LO / 01, grid structure in lacquered MDF",
+    "cue": "Made to order · 14 colors"
   },
   {
     "id": "LO / 02",
@@ -15,7 +16,8 @@
     "image": "LO_02_shop.webp",
     "hoverImage": "LO_02_shop_h.webp",
     "page": "lo-02.html",
-    "altText": "LO / 02, grid structure in lacquered MDF"
+    "altText": "LO / 02, grid structure in lacquered MDF",
+    "cue": "Made to order · 14 colors"
   },
   {
     "id": "LO / 03",
@@ -24,7 +26,8 @@
     "image": "LO_03_shop_h.webp",
     "hoverImage": "LO_03_3.webp",
     "page": "lo-03.html",
-    "altText": "LO / 03, grid structure in lacquered MDF"
+    "altText": "LO / 03, grid structure in lacquered MDF",
+    "cue": "Made to order · 14 colors"
   },
   {
     "id": "LO / 04",
@@ -33,7 +36,8 @@
     "image": "LO_04_shop.webp",
     "hoverImage": "LO_04_shop_h.webp",
     "page": "lo-04.html",
-    "altText": "LO / 04, grid structure in lacquered MDF"
+    "altText": "LO / 04, grid structure in lacquered MDF",
+    "cue": "Made to order · 14 colors"
   },
   {
     "id": "LO / 05",
@@ -42,7 +46,8 @@
     "image": "LO_05_shop.webp",
     "hoverImage": "LO_05_shop_h.webp",
     "page": "lo-05.html",
-    "altText": "LO / 05, grid structure in MDF with colored lacquer"
+    "altText": "LO / 05, grid structure in MDF with colored lacquer",
+    "cue": "Made to order · 14 colors"
   },
   {
     "id": "LO / 06",
@@ -51,7 +56,8 @@
     "image": "LO_06_shop.webp",
     "hoverImage": "LO_06_shop_h.webp",
     "page": "lo-06.html",
-    "altText": "LO / 06, grid structure in lacquered MDF"
+    "altText": "LO / 06, grid structure in lacquered MDF",
+    "cue": "Made to order · 14 colors"
   },
   {
     "id": "LO / 07",
@@ -60,7 +66,8 @@
     "image": "LO_07_shop.webp",
     "hoverImage": "LO_07_shop_h.webp",
     "page": "lo-07.html",
-    "altText": "LO / 07, grid structure in lacquered MDF"
+    "altText": "LO / 07, grid structure in lacquered MDF",
+    "cue": "Made to order · 14 colors"
   },
   {
     "id": "LO / 23",
@@ -69,7 +76,8 @@
     "image": "LO_23_shop.webp",
     "hoverImage": "LO_23_shop_h.webp",
     "page": "lo-23.html",
-    "altText": "LO / 23, grid structure in lacquered MDF"
+    "altText": "LO / 23, grid structure in lacquered MDF",
+    "cue": "Made to order · 14 colors"
   },
   {
     "id": "liminal-light-s",
@@ -78,7 +86,8 @@
     "image": "images/Shop - top/2.liminal lamp_result_result.webp",
     "hoverImage": "images/shop - liminal lamp/4.DSC06078_result_result.webp",
     "page": "liminal-lamp-s_shop.html",
-    "altText": "Liminal Lamp S in MDF, paper, and lacquer paint"
+    "altText": "Liminal Lamp S in MDF, paper, and lacquer paint",
+    "cue": "Made to order · 14 colors"
   },
   {
     "id": "LO / HORSE",
@@ -87,7 +96,8 @@
     "image": "LO_Horse.webp",
     "hoverImage": "LO_Horse.webp",
     "page": "lo-horse.html",
-    "altText": "LO / HORSE, horse figure in MDF with red lacquer"
+    "altText": "LO / HORSE, horse figure in MDF with red lacquer",
+    "cue": "Made to order · 2 sizes · 14 colors"
   },
   {
     "id": "vnsh",
@@ -96,7 +106,8 @@
     "image": "images/Shop - top/1.vnsh_shop_result_result.webp",
     "hoverImage": "images/shop - vnsh/4.DSC02181_result_result.webp",
     "page": "vnsh_shop.html",
-    "altText": "Vnsh floor lamp in aluminum, stainless steel, and MDF"
+    "altText": "Vnsh floor lamp in aluminum, stainless steel, and MDF",
+    "cue": "Made to order"
   },
   {
     "id": "LO / 09",
