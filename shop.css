@@ -18,6 +18,22 @@
     display: block;
 }
 
+.product-item a {
+    position: relative;
+}
+
+.product-item img.alt-shot {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.product-item.in-alt img.alt-shot {
+    opacity: 1;
+}
+
 .product-item img {
     width: 100%;
     aspect-ratio: 2 / 3;   /* same frame as the homepage; the product photos are shot 2:3 */

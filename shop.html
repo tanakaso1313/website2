@@ -16,7 +16,7 @@
     <title>Shop | SOTANAKA</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="shop.css?v=2">
+    <link rel="stylesheet" href="shop.css?v=3">
     <script src="config.js"></script>
     <script src="https://js.stripe.com/v3/"></script>
     <!-- Amplitude Analytics -->
@@ -72,6 +72,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const topImagesContainer = document.querySelector('.top-images');
+            const TOUCH = window.matchMedia('(hover: none)').matches;
              fetch('/products.json')
                  .then(response => {
                      if (!response.ok) {
@@ -109,6 +110,15 @@
                         p.textContent = product.price;
 
                         const parts = [img, h3, p];
+                        if (TOUCH && hoverSrc !== originalSrc) {
+                            const alt = document.createElement('img');
+                            alt.className = 'alt-shot';
+                            alt.setAttribute('src', hoverSrc);
+                            alt.setAttribute('alt', '');
+                            alt.loading = 'lazy';
+                            alt.decoding = 'async';
+                            parts.splice(1, 0, alt);
+                        }
                         if (product.cue) {
                             const cue = document.createElement('span');
                             cue.className = 'tile-cue';
@@ -137,6 +147,33 @@
                          
                      topImagesContainer.appendChild(productItem);
                      });
+
+                    if (TOUCH) {
+                        const tiles = Array.from(topImagesContainer.querySelectorAll('.product-item'));
+                        let current = -1;
+                        let queued = false;
+                        const mark = () => {
+                            queued = false;
+                            const mid = window.innerHeight / 2;
+                            let best = -1;
+                            let bestDist = Infinity;
+                            tiles.forEach((tile, i) => {
+                                const shot = tile.querySelector('img');
+                                if (!shot) return;
+                                const r = shot.getBoundingClientRect();
+                                if (r.bottom < 0 || r.top > window.innerHeight) return;
+                                const d = Math.abs((r.top + r.bottom) / 2 - mid);
+                                if (d < bestDist) { bestDist = d; best = i; }
+                            });
+                            if (best === current) return;
+                            current = best;
+                            tiles.forEach((tile, i) => tile.classList.toggle('in-alt', i === best));
+                        };
+                        const queue = () => { if (!queued) { queued = true; requestAnimationFrame(mark); } };
+                        window.addEventListener('scroll', queue, { passive: true });
+                        window.addEventListener('resize', queue);
+                        mark();
+                    }
                 })
                 .catch(error => {
                     console.error('Error fetching or processing products:', error);
