@@ -31,6 +31,7 @@ const PRODUCTS = {
   'LO / 05':        { name: 'LO / 05',        prices: ['price_1Tg9mgEcQzNRltK0GT9qPqns'], band: '1.5' },
   'LO / 06':        { name: 'LO / 06',        prices: ['price_1TgA1QEcQzNRltK0ls5ZWMvU'], band: '1.5' },
   'LO / 07':        { name: 'LO / 07',        prices: ['price_1TgA1QEcQzNRltK0N8PcDhrB'], band: '1.5' },
+  'LO / 10':        { name: 'LO / 10',        prices: ['price_1USa9nEcQzNRltK0V3oR7ByV'], band: '1.5' },
   'LO / 23':        { name: 'LO / 23',        prices: ['price_1SVmcPEcQzNRltK0T1pRh1kt'], band: '1.5' },
   'LO_HORSE':       { name: 'LO Horse',       prices: ['price_1SlKWcEcQzNRltK0Bi9GW64L', 'price_1SlKX3EcQzNRltK0lTUSdxTK'], band: '1.5' },
   'VNSH':           { name: 'Vnsh',           prices: ['price_1SRanLEcQzNRltK0IPX6MFwN'], jpOnly: true },
