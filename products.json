@@ -70,6 +70,16 @@
     "cue": "Made to order · 14 colors"
   },
   {
+    "id": "LO / 10",
+    "name": "LO / 10",
+    "price": "¥25,300 (inc. tax)",
+    "image": "LO_10_Y.webp",
+    "hoverImage": "LO_10_W.webp",
+    "page": "lo-10.html",
+    "altText": "LO / 10, grid structure in yellow and white lacquered MDF",
+    "status": "available"
+  },
+  {
     "id": "LO / 23",
     "name": "LO / 23",
     "price": "¥27,500 (inc. tax)",
@@ -118,16 +128,6 @@
     "page": "lo-09.html",
     "altText": "LO / 09, grid structure in lacquered MDF",
     "status": "discontinued"
-  },
-  {
-    "id": "LO / 10",
-    "name": "LO / 10",
-    "price": "¥25,300 (inc. tax)",
-    "image": "LO_10_W.webp",
-    "hoverImage": "LO_10_Y.webp",
-    "page": "lo-10.html",
-    "altText": "LO / 10, grid structure in white and yellow lacquered MDF",
-    "status": "available"
   },
   {
     "id": "LO / 11",
