@@ -291,6 +291,15 @@
     <image:image><image:loc>https://sotanaka.com/LO_07_2.webp</image:loc></image:image>
   </url>
   <url>
+    <loc>https://sotanaka.com/lo-10</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+
+    <image:image><image:loc>https://sotanaka.com/LO_10_W.webp</image:loc></image:image>
+    <image:image><image:loc>https://sotanaka.com/LO_10_Y.webp</image:loc></image:image>
+  </url>
+  <url>
     <loc>https://sotanaka.com/lo-23</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>

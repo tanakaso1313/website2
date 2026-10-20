@@ -122,12 +122,12 @@
   {
     "id": "LO / 10",
     "name": "LO / 10",
-    "price": "¥23,100 (inc. tax)",
+    "price": "¥25,300 (inc. tax)",
     "image": "LO_10_W.webp",
     "hoverImage": "LO_10_Y.webp",
     "page": "lo-10.html",
     "altText": "LO / 10, grid structure in white and yellow lacquered MDF",
-    "status": "discontinued"
+    "status": "available"
   },
   {
     "id": "LO / 11",
