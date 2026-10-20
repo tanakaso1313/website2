@@ -81,7 +81,13 @@
             var city = document.createElement('span');
             city.className = 'exline-city';
             city.textContent = e.city;
-            slot.append(venue, comma, document.createTextNode(' '), city);
+            /* Venue and city travel together, so a line that will not fit breaks after
+               "Now showing at" first. They only come apart when the venue name is so long
+               that the pair cannot fit a row on its own. */
+            var place = document.createElement('span');
+            place.className = 'exline-place';
+            place.append(venue, comma, document.createTextNode(' '), city);
+            slot.append(place);
             if (withDate) {
                 var when = document.createElement('span');
                 when.className = 'exline-when';
@@ -104,6 +110,14 @@
         function fit() {
             var when = slot.querySelector('.exline-when');
             var comma = slot.querySelector('.exline-comma');
+            var place = slot.querySelector('.exline-place');
+            if (place) {
+                place.style.whiteSpace = 'nowrap';
+                /* Only let the pair split when it cannot fit a row by itself. */
+                if (place.getBoundingClientRect().width > box.getBoundingClientRect().width) {
+                    place.style.whiteSpace = '';
+                }
+            }
             if (when) {
                 when.hidden = false;
                 if (rows() > 1) when.hidden = true;
@@ -181,7 +195,6 @@
                 var open = openNow(exhibitionsFrom(html), today());
                 if (!open.length) return;
                 topline.appendChild(build(open));
-                document.body.classList.add('has-exline');
             })
             .catch(function () { /* no exhibition line rather than a broken one */ });
     }
