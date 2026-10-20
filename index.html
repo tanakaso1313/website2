@@ -260,9 +260,17 @@
         /* two groups, so no link sits in the middle where every photo passes */
         .midline .group { display: flex; gap: 5vw; }
         .topline { top: 24px; }
-        .topline h1 { margin: 0; font: inherit; letter-spacing: inherit; }
+        /* The studio name never breaks, whatever sits beside it. */
+        .topline h1 { margin: 0; font: inherit; letter-spacing: inherit; white-space: nowrap; }
         .midline a, .topline a { color: inherit; text-decoration: none; pointer-events: auto; }
         .midline a[aria-current] { text-decoration: underline; text-underline-offset: 4px; }
+
+        /* Exhibition line: shares the topline's size, spacing and inversion, so it reads as part
+           of the same furniture as the name rather than an addition to it. */
+        .exline { text-align: right; transition: opacity 0.5s ease; }
+        .exline.exline-fading { opacity: 0; }
+        /* When it has to wrap it breaks between the parts, never inside one of them. */
+        .exline-lead, .exline-venue, .exline-city, .exline-when { white-space: nowrap; }
 
         /* Phones and upright tablets: the photo always fills the middle of the screen, so links
            blended over the halftone dots become unreadable. The name and links move to plain white
@@ -276,6 +284,7 @@
                 padding: 14px 16px; letter-spacing: 0.12em; font-size: 11px;
             }
             .topline { top: 0; }
+            .exline { font-size: 9px; letter-spacing: 0.08em; }
             .midline { top: auto; bottom: 0; transform: none; padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px)); }
             /* one evenly spaced row, the same as the bottom bar on every other page */
             .midline .group { display: contents; }
@@ -355,6 +364,7 @@
     
     <script defer src="works.js"></script>
     <script defer src="landing.js"></script>
+    <script defer src="exhibition-line.js?v=1"></script>
     <script>
     // Show the scroll hint once the column has settled, and remove it at the visitor's first scroll.
     // The column opens by scrolling itself into place, so only movement after that counts.
