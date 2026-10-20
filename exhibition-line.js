@@ -179,7 +179,9 @@
             .then(function (html) {
                 if (!html) return;
                 var open = openNow(exhibitionsFrom(html), today());
-                if (open.length) topline.appendChild(build(open));
+                if (!open.length) return;
+                topline.appendChild(build(open));
+                document.body.classList.add('has-exline');
             })
             .catch(function () { /* no exhibition line rather than a broken one */ });
     }

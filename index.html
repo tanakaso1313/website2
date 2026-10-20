@@ -283,8 +283,12 @@
                 mix-blend-mode: normal; color: #000; background: #fff;
                 padding: 14px 16px; letter-spacing: 0.12em; font-size: 11px;
             }
-            .topline { top: 0; }
-            .exline { font-size: 9px; letter-spacing: 0.08em; }
+            .topline { top: 0; flex-wrap: wrap; }
+            /* Beside the name there is only room for the venue. On its own row underneath
+               there is twice the width, so the closing date survives on a phone too. */
+            .exline { font-size: 9px; letter-spacing: 0.08em; flex-basis: 100%; text-align: left; margin-top: 5px; }
+            /* The bar is a line taller whenever the exhibition line is there. */
+            body.has-exline { padding-top: 76px; }
             .midline { top: auto; bottom: 0; transform: none; padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px)); }
             /* one evenly spaced row, the same as the bottom bar on every other page */
             .midline .group { display: contents; }
@@ -364,7 +368,7 @@
     
     <script defer src="works.js"></script>
     <script defer src="landing.js"></script>
-    <script defer src="exhibition-line.js?v=1"></script>
+    <script defer src="exhibition-line.js?v=2"></script>
     <script>
     // Show the scroll hint once the column has settled, and remove it at the visitor's first scroll.
     // The column opens by scrolling itself into place, so only movement after that counts.
