@@ -284,9 +284,10 @@
                 padding: 14px 16px; letter-spacing: 0.12em; font-size: 11px;
             }
             .topline { top: 0; flex-wrap: wrap; }
-            /* Beside the name there is only room for the venue. On its own row underneath
-               there is twice the width, so the closing date survives on a phone too. */
+            /* Its own row under the name, so it is not crammed against the studio name. */
             .exline { font-size: 9px; letter-spacing: 0.08em; flex-basis: 100%; margin-top: 5px; }
+            /* Never the closing date on a phone: venue and city only. */
+            .exline-when { display: none; }
             /* The bar is a line taller whenever the exhibition line is there. */
             body.has-exline { padding-top: 76px; }
             .midline { top: auto; bottom: 0; transform: none; padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px)); }
