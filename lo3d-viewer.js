@@ -15,6 +15,8 @@ export const SHAPES = {
     'LO / 05': { depth: 3, rows: [...Array(4).fill('..#####'), ...Array(5).fill('#####..')], color: 'rgb(203, 203, 203)' },
     'LO / 06': { depth: 3, rows: [...Array(6).fill('###...'), ...Array(4).fill('######')], color: 'rgb(110, 86, 58)' },
     'LO / 07': { depth: 2, rows: ['##########', '##########', ...Array(6).fill('##......##'), '##########', '##########'], color: 'rgb(203, 203, 203)' },
+    // LO / 10: same envelope as LO / 07 (W232 D50 H232, so 10 x 10 x 2 cells) but solid, no opening.
+    'LO / 10': { depth: 2, rows: Array(10).fill('##########'), color: 'rgb(252, 235, 101)' },
     // LO / 23: two blocks 4 square cells wide (Dom), 5 and 6 cells high, 3 deep. The top block is tilted about
     // 12 degrees; both ends of its base line up with the lower block's sides and its lower-right corner sinks half a
     // cell into the block below (Dom). Overall W121 D71 H262 mm, measured from the product photo.
