@@ -122,6 +122,7 @@ function buildBuyPanel(container) {
         Array.from(select.options).forEach((o) => {
             if (!o.value) return;
             const b = choice(o.textContent.replace(/ \/ /g, ', '));
+            if (o.value === select.value) b.setAttribute('aria-pressed', 'true');
             b.addEventListener('click', () => {
                 select.value = o.value;
                 select.dispatchEvent(new Event('change', { bubbles: true }));
@@ -589,7 +590,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             const o = document.createElement('option');
                             o.value = v;
                             o.textContent = t;
-                            if (v === '') { o.disabled = true; o.selected = true; }
+                            if (v === '') o.disabled = true;
+                            if (v === 'japan') o.selected = true;
                             rsel.appendChild(o);
                         });
                     rwrap.appendChild(rlabel);
