@@ -1,0 +1,21 @@
+exclude:
+  - node_modules
+  - api
+  - tools
+  - docs
+  - image_backups
+  - README.md
+  - package.json
+  - package-lock.json
+  - vercel.json
+  - server.js
+  - prices (1).csv
+  - safe_add.sh
+  - clean_git_history.sh
+  - convert_images.sh
+  - convert_images.bat
+  - update_html.bat
+  - update_amplitude_config.py
+  - update_price_ids.py
+  - rename_all_to_work.py
+  - fix_amplitude_keys.py
