@@ -216,7 +216,7 @@
     <image:image><image:loc>https://sotanaka.com/images/work%20-%20mo%20lamp/6.webp</image:loc></image:image>
   </url>
   <url>
-    <loc>https://sotanaka.com/archive</loc>
+    <loc>https://sotanaka.com/archive/</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
