@@ -15,13 +15,13 @@ MONTHS = {m: i + 1 for i, m in enumerate(
 
 page = open('bio.html', encoding='utf-8').read()
 
-section = re.search(r'Forthcoming exhibitions(.*?)Past exhibitions', page, re.S)
+section = re.search(r'[Ff]orthcoming exhibitions(.*?)Past exhibitions', page, re.S)
 if not section:
     sys.exit('check_exhibitions FAILED: no forthcoming exhibitions section in bio.html')
 
 visible = []
 for when, body in re.findall(
-        r'<div class="cv-item"><span>(.*?)</span><span class="cv-item-description">(.*?)</span>',
+        r'<div class="cv-item(?:-exhibition)?"><span[^>]*>(.*?)</span><span class="cv-item-description">(.*?)</span>',
         section.group(1), re.S):
     when = html.unescape(re.sub(r'<[^>]+>', '', when)).strip()
     body = html.unescape(re.sub(r'<[^>]+>', '', body)).strip()

@@ -367,6 +367,14 @@
     <image:image><image:loc>https://sotanaka.com/designart2023.webp</image:loc></image:image>
   </url>
     <url>
+        <loc>https://sotanaka.com/archive/form-from-fukui-at-ataw</loc>
+    <lastmod>2026-11-02</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.6</priority>
+    
+    <image:image><image:loc>https://sotanaka.com/images/archive%20-%20ataw2026/1.ataw2026.webp</image:loc></image:image>
+  </url>
+    <url>
         <loc>https://sotanaka.com/archive/uneri-at-3daysofdesign</loc>
     <lastmod>2026-09-29</lastmod>
         <changefreq>yearly</changefreq>
