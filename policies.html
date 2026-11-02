@@ -40,6 +40,16 @@
             padding-bottom: 0.3em;
             border-bottom: 1px solid #000;
         }
+        /* Section titles carry the same rule as the headings inside them, a size
+           step above them, and more air so they still read as a level up. */
+        .legal-section h2.legal-title {
+            font-size: 20px;
+            margin-top: 3em;
+            margin-bottom: 20px;
+            padding-bottom: 0.3em;
+            border-bottom: 1px solid #000;
+        }
+        .legal-section:first-of-type h2.legal-title { margin-top: 0; }
         
         .legal-section p {
             margin-bottom: 1em;
@@ -118,8 +128,10 @@
             
             <p>For any inquiries not addressed here, please reach out. You can find our contact details <a href="/contact">here</a>. We are always happy to assist.</p>
         </div>
-        
-                <div class="legal-section">
+
+        <hr style="border: none; border-top: 1px solid #ddd; margin: 3em 0;">
+
+        <div class="legal-section">
             <h2 class="legal-title">Personal information</h2>
             
             <p>When you place an order, we collect your name, billing and shipping addresses, email address, and order details. If you ask to hear when a piece goes on sale, we collect your email address, the piece you are interested in, and the date you asked. We also collect basic information about how this site is used. You enter payment card details directly with Stripe; we do not receive or store your card number or security code.</p>
