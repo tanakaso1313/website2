@@ -8,6 +8,9 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="legal.css">
+    <script src="config.js"></script>
+    <script defer src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz" crossorigin="anonymous"></script>
+    <script defer src="analytics.js"></script>
     <style>
         .legal-section {
             margin-bottom: 3em;
@@ -133,15 +136,24 @@
 
         <div class="legal-section">
             <h2 class="legal-title">Personal information</h2>
-            
-            <p>When you place an order, we collect your name, billing and shipping addresses, email address, and order details. If you ask to hear when a piece goes on sale, we collect your email address, the piece you are interested in, and the date you asked. We also collect basic information about how this site is used. You enter payment card details directly with Stripe; we do not receive or store your card number or security code.</p>
-            
-            <p>We use this information to make and deliver your order, respond to questions or problems, send sale notices you requested, keep records required by law, and understand and improve how the site is used. We do not sell personal information.</p>
-            
-            <p>We use Stripe for payments, Vercel to host this site, Google Workspace to send and receive email, and Amplitude to analyze site usage. These providers may handle personal information in the United States and other countries. We share information with them as needed to provide their services. You can ask us which countries are involved and about the safeguards we use.</p>
 
-            
-            <p>You may ask to see your personal information, correct or delete information that is inaccurate, or ask us to stop using or sharing it where applicable law allows. To make a request, please reach out. You can find our contact details <a href="/contact">here</a>.</p>
+            <h3>Who we are</h3>
+            <p>SOTANAKA is run by Soichiro Tanaka. Our full address is available upon request. You can find our contact details <a href="/contact">here</a>.</p>
+
+            <h3>How we use your information</h3>
+            <p>When you place an order, we collect your name, billing and shipping addresses, email address, and order details. We use this information to process and ship your order and keep you updated.</p>
+            <p>If you contact us, we use your name, contact details, and message to respond.</p>
+            <p>We also keep records as required by law.</p>
+
+            <h3>Your rights</h3>
+            <p>You can ask us to explain how we use your personal information, provide a copy, correct, update, or delete it, or stop using or sharing it. You can also ask for records of when we&rsquo;ve shared it with others.</p>
+            <p>To make a request, <a href="/contact">contact us</a>. We&rsquo;ll confirm your identity and respond promptly.</p>
+
+            <h3>Keeping your information safe</h3>
+            <p>If you ask, we&rsquo;ll explain how we protect your personal information, including the countries where it&rsquo;s handled and the safeguards we use.</p>
+
+            <h3>Questions or concerns</h3>
+            <p>For any inquiries not addressed here, please reach out. You can find our contact details <a href="/contact">here</a>. We are always happy to assist.</p>
         </div>
 
         <hr style="border: none; border-top: 1px solid #ddd; margin: 3em 0;">
@@ -196,15 +208,24 @@
         
         <div class="legal-section">
             <h2 class="legal-title">個人情報の取扱いについて</h2>
-            
-            <p>ご注文の際に、お名前、ご請求先およびお届け先のご住所、メールアドレス、ご注文内容を取得します。販売開始のお知らせを希望された場合は、メールアドレス、ご希望の商品、お申し込みの日時を取得します。また、サイトの利用状況に関する情報も取得します。カード番号やセキュリティコードはStripeの決済画面で入力いただくため、当方では取得・保管しません。</p>
-            
-            <p>取得した情報は、ご注文商品の製作・配送、お問い合わせや問題への対応、ご希望いただいた販売開始のお知らせの送信、法令に基づく記録の保存、サイトの利用状況の把握と改善のために利用します。個人情報を販売することはありません。</p>
-            
-            <p>決済にはStripe、サイトのホスティングにはVercel、メールの送受信にはGoogle Workspace、サイトの利用状況の分析にはAmplitudeを利用しています。これらの事業者は、米国その他の国で個人情報を取り扱う場合があります。各サービスの提供に必要な範囲で情報を共有します。取り扱われる国や安全管理措置については、お問い合わせください。</p>
 
-            
-            <p>保有する個人情報の開示、誤りがある情報の訂正・削除、また法令上認められる場合の利用停止・第三者への提供停止をご希望の場合は、お問い合わせください。お問い合わせ先は<a href="/contact">こちら</a>よりご確認いただけます。</p>
+            <h3>事業者</h3>
+            <p>SOTANAKAは田中聡一朗が運営しています。住所は、ご請求があれば遅滞なく回答いたします。お問い合わせ先は<a href="/contact">こちら</a>よりご確認いただけます。</p>
+
+            <h3>個人情報の利用目的</h3>
+            <p>ご注文の際に、お名前、ご請求先およびお届け先のご住所、メールアドレス、ご注文内容を取得し、ご注文の処理、商品の発送、ご連絡のために利用します。</p>
+            <p>お問い合わせの際は、お名前、ご連絡先、お問い合わせ内容を、ご回答のために利用します。</p>
+            <p>また、法令に基づき記録を保存します。</p>
+
+            <h3>開示等のご請求</h3>
+            <p>保有個人データの利用目的の通知、開示、内容の訂正・追加・削除、利用の停止・消去、第三者への提供の停止、第三者提供記録の開示をご請求いただけます。</p>
+            <p>ご請求の際は、お問い合わせください。お問い合わせ先は<a href="/contact">こちら</a>よりご確認いただけます。ご本人であることを確認のうえ、遅滞なく対応いたします。</p>
+
+            <h3>安全管理措置</h3>
+            <p>ご請求があれば、個人情報の安全管理のために講じた措置について、個人情報を取り扱う国とその国で講じている措置を含め、遅滞なく回答いたします。</p>
+
+            <h3>苦情・お問い合わせ</h3>
+            <p>本ページに記載されていないご質問がございましたら、お問い合わせください。お問い合わせ先は<a href="/contact">こちら</a>よりご確認いただけます。いつでも喜んでお手伝いいたします。</p>
         </div>
     </main>
     <footer>

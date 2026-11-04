@@ -42,6 +42,10 @@ window.sotanakaTrackingOff = function () {
             {"autocapture": {"elementInteractions": true}, "optOut": window.sotanakaTrackingOff()}
         );
         markEngagement();
+        markScrollDepth();
+        markTimeOnPage();
+        mark3dTurn();
+        markTranslation();
     } else {
         // Retry after a short delay if the script hasn't loaded yet
         setTimeout(initAmplitude, 100);
@@ -75,6 +79,64 @@ function markEngagement() {
         lastTick = now;
         if (visibleMs >= 10000) send('stayed_10s');
     }, 1000);
+}
+
+function markScrollDepth() {
+    if (document.getElementById('workGrid')) return;
+    var marks = [50, 90];
+    function onScroll() {
+        var full = document.documentElement.scrollHeight;
+        if (full <= window.innerHeight) return;
+        var seen = (window.scrollY + window.innerHeight) / full * 100;
+        while (marks.length && seen >= marks[0]) {
+            window.amplitude.track('Scrolled', { percent: marks.shift(), page: window.location.pathname });
+        }
+        if (!marks.length) window.removeEventListener('scroll', onScroll, true);
+    }
+    window.addEventListener('scroll', onScroll, { capture: true, passive: true });
+}
+
+function markTimeOnPage() {
+    var visibleMs = 0, part = 0, since = document.visibilityState === 'visible' ? Date.now() : null;
+    function leave() {
+        if (since !== null) { visibleMs += Date.now() - since; since = null; }
+        if (!visibleMs) return;
+        part += 1;
+        window.amplitude.track('Time on Page', { seconds: Math.round(visibleMs / 1000), part: part, page: window.location.pathname });
+        visibleMs = 0;
+        window.amplitude.setTransport('beacon');
+        window.amplitude.flush();
+    }
+    function back() {
+        if (since === null) since = Date.now();
+        window.amplitude.setTransport('fetch');
+    }
+    document.addEventListener('visibilitychange', function () {
+        if (document.visibilityState === 'hidden') leave(); else back();
+    });
+    window.addEventListener('pagehide', leave);
+    window.addEventListener('pageshow', function (e) { if (e.persisted) back(); });
+}
+
+function mark3dTurn() {
+    document.addEventListener('lo3d-turned', function (e) {
+        window.amplitude.track('3D Turned', { product: e.detail.product, page: window.location.pathname });
+    }, { once: true });
+}
+
+function markTranslation() {
+    var root = document.documentElement, startLang = root.lang, sent = false;
+    var observer = new MutationObserver(check);
+    function check() {
+        if (sent) return;
+        var how = /\btranslated-(ltr|rtl)\b/.test(root.className) ? 'browser_class' : (root.lang !== startLang ? 'lang_changed' : '');
+        if (!how) return;
+        sent = true;
+        observer.disconnect();
+        window.amplitude.track('Page Translated', { how: how, page_language: root.lang, browser_language: navigator.language, page: window.location.pathname });
+    }
+    observer.observe(root, { attributes: true, attributeFilter: ['class', 'lang'] });
+    check();
 }
 
 /**

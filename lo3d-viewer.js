@@ -126,7 +126,7 @@ export function mount(el, shape, opts = {}) {
     // spin, `tilt` the rocking. Computing it afresh keeps the sway exact however long the page stays open
     // (adding small steps frame after frame let it drift).
     const hand = new THREE.Quaternion().setFromAxisAngle(Y, -0.5), auto = new THREE.Quaternion(), qx = new THREE.Quaternion(), qy = new THREE.Quaternion();
-    let drag = null, resumeAt = 0, turn = 0, phase = 0, last = 0;
+    let drag = null, resumeAt = 0, turn = 0, phase = 0, last = 0, moved = 0;
     const pose = () => { auto.copy(qx.setFromAxisAngle(X, reduced ? 0 : rockBy * Math.sin(phase))).multiply(qy.setFromAxisAngle(Y, turn)); piece.quaternion.copy(auto).multiply(hand); };
     el.addEventListener('pointerdown', (e) => {
         if (e.pointerType === 'touch') return;
@@ -135,6 +135,7 @@ export function mount(el, shape, opts = {}) {
     el.addEventListener('pointermove', (e) => {
         if (!drag) return;
         const dx = e.clientX - drag.x, dy = e.clientY - drag.y; drag.x = e.clientX; drag.y = e.clientY;
+        if (moved < 20 && (moved += Math.abs(dx) + Math.abs(dy)) >= 20) el.dispatchEvent(new CustomEvent('lo3d-turned', { bubbles: true, detail: { product: el.dataset.shape } }));
         // turn about the screen's axes (up always tips the top away), folded into `hand`:
         // hand = auto^-1 * (screen rotation) * auto * hand
         dq.setFromAxisAngle(X, dy * 0.01).multiply(qy.setFromAxisAngle(Y, dx * 0.01));
