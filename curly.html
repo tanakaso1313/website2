@@ -72,8 +72,6 @@
             background: none; border: 0; cursor: pointer; font: inherit; -webkit-tap-highlight-color: transparent; color: #fff !important;
             font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
         }
-        .light-dot { width: 10px; height: 10px; border-radius: 50%; border: 1px solid currentColor; transition: background 0.6s ease, box-shadow 0.6s ease; }
-        body.lit .light-dot { background: #f3d9a4; border-color: #f3d9a4; box-shadow: 0 0 10px 3px rgba(243, 217, 164, 0.55); }
         .light-switch:focus-visible { outline: 1px solid currentColor; outline-offset: 4px; }
 
         /* The room goes dark when the lamp is on. */
@@ -84,7 +82,7 @@
             body.lit .site-name, body.lit .site-nav { background: #0e0d0c; color: #e9e4da; }
         }
         @media (prefers-reduced-motion: reduce) {
-            .light-frame .lit-photo, body, .work-content, footer, .site-name, .site-nav, .light-dot { transition: none; }
+            .light-frame .lit-photo, body, .work-content, footer, .site-name, .site-nav { transition: none; }
         }
     </style>
 </head>
@@ -110,13 +108,14 @@
                 <dt>Material</dt><dd>Japanese washi paper, aluminum</dd>
                 <dt>Photography</dt><dd>Kyoko Kataoka</dd>
             </dl>
+            <p class="work-shop"><a href="/curly-table-lamp_shop">Table lamp in shop →</a><br><a href="/curly-wall-lamp_shop">Wall lamp in shop →</a></p>
         </div>
         <div class="work-images">
             <!-- Light switch: the lit photo sits on top of the unlit one and fades in; the page dims with it. -->
             <div class="light-frame">
                 <img src="images/work - curly/1.curly.webp" alt="Curly table lamp, curled washi paper shade on a cylindrical aluminum base with a coiled black cord" class="lightbox-trigger">
                 <img src="images/work - curly/2.curly.webp" alt="Curly lit, the washi shade glowing warm with light pooling on the floor" class="lightbox-trigger lit-photo">
-                <button type="button" class="light-switch" aria-pressed="false"><span class="light-dot" aria-hidden="true"></span><span class="light-label">Turn on</span></button>
+                <button type="button" class="light-switch" aria-pressed="false"><span class="light-label">Turn on</span></button>
             </div>
             <img src="images/work - curly/3.curly.webp" alt="Curly seen from the side, the paper shade leaning on its aluminum base" class="lightbox-trigger">
             <img src="images/work - curly/4.curly.webp" alt="Curly from the front, both curled edges of the shade meeting at the top" class="lightbox-trigger">
@@ -137,7 +136,7 @@
     <footer>
         <p>&copy; 2026 SOTANAKA. All rights reserved.</p>
     </footer>
-    <script src="script.min.js?v=20"></script>
+    <script src="script.min.js?v=21"></script>
     <script>
     // Curly light switch: toggles the lit photo and dims the page. Starts off on every visit.
     (function () {

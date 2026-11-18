@@ -1,5 +1,23 @@
 [
   {
+    "id": "curly-table-lamp",
+    "name": "Curly Table Lamp",
+    "price": "¥36,300 (inc. tax)",
+    "image": "images/work - curly/1.curly.webp",
+    "hoverImage": "images/work - curly/2.curly.webp",
+    "page": "curly-table-lamp_shop.html",
+    "altText": "Curly Table Lamp, a curled washi paper shade on an aluminum base"
+  },
+  {
+    "id": "curly-wall-lamp",
+    "name": "Curly Wall Lamp",
+    "price": "¥34,100 (inc. tax)",
+    "image": "images/shop - curly wall lamp/1.curly-wall.webp",
+    "hoverImage": "images/shop - curly wall lamp/5.curly-wall.webp",
+    "page": "curly-wall-lamp_shop.html",
+    "altText": "Curly Wall Lamp, a curled washi paper shade mounted on a wall"
+  },
+  {
     "id": "LO / 01",
     "name": "LO / 01",
     "price": "¥14,300 (inc. tax)",

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Curly Wall Lamp by SOTANAKA. Japanese washi paper and aluminum.">
+    <meta name="author" content="SOTANAKA">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Curly Wall Lamp | Shop | SOTANAKA">
+    <meta property="og:description" content="Curly Wall Lamp by SOTANAKA. Japanese washi paper and aluminum.">
+    <meta property="og:type" content="product">
+    <meta property="og:url" content="https://sotanaka.com/curly-wall-lamp_shop">
+    <meta property="og:image" content="https://sotanaka.com/images/shop%20-%20curly%20wall%20lamp/1.curly-wall.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://sotanaka.com/curly-wall-lamp_shop">
+    <title>Curly Wall Lamp | Shop | SOTANAKA</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="liminal-light-s.css">
+        <script src="config.js"></script>
+    <!-- Amplitude Analytics -->
+    <script defer src="https://cdn.amplitude.com/libs/analytics-browser-2.11.1-min.js.gz" crossorigin="anonymous"></script>
+    <script defer src="analytics.js"></script>
+    <style>
+        .arrange-frame { position: relative; margin-bottom: 2em; }
+        .arrange-frame img { margin-bottom: 0 !important; display: block; width: 100%; height: auto; }
+        .arrange-frame img + img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+        .arrange-frame img:first-child { position: relative; }
+        .arrange-frame img { opacity: 0; z-index: 0; pointer-events: none; transition: opacity 1.2s ease; }
+        .arrange-frame img.was-shown { opacity: 1; z-index: 1; transition: none; }
+        .arrange-frame img.is-shown { opacity: 1; z-index: 2; pointer-events: auto; }
+        .arrange-switch {
+            position: absolute; top: 14px; left: 14px; z-index: 3;
+            display: inline-flex; align-items: center; gap: 10px; margin: 0; padding: 8px 10px;
+            background: none; border: 0; cursor: pointer; font: inherit; -webkit-tap-highlight-color: transparent; color: #000 !important;
+            font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+        }
+        .arrange-switch:focus-visible { outline: 1px solid currentColor; outline-offset: 4px; }
+        @media (prefers-reduced-motion: reduce) {
+            .arrange-frame img { transition: none; }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-name">
+        <h1><a href="/">S O T A N A K A</a></h1>
+    </header>
+    <nav class="site-nav" aria-label="Main">
+        <a href="/">Works</a>
+        <a href="/shop" aria-current="page">Shop</a>
+        <a href="/bio">Bio</a>
+        <a href="/archive/">Archive</a>
+        <a href="/contact">Contact</a>
+    </nav>
+    <main class="work-content">
+        <div class="work-description shop-product">
+            <h2>Curly Wall Lamp</h2>
+            <dl class="work-specs">
+                <dt>Material</dt><dd>Japanese washi paper, aluminum</dd>
+                <dt>Dimensions</dt><dd>W300 D300 H100 mm</dd>
+            </dl>
+            <div class="purchase-info">
+                <p class="price">¥34,100 (inc. tax)</p>
+                <a href="#" class="add-to-cart" data-product-id="CURLY WALL LAMP" data-price-id="price_1UYyaTEcQzNRltK02EMuJHik">Checkout</a>
+                <p class="contact-info-text">Shipping within Japan is free.</p>
+                <p class="more-link"><a href="/curly">View work page →</a></p>
+            </div>
+        </div>
+        <div class="work-images">
+            <div class="arrange-frame" data-arrange>
+                <img src="images/shop - curly wall lamp/1.curly-wall.webp" alt="Curly Wall Lamp on a white wall, shade curled into a near square, its coiled cord hanging below" class="lightbox-trigger is-shown">
+                <img src="images/shop - curly wall lamp/2.curly-wall.webp" alt="Curly Wall Lamp on a white wall, shade tilted with one corner turned under, its coiled cord hanging below" class="lightbox-trigger">
+                <img src="images/shop - curly wall lamp/3.curly-wall.webp" alt="Curly Wall Lamp on a white wall, shade leaning, both corners curled, its coiled cord hanging below" class="lightbox-trigger">
+                <img src="images/shop - curly wall lamp/4.curly-wall.webp" alt="Curly Wall Lamp on a white wall, shade swept out to one side, its coiled cord hanging below" class="lightbox-trigger">
+                <img src="images/shop - curly wall lamp/5.curly-wall.webp" alt="Curly Wall Lamp on a white wall, shade opened into a wide trapezoid, its coiled cord hanging below" class="lightbox-trigger">
+                <button type="button" class="arrange-switch" hidden><span>Rearrange</span></button>
+            </div>
+        </div>
+    </main>
+
+    <div id="lightbox" class="lightbox">
+        <span class="close-button">&times;</span>
+        <img src="images/icons/prev-arrow.svg" class="prev-button" alt="Previous image">
+        <img class="lightbox-content" id="lightbox-img" alt="">
+        <img src="images/icons/next-arrow.svg" class="next-button" alt="Next image">
+    </div>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="script.min.js?v=21" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const closeButton = document.querySelector('.close-button');
+            const prevButton = document.querySelector('.prev-button');
+            const nextButton = document.querySelector('.next-button');
+            const imageTriggers = document.querySelectorAll('.lightbox-trigger');
+            const images = Array.from(imageTriggers).map(img => img.src);
+            let currentIndex;
+
+            function showImage(index) {
+                lightboxImg.src = images[index];
+                currentIndex = index;
+            }
+
+            imageTriggers.forEach((trigger, index) => {
+                trigger.addEventListener('click', () => {
+                    lightbox.classList.add('active');
+                    showImage(index);
+                });
+            });
+
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+            }
+
+            function showPrevImage() {
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                showImage(currentIndex);
+            }
+
+            function showNextImage() {
+                currentIndex = (currentIndex + 1) % images.length;
+                showImage(currentIndex);
+            }
+
+            closeButton.addEventListener('click', closeLightbox);
+            prevButton.addEventListener('click', showPrevImage);
+            nextButton.addEventListener('click', showNextImage);
+
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (lightbox.classList.contains('active')) {
+                    if (e.key === 'ArrowLeft') {
+                        showPrevImage();
+                    } else if (e.key === 'ArrowRight') {
+                        showNextImage();
+                    } else if (e.key === 'Escape') {
+                        closeLightbox();
+                    }
+                }
+            });
+        });
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var frame = document.querySelector('[data-arrange]');
+        if (!frame) return;
+        var shots = Array.prototype.slice.call(frame.querySelectorAll('img'));
+        var btn = frame.querySelector('.arrange-switch');
+        if (shots.length < 2) return;
+        btn.hidden = false;
+        btn.setAttribute('aria-label', 'Rearrange: show arrangement 2 of ' + shots.length);
+        var current = 0;
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var settle = 0;
+        btn.addEventListener('click', function () {
+            clearTimeout(settle);
+            shots.forEach(function (img) { img.classList.remove('was-shown'); });
+            shots[current].classList.remove('is-shown');
+            shots[current].classList.add('was-shown');
+            current = (current + 1) % shots.length;
+            shots[current].classList.add('is-shown');
+            var prev = shots[(current - 1 + shots.length) % shots.length];
+            settle = setTimeout(function () { prev.classList.remove('was-shown'); }, reduce ? 0 : 1300);
+            btn.setAttribute('aria-label', 'Rearrange: show arrangement ' + ((current + 1) % shots.length + 1) + ' of ' + shots.length);
+        });
+    });
+    </script>
+    <footer>
+        <p><a href="/policies">Policies</a></p>
+        <p>&copy; 2026 SOTANAKA. All rights reserved.</p>
+    </footer>
+</body>
+</html>

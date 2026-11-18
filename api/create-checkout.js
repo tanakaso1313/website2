@@ -36,6 +36,8 @@ const PRODUCTS = {
   'LO_HORSE':       { name: 'LO Horse',       prices: ['price_1SlKWcEcQzNRltK0Bi9GW64L', 'price_1SlKX3EcQzNRltK0lTUSdxTK'], band: '1.5' },
   'VNSH':           { name: 'Vnsh',           prices: ['price_1SRanLEcQzNRltK0IPX6MFwN'], jpOnly: true },
   'LIMINAL LAMP S': { name: 'Liminal Lamp S', prices: ['price_1SvC2BEcQzNRltK0YfYIxscH'], jpOnly: true },
+  'CURLY TABLE LAMP': { name: 'Curly Table Lamp', prices: ['price_1UWd2BEcQzNRltK0ALpKiUCQ'], jpOnly: true },
+  'CURLY WALL LAMP':  { name: 'Curly Wall Lamp',  prices: ['price_1UYyaTEcQzNRltK02EMuJHik'], jpOnly: true },
 };
 
 // --- Shipping regions (buyer picks one on the product page) ---

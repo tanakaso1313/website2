@@ -303,6 +303,36 @@
     ]
   },
   {
+    "id": "product_curly-table-lamp",
+    "type": "shop",
+    "title": "Curly Table Lamp",
+    "url": "curly-table-lamp_shop.html",
+    "description": "Table lamp with a curled washi paper shade on an aluminum base",
+    "price": "¥36,300 (inc. tax)",
+    "keywords": [
+      "curly",
+      "table lamp",
+      "lamp",
+      "lighting",
+      "washi"
+    ]
+  },
+  {
+    "id": "product_curly-wall-lamp",
+    "type": "shop",
+    "title": "Curly Wall Lamp",
+    "url": "curly-wall-lamp_shop.html",
+    "description": "Wall lamp with a curled washi paper shade",
+    "price": "¥34,100 (inc. tax)",
+    "keywords": [
+      "curly",
+      "wall lamp",
+      "lamp",
+      "lighting",
+      "washi"
+    ]
+  },
+  {
     "id": "product_LO / 01",
     "type": "shop",
     "title": "LO / 01",

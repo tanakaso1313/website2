@@ -10,7 +10,7 @@ shop.html draws its grid with JavaScript from products.json, so tools that read 
 """
 import html, json, re, sys
 
-JAPAN_ONLY = {'VNSH', 'LIMINAL LAMP S'}   # same list as JAPAN_ONLY in script.js
+JAPAN_ONLY = {'VNSH', 'LIMINAL LAMP S', 'CURLY TABLE LAMP', 'CURLY WALL LAMP'}   # same list as JAPAN_ONLY in script.js
 
 def build():
     items = []
@@ -51,6 +51,24 @@ def build():
 js = re.search(r"const JAPAN_ONLY = \[([^\]]*)\]", open('script.js').read())
 if not js or set(re.findall(r"'([^']+)'", js.group(1))) != JAPAN_ONLY:
     sys.exit('JAPAN_ONLY in script.js differs from tools/shop_noscript.py: update both')
+
+server = {}
+for key, body in re.findall(r"^\s*'([^']+)':\s*\{([^}]*)\}", open('api/create-checkout.js').read(), re.M):
+    server[key] = (set(re.findall(r"'(price_[^']+)'", body)), bool(re.search(r'jpOnly:\s*true', body)))
+if not server:
+    sys.exit('no products found in api/create-checkout.js: the PRODUCTS format changed, update this check')
+server_jp = {k for k, (_, jp) in server.items() if jp}
+if server_jp != JAPAN_ONLY:
+    sys.exit(f'jpOnly in api/create-checkout.js differs from JAPAN_ONLY: server {sorted(server_jp)}, site {sorted(JAPAN_ONLY)}')
+for p in json.load(open('products.json')):
+    if (p.get('status') or 'available') != 'available':
+        continue
+    page = open(p['page']).read()
+    for pid, price in re.findall(r'class="add-to-cart"[^>]*data-product-id="([^"]+)"[^>]*data-price-id="([^"]+)"', page):
+        if pid not in server:
+            sys.exit(f"{p['page']}: product {pid!r} is not in api/create-checkout.js, Checkout would be refused")
+        if price not in server[pid][0]:
+            sys.exit(f"{p['page']}: price {price} is not allowed for {pid!r} in api/create-checkout.js, Checkout would be refused")
 
 s = open('shop.html').read()
 block = build()

@@ -3,7 +3,7 @@
    page: the real price line and the size buttons are moved, not copied, and the region dropdown is
    kept but hidden while the Ship to row drives it. */
 // Pieces that ship within Japan only: no region picker, and the Ship to row says so.
-const JAPAN_ONLY = ['VNSH', 'LIMINAL LAMP S'];
+const JAPAN_ONLY = ['VNSH', 'LIMINAL LAMP S', 'CURLY TABLE LAMP', 'CURLY WALL LAMP'];
 // Colour names are stored and sent to Stripe/Amplitude as "grey" etc. (data, unchanged); only the displayed name is American.
 const shown = (t) => t.replace(/grey/g, 'gray');
 
